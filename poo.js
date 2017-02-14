@@ -162,7 +162,7 @@ var g_scrolls = [
 	"prefix":false
 },
 {	"name":"Silent",
-	"locations":["glove", "feet"] ,
+	"locations":["gloves", "feet"] ,
 	"stats":{
 		"balance":2,
 		"speed":2,
@@ -212,9 +212,29 @@ var g_chests = [
 	}
 ]
 
+var g_gloves = [
+	{
+		"name":"Silky poo gloves",
+		"type":"cloth"
+	},
+	{
+		"name":"Light poo gloves",
+		"type":"light"
+	},
+	{
+		"name":"Heavy poo gauntlets",
+		"type":"heavy"
+	},
+	{
+		"name":"Stone poo gauntlets",
+		"type":"plate"
+	}
+]
+
 var g_items = {
 	"weapon" : g_weapons,
-	"chest": g_chests
+	"chest": g_chests,
+	"gloves": g_gloves
 }
 
 function createInputBox()
