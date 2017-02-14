@@ -12,37 +12,122 @@ Person.prototype.speak = function(){
 };
 
 // Instantiate new objects with 'new'
-var person = new Person("Bob", "M");
+//var person = new Person("Bob", "M");
 
 // Invoke methods like this
-person.speak(); // alerts "Howdy, my name is Bob"
+//person.speak(); // alerts "Howdy, my name is Bob"
 
 var locations =
 {
 	"hat":1,
 	"weapon":2,
-	"chest":3,
-	"offhand":4,
-	"legs":5,
-	"feet":6,
-	"rings":7,
-	"earrings":8,
-	"artifact":9,
-	"brooch":10,
-	"necklace":11
+	"offhand":3,
+	"chest":4,
+	"gloves":5,
+	"legs":6,
+	"feet":7,
+	"rings":8,
+	"earrings":9,
+	"artifact":10,
+	"brooch":11,
+	"necklace":12
 }
+
+var armor_types = [
+	"plate",
+	"heavy",
+	"light",
+	"cloth"
+]
 
 var types =
 {
-	"weapon":"longsword","longhammer"
+	"weapon":["longsword","longhammer"],
+	"offhand":["smallshield", "largeshield", "book"],
+	"hat": armor_types,
+	"chest" : armor_types,
+	"gloves" : armor_types,
+	"legs" : armor_types,
+	"feet" : armor_types,
+	
 }
 
 var scrolls = [
 {
 	"name":"Immoral",
-	"locations":["weapon"]
-
+	"locations":["weapon"],
+	"stats":{
+		"speed":4,
+		"crit":8
+	},
+	"prefix":true 
 },
 {
+	"name":"Leopard",
+	"locations":["weapon"],
+	"stats":{
+		"speed":8,
+		"balance":2
+	},
+	"prefix":true
+},
+{
+	"name":"Valor",
+	"locations":["weapon"],
+	"stats":{
+		"balance":5,
+		"speed":4
+	},
+	"prefix":false
+},
+{
+	"name":"Judgment",
+	"locations":["weapon"],
+	"stats":{
+		"balance":-1,
+		"speed":3,
+		"crit":4
+	},
+	"prefix":false
 },
 ]
+
+var weapons = [
+{
+	"name":"Poo Longsword",
+	"stats":{
+		"speed":9,
+		"crit":39,
+		"balance":78
+	}
+},
+{
+	"name":"Poo Hammer",
+	"stats":{
+		"speed":9,
+		"crit":42,
+		"balance":69
+	}
+}
+]
+
+function createSquare(id, loc)
+{	
+	var target = $("#"+id)
+	var box = $("<div />")
+	box.css("height", "12em")
+	box.css("width", "12em")
+	box.css("border-style", "solid")
+	box.css("background-image", "url('resource/poo.png')")
+	box.css("background-size", "cover")
+	
+	var prefix = $("<input type='text' />")
+	var suffix = $("<input type='text' />")	
+	var item = $("<input type='text'/>")
+	
+	box.append(prefix)
+	box.append(suffix)
+	box.append(item)
+	
+	target.append(box)
+}
