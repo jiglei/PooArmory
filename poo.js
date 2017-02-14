@@ -240,7 +240,7 @@ function createSquare(id, loc)
 		position: {my:"left top", at :"right bottom"}
 	}
 	)
-	prefix.on("focus", function(){	prefix.autocomplete("search", "")})
+	prefix.on("focus", function(){	prefix.autocomplete("search", prefix.val())})
 	
 	suffix.autocomplete({source: scrollSource(false),
 	position: {my:"left top", at :"right bottom"},
@@ -248,7 +248,10 @@ function createSquare(id, loc)
 	"close": scrollSet("suffix", suffix),
 	minLength:0,
 	})
-	suffix.on("focus", function(){	suffix.autocomplete("search", "")})
+	suffix.on("focus", function(){	
+		suffix.autocomplete("search", suffix.val())
+		}
+	)
 	
 	var updateWeapon = function()
 	{
@@ -270,7 +273,7 @@ function createSquare(id, loc)
 	minLength:0,
 	position: {my:"left top", at :"right bottom"}
 	})
-	item.on("focus", function(){item.autocomplete("search", "")})
+	item.on("focus", function(){item.autocomplete("search", item.val())})
 	
 	
 	box.append(prefix)
