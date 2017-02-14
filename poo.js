@@ -271,8 +271,8 @@ function createSquare(id, loc)
 {	
 	var target = $("#"+id)
 	var box = $("<div />")
-	box.css("height", "12em")
-	box.css("width", "12em")
+	box.css("height", "8em")
+	box.css("width", "8em")
 	box.css("border-style", "solid")
 	box.css("background-image", "url('resource/poo.png')")
 	box.css("background-size", "cover")
@@ -422,4 +422,62 @@ function createSquare(id, loc)
 	target.append(box)
 	
 	return box
+}
+
+function accumulateBoxes(boxes)
+{
+	var stats = {"bal":0, "crit":0, "speed":0}
+	$.each(boxes, function(k,v){
+		var boxStats = v.data("stats")
+		if(boxStats)
+		{
+			stats.bal += boxStats.bal||0
+			stats.crit += boxStats.crit||0
+			stats.speed += boxStats.speed||0
+		}
+	})
+	return stats
+}
+
+function createStatsSheet(id, stats)
+{
+	var target = $("#"+id)
+	target.html("")
+	var sheet = $("<div class='container' />")
+	
+	sheet.css("height", "30em")
+	sheet.css("width", "100%")
+	sheet.css("border-style", "solid")
+	var nameRow = $("<div class='row' />")
+	nameRow.html("A poo")
+	nameRow.css("text-align", "center")
+	nameRow.css("font-size", "2em")
+	sheet.append(nameRow)
+	
+	var row = $("<div class='row' />")
+	
+	var picdiv = $("<div class='col-md-6'/>")
+	
+	var pic = $("<div />")
+	
+	
+	
+	pic.css("background-image", "url('resource/a_cute_poo.png')")
+	pic.css("background-size", "cover")
+	pic.css("background-position", "10%")
+	pic.css("background-color", "pink")
+
+	pic.css("width", "100%")
+	pic.css("display", "block")
+	pic.css("padding-top", "100%")
+	
+	pic.css("border-style", "solid")
+	
+	
+	picdiv.append(pic)
+	row.append(picdiv)
+	
+	sheet.append(row)
+	
+	target.append(sheet)
 }
