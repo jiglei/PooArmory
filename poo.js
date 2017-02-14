@@ -111,6 +111,14 @@ var weapons = [
 }
 ]
 
+function createInputBox()
+{
+	var ret= $("<input type='text' />")
+	ret.css("width", "100%")
+	ret.css("opacity", 0.5)
+	return ret
+}
+
 function createSquare(id, loc)
 {	
 	var target = $("#"+id)
@@ -121,11 +129,11 @@ function createSquare(id, loc)
 	box.css("background-image", "url('resource/poo.png')")
 	box.css("background-size", "cover")
 	
-	var prefix = $("<input type='text' />")
+	var prefix = createInputBox()
 	prefix.autocomplete({source:["Immoral", "Leopard"]})
-	var suffix = $("<input type='text' />")	
+	var suffix = createInputBox()
 	suffix.autocomplete({source:["Valor", "Budblust"]})
-	var item = $("<input type='text'/>")
+	var item = createInputBox()
 	item.autocomplete({source:["Poo hammer","Poo longsword"]})
 	
 	box.append(prefix)
