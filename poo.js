@@ -115,7 +115,7 @@ function createInputBox()
 {
 	var ret= $("<input type='text' />")
 	ret.css("width", "100%")
-	ret.css("opacity", 0.5)
+	ret.css("background", "rgba(255,255,255,0.5)")
 	return ret
 }
 
