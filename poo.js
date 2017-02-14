@@ -122,8 +122,11 @@ function createSquare(id, loc)
 	box.css("background-size", "cover")
 	
 	var prefix = $("<input type='text' />")
+	prefix.autocomplete({source:["Immoral", "Leopard"]})
 	var suffix = $("<input type='text' />")	
+	suffix.autocomplete({source:["Valor", "Budblust"]})
 	var item = $("<input type='text'/>")
+	item.autocomplete({source:["Poo hammer","Poo longsword"]})
 	
 	box.append(prefix)
 	box.append(suffix)
