@@ -186,7 +186,7 @@ function createSquare(id, loc)
 			{
 				bal += x.stats.balance || 0
 				crit += x.stats.crit || 0 
-				spd += x.stats.spd|| 0
+				spd += x.stats.speed|| 0
 			}
 		})
 		
