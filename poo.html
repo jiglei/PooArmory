@@ -22,18 +22,51 @@ function displayTotals(boxes)
 
 $(document).ready( function()
 {
+	var update = function()
+	{
+		displayTotals(boxes)
+	}
+	
+	var rows = 6;
+	var cols = 3;
+	
+	for (var row = 0; row < rows; ++row)
+	{
+		var rowEl = $("<div class='row m-big-top-bot'/>")
+		for (var col = 0; col < cols; ++col)
+		{
+			var colEl = $("<div class='col-xs-4'/>")
+			var boxEl = $("<div />")
+			boxEl.attr('id', "box"+(1+ row*cols+ col) )
+			colEl.append(boxEl)
+			rowEl.append(colEl)
+			
+		}
+		$("#equip").append(rowEl)
+	}
+	var i = 1
 	boxes = [
-		createSquare("box1", "weapon"),
-		createSquare("box2", "chest"),
-		createSquare("box3", "gloves")
+		createSquare("box"+(i++), "earring", update),
+		createSquare("box"+(i++), "hat", update),
+		createSquare("box"+(i++), "wings", update),
+		createSquare("box"+(i++), "weapon", update),
+		createSquare("box"+(i++), "chest", update),
+		createSquare("box"+(i++), "offhand", update),
+		createSquare("box"+(i++), "secondary", update),
+		createSquare("box"+(i++), "legs", update),
+		createSquare("box"+(i++), "gloves", update),
+		createSquare("box"+(i++), "belt", update),
+		createSquare("box"+(i++), "feet", update),
+		createSquare("box"+(i++), "brooch", update),
+		createSquare("box"+(i++), "rings", update),
+		createSquare("box"+(i++), "artifact", update),
+		createSquare("box"+(i++), "rings", update),
+		createSquare("box"+(i++), "bracelet", update),
+		createSquare("box"+(i++), "", update),
+		createSquare("box"+(i++), "bracelet", update)
 	]
 	
-	$.each(boxes, function(k,v){
-		v.on("change", function(e)
-		{
-			displayTotals(boxes)
-		})
-	})
+	update()
 	
 	
 })
@@ -43,29 +76,29 @@ $(document).ready( function()
 <body>
 <div class="container">
 	<div class="row">
-		<div class="col-md-12 "><h1>Welcome to the 3rd Poo Armory</h1></div>
+		<div class="col-xs-12 "><h1>Welcome to the 3rd Poo Armory</h1></div>
 		<br/>
 	</div>
 	<div class="col-md-4">
 		<div class="row">
-			<button onclick='displayTotals(boxes)'>Calculate </button>
-			Hiya
-			<div id="endDisplay"></div>
+			<div id="endDisplay" class="col-xs-12"></div>
 		</div>
 	</div>
-	<div class="col-md-8">
-		<div class="col-md-4">
-			<div id="box1"> </div>
-		</div>
-		<div class="col-md-4">
-			<div id="box2"> </div>
-		</div>
-		<div class="col-md-4">
-			<div id="box3"> </div>
+	<div class="col-md-8" id='equip'>
+	<!--
+		<div class='row'>
+			<div class="col-xs-4">
+				<div id="box1"> </div>
+			</div>
+			<div class="col-xs-4">
+				<div id="box2"> </div>
+			</div>
+			<div class="col-xs-4">
+				<div id="box3"> </div>
+			</div>
 		</div>
 	</div>
-	</div>
-	<div class="row">
+		-->
 	</div>
   
 </div>

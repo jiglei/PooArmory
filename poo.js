@@ -267,7 +267,7 @@ function passFilter(loc, type, scr, prefix)
 	return true;
 }
 
-function createSquare(id, loc)
+function createSquare(id, loc, cb)
 {	
 	var target = $("#"+id)
 	var box = $("<div />")
@@ -276,10 +276,17 @@ function createSquare(id, loc)
 	box.css("border-style", "solid")
 	box.css("background-image", "url('resource/poo.png')")
 	box.css("background-size", "cover")
+	target.append(box)
+	
+	if (!loc || !(loc in g_items))
+	{
+		return box
+	}
 	
 	var prefix = createInputBox()
 	var suffix = createInputBox()
 	var item = createInputBox()
+	
 	var display = $("<div />")
 	display.css("background-color",'white')
 	
@@ -306,6 +313,8 @@ function createSquare(id, loc)
 			return v + "=" + k
 		}).join(",")
 		display.html(txt)
+		
+		cb(box)
 		return true
 	}
 	
@@ -390,10 +399,7 @@ function createSquare(id, loc)
 			}
 		})
 		return update()
-	}
-	
-	////////////////////////
-	
+	}	
 	
 	var src = $.map(g_items[loc], function(k,v) {
 		return k.name
@@ -419,7 +425,6 @@ function createSquare(id, loc)
 	box.append(item)
 	box.append(display)
 	
-	target.append(box)
 	
 	return box
 }
@@ -439,29 +444,26 @@ function accumulateBoxes(boxes)
 	return stats
 }
 
+// id is a col
 function createStatsSheet(id, stats)
 {
+	var statRowString = "<div class='row m-top-bot' />"
 	var target = $("#"+id)
 	target.html("")
-	var sheet = $("<div class='container' />")
 	
-	sheet.css("height", "30em")
-	sheet.css("width", "100%")
-	sheet.css("border-style", "solid")
+	target.css("height", "30em")
+	//sheet.css("width", "100%")
+	target.css("border-style", "solid")
 	var nameRow = $("<div class='row' />")
 	nameRow.html("A poo")
 	nameRow.css("text-align", "center")
 	nameRow.css("font-size", "2em")
-	sheet.append(nameRow)
+	target.append(nameRow)
 	
-	var row = $("<div class='row' />")
-	
-	var picdiv = $("<div class='col-md-6'/>")
-	
+	// row for picture and title?
+	var row = $(statRowString)
+	var picdiv = $("<div class='col-xs-6'/>")
 	var pic = $("<div />")
-	
-	
-	
 	pic.css("background-image", "url('resource/a_cute_poo.png')")
 	pic.css("background-size", "cover")
 	pic.css("background-position", "10%")
@@ -476,8 +478,25 @@ function createStatsSheet(id, stats)
 	
 	picdiv.append(pic)
 	row.append(picdiv)
+	target.append(row)
 	
-	sheet.append(row)
+	row = $(statRowString)
+	var statCol = $("<div class='col-xs-6'/>")
+	statCol.html("Bal: " + stats.bal)
+	row.append(statCol)
+	target.append(row)
 	
-	target.append(sheet)
+	row = $(statRowString)
+	statCol = $("<div class='col-xs-6'/>")
+	statCol.html("crit: " + stats.crit)
+	row.append(statCol)
+	target.append(row)
+	
+	row = $(statRowString)
+	statCol = $("<div class='col-xs-6'/>")
+	statCol.html("Speed: " + stats.speed)
+	row.append(statCol)
+	target.append(row)
+	
+	
 }
