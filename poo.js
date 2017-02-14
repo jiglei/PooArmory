@@ -17,7 +17,7 @@ Person.prototype.speak = function(){
 // Invoke methods like this
 //person.speak(); // alerts "Howdy, my name is Bob"
 
-var locations =
+var g_locations =
 {
 	"hat":1,
 	"weapon":2,
@@ -33,6 +33,10 @@ var locations =
 	"necklace":12
 }
 
+var all_armor = [
+"hat", "chest", "gloves", "legs", "feet"
+]
+
 var armor_types = [
 	"plate",
 	"heavy",
@@ -40,7 +44,7 @@ var armor_types = [
 	"cloth"
 ]
 
-var types =
+var g_types =
 {
 	"weapon":["longsword","longhammer"],
 	"offhand":["smallshield", "largeshield", "book"],
@@ -52,7 +56,7 @@ var types =
 	
 }
 
-var scrolls = [
+var g_scrolls = [
 {
 	"name":"Immoral",
 	"locations":["weapon"],
@@ -101,9 +105,74 @@ var scrolls = [
 	},
 	"prefix":true
 },
+{
+	"name":"Enlightenment",
+	"locations":["hat", "legs"],
+	"types":["light", "cloth"],
+	"stats":{
+		"balance":2,
+		"speed":2,
+		"crit":1
+	},
+	"prefix":true
+},
+{	"name":"Well-Balanced",
+	"locations":all_armor ,
+	"types":["light", "cloth"],
+	"stats":{
+		"balance":1,
+		"speed":2,
+		"crit":1
+	},
+	"prefix":true
+},
+{	"name":"Enthusiastic",
+	"locations":all_armor ,
+	"types":["light", "cloth"],
+	"stats":{
+		"balance":5,
+		"speed":0,
+		"crit":0
+	},
+	"prefix":false
+},
+{	"name":"Time's",
+	"locations":["chest"] ,
+	"stats":{
+		"balance":-3,
+		"crit":4
+	},
+	"prefix":true
+},
+{	"name":"Master",
+	"locations":["chest"] ,
+	"stats":{
+		"balance":-1,
+		"crit":5
+	},
+	"prefix":false
+},
+{	"name":"Declaration",
+	"locations":["glove", "feet"] ,
+	"types":["light","cloth"],
+	"stats":{
+		"balance":4,
+		"speed":1
+	},
+	"prefix":false
+},
+{	"name":"Silent",
+	"locations":["glove", "feet"] ,
+	"stats":{
+		"balance":2,
+		"speed":2,
+		"crit":1
+	},
+	"prefix":true
+},
 ]
 
-var weapons = [
+var g_weapons = [
 {
 	"name":"Poo Longsword",
 		"type":"longsword",
@@ -123,6 +192,30 @@ var weapons = [
 	}
 }
 ]
+
+var g_chests = [
+	{
+		"name":"Silky poo",
+		"type":"cloth"
+	},
+	{
+		"name":"Light poo",
+		"type":"light"
+	},
+	{
+		"name":"Heavy poo",
+		"type":"heavy"
+	},
+	{
+		"name":"Stone poo",
+		"type":"plate"
+	}
+]
+
+var g_items = {
+	"weapon" : g_weapons,
+	"chest": g_chests
+}
 
 function createInputBox()
 {
@@ -174,30 +267,33 @@ function createSquare(id, loc)
 	{
 		var p = box.data("prefix")
 		var s = box.data("suffix")
-		var w = box.data("weapon")
-		
-		var bal = 0
-		var crit = 0
-		var spd =0 
+		var w = box.data("item")
+
+		var stats = {"bal":0, "crit":0, "speed": 0}
 		
 		$.each([p,s,w], function(k,x)
 		{
 			if(x && x.stats)
 			{
-				bal += x.stats.balance || 0
-				crit += x.stats.crit || 0 
-				spd += x.stats.speed|| 0
+				stats.bal += x.stats.balance || 0
+				stats.crit += x.stats.crit || 0 
+				stats.speed += x.stats.speed|| 0
 			}
 		})
-		
-		display.html(["bal="+bal, "crit="+crit, "spd="+spd].join(","))
+		box.data("stats", stats)
+		var txt = 
+		$.map(stats, function(k,v) { 
+			return v + "=" + k
+		}).join(",")
+		display.html(txt)
+		return true
 	}
 	
 	var scrollSet = function(key, thing)
 	{
 		return function(){
 			var name = thing.val().toLowerCase()
-			$.each(scrolls, function(k,v)
+			$.each(g_scrolls, function(k,v)
 			{
 				if (v.name.toLowerCase() == name)
 				{
@@ -215,9 +311,9 @@ function createSquare(id, loc)
 			var term = $.ui.autocomplete.escapeRegex(state.term)
 			var re = new RegExp(term, "i")
 			var ret = []
-			var weapon = box.data("weapon") || {"type":null}
-			var type = weapon["type"]
-			$.each(scrolls, function(k,v)
+			var item = box.data("item") || {"type":null}
+			var type = item["type"]
+			$.each(g_scrolls, function(k,v)
 			{
 				if ( passFilter(loc, type, v, prefix) )
 				{
@@ -231,47 +327,69 @@ function createSquare(id, loc)
 		}
 	}
 	
-	prefix.autocomplete( {
+	prefix.autocomplete({
 		source: scrollSource(true),
 		change: scrollSet("prefix", prefix),
 		"close": scrollSet("prefix", prefix),
 		delay: 250,
 		minLength:0,
-		position: {my:"left top", at :"right bottom"}
+		position: {my:"left top", at :"right bottom"},
+		messages: {
+			noResults: '',
+			results: function() {}
+		}
 	}
 	)
 	prefix.on("focus", function(){	prefix.autocomplete("search", prefix.val())})
 	
-	suffix.autocomplete({source: scrollSource(false),
-	position: {my:"left top", at :"right bottom"},
-	change: scrollSet("suffix", suffix),
-	"close": scrollSet("suffix", suffix),
-	minLength:0,
+	suffix.autocomplete({
+		source: scrollSource(false),
+		position: {my:"left top", at :"right bottom"},
+		change: scrollSet("suffix", suffix),
+		"close": scrollSet("suffix", suffix),
+		minLength:0,
+		messages: {
+			noResults: '',
+			results: function() {}
+		}
 	})
 	suffix.on("focus", function(){	
 		suffix.autocomplete("search", suffix.val())
 		}
 	)
 	
-	var updateWeapon = function()
+	var updateItem = function()
 	{
 		var name = item.val().toLowerCase()
-		$.each(weapons, function(k,v)
+		$.each(g_items[loc], function(k,v)
 		{
 			if (v.name.toLowerCase() == name)
 			{
-				box.data("weapon", v)
+				box.data("item", v)
 				return false 
 			}
 		})
-		update()
+		return update()
 	}
 	
-	item.autocomplete({source:["Poo hammer","Poo longsword"], 
-	"close":updateWeapon, 
-	"change":updateWeapon,
-	minLength:0,
-	position: {my:"left top", at :"right bottom"}
+	////////////////////////
+	
+	
+	var src = $.map(g_items[loc], function(k,v) {
+		return k.name
+	})
+
+	item.autocomplete({
+		source:src, 
+		"close":updateItem, 
+		"change":updateItem,
+		minLength:0,
+		position: {my:"left top", at :"right bottom"},
+		messages: {
+			noResults: '',
+			results: function() {	
+			}
+		}
 	})
 	item.on("focus", function(){item.autocomplete("search", item.val())})
 	
@@ -282,4 +400,6 @@ function createSquare(id, loc)
 	box.append(display)
 	
 	target.append(box)
+	
+	return box
 }
