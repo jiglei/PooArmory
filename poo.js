@@ -190,6 +190,15 @@ var g_weapons = [
 		"crit":42,
 		"balance":69
 	}
+},
+{
+	"name":"Poo Staff or some shit",
+	"type":"staff",
+	"stats":{
+		"speed":4,
+		"crit":500,
+		"balance":69
+	}
 }
 ]
 
@@ -488,7 +497,7 @@ function createStatsSheet(id, stats)
 	
 	row = $(statRowString)
 	statCol = $("<div class='col-xs-6'/>")
-	statCol.html("crit: " + stats.crit)
+	statCol.html("Crit: " + stats.crit)
 	row.append(statCol)
 	target.append(row)
 	
