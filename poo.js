@@ -733,7 +733,7 @@ function createStatsSheet(id, stats)
 	var target = $("#"+id)
 	target.html("")
 	
-	target.css("height", "30em")
+	//target.css("height", "30em")
 	//sheet.css("width", "100%")
 	target.css("border-style", "solid")
 	var nameRow = $("<div class='row' />")
