@@ -458,6 +458,11 @@ function createSquare(id, loc, cb)
 	
 	if (!loc || !(loc in g_items))
 	{
+		var overlay = $("<div />")
+		overlay.css("background-color", "rgba(0,0,0,0.5)")
+		overlay.css("height", "100%")
+		overlay.css("weight", "100%")
+		box.append(overlay)
 		return box
 	}
 	
