@@ -358,8 +358,16 @@ function passFilter(loc, type, scr, prefix)
 
 function formatStats(stats)
 {
+	if (!stats)
+	{
+		return ""
+	}
 	return txt = $.map(stats, function(k,v) { 
-			return v + "=" + k
+			if (k == 0)
+			{
+				return null
+			}
+			return v + "+" + k
 		}).join(", ")
 }
 
@@ -404,7 +412,7 @@ function createSquare(id, loc, cb)
 			}
 		})
 		box.data("stats", stats)
-		var txt = formatStats(stat)
+		var txt = formatStats(stats)
 		$("#console").html(txt)
 		
 		cb(box)
