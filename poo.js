@@ -195,11 +195,16 @@ var g_scrolls = [
 },
 ]
 
-var g_scrollLookup = {}
+function createLookup(arr)
+{
+	ret = {}
+	$.each(arr, function(k,v){
+		ret[v.name] = v
+	})
+	return ret
+}
 
-$.each(g_scrolls, function(k,v){
-	g_scrollLookup[v.name] = v
-})
+var g_scrollLookup = createLookup(g_scrolls)
 
 var g_weapons = [
 {
@@ -230,6 +235,8 @@ var g_weapons = [
 	}
 }
 ]
+
+var g_weaponLookup = createLookup(g_weapons)
 
 var g_chests = [
 	{
@@ -313,6 +320,11 @@ var g_items = {
 	"offhand": g_offhands,
 	"hat":g_hats
 }
+
+var g_lookups = {};
+$.each(g_items, function(k,v){
+	g_lookups[k] = createLookup(v)
+})
 
 function createInputBox()
 {
@@ -436,27 +448,25 @@ function createSquare(id, loc, cb)
 		}
 	}
 	
-	var openCb = function(e,ui) {			
+	var openCb = function(lookupMap){
+		return function(e,ui) {			
 			var x = $(".ui-menu-item-wrapper")
 			$.each(x, function(k,v){
-				var data = g_scrollLookup[v.innerHTML]
+				var data = lookupMap[v.innerHTML]
 				if(data)
 				{
 					$(v).attr("title", formatStats(data.stats))
 					$(v).tooltip()
 				}
 			})
-			
-            //$("input").val();
-            //q = $("#ui-active-menuitem").html();
-            //$("#ui-active-menuitem").html("<b>"+q+"</b>");
         }
+	}
 	
 	prefix.autocomplete({
 		source: scrollSource(true),
 		change: scrollSet("prefix", prefix),
 		"close": scrollSet("prefix", prefix),
-		"open": openCb,
+		"open": openCb(g_scrollLookup),
 		delay: 250,
 		minLength:0,
 		position: {my:"left top", at :"right bottom"},
@@ -473,7 +483,7 @@ function createSquare(id, loc, cb)
 		position: {my:"left top", at :"right bottom"},
 		change: scrollSet("suffix", suffix),
 		"close": scrollSet("suffix", suffix),
-		"open": openCb,
+		"open": openCb(g_scrollLookup),
 		minLength:0,
 		messages: {
 			noResults: '',
@@ -507,7 +517,7 @@ function createSquare(id, loc, cb)
 		source:src, 
 		"close":updateItem, 
 		"change":updateItem,
-		"open": openCb,
+		"open": openCb(g_lookups[loc]),
 		minLength:0,
 		position: {my:"left top", at :"right bottom"},
 		messages: {
