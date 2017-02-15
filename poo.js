@@ -37,6 +37,10 @@ var all_armor = [
 "hat", "chest", "gloves", "legs", "feet"
 ]
 
+var all_acc = [ 
+	"rings", "earrings", "artifact", "brooch", "necklace", "belt"
+]
+
 var armor_types = [
 	"plate",
 	"heavy",
@@ -193,6 +197,22 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
+{	"name":"Fast",
+	"locations":all_acc,
+	"stats":{
+		"speed":5,
+		"balance":-8
+	},
+	"prefix":true
+},
+{	"name":"Subdued",
+	"locations":["belt"] ,
+	"stats":{
+		"speed":1,
+		"crit":2
+	},
+	"prefix":true
+}
 ]
 
 function createLookup(arr)
@@ -257,6 +277,25 @@ var g_chests = [
 	}
 ]
 
+var g_legs = [
+	{
+		"name":"Silky poo skirt",
+		"type":"cloth"
+	},
+	{
+		"name":"Light poo skirt",
+		"type":"light"
+	},
+	{
+		"name":"Heavy poo pants",
+		"type":"heavy"
+	},
+	{
+		"name":"Stone poo leg armor",
+		"type":"plate"
+	}
+]
+
 var g_gloves = [
 	{
 		"name":"Silky poo gloves",
@@ -301,6 +340,27 @@ var g_rings = [
 	}
 ]
 
+var g_belts = [
+	{
+		"name":"Belt of Poo"
+	},
+	{
+		"name":"Belt of new Poo",
+		"stats":{
+			"balance":2
+		}
+	}
+]
+
+var g_artifacts  = [
+	{
+		"name":"Poo statue"
+	},
+	{
+		"name":"Greater Poo statue"
+	}
+]
+
 var g_offhands = [
 	{
 		"name":"Shield of Poo",
@@ -318,7 +378,10 @@ var g_items = {
 	"gloves": g_gloves,
 	"rings": g_rings,
 	"offhand": g_offhands,
-	"hat":g_hats
+	"hat":g_hats,
+	"legs": g_legs,
+	"belt": g_belts,
+	"artifact": g_artifacts
 }
 
 var g_lookups = {};
@@ -326,11 +389,16 @@ $.each(g_items, function(k,v){
 	g_lookups[k] = createLookup(v)
 })
 
-function createInputBox()
+function createInputBox(placeholder)
 {
 	var ret= $("<input type='text' />")
 	ret.css("width", "100%")
 	ret.css("background", "rgba(255,255,255,0.5)")
+	
+	if(placeholder)
+	{
+		ret.attr("placeholder", placeholder)
+	}
 	return ret
 }
 
@@ -371,6 +439,12 @@ function formatStats(stats)
 		}).join(", ")
 }
 
+function toTitleCase(str) {
+    return str.replace(/(?:^|\s)\w/g, function(match) {
+        return match.toUpperCase();
+    });
+}
+
 function createSquare(id, loc, cb)
 {	
 	var target = $("#"+id)
@@ -387,9 +461,9 @@ function createSquare(id, loc, cb)
 		return box
 	}
 	
-	var prefix = createInputBox()
-	var suffix = createInputBox()
-	var item = createInputBox()
+	var prefix = createInputBox('Prefix')
+	var suffix = createInputBox('Suffix')
+	var item = createInputBox(toTitleCase(loc))
 	
 	var display = $("<div />")
 	display.css("background-color",'white')
@@ -477,7 +551,7 @@ function createSquare(id, loc, cb)
 		"open": openCb(g_scrollLookup),
 		delay: 250,
 		minLength:0,
-		position: {my:"left top", at :"right bottom"},
+		position: {my:"left center", at :"right center"},
 		messages: {
 			noResults: '',
 			results: function() {}
@@ -488,7 +562,7 @@ function createSquare(id, loc, cb)
 	
 	suffix.autocomplete({
 		source: scrollSource(false),
-		position: {my:"left top", at :"right bottom"},
+		position: {my:"left center", at :"right center"},
 		change: scrollSet("suffix", suffix),
 		"close": scrollSet("suffix", suffix),
 		"open": openCb(g_scrollLookup),
@@ -527,7 +601,7 @@ function createSquare(id, loc, cb)
 		"change":updateItem,
 		"open": openCb(g_lookups[loc]),
 		minLength:0,
-		position: {my:"left top", at :"right bottom"},
+		position: {my:"left center", at :"right center"},
 		messages: {
 			noResults: '',
 			results: function() {	

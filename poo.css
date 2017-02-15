@@ -9,3 +9,19 @@
 	margin-top:1em;
 	margin-bottom:1em;
 }
+
+::-webkit-input-placeholder {
+   font-style:italic
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-style:italic
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-style:italic
+}
+
+:-ms-input-placeholder {  
+   font-style:italic
+}
