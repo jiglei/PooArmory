@@ -732,6 +732,7 @@ function createStatsSheet(id, stats)
 	var statRowString = "<div class='row m-top-bot' />"
 	var target = $("#"+id)
 	target.html("")
+	target.css("background-color","#aaaaaa")
 	
 	//target.css("height", "30em")
 	//sheet.css("width", "100%")
