@@ -25,3 +25,7 @@
 :-ms-input-placeholder {  
    font-style:italic
 }
+
+input[type="text"][disabled]{
+    background-color: #dddddd;
+}

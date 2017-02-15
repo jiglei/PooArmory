@@ -165,6 +165,25 @@ var g_scrolls = [
 	},
 	"prefix":false
 },
+{	"name":"Echo",
+	"locations":["hands", "feet"] ,
+	"types":["heavy","plate"],
+	"stats":{
+		"balance":4,
+		"speed":1
+	},
+	"prefix":false
+},
+{	"name":"Remembering",
+	"locations":["hat", "legs"] ,
+	"types":["heavy","plate"],
+	"stats":{
+		"balance":1,
+		"crit":2,
+		"speed":2
+	},
+	"prefix":true
+},
 {	"name":"Silent",
 	"locations":["gloves", "feet"] ,
 	"stats":{
@@ -202,6 +221,13 @@ var g_scrolls = [
 	"stats":{
 		"speed":5,
 		"balance":-8
+	},
+	"prefix":true
+},
+{	"name":"Significant",
+	"locations":all_acc,
+	"stats":{
+		"speed":1
 	},
 	"prefix":true
 },
@@ -296,6 +322,25 @@ var g_legs = [
 	}
 ]
 
+var g_feet = [
+	{
+		"name":"Silky poo heels",
+		"type":"cloth"
+	},
+	{
+		"name":"Light poo shoes",
+		"type":"light"
+	},
+	{
+		"name":"Heavy poo boots",
+		"type":"heavy"
+	},
+	{
+		"name":"Stone poo greaves",
+		"type":"plate"
+	}
+]
+
 var g_gloves = [
 	{
 		"name":"Silky poo gloves",
@@ -372,16 +417,50 @@ var g_offhands = [
 	}
 ]
 
+var g_earrings = [
+	{
+		"name":"Poo earring"
+	},
+	{
+		"name":"Tears of poo",
+		"stats":{
+			"crit":1
+		}
+	}
+]
+
+var g_brooches = [
+	{
+		"name":"Shit Poo"
+	},
+	{
+		"name":"Blue Poo brooch",
+		"stats":{
+			"crit":1
+		}
+	}
+]
+
+var g_bracelets = [
+	{
+		"name":"10k"
+	}
+]
+
 var g_items = {
 	"weapon" : g_weapons,
 	"chest": g_chests,
 	"gloves": g_gloves,
+	"feet": g_feet,
 	"rings": g_rings,
 	"offhand": g_offhands,
 	"hat":g_hats,
 	"legs": g_legs,
 	"belt": g_belts,
-	"artifact": g_artifacts
+	"artifact": g_artifacts,
+	"brooch": g_brooches,
+	"earrings": g_earrings,
+	"bracelet": g_bracelets
 }
 
 var g_lookups = {};
@@ -445,7 +524,7 @@ function toTitleCase(str) {
     });
 }
 
-function createSquare(id, loc, cb)
+function createSquare(id, loc, cb, scrolls=true)
 {	
 	var target = $("#"+id)
 	var box = $("<div />")
@@ -618,8 +697,15 @@ function createSquare(id, loc, cb)
 	
 	box.append(prefix)
 	box.append(suffix)
+	if(!scrolls)
+	{
+		prefix.attr("disabled","disabled")
+		prefix.css("background-color","gray")
+		suffix.attr("disabled","disabled")
+		suffix.css("background-color","gray")
+	}
 	box.append(item)
-	box.append(display)
+	//box.append(display)
 	
 	
 	return box

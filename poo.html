@@ -49,7 +49,7 @@ $(document).ready( function()
 	}
 	var i = 1
 	boxes = [
-		createSquare("box"+(i++), "earring", update),
+		createSquare("box"+(i++), "earrings", update),
 		createSquare("box"+(i++), "hat", update),
 		createSquare("box"+(i++), "wings", update),
 		createSquare("box"+(i++), "weapon", update),
@@ -64,9 +64,9 @@ $(document).ready( function()
 		createSquare("box"+(i++), "rings", update),
 		createSquare("box"+(i++), "artifact", update),
 		createSquare("box"+(i++), "rings", update),
-		createSquare("box"+(i++), "bracelet", update),
+		createSquare("box"+(i++), "bracelet", update, false),
 		createSquare("box"+(i++), "", update),
-		createSquare("box"+(i++), "bracelet", update)
+		createSquare("box"+(i++), "bracelet", update, false)
 	]
 	
 	update()
