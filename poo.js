@@ -170,7 +170,36 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
+{	"name":"The Dead",
+	"locations":["rings"] ,
+	"stats":{
+		"balance":5
+	},
+	"prefix":true
+},
+{	"name":"Fresh",
+	"locations":["offhand"] ,
+	"types":["smallshield","largeshield"],
+	"stats":{
+		"speed":3
+	},
+	"prefix":true
+},
+{	"name":"Tricky",
+	"locations":["offhand"] ,
+	"types":["smallshield","largeshield"],
+	"stats":{
+		"crit":1
+	},
+	"prefix":true
+},
 ]
+
+var g_scrollLookup = {}
+
+$.each(g_scrolls, function(k,v){
+	g_scrollLookup[v.name] = v
+})
 
 var g_weapons = [
 {
@@ -240,10 +269,49 @@ var g_gloves = [
 	}
 ]
 
+var g_hats = [
+	{
+		"name":"Silky poo hat",
+		"type":"cloth"
+	},
+	{
+		"name":"Light poo hat",
+		"type":"light"
+	},
+	{
+		"name":"Heavy poo hat",
+		"type":"heavy"
+	},
+	{
+		"name":"Stone poo hat",
+		"type":"plate"
+	}
+]
+
+var g_rings = [
+	{
+		"name":"Ring of Poo"
+	}
+]
+
+var g_offhands = [
+	{
+		"name":"Shield of Poo",
+		"type":"smallshield"
+	},
+	{
+		"name":"Dictionary of Poos",
+		"type":"book"
+	}
+]
+
 var g_items = {
 	"weapon" : g_weapons,
 	"chest": g_chests,
-	"gloves": g_gloves
+	"gloves": g_gloves,
+	"rings": g_rings,
+	"offhand": g_offhands,
+	"hat":g_hats
 }
 
 function createInputBox()
@@ -274,6 +342,13 @@ function passFilter(loc, type, scr, prefix)
 	}
 	
 	return true;
+}
+
+function formatStats(stats)
+{
+	return txt = $.map(stats, function(k,v) { 
+			return v + "=" + k
+		}).join(", ")
 }
 
 function createSquare(id, loc, cb)
@@ -317,11 +392,8 @@ function createSquare(id, loc, cb)
 			}
 		})
 		box.data("stats", stats)
-		var txt = 
-		$.map(stats, function(k,v) { 
-			return v + "=" + k
-		}).join(",")
-		display.html(txt)
+		var txt = formatStats(stat)
+		$("#console").html(txt)
 		
 		cb(box)
 		return true
@@ -344,8 +416,7 @@ function createSquare(id, loc, cb)
 	}
 	
 	var scrollSource = function (prefix){
-	return function(state, cb)
-		{
+	return function(state, cb){
 			var term = $.ui.autocomplete.escapeRegex(state.term)
 			var re = new RegExp(term, "i")
 			var ret = []
@@ -365,10 +436,27 @@ function createSquare(id, loc, cb)
 		}
 	}
 	
+	var openCb = function(e,ui) {			
+			var x = $(".ui-menu-item-wrapper")
+			$.each(x, function(k,v){
+				var data = g_scrollLookup[v.innerHTML]
+				if(data)
+				{
+					$(v).attr("title", formatStats(data.stats))
+					$(v).tooltip()
+				}
+			})
+			
+            //$("input").val();
+            //q = $("#ui-active-menuitem").html();
+            //$("#ui-active-menuitem").html("<b>"+q+"</b>");
+        }
+	
 	prefix.autocomplete({
 		source: scrollSource(true),
 		change: scrollSet("prefix", prefix),
 		"close": scrollSet("prefix", prefix),
+		"open": openCb,
 		delay: 250,
 		minLength:0,
 		position: {my:"left top", at :"right bottom"},
@@ -385,6 +473,7 @@ function createSquare(id, loc, cb)
 		position: {my:"left top", at :"right bottom"},
 		change: scrollSet("suffix", suffix),
 		"close": scrollSet("suffix", suffix),
+		"open": openCb,
 		minLength:0,
 		messages: {
 			noResults: '',
@@ -418,6 +507,7 @@ function createSquare(id, loc, cb)
 		source:src, 
 		"close":updateItem, 
 		"change":updateItem,
+		"open": openCb,
 		minLength:0,
 		position: {my:"left top", at :"right bottom"},
 		messages: {
