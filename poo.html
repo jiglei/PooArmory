@@ -36,21 +36,28 @@ $(document).ready( function()
 	
 	var rows = 6;
 	var cols = 3;
+	var container = $("<div class='row' />")
+	var view = $("<div class='col-xs-11'/>")
 	
 	for (var row = 0; row < rows; ++row)
 	{
 		var rowEl = $("<div class='row m-big-top-bot'/>")
+		
 		for (var col = 0; col < cols; ++col)
 		{
 			var colEl = $("<div class='col-xs-4'/>")
-			var boxEl = $("<div />")
+						
+			var boxEl = $("<div/>")
 			boxEl.attr('id', "box"+(1+ row*cols+ col) )
+			
 			colEl.append(boxEl)
 			rowEl.append(colEl)
 			
 		}
-		$("#equip").append(rowEl)
+		view.append(rowEl)
 	}
+	container.append(view)
+	$("#equip").append(container)
 	var i = 1
 	boxes = [
 		createSquare("box"+(i++), "earrings", update),
@@ -80,31 +87,20 @@ $(document).ready( function()
 
 </head>
 <body>
-<div class="container">
+<div class="container" >
 	<div class="row">
-		<div class="col-xs-12 "><h1>Welcome to the 3rd Poo Armory</h1></div>
+		<div class="col-xs-12"><h1>Welcome to the 3rd Poo Armory</h1></div>
 		<br/>
 	</div>
-	<div class="col-md-5">
-		<div class="row">
-			<div id="endDisplay" class="col-xs-12"></div>
-		</div>
-	</div>
-	<div class="col-md-7" id='equip'>
-	<!--
-		<div class='row'>
-			<div class="col-xs-4">
-				<div id="box1"> </div>
-			</div>
-			<div class="col-xs-4">
-				<div id="box2"> </div>
-			</div>
-			<div class="col-xs-4">
-				<div id="box3"> </div>
+	<div class='row'>
+		<div class="col-sm-6">
+			<div class="row">
+				<div id="endDisplay" class="col-xs-12"></div>
 			</div>
 		</div>
-	</div>
-		-->
+		
+		<div class="col-sm-6" id='equip'>
+		</div>
 	</div>
   <div id="console" />
 </div>

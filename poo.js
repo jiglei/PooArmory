@@ -626,25 +626,33 @@ function createSquare(id, loc, cb, scrolls=true)
 {	
 	var target = $("#"+id)
 	
-	var box = $("<div />")
-	//box.css("margin", "auto")
+	var box = $("<div class='row' />")
+	//box.css("margin-left","3em")
 	
-	var innerBox = $("<div />")
-	var leftBox = $("<div />")
+	var leftBox = $("<div class='col-xs-3'/>")
+	leftBox.css("padding",0)
+	leftBox.css("margin",0)
+	leftBox.css("z-index",100)
+	leftBox.css("overflow","visible")
+	var innerBox = $("<div class='col-xs-9'/>")
+	innerBox.css("padding",0)
+	innerBox.css("margin",0)
 	
+	//target.append(padding)
 	box.append(leftBox)
+	box.append(innerBox)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
-	leftBox.css("float", "left")
+	//leftBox.css("float", "left")
 	var enh = createInputBox('+')
+	enh.css("overflow","visible")
 	enh.css("text-align", "center")
 	if( loc in g_enhanceable )
 	{
 		leftBox.append(enh)
 	}
 	
-	box.append(innerBox)
-	innerBox.css("float", "left")
+	//innerBox.css("float", "left")
 	innerBox.css("height", "8em")
 	innerBox.css("width", "8em")
 	innerBox.css("border-style", "solid")
@@ -661,7 +669,6 @@ function createSquare(id, loc, cb, scrolls=true)
 		innerBox.append(overlay)
 		return box
 	}
-	
 	
 	var prefix = createInputBox('Prefix')
 	var suffix = createInputBox('Suffix')
