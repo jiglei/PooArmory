@@ -505,6 +505,58 @@ $.each(g_items, function(k,v){
 	g_lookups[k] = createLookup(v)
 })
 
+var g_enhancementEffects = {
+	"weapon":[
+	{
+		"name" : "+0",
+		"stats": {
+		}
+	},
+	{
+		"name" : "+10",
+		"stats": {
+			"speed":15
+		}
+	},
+	{
+		"name" : "+11",
+		"stats": {
+			"speed":19
+		}
+	},
+	{
+		"name" : "+12",
+		"stats": {
+			"speed":23
+		}
+	},
+	{
+		"name" : "+13",
+		"stats": {
+			"speed":28
+		}
+	},
+	{
+		"name" : "+14",
+		"stats": {
+			"speed":33
+		}
+	},
+	{
+		"name" : "+15",
+		"stats": {
+			"speed":38
+		}
+	}
+	]
+}
+
+var g_enhanceLookups = {};
+$.each(g_enhancementEffects, function(k,v){
+	g_enhanceLookups[k] = createLookup(v)
+})
+
+
 function createInputBox(placeholder, width="100%", id=null)
 {
 	var ret= $("<input type='text' />")
@@ -625,18 +677,19 @@ function createSquare(id, loc, cb, scrolls=true)
 		var s = box.data("suffix")
 		var w = box.data("item")
 		var i = box.data("inf")
-
-		var stats = {"bal":0, "crit":0, "speed": 0}
 		
-		$.each([p,s,w,i], function(k,x)
-		{
-			if(x && x.stats)
+		var contributions = ['prefix', 'suffix', 'item', 'inf', 'enh']
+		
+		var stats = {"bal":0, "crit":0, "speed": 0}
+		$.each( box.data(), function(k,v){
+			if(-1 != $.inArray(k,contributions))
 			{
-				stats.bal += x.stats.balance || 0
-				stats.crit += x.stats.crit || 0 
-				stats.speed += x.stats.speed|| 0
+				stats.bal += v.stats.balance || 0
+				stats.crit += v.stats.crit || 0 
+				stats.speed += v.stats.speed|| 0
 			}
 		})
+
 		box.data("stats", stats)
 		var txt = formatStats(stats)
 		$("#console").html(txt)
@@ -713,19 +766,17 @@ function createSquare(id, loc, cb, scrolls=true)
 	{
 		el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
 	}
-	
-	enh.autocomplete($.extend({},sharedOpts,
+	if (loc in g_enhanceable)
 	{
-		source : function(s, cb){ 
-			var ret = ["+0"]
-			for (var i = 12; i < 16; ++i)
-			{
-				ret.push("+"+i)
-			}
-			cb(ret)
-		}
-	}))
-	setOpenOnFocus(enh)
+		enh.autocomplete($.extend({},sharedOpts,
+		{
+			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
+					change: propSet("enh", g_enhancementEffects[loc]),
+					"close": propSet("enh", g_enhancementEffects[loc]),
+					"open": openCb(g_enhanceLookups[loc])
+		}))
+		setOpenOnFocus(enh)
+	}
 	
 	prefix.autocomplete($.extend({},sharedOpts,
 	{
