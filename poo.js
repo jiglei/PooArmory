@@ -238,6 +238,13 @@ var g_scrolls = [
 		"crit":2
 	},
 	"prefix":true
+},
+{	"name":"Passion",
+	"locations":all_acc ,
+	"stats":{
+		"Def": 200
+	},
+	"prefix":false
 }
 ]
 
