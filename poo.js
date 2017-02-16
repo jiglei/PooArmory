@@ -114,9 +114,9 @@ var g_scrolls = [
 	"locations":["hat", "legs"],
 	"types":["light", "cloth"],
 	"stats":{
-		"balance":2,
+		"balance":1,
 		"speed":2,
-		"crit":1
+		"crit":2
 	},
 	"prefix":true
 },
@@ -786,7 +786,6 @@ function createStatsSheet(id, stats)
 		return ret
 	}
 	var statsDiv = $("<div class='col-xs-6'/>")
-	var critInput
 	var critInputs = []
 	$.each(['Crit (mastery, wil)', '(ein, numa)'], function(k,v)
 	{
@@ -797,7 +796,6 @@ function createStatsSheet(id, stats)
 			ci.css("margin-right", "0.2em")
 			ci.css("text-align", "center")
 			critRow.append(ci)
-			critInput = ci
 			critInputs.push(ci)
 		}
 		statsDiv
@@ -899,7 +897,7 @@ function createStatsSheet(id, stats)
 	writeStats(stats)
 	target.data('update', writeStats)
 	
-	$.each([critInput,balInput,speedInput], function(k,v){
+	$.each([balInput,speedInput].concat(critInputs), function(k,v){
 		v.on('change', function(){
 			writeStats(target.data('stats'))
 		})
