@@ -883,7 +883,7 @@ function createStatsSheet(id, stats)
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
 		
-		var addlCrit = critInputs.reduce(function(total, e){ return total + valOf(e) }, 0)
+		var addlCrit = 3 + critInputs.reduce(function(total, e){ return total + valOf(e) }, 0)
 		
 		statCol.html("Crit: " + (stats.crit + addlCrit ))
 		row.append(statCol)
