@@ -15,16 +15,20 @@
 <link rel="stylesheet" type="text/css" href="jquery-ui-1.12.1/jquery-ui.css"> </link>
 <script type="text/javascript">
 var boxes = []
-
+var statSheet
 function displayTotals(boxes)
 {
 	var stats = accumulateBoxes(boxes)
 	//$("#endDisplay").html( ""+stats.bal )
-	createStatsSheet("endDisplay", stats)
+	//createStatsSheet("endDisplay", stats)
+	var fn = statSheet.data('update')
+	fn(stats)
 }
 
 $(document).ready( function()
 {
+	statSheet = createStatsSheet("endDisplay", {crit:0, bal:0, speed:0})
+
 	var update = function()
 	{
 		displayTotals(boxes)
@@ -68,8 +72,7 @@ $(document).ready( function()
 		createSquare("box"+(i++), "", update),
 		createSquare("box"+(i++), "bracelet", update, false)
 	]
-	
-	update()
+	//update()
 	
 	
 })

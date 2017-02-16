@@ -463,12 +463,42 @@ var g_items = {
 	"bracelet": g_bracelets
 }
 
+var g_minor_infusions = [
+	
+]
+
+var g_armour_infusions = g_minor_infusions.concat([
+	"Def"
+])
+
+var g_major_infusions = [
+	"+2 crit",
+	"+1 crit",
+	"+2 balance",
+	"+1 balance",
+	"+1 speed",
+]
+
+var g_infusions = {
+	"weapon" : g_major_infusions.concat(['att']),
+	"chest": g_armour_infusions,
+	"gloves": g_armour_infusions,
+	"feet": g_armour_infusions,
+	"rings": g_major_infusions,
+	"offhand": g_major_infusions,
+	"hat":g_armour_infusions,
+	"legs": g_armour_infusions,
+	"belt": g_major_infusions,
+	"brooch": g_major_infusions,
+	"earrings": g_major_infusions,
+}
+
 var g_lookups = {};
 $.each(g_items, function(k,v){
 	g_lookups[k] = createLookup(v)
 })
 
-function createInputBox(placeholder)
+function createInputBox(placeholder, id=null)
 {
 	var ret= $("<input type='text' />")
 	ret.css("width", "100%")
@@ -477,6 +507,11 @@ function createInputBox(placeholder)
 	if(placeholder)
 	{
 		ret.attr("placeholder", placeholder)
+	}
+	
+	if(id)
+	{
+		ret.attr("id", id)
 	}
 	return ret
 }
@@ -534,7 +569,7 @@ function createSquare(id, loc, cb, scrolls=true)
 	box.css("background-image", "url('resource/poo.png')")
 	box.css("background-size", "cover")
 	target.append(box)
-	
+	   
 	if (!loc || !(loc in g_items))
 	{
 		var overlay = $("<div />")
@@ -548,6 +583,7 @@ function createSquare(id, loc, cb, scrolls=true)
 	var prefix = createInputBox('Prefix')
 	var suffix = createInputBox('Suffix')
 	var item = createInputBox(toTitleCase(loc))
+	var inf = createInputBox('Infusion')
 	
 	var display = $("<div />")
 	display.css("background-color",'white')
@@ -557,10 +593,11 @@ function createSquare(id, loc, cb, scrolls=true)
 		var p = box.data("prefix")
 		var s = box.data("suffix")
 		var w = box.data("item")
+		var i = box.data("inf")
 
 		var stats = {"bal":0, "crit":0, "speed": 0}
 		
-		$.each([p,s,w], function(k,x)
+		$.each([p,s,w,i], function(k,x)
 		{
 			if(x && x.stats)
 			{
@@ -577,11 +614,12 @@ function createSquare(id, loc, cb, scrolls=true)
 		return true
 	}
 	
-	var scrollSet = function(key, thing)
+	// arrayOfItems should be g_scrolls or g_items[loc]
+	var propSet = function(key, arrayOfItems)
 	{
 		return function(){
-			var name = thing.val().toLowerCase()
-			$.each(g_scrolls, function(k,v)
+			var name = $(this).val().toLowerCase()
+			$.each(arrayOfItems, function(k,v)
 			{
 				if (v.name.toLowerCase() == name)
 				{
@@ -592,7 +630,7 @@ function createSquare(id, loc, cb, scrolls=true)
 			update()
 		}
 	}
-	
+
 	var scrollSource = function (prefix){
 	return function(state, cb){
 			var term = $.ui.autocomplete.escapeRegex(state.term)
@@ -628,72 +666,74 @@ function createSquare(id, loc, cb, scrolls=true)
         }
 	}
 	
-	prefix.autocomplete({
-		source: scrollSource(true),
-		change: scrollSet("prefix", prefix),
-		"close": scrollSet("prefix", prefix),
-		"open": openCb(g_scrollLookup),
-		delay: 250,
-		minLength:0,
-		position: {my:"left center", at :"right center"},
+	var sharedOpts = {
+		delay: 100,
+		minLength: 0,
+		position: {my:"left center", at :"right center"},		
 		messages: {
 			noResults: '',
 			results: function() {}
 		}
 	}
-	)
-	prefix.on("focus", function(){	prefix.autocomplete("search", prefix.val())})
 	
-	suffix.autocomplete({
-		source: scrollSource(false),
-		position: {my:"left center", at :"right center"},
-		change: scrollSet("suffix", suffix),
-		"close": scrollSet("suffix", suffix),
-		"open": openCb(g_scrollLookup),
-		minLength:0,
-		messages: {
-			noResults: '',
-			results: function() {}
-		}
-	})
-	suffix.on("focus", function(){	
-		suffix.autocomplete("search", suffix.val())
-		}
-	)
-	
-	var updateItem = function()
+	var setOpenOnFocus = function(el)
 	{
-		var name = item.val().toLowerCase()
-		$.each(g_items[loc], function(k,v)
-		{
-			if (v.name.toLowerCase() == name)
-			{
-				box.data("item", v)
-				return false 
-			}
-		})
-		return update()
-	}	
+		el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
+	}
+	
+	prefix.autocomplete($.extend({},sharedOpts,
+	{
+		source: scrollSource(true),
+		change: propSet("prefix", g_scrolls),
+		"close": propSet("prefix", g_scrolls),
+		"open": openCb(g_scrollLookup)
+	}))
+	setOpenOnFocus(prefix)
+	
+	suffix.autocomplete($.extend({},sharedOpts,
+	{
+		source: scrollSource(false),
+		change: propSet("suffix", g_scrolls),
+		"close": propSet("suffix", g_scrolls),
+		"open": openCb(g_scrollLookup)
+	}))
+	
+	setOpenOnFocus(suffix)
 	
 	var src = $.map(g_items[loc], function(k,v) {
 		return k.name
 	})
 
-	item.autocomplete({
+	item.autocomplete($.extend({},sharedOpts,
+	{
 		source:src, 
-		"close":updateItem, 
-		"change":updateItem,
-		"open": openCb(g_lookups[loc]),
-		minLength:0,
-		position: {my:"left center", at :"right center"},
-		messages: {
-			noResults: '',
-			results: function() {	
-			}
-		}
-	})
-	item.on("focus", function(){item.autocomplete("search", item.val())})
+		"close": propSet("item", g_items[loc]),
+		"change": propSet("item", g_items[loc]),
+		"open": openCb(g_lookups[loc])
+	}))
+	setOpenOnFocus(item)
 	
+	var statPat = /[+-]?(\d)\s*(.*)/;
+	var updateInf = function()
+	{
+		var val = $(this).val()
+		var match = statPat.exec(val);
+		var num = parseInt(match[1])
+		var stat = match[2]
+		var s = {}
+		s[stat] = num
+		box.data("inf", {"name":val, "stats":s})
+		update()
+	}
+	
+	inf.autocomplete($.extend({},sharedOpts,
+	{
+		source: g_infusions[loc], 
+		"close":updateInf, 
+		"change":updateInf
+	}))
+	
+	setOpenOnFocus(inf)
 	
 	box.append(prefix)
 	box.append(suffix)
@@ -705,6 +745,11 @@ function createSquare(id, loc, cb, scrolls=true)
 		suffix.css("background-color","gray")
 	}
 	box.append(item)
+	
+	if(loc in g_infusions)
+	{
+		box.append(inf)
+	}
 	//box.append(display)
 	
 	
@@ -729,6 +774,35 @@ function accumulateBoxes(boxes)
 // id is a col
 function createStatsSheet(id, stats)
 {
+	// base stats
+	
+	var valOf = function(el)
+	{
+		var ret = parseInt(el.val())
+		if (isNaN(ret))
+		{
+			return 0
+		}
+		return ret
+	}
+	
+	var critInput = createInputBox("crit")
+	var critLabel = $("<label>Crit</label>")
+	var balInput = createInputBox("bal")
+	var balLabel = $("<label>Balance</label>")
+	var speedInput = createInputBox("speed")
+	var speedLabel = $("<label>Speed</label>")
+	
+	// TODO: Formatting on these
+	var statsDiv = $("<div class='col-xs-6'/>")
+	statsDiv
+	.append(critLabel)
+	.append(critInput)
+	.append(balLabel)
+	.append(balInput)
+	.append(speedLabel)
+	.append(speedInput)
+	
 	var statRowString = "<div class='row m-top-bot' />"
 	var target = $("#"+id)
 	target.html("")
@@ -761,25 +835,44 @@ function createStatsSheet(id, stats)
 	
 	picdiv.append(pic)
 	row.append(picdiv)
+	row.append(statsDiv)
+	
+	
 	target.append(row)
 	
-	row = $(statRowString)
-	var statCol = $("<div class='col-xs-6'/>")
-	statCol.html("Bal: " + stats.bal)
-	row.append(statCol)
-	target.append(row)
+	var statsWrap = $("<div class='col-xs-12'/>")
+	target.append(statsWrap)
 	
-	row = $(statRowString)
-	statCol = $("<div class='col-xs-6'/>")
-	statCol.html("Crit: " + stats.crit)
-	row.append(statCol)
-	target.append(row)
+	var writeStats = function(stats)
+	{
+		statsWrap.html(" ")
+		row = $(statRowString)
+		var statCol = $("<div class='col-xs-6'/>")
+		statCol.html("Bal: " + (stats.bal + valOf(balInput)))
+		row.append(statCol)
+		statsWrap.append(row)
+		
+		row = $(statRowString)
+		statCol = $("<div class='col-xs-6'/>")
+		statCol.html("Crit: " + (stats.crit + valOf(critInput) ))
+		row.append(statCol)
+		statsWrap.append(row)
+		
+		row = $(statRowString)
+		statCol = $("<div class='col-xs-6'/>")
+		statCol.html("Speed: " + (stats.speed + valOf(speedInput)))
+		row.append(statCol)
+		statsWrap.append(row)
+		target.data('stats',stats)
+	}
+	writeStats(stats)
+	target.data('update', writeStats)
 	
-	row = $(statRowString)
-	statCol = $("<div class='col-xs-6'/>")
-	statCol.html("Speed: " + stats.speed)
-	row.append(statCol)
-	target.append(row)
+	$.each([critInput,balInput,speedInput], function(k,v){
+		v.on('change', function(){
+			writeStats(target.data('stats'))
+		})
+	})
 	
-	
+	return target	
 }
