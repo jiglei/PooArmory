@@ -559,15 +559,38 @@ function toTitleCase(str) {
     });
 }
 
+var g_enhanceable = {
+	"weapon": true
+}
+
 function createSquare(id, loc, cb, scrolls=true)
 {	
 	var target = $("#"+id)
+	
 	var box = $("<div />")
-	box.css("height", "8em")
-	box.css("width", "8em")
-	box.css("border-style", "solid")
-	box.css("background-image", "url('resource/poo.png')")
-	box.css("background-size", "cover")
+	//box.css("margin", "auto")
+	
+	var innerBox = $("<div />")
+	var leftBox = $("<div />")
+	
+	box.append(leftBox)
+	leftBox.css("width", "2em")
+	leftBox.css("height", "8em")
+	leftBox.css("float", "left")
+	var enh = createInputBox('+')
+	enh.css("text-align", "center")
+	if( loc in g_enhanceable )
+	{
+		leftBox.append(enh)
+	}
+	
+	box.append(innerBox)
+	innerBox.css("float", "left")
+	innerBox.css("height", "8em")
+	innerBox.css("width", "8em")
+	innerBox.css("border-style", "solid")
+	innerBox.css("background-image", "url('resource/poo.png')")
+	innerBox.css("background-size", "cover")
 	target.append(box)
 	   
 	if (!loc || !(loc in g_items))
@@ -576,9 +599,10 @@ function createSquare(id, loc, cb, scrolls=true)
 		overlay.css("background-color", "rgba(0,0,0,0.5)")
 		overlay.css("height", "100%")
 		overlay.css("weight", "100%")
-		box.append(overlay)
+		innerBox.append(overlay)
 		return box
 	}
+	
 	
 	var prefix = createInputBox('Prefix')
 	var suffix = createInputBox('Suffix')
@@ -676,10 +700,25 @@ function createSquare(id, loc, cb, scrolls=true)
 		}
 	}
 	
+
+	
 	var setOpenOnFocus = function(el)
 	{
 		el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
 	}
+	
+	enh.autocomplete($.extend({},sharedOpts,
+	{
+		source : function(s, cb){ 
+			var ret = ["+0"]
+			for (var i = 12; i < 16; ++i)
+			{
+				ret.push("+"+i)
+			}
+			cb(ret)
+		}
+	}))
+	setOpenOnFocus(enh)
 	
 	prefix.autocomplete($.extend({},sharedOpts,
 	{
@@ -735,8 +774,8 @@ function createSquare(id, loc, cb, scrolls=true)
 	
 	setOpenOnFocus(inf)
 	
-	box.append(prefix)
-	box.append(suffix)
+	innerBox.append(prefix)
+	innerBox.append(suffix)
 	if(!scrolls)
 	{
 		prefix.attr("disabled","disabled")
@@ -744,14 +783,18 @@ function createSquare(id, loc, cb, scrolls=true)
 		suffix.attr("disabled","disabled")
 		suffix.css("background-color","gray")
 	}
-	box.append(item)
+	innerBox.append(item)
 	
 	if(loc in g_infusions)
 	{
-		box.append(inf)
+		innerBox.append(inf)
 	}
-	//box.append(display)
 	
+	enh.position({
+		"my": "right top",
+		"at": "left top",
+		"of": item
+	});
 	
 	return box
 }
