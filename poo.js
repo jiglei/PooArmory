@@ -684,9 +684,12 @@ function createSquare(id, loc, cb, scrolls=true)
 		$.each( box.data(), function(k,v){
 			if(-1 != $.inArray(k,contributions))
 			{
-				stats.bal += v.stats.balance || 0
-				stats.crit += v.stats.crit || 0 
-				stats.speed += v.stats.speed|| 0
+				if ("stats" in v)
+				{
+					stats.bal += v.stats.balance || 0
+					stats.crit += v.stats.crit || 0 
+					stats.speed += v.stats.speed|| 0
+				}
 			}
 		})
 
@@ -815,11 +818,14 @@ function createSquare(id, loc, cb, scrolls=true)
 	{
 		var val = $(this).val()
 		var match = statPat.exec(val);
-		var num = parseInt(match[1])
-		var stat = match[2]
-		var s = {}
-		s[stat] = num
-		box.data("inf", {"name":val, "stats":s})
+		if (match && match.length > 2)
+		{
+			var num = parseInt(match[1])
+			var stat = match[2]
+			var s = {}
+			s[stat] = num
+			box.data("inf", {"name":val, "stats":s})
+		}
 		update()
 	}
 	
