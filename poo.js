@@ -498,10 +498,10 @@ $.each(g_items, function(k,v){
 	g_lookups[k] = createLookup(v)
 })
 
-function createInputBox(placeholder, id=null)
+function createInputBox(placeholder, width="100%", id=null)
 {
 	var ret= $("<input type='text' />")
-	ret.css("width", "100%")
+	ret.css("width", width)
 	ret.css("background", "rgba(255,255,255,0.5)")
 	
 	if(placeholder)
@@ -785,23 +785,51 @@ function createStatsSheet(id, stats)
 		}
 		return ret
 	}
+	var statsDiv = $("<div class='col-xs-6'/>")
+	var critInput
+	var critInputs = []
+	$.each(['Crit (mastery, wil)', '(ein, numa)'], function(k,v)
+	{
+		var critRow = $("<div class='row'/>")
+		for (var i = 0; i < 2; ++i)
+		{
+			var ci = createInputBox("crit", "30%")
+			ci.css("margin-right", "0.2em")
+			ci.css("text-align", "center")
+			critRow.append(ci)
+			critInput = ci
+			critInputs.push(ci)
+		}
+		statsDiv
+		.append($("<div class='row'><span>"+v+"</span></div>"))
+		.append(critRow)
+	})
 	
-	var critInput = createInputBox("crit")
-	var critLabel = $("<label>Crit</label>")
-	var balInput = createInputBox("bal")
-	var balLabel = $("<label>Balance</label>")
-	var speedInput = createInputBox("speed")
-	var speedLabel = $("<label>Speed</label>")
+	// oh god
+	critInputs[0].val(28)
+	critInputs[1].val(15)
+	critInputs[2].val(3)
+	critInputs[3].val(5)
+	
+	var balLabel = $("<div class='row'>Balance (ein)</div>")
+	var balRow = $("<div class='row' > </div>")
+	var balInput = createInputBox("bal", "30%")
+	balRow.append(balInput)
+	balInput.val(5)
+	balInput.css("text-align", "center")
+	var speedLabel = $("<div class='row'>Speed (other)</div>")
+	var speedRow = $("<div class='row' />")
+	var speedInput = createInputBox("speed", "30%")
+	speedRow.append(speedInput)
+	speedInput.css("text-align", "center")
+	speedInput.val(0)
 	
 	// TODO: Formatting on these
-	var statsDiv = $("<div class='col-xs-6'/>")
 	statsDiv
-	.append(critLabel)
-	.append(critInput)
 	.append(balLabel)
-	.append(balInput)
+	.append(balRow)
 	.append(speedLabel)
-	.append(speedInput)
+	.append(speedRow)
 	
 	var statRowString = "<div class='row m-top-bot' />"
 	var target = $("#"+id)
@@ -854,7 +882,10 @@ function createStatsSheet(id, stats)
 		
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
-		statCol.html("Crit: " + (stats.crit + valOf(critInput) ))
+		
+		var addlCrit = critInputs.reduce(function(total, e){ return total + valOf(e) }, 0)
+		
+		statCol.html("Crit: " + (stats.crit + addlCrit ))
 		row.append(statCol)
 		statsWrap.append(row)
 		
