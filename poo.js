@@ -1,21 +1,4 @@
-// Define a class like this
-function Person(name, gender){
 
-   // Add object properties like this
-   this.name = name;
-   this.gender = gender;
-}
-
-// Add methods like this.  All Person objects will be able to invoke this
-Person.prototype.speak = function(){
-    alert("Howdy, my name is" + this.name);
-};
-
-// Instantiate new objects with 'new'
-//var person = new Person("Bob", "M");
-
-// Invoke methods like this
-//person.speak(); // alerts "Howdy, my name is Bob"
 
 var g_locations =
 {
@@ -259,7 +242,7 @@ function createLookup(arr)
 
 var g_scrollLookup = createLookup(g_scrolls)
 
-var g_weapons = [
+var g_weapons_old = [
 {
 	"name":"Poo Longsword",
 		"type":"longsword",
@@ -673,6 +656,7 @@ function createSquare(id, loc, cb, scrolls=true)
 	var prefix = createInputBox('Prefix')
 	var suffix = createInputBox('Suffix')
 	var item = createInputBox(toTitleCase(loc))
+	item.css("text-overflow","ellipsis")
 	var inf = createInputBox('Infusion')
 	
 	var display = $("<div />")
