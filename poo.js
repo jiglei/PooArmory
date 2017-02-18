@@ -438,6 +438,12 @@ var g_brooches = [
 		"stats":{
 			"crit":1
 		}
+	},
+	{
+		"name":"White Poo brooch",
+		"stats":{
+			"speed":2
+		}
 	}
 ]
 
