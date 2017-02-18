@@ -494,7 +494,7 @@ var g_minor_infusions = [
 ]
 
 var g_armour_infusions = g_minor_infusions.concat([
-	"Def"
+	"+100 Def"
 ])
 
 var g_major_infusions = [
