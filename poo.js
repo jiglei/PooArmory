@@ -1087,8 +1087,8 @@ function createSquare(id, loc, cb, scrolls=true)
 	inf.autocomplete($.extend({},sharedOpts,
 	{
 		source: g_infusions[loc], 
-		"close":updateInf, 
-		"change":updateInf
+		"close":updateInf(loc), 
+		"change":updateInf(loc)
 	}))
 	setOpenOnFocus(inf)
 	inf.on('blur', setBlur('inf'))
