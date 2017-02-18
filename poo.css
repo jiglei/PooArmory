@@ -56,3 +56,13 @@ body{
 .no-close .ui-dialog-titlebar-close {
   display: none;
 }
+
+.welcome{
+	-text-shadow: -1px 0 1px #aaaaaa, 0 1px 1px #aaaaaa, 1px 0 1px #aaaaaa, 0 -1px 1px #aaaaaa;
+	color: #eeeeee;
+}
+
+.copyright{
+	color: #999999;
+	text-align:right;
+}
