@@ -697,14 +697,40 @@ function createSquare(id, loc, cb, scrolls=true)
 	{
 		return function(){
 			var name = $(this).val().toLowerCase()
+			var entry = null
 			$.each(arrayOfItems, function(k,v)
 			{
 				if (v.name.toLowerCase() == name)
 				{
-					box.data(key, v)
+					entry = v
 					return false 
 				}
 			})
+			if(!entry)
+			{
+				box.removeData(key)
+			}
+			else if ('level' in entry && entry['level'] >= 90)
+			{
+				var x = $(this)
+				box.data(key, {})
+				x.blur()
+				if(!$('.MyDialog').length)
+				{
+					var dialog = $( "<div class='MyDialog' title='Choose your weapon properties'></div>" )
+					
+					dialog.dialog( {"close": function(){ x.next().focus() }} );
+				}
+				if( !$('.MyDialog').dialog("isOpen") )
+				{
+					$('.MyDialog').dialog("open")
+					return
+				}
+			}
+			else
+			{
+				box.data(key, entry)
+			}
 			update()
 		}
 	}
@@ -799,9 +825,18 @@ function createSquare(id, loc, cb, scrolls=true)
 	{
 		source:src, 
 		"close": propSet("item", g_items[loc]),
-		"change": propSet("item", g_items[loc]),
+		//"change": propSet("item", g_items[loc]),
 		"open": openCb(g_lookups[loc])
 	}))
+	item.on('change', propSet("item", g_items[loc]))
+	// TODO: set this on other boxes too
+	item.on('blur', function (){ 
+			var x = box.data('item')
+			if (!x)
+			{
+				$(this).val("")
+			}
+	})
 	setOpenOnFocus(item)
 	
 	var statPat = /[+-]?(\d)\s*(.*)/;

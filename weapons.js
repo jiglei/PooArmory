@@ -3678,5 +3678,20 @@ var g_weapons = [
         "sell": 14680,
         "name": "Emperor Fomorian Command Blades",
         "rank": "9"
+    },
+    {
+        "stats": {
+            "wil": 0,
+            "int": 26,
+            "str": 7,
+            "agi": 60,
+            "att": 3600,
+            "balance": "68-75",
+            "speed": "7-9",
+            "crit": "48-52"
+        },
+        "level": 90,
+        "name": "Regina something",
+        "rank": "5"
     }
 ]
