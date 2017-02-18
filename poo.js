@@ -661,16 +661,36 @@ var g_weaponFragments = {
 	"Lightweight" : {
 		"crit": [19,21],
 		"speed": [4,5]
+	},
+	
+	
+	"Dullahan": {
+		"speed": [3]
+	},
+	"C.Perfect" : {
+		
+	},
+	"C.Keen" : {
+		"balance": [24,27],
+		"crit": [36,40]
+	},
+	"C.Stable" : {
+		"balance": [37,41]
+	},
+	"C.Lightweight" : {
+		"crit": [24,27],
+		"speed": [4,5]
 	}
 }
 
 var g_weaponSide = {
 	90 : ['Perfect', 'Keen', 'Stable', 'Lightweight'],
-	95 : [ ]
+	95 : ['C.Perfect', 'C.Keen', 'C.Stable', 'C.Lightweight']
 }
 
 var g_setLevels = {
-	"Regina": 90
+	"Regina": 90,
+	"Dullahan": 95
 }
 
 var getWeaponFragments = function (name)
@@ -691,14 +711,14 @@ var makeColWithWidth = function(wid)
 	return ret
 }
 
-var makeDialog = function()
+var makeDialog = function(name)
 {
 	var ret = $( "<div class='MyDialog' title='Choose your weapon properties'></div>" )
 	var container = $("<div class='container' />")
 	container.css("width", "100%")
 	ret.append(container)
 	
-	var frags = getWeaponFragments("Regina")
+	var frags = getWeaponFragments(name.split(" ")[0]) // ugh
 	var headings = $("<div class = 'row' />")
 	container.append(headings)
 	
@@ -887,9 +907,21 @@ function createSquare(id, loc, cb, scrolls=true)
 				var x = $(this)
 				box.data(key, {})
 				x.blur()
+				var existing = box.data(key)
+				var existingLevel = 0
+				if (existing)
+				{
+					existingLevel = existing.level||0
+				}
+				
+				if (entry['level'] != existingLevel)
+				{
+					$('.MyDialog').remove()
+				}
+				
 				if(!$('.MyDialog').length)
 				{
-					var dialog = makeDialog()			
+					var dialog = makeDialog(entry.name)	
 					dialog.dialog( {
 						"dialogClass" : "no-close",
 						"close": function(){

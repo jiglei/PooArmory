@@ -3681,11 +3681,7 @@ var g_weapons = [
     },
     {
         "stats": {
-            "wil": 0,
-            "int": 26,
-            "str": 7,
-            "agi": 60,
-            "att": 3600,
+            "att": 10000,
             "balance": "68-75",
             "speed": "7-9",
             "crit": "48-52"
@@ -3693,5 +3689,16 @@ var g_weapons = [
         "level": 90,
         "name": "Regina something",
         "rank": "5"
+    },
+	{
+        "name": "Dullahan something",
+        "stats": {
+            "att": 12000,
+            "balance": "61-68",
+            "speed": "7-8",
+            "crit": "60-67"
+        },
+        "level": 95,
+        "rank": "4"
     }
 ]
