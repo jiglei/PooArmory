@@ -63,6 +63,16 @@ var g_scrolls = [
 	"prefix":true
 },
 {
+	"name":"Righteous",
+	"locations":["weapon"],
+	"stats":{
+		"speed":8,
+		"balance":2,
+		"crit":2
+	},
+	"prefix":true
+},
+{
 	"name":"Valor",
 	"locations":["weapon"],
 	"stats":{
@@ -851,6 +861,7 @@ function createSquare(id, loc, cb, scrolls=true)
 				{
 					var dialog = makeDialog()			
 					dialog.dialog( {
+						"dialogClass" : "no-close",
 						"close": function(){
 									var userEntry = JSON.parse(JSON.stringify(entry))
 									userEntry["stats"] = dialog.data("getStats")()
