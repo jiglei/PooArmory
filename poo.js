@@ -762,7 +762,7 @@ var makeDialog = function(name)
 			input.css('width', "100%")
 			if ('stats' in frag && stat in frag.stats){
 				var statRange = frag.stats[stat]
-				input.val(statRange[0]+1)
+				input.val(Math.floor((statRange[0]+statRange[statRange.length-1])/2))
 				input.attr("title", statRange.join(" to "))
 				input.tooltip()
 				input.css('text-align','center')
