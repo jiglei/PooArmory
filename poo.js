@@ -462,6 +462,9 @@ var g_offhands = [
 	{
 		"name":"Dictionary of Poos",
 		"type":"book"
+		"stats":{
+			"crit":3
+		}
 	}
 ]
 
