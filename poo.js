@@ -258,6 +258,34 @@ var g_scrolls = [
 		"speed":2
 	},
 	"prefix":false
+},
+{	"name":"Sobbing/Crying",
+	"locations":["gloves","feet"] ,
+	"types":["heavy","plate"],
+	"stats":{
+		"crit":2,
+		"balance":3,
+		"speed":2
+	},
+	"prefix":true
+},
+{	"name":"Chilly",
+	"locations":["hat","legs"] ,
+	"types":["heavy","plate"],
+	"stats":{
+		"crit":2,
+		"balance":2,
+		"speed":2
+	},
+	"prefix":true
+},
+{	"name":"Chaotic",
+	"locations":["weapon"],
+	"stats":{
+		"crit":9,
+		"speed":4
+	},
+	"prefix":true
 }
 ]
 
