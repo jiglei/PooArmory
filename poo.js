@@ -238,6 +238,26 @@ var g_scrolls = [
 		"Def": 200
 	},
 	"prefix":false
+},
+{	"name":"Reinforced",
+	"locations":["gloves","feet"] ,
+	"types":["plate", "heavy"],
+	"stats":{
+		"crit":1,
+		"balance":2,
+		"speed":2
+	},
+	"prefix":true
+},
+{	"name":"Echoing",
+	"locations":["gloves","feet"] ,
+	"types":["heavy","plate"],
+	"stats":{
+		"crit":1,
+		"balance":2,
+		"speed":2
+	},
+	"prefix":false
 }
 ]
 
@@ -958,6 +978,18 @@ function createSquare(id, loc, cb, scrolls=true)
 		setOpenOnFocus(enh)
 	}
 	
+	var setBlur = function(loc)
+	{
+		return function()
+		{		
+			var x = box.data(loc)
+			if (!x)
+			{
+				$(this).val("")
+			}
+		}
+	}
+	
 	prefix.autocomplete($.extend({},sharedOpts,
 	{
 		source: scrollSource(true),
@@ -966,6 +998,7 @@ function createSquare(id, loc, cb, scrolls=true)
 		"open": openCb(g_scrollLookup)
 	}))
 	setOpenOnFocus(prefix)
+	prefix.on('blur', setBlur('prefix'))
 	
 	suffix.autocomplete($.extend({},sharedOpts,
 	{
@@ -974,8 +1007,9 @@ function createSquare(id, loc, cb, scrolls=true)
 		"close": propSet("suffix", g_scrolls),
 		"open": openCb(g_scrollLookup)
 	}))
-	
 	setOpenOnFocus(suffix)
+	suffix.on('blur', setBlur('suffix'))
+	
 	
 	var src = $.map(g_items[loc], function(k,v) {
 		return k.name
@@ -988,31 +1022,34 @@ function createSquare(id, loc, cb, scrolls=true)
 		//"change": propSet("item", g_items[loc]),
 		"open": openCb(g_lookups[loc])
 	}))
-	item.on('change', propSet("item", g_items[loc]))
 	// TODO: set this on other boxes too
-	item.on('blur', function (){ 
-			var x = box.data('item')
-			if (!x)
-			{
-				$(this).val("")
-			}
-	})
+	item.on('change', propSet("item", g_items[loc]))
+	item.on('blur', setBlur('item'))
 	setOpenOnFocus(item)
 	
 	var statPat = /[+-]?(\d)\s*(.*)/;
-	var updateInf = function()
+	var updateInf = function(loc)
 	{
-		var val = $(this).val()
-		var match = statPat.exec(val);
-		if (match && match.length > 2)
+		return function()
 		{
-			var num = parseInt(match[1])
-			var stat = match[2]
-			var s = {}
-			s[stat] = num
-			box.data("inf", {"name":val, "stats":s})
+			var val = $(this).val()
+			if ($.inArray(val, g_infusions[loc]) == -1)
+			{
+				$(this).val("")
+				box.removeData('inf')
+				return
+			}
+			var match = statPat.exec(val);
+			if (match && match.length > 2)
+			{
+				var num = parseInt(match[1])
+				var stat = match[2]
+				var s = {}
+				s[stat] = num
+				box.data("inf", {"name":val, "stats":s})
+			}
+			update()
 		}
-		update()
 	}
 	
 	inf.autocomplete($.extend({},sharedOpts,
@@ -1021,8 +1058,8 @@ function createSquare(id, loc, cb, scrolls=true)
 		"close":updateInf, 
 		"change":updateInf
 	}))
-	
 	setOpenOnFocus(inf)
+	inf.on('blur', setBlur('inf'))
 	
 	innerBox.append(prefix)
 	innerBox.append(suffix)
