@@ -150,7 +150,7 @@ var g_scrolls = [
 	"prefix":false
 },
 {	"name":"Declaration",
-	"locations":["glove", "feet"] ,
+	"locations":["gloves", "feet"] ,
 	"types":["light","cloth"],
 	"stats":{
 		"balance":4,
