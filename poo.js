@@ -605,6 +605,138 @@ var g_enhanceable = {
 	"weapon": true
 }
 
+var g_weaponFragments = {
+	"Regina" : { 
+		"speed" : [3,4]
+	},
+	"Perfect" : {
+	},
+	"Keen" : {
+		"balance": [27,30],
+		"crit": [28,31]
+	},
+	"Stable" : {
+		"balance": [41,45]
+	},
+	"Lightweight" : {
+		"crit": [19,21],
+		"speed": [4,5]
+	}
+}
+
+var g_weaponSide = {
+	90 : ['Perfect', 'Keen', 'Stable', 'Lightweight'],
+	95 : [ ]
+}
+
+var g_setLevels = {
+	"Regina": 90
+}
+
+var getWeaponFragments = function (name)
+{
+	var	ret = []
+	var level = g_setLevels[name]
+	ret.push({'name': name, 'stats':g_weaponFragments[name]})
+	$.each(g_weaponSide[level], function(k,v){
+		ret.push({'name':v, 'stats':g_weaponFragments[v]})
+	})
+	return ret
+}
+
+var makeColWithWidth = function(wid)
+{
+	var ret = $("<div />")
+	ret.attr('class','col-xs-'+wid)
+	return ret
+}
+
+var makeDialog = function()
+{
+	var ret = $( "<div class='MyDialog' title='Choose your weapon properties'></div>" )
+	var container = $("<div class='container' />")
+	container.css("width", "100%")
+	ret.append(container)
+	
+	var frags = getWeaponFragments("Regina")
+	var headings = $("<div class = 'row' />")
+	container.append(headings)
+	
+	var stats = {}
+	$.each(frags, function(i,frag){
+		$.each(frag.stats, function(stat, range){
+			stats[stat] = true
+		})
+	})
+	
+	var numCols = Object.keys(stats).length + 1
+	var width = Math.floor(12/numCols);
+	
+	// piece 
+	var	pieceHead = makeColWithWidth(width)
+	pieceHead.html("Part")
+	pieceHead.css("font-weight", 'bold')
+	headings.append(pieceHead)
+	// headings for each stat
+	var inputs = {}
+	$.each(stats, function(name, v){
+		var statHead = makeColWithWidth(width)
+		statHead.html(toTitleCase(name))
+		statHead.css("font-weight", 'bold')
+		headings.append(statHead)
+		inputs[name] = []
+	})
+	
+	
+	$.each(frags, function(k,frag){
+		var row = $("<div class = 'row' />")
+		var piece = makeColWithWidth(width)
+		piece.css("margin-left", 0)
+		piece.css("padding-left", 0)
+		piece.html(frag.name)
+		row.append(piece)
+		$.each(stats, function(stat){
+			var inputCol = makeColWithWidth(width)
+			var input = $("<input type='text' />")
+			input.css('maxwidth', "100%")
+			input.css('width', "100%")
+			if ('stats' in frag && stat in frag.stats){
+				var statRange = frag.stats[stat]
+				input.val(statRange[0]+1)
+				input.attr("title", statRange.join(" to "))
+				input.tooltip()
+				input.css('text-align','center')
+				inputs[stat].push(input)
+			}
+			else{
+				input.attr('disabled', 'disabled')
+			}
+			inputCol.append(input)
+			row.append(inputCol)
+			
+		})
+		container.append(row)
+	})
+	var btn = $("<Button >Ok</button>")
+	btn.click(function (k,v) {
+		$(ret).dialog("close")
+	})
+	
+	ret.data('getStats', function(){
+		var ret = {}
+		$.each(inputs, function(name, inputBoxes){
+			ret[name] = 0
+			$.each(inputBoxes, function(k,v){
+				ret[name] += parseInt(v.val())
+			})
+		})
+		return ret
+	})
+	
+	ret.append(btn)
+	return ret
+}
+
 function createSquare(id, loc, cb, scrolls=true)
 {	
 	var target = $("#"+id)
@@ -717,9 +849,16 @@ function createSquare(id, loc, cb, scrolls=true)
 				x.blur()
 				if(!$('.MyDialog').length)
 				{
-					var dialog = $( "<div class='MyDialog' title='Choose your weapon properties'></div>" )
-					
-					dialog.dialog( {"close": function(){ x.next().focus() }} );
+					var dialog = makeDialog()			
+					dialog.dialog( {
+						"close": function(){
+									var userEntry = JSON.parse(JSON.stringify(entry))
+									userEntry["stats"] = dialog.data("getStats")()
+									box.data(key, userEntry)
+									update()
+									x.next().focus()			
+								} , 
+						"modal":true})
 				}
 				if( !$('.MyDialog').dialog("isOpen") )
 				{
