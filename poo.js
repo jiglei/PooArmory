@@ -604,10 +604,14 @@ $.each(g_enhancementEffects, function(k,v){
 })
 
 
-function createInputBox(placeholder, width="100%", id=null)
+function createInputBox(placeholder, width="100%", id=null, height="25%")
 {
 	var ret= $("<input type='text' />")
 	ret.css("width", width)
+	if(height)
+	{
+		ret.css("height", height)
+	}
 	ret.css("background", "rgba(255,255,255,0.5)")
 	
 	if(placeholder)
@@ -838,6 +842,8 @@ function createSquare(id, loc, cb, scrolls=true)
 	leftBox.css("z-index",100)
 	leftBox.css("overflow","visible")
 	var innerBox = $("<div class='col-xs-9'/>")
+	innerBox.css("border-style",'solid')
+	innerBox.css("border-color", "black")
 	innerBox.css("padding",0)
 	innerBox.css("margin",0)
 	
@@ -1182,7 +1188,7 @@ function createStatsSheet(id, stats)
 		var critRow = $("<div class='row'/>")
 		for (var i = 0; i < 2; ++i)
 		{
-			var ci = createInputBox("crit", "30%")
+			var ci = createInputBox("crit", "30%", null, null)
 			ci.css("margin-right", "0.2em")
 			ci.css("text-align", "center")
 			critRow.append(ci)
@@ -1201,13 +1207,13 @@ function createStatsSheet(id, stats)
 	
 	var balLabel = $("<div class='row'>Balance (ein)</div>")
 	var balRow = $("<div class='row' > </div>")
-	var balInput = createInputBox("bal", "30%")
+	var balInput = createInputBox("bal", "30%", null, null)
 	balRow.append(balInput)
 	balInput.val(5)
 	balInput.css("text-align", "center")
 	var speedLabel = $("<div class='row'>Speed (other)</div>")
 	var speedRow = $("<div class='row' />")
-	var speedInput = createInputBox("speed", "30%")
+	var speedInput = createInputBox("speed", "30%", null,null)
 	speedRow.append(speedInput)
 	speedInput.css("text-align", "center")
 	speedInput.val(0)
@@ -1227,6 +1233,7 @@ function createStatsSheet(id, stats)
 	//target.css("height", "30em")
 	//sheet.css("width", "100%")
 	target.css("border-style", "solid")
+	
 	var nameRow = $("<div class='row' />")
 	nameRow.html("A poo")
 	nameRow.css("text-align", "center")
