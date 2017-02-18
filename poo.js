@@ -607,6 +607,10 @@ function formatStats(stats)
 			{
 				return null
 			}
+			if (k < 0)
+			{
+				return v + k
+			}
 			return v + "+" + k
 		}).join(", ")
 }
