@@ -614,9 +614,14 @@ $.each(g_enhancementEffects, function(k,v){
 	g_enhanceLookups[k] = createLookup(v)
 })
 
-
-function createInputBox(placeholder, width="100%", id=null, height="25%")
+function createInputBox(placeholder, width, id, height)
 {
+	width = width||"100%"
+	
+	if (height === undefined)
+	{
+		height = "25%"
+	}
 	var ret= $("<input type='text' />")
 	ret.css("width", width)
 	if(height)
@@ -875,8 +880,13 @@ var makeDialog = function(name)
 	return ret
 }
 
-function createSquare(id, loc, cb, scrolls=true)
+function createSquare(id, loc, cb, scrolls)
 {	
+	if (scrolls === undefined)
+	{
+		scrolls = true
+	}
+	
 	var target = $("#"+id)
 	
 	var box = $("<div class='row' />")
