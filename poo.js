@@ -1208,16 +1208,22 @@ function createStatsSheet(id, stats)
 	}
 	var statsDiv = $("<div class='col-xs-6'/>")
 	var critInputs = []
+	var tooltips = [
+	"Crit Mastery adds up to 28 crit",
+	"Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil",
+	"Full gold Einrach gives 3 crit, full silver gives 1 crit",
+	"Clearing Neamhain gives up to 5 crit (+1 for 5, +2 for 50, +3 for 75, and +5 for 100 clears)"
+	]
 	$.each(['Crit (mastery, wil)', '(ein, numa)'], function(rowNum,v)
 	{
 		var critRow = $("<div class='row'/>")
 		for (var i = 0; i < 2; ++i)
 		{
 			var ci = createInputBox("crit", "30%", null, null)
-			if(rowNum == 0 && i == 1){
-				ci.attr("title", "Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil")
-				ci.tooltip()
-			}
+			
+			ci.attr("title", tooltips[rowNum*2+i])
+			ci.tooltip()
+			
 			ci.css("margin-right", "0.2em")
 			ci.css("text-align", "center")
 			critRow.append(ci)
@@ -1237,6 +1243,8 @@ function createStatsSheet(id, stats)
 	var balLabel = $("<div class='row'>Balance (ein)</div>")
 	var balRow = $("<div class='row' > </div>")
 	var balInput = createInputBox("bal", "30%", null, null)
+	balInput.title("Full gold at Einrach gives 5 balance; silver gives 3")
+	balInput.tooltip()
 	balRow.append(balInput)
 	balInput.val(5)
 	balInput.css("text-align", "center")
