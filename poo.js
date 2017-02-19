@@ -209,6 +209,14 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
+{	"name":"Diamond",
+	"locations":["offhand"] ,
+	"types":["smallshield","largeshield"],
+	"stats":{
+		"Def":0.1
+	},
+	"prefix":false
+},
 {	"name":"Fast",
 	"locations":all_acc,
 	"stats":{
@@ -1243,7 +1251,7 @@ function createStatsSheet(id, stats)
 	var balLabel = $("<div class='row'>Balance (ein)</div>")
 	var balRow = $("<div class='row' > </div>")
 	var balInput = createInputBox("bal", "30%", null, null)
-	balInput.title("Full gold at Einrach gives 5 balance; silver gives 3")
+	balInput.attr("title", "Full gold at Einrach gives 5 balance; silver gives 3")
 	balInput.tooltip()
 	balRow.append(balInput)
 	balInput.val(5)
