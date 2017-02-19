@@ -3690,6 +3690,39 @@ var g_weapons = [
         "name": "Regina something",
         "rank": "5"
     },
+    {
+        "stats": {
+            "att": 10000,
+            "balance": "68-75",
+            "speed": "7-9",
+            "crit": "48-52"
+        },
+        "level": 90,
+        "name": "Terminus something",
+        "rank": "5"
+    },	
+    {
+        "stats": {
+            "att": 10000,
+            "balance": "68-75",
+            "speed": "7-9",
+            "crit": "48-52"
+        },
+        "level": 90,
+        "name": "Lugh something",
+        "rank": "5"
+    },	
+	{
+        "stats": {
+            "att": 10000,
+            "balance": "68-75",
+            "speed": "7-9",
+            "crit": "48-52"
+        },
+        "level": 90,
+        "name": "Braha something",
+        "rank": "5"
+    },
 	{
         "name": "Dullahan something",
         "stats": {

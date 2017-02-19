@@ -692,6 +692,16 @@ var g_weaponFragments = {
 	"Regina" : { 
 		"speed" : [3,4]
 	},
+	"Braha" : { 
+		"speed" : [3,4]
+	},
+	"Terminus" : { 
+		"speed" : [3,4]
+	},
+	"Lugh" : { 
+		"speed" : [3,4]
+	},
+	
 	"Perfect" : {
 	},
 	"Keen" : {
@@ -733,6 +743,9 @@ var g_weaponSide = {
 
 var g_setLevels = {
 	"Regina": 90,
+	"Lugh": 90,
+	"Terminus": 90,
+	"Braha": 90,
 	"Dullahan": 95
 }
 
