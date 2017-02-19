@@ -22,8 +22,7 @@ def zipdir(path, ziph, ignore = []):
 			if file.endswith(".js") and root == ".":
 				arcpath = os.path.join(root, file)[2:]
 				ziph.writestr(arcpath, min(os.path.join(root,file)))
-			
-			elif not file.endswith("zip") and not root.startswith("./.") and not file.endswith("zip.py"):
+			elif not file.endswith("zip") and not root.startswith(".\\.") and not file.endswith("zip.py"):
 				ziph.write(os.path.join(root, file))
 
 if __name__ == '__main__':
