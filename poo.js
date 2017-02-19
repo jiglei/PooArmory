@@ -1208,12 +1208,16 @@ function createStatsSheet(id, stats)
 	}
 	var statsDiv = $("<div class='col-xs-6'/>")
 	var critInputs = []
-	$.each(['Crit (mastery, wil)', '(ein, numa)'], function(k,v)
+	$.each(['Crit (mastery, wil)', '(ein, numa)'], function(rowNum,v)
 	{
 		var critRow = $("<div class='row'/>")
 		for (var i = 0; i < 2; ++i)
 		{
 			var ci = createInputBox("crit", "30%", null, null)
+			if(rowNum == 0 && i == 1){
+				ci.attr("title", "Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil")
+				ci.tooltip()
+			}
 			ci.css("margin-right", "0.2em")
 			ci.css("text-align", "center")
 			critRow.append(ci)
