@@ -461,7 +461,7 @@ var g_offhands = [
 	},
 	{
 		"name":"Dictionary of Poos",
-		"type":"book"
+		"type":"book",
 		"stats":{
 			"crit":3
 		}
@@ -798,8 +798,13 @@ var makeDialog = function(name)
 			if ('stats' in frag && stat in frag.stats){
 				var statRange = frag.stats[stat]
 				input.val(Math.floor((statRange[0]+statRange[statRange.length-1])/2))
+				input.data('range', statRange)
 				input.attr("title", statRange.join(" to "))
-				input.tooltip()
+				// Why doesn't this work?
+				input.tooltip({'position': {
+									my: "left center", 
+									at: "right center"
+								}})
 				input.css('text-align','center')
 				inputs[stat].push(input)
 			}
@@ -829,6 +834,23 @@ var makeDialog = function(name)
 	})
 	
 	ret.append(btn)
+	
+	var max = $("<Button>Max</button>")
+	max.click(function(){
+		$.each(inputs, function(name, inputBoxes){
+			$.each(inputBoxes, function(k,v){
+					if(!v.prop('disabled'))
+					{
+						var range = v.data('range')
+						if(range)
+						{
+							v.val(range[range.length-1])
+						}
+					}
+				})
+		})
+	})
+	ret.append(max)
 	return ret
 }
 
@@ -942,9 +964,9 @@ function createSquare(id, loc, cb, scrolls=true)
 			else if ('level' in entry && entry['level'] >= 90)
 			{
 				var x = $(this)
+				var existing = box.data(key)
 				box.data(key, {})
 				x.blur()
-				var existing = box.data(key)
 				var existingLevel = 0
 				if (existing)
 				{
