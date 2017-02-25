@@ -691,6 +691,7 @@ function loadFromJson(j)
 	{
 		var target = $("#"+v.id)
 		target.val(v.val)
+		target.trigger("change")
 		target.trigger("blur")
 	})
 }
@@ -1379,7 +1380,6 @@ function createStatsSheet(id, stats)
 		thisCol.css("margin-left", 0)
 		thisCol.css("margin-right", 0)
 	
-		
 		var balInput = createInputBox("bal", ""+i, null , "70%", null)
 		balInput.css("margin-right", "0.2em")
 		balInput.attr("title", balTips[i])
