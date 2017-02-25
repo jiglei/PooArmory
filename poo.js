@@ -291,8 +291,8 @@ var g_scrolls = [
 	"types":["light"],
 	"stats":{
 		"crit":3
-	}
-	
+	},
+	"prefix":false
 }
 ]
 
