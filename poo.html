@@ -33,7 +33,7 @@ $(document).ready( function()
 		displayTotals(boxes)
 	}
 	
-	var rows = 6;
+	var rows = 7;
 	var cols = 3;
 	var container = $("<div class='row' />")
 	var view = $("<div class='col-xs-11'/>")
@@ -76,7 +76,8 @@ $(document).ready( function()
 		createSquare("box"+(i++), "rings", update),
 		createSquare("box"+(i++), "bracelet", update, false),
 		createSquare("box"+(i++), "", update),
-		createSquare("box"+(i++), "bracelet", update, false)
+		createSquare("box"+(i++), "bracelet", update, false),
+		createSquare("box"+(i+2), "necklace", update)
 	]
 	//update()
 	

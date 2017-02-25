@@ -511,6 +511,15 @@ var g_bracelets = [
 	}
 ]
 
+var g_necklaces = [
+	{
+		"name":"Blue poo necklace",
+	},
+	{
+		"name":"Poo necklace",
+	}
+]
+
 var g_items = {
 	"weapon" : g_weapons,
 	"chest": g_chests,
@@ -524,7 +533,9 @@ var g_items = {
 	"artifact": g_artifacts,
 	"brooch": g_brooches,
 	"earrings": g_earrings,
-	"bracelet": g_bracelets
+	"bracelet": g_bracelets,
+	"necklace": g_necklaces
+
 }
 
 var g_minor_infusions = [
@@ -555,6 +566,7 @@ var g_infusions = {
 	"belt": g_major_infusions,
 	"brooch": g_major_infusions,
 	"earrings": g_major_infusions,
+	"necklace": g_major_infusions,
 }
 
 var g_lookups = {};
