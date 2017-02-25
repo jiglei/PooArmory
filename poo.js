@@ -95,7 +95,7 @@ $.each(g_enhancementEffects, function(k,v){
 var g_usedIds = {
 }
 
-function createInputBox(placeholder, loc, descr, width, height)
+function createInputBox(placeholder, path, width, height)
 {
 	width = width||"100%"
 	
@@ -103,7 +103,7 @@ function createInputBox(placeholder, loc, descr, width, height)
 	{
 		height = "25%"
 	}
-	var ret= $("<input type='text' class='saveable'/>")
+	var ret= $("<input type='text' class='saveable my-input-box'/>")
 	ret.css("width", width)
 	if(height)
 	{
@@ -116,13 +116,12 @@ function createInputBox(placeholder, loc, descr, width, height)
 		ret.attr("placeholder", placeholder)
 	}
 	
-	descr = descr || placeholder
-	var id = loc + "-" + descr
+	var id = path.join("-")
 	var i = 2
-	if (id in g_usedIds)
+	if (id in g_usedIds && $("#"+id).length > 0)
 	{
 		var candidate = id + i
-		while(candidate in g_usedIds)
+		while(candidate in g_usedIds && $("#"+candidate).length > 0)
 		{
 			++i
 			candidate = id + i
@@ -130,6 +129,7 @@ function createInputBox(placeholder, loc, descr, width, height)
 		id = candidate
 	}
 	ret.attr("id", id)
+	ret.data('path', path)
 	g_usedIds[id] = true
 	return ret
 }
@@ -154,13 +154,23 @@ function loadFromJson(j)
 {
 	j = JSON.parse(j)
 	
+	
+	
 	$.each(j, function(i, v)
 	{
 		var target = $("#"+v.id)
+		var path = target.data('path')
 		target.val(v.val)
 		target.trigger("change")
 		target.trigger("blur")
 	})
+	
+	$(".MyDialog").dialog("close")
+	
+	var activeObj = document.activeElement
+	
+	$(activeObj).trigger("blur")
+
 }
 
 function passFilter(loc, type, scr, prefix)
@@ -210,78 +220,19 @@ function toTitleCase(str) {
     });
 }
 
-var g_enhanceable = {
-	"weapon": true
-}
-
-var g_weaponFragments = {
-	"Regina" : { 
-		"speed" : [3,4]
-	},
-	"Braha" : { 
-		"speed" : [3,4]
-	},
-	"Terminus" : { 
-		"speed" : [3,4]
-	},
-	"Lugh" : { 
-		"speed" : [3,4]
-	},
-	
-	"Perfect" : {
-	},
-	"Keen" : {
-		"balance": [27,30],
-		"crit": [28,31]
-	},
-	"Stable" : {
-		"balance": [41,45]
-	},
-	"Lightweight" : {
-		"crit": [19,21],
-		"speed": [4,5]
-	},
-	
-	"Dullahan": {
-		"speed": [3]
-	},
-	"C.Perfect" : {
-		
-	},
-	"C.Keen" : {
-		"balance": [24,27],
-		"crit": [36,40]
-	},
-	"C.Stable" : {
-		"balance": [37,41]
-	},
-	"C.Lightweight" : {
-		"crit": [24,27],
-		"speed": [4,5]
-	}
-}
-
-var g_weaponSide = {
-	90 : ['Perfect', 'Keen', 'Stable', 'Lightweight'],
-	95 : ['C.Perfect', 'C.Keen', 'C.Stable', 'C.Lightweight']
-}
-
-var g_setLevels = {
-	"Regina": 90,
-	"Lugh": 90,
-	"Terminus": 90,
-	"Braha": 90,
-	"Dullahan": 95
-}
 
 var getWeaponFragments = function (name)
 {
 	var	ret = []
-	var level = g_setLevels[name]
-	ret.push({'name': name, 'stats':g_weaponFragments[name]})
-	$.each(g_weaponSide[level], function(k,v){
-		ret.push({'name':v, 'stats':g_weaponFragments[v]})
-	})
+	try{
+		var level = g_setLevels[name] || 0
+		ret.push({'name': name, 'stats':g_weaponFragments[name]})
+		$.each(g_weaponSide[level], function(k,v){
+			ret.push({'name':v, 'stats':g_weaponFragments[v]})
+		})
+	}catch(err)
+	{
+	}
 	return ret
 }
 
@@ -292,14 +243,29 @@ var makeColWithWidth = function(wid)
 	return ret
 }
 
-var makeDialog = function(name)
+var makeDialogId = function(loc)
+{
+	return loc+"-dialog"
+}
+
+var guessSetName = function(name)
+{
+	return name.split(" ")[0]
+}
+
+var makeDialog = function(name, loc)
 {
 	var ret = $( "<div class='MyDialog' title='Choose your weapon properties'></div>" )
+	ret.attr("id", makeDialogId(loc))
 	var container = $("<div class='container' />")
 	container.css("width", "100%")
 	ret.append(container)
 	
-	var frags = getWeaponFragments(name.split(" ")[0]) // ugh
+	var frags = getWeaponFragments(guessSetName(name)) // ugh
+	if(frags.length < 1)
+	{
+		return
+	}
 	var headings = $("<div class = 'row' />")
 	container.append(headings)
 	
@@ -328,7 +294,6 @@ var makeDialog = function(name)
 		inputs[name] = []
 	})
 	
-	
 	$.each(frags, function(k,frag){
 		var row = $("<div class = 'row' />")
 		var piece = makeColWithWidth(width)
@@ -338,7 +303,7 @@ var makeDialog = function(name)
 		row.append(piece)
 		$.each(stats, function(stat){
 			var inputCol = makeColWithWidth(width)
-			var input = $("<input type='text' />")
+			input = createInputBox('', [loc, frag.name, stat], null, null)
 			input.css('maxwidth', "100%")
 			input.css('width', "100%")
 			if ('stats' in frag && stat in frag.stats){
@@ -385,15 +350,15 @@ var makeDialog = function(name)
 	max.click(function(){
 		$.each(inputs, function(name, inputBoxes){
 			$.each(inputBoxes, function(k,v){
-					if(!v.prop('disabled'))
+				if(!v.prop('disabled'))
+				{
+					var range = v.data('range')
+					if(range)
 					{
-						var range = v.data('range')
-						if(range)
-						{
-							v.val(range[range.length-1])
-						}
+						v.val(range[range.length-1])
 					}
-				})
+				}
+			})
 		})
 	})
 	ret.append(max)
@@ -429,7 +394,7 @@ function createSquare(id, loc, cb, scrolls)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
 	//leftBox.css("float", "left")
-	var enh = createInputBox('+', "loc", "enh")
+	var enh = createInputBox('+', [loc, "enh"])
 	enh.css("overflow","visible")
 	enh.css("text-align", "center")
 	if( loc in g_enhanceable )
@@ -455,11 +420,11 @@ function createSquare(id, loc, cb, scrolls)
 		return box
 	}
 	
-	var prefix = createInputBox('Prefix', loc)
-	var suffix = createInputBox('Suffix', loc)
-	var item = createInputBox(toTitleCase(loc), loc)
+	var prefix = createInputBox('Prefix', [loc, 'Prefix'])
+	var suffix = createInputBox('Suffix', [loc, 'Suffix'])
+	var item = createInputBox(toTitleCase(loc), [loc, 'item'])
 	item.css("text-overflow","ellipsis")
-	var inf = createInputBox('Infusion', loc)
+	var inf = createInputBox('Infusion', [loc, 'inf'])
 	
 	var display = $("<div />")
 	display.css("background-color",'white')
@@ -514,6 +479,15 @@ function createSquare(id, loc, cb, scrolls)
 			}
 			else if ('level' in entry && entry['level'] >= 90)
 			{
+				// I really hate this bit
+				var dialogId = makeDialogId(loc)
+				var dialogSel = '#'+dialogId
+				
+				if( $(dialogSel).length && $(dialogSel).dialog("isOpen") )
+				{
+					return
+				}
+				
 				var x = $(this)
 				var existing = box.data(key)
 				box.data(key, {})
@@ -526,12 +500,12 @@ function createSquare(id, loc, cb, scrolls)
 				
 				if (entry['level'] != existingLevel)
 				{
-					$('.MyDialog').remove()
+					$(dialogSel).remove()
 				}
 				
-				if(!$('.MyDialog').length)
+				if(!$(dialogSel).length)
 				{
-					var dialog = makeDialog(entry.name)	
+					var dialog = makeDialog(entry.name, loc)	
 					dialog.dialog( {
 						"dialogClass" : "no-close",
 						"close": function(){
@@ -543,9 +517,9 @@ function createSquare(id, loc, cb, scrolls)
 								} , 
 						"modal":true})
 				}
-				if( !$('.MyDialog').dialog("isOpen") )
+				if( !$(dialogSel).dialog("isOpen") )
 				{
-					$('.MyDialog').dialog("open")
+					$(dialogSel).dialog("open")
 					return
 				}
 			}
@@ -658,7 +632,6 @@ function createSquare(id, loc, cb, scrolls)
 	{
 		source:src, 
 		"close": propSet("item", g_items[loc]),
-		//"change": propSet("item", g_items[loc]),
 		"open": openCb(g_lookups[loc])
 	}))
 	// TODO: set this on other boxes too
@@ -740,7 +713,7 @@ function accumulateBoxes(boxes)
 	return stats
 }
 
-function createStatSection(inputs)
+function createStatSection(inputs, statName)
 {
 	var ret = $("<div class='row' >")
 	
@@ -774,7 +747,7 @@ function createStatSection(inputs)
 			thisCol.css("margin-left", 0)
 			thisCol.css("margin-right", 0)
 		
-			var balInput = createInputBox("bal", ""+cellNum, null , "70%", null)
+			var balInput = createInputBox(statName, [statName, ""+cellNum] , "70%", null)
 			balInput.css("margin-right", "0.2em")
 			balInput.attr("title", balTips[cellNum])
 			balInput.tooltip()
@@ -831,7 +804,7 @@ function createStatsSheet(id, stats)
 		]
 	}
 		
-	var critSec = createStatSection(critSpec)
+	var critSec = createStatSection(critSpec, "crit")
 	
 	var critInputs = critSec.data('inputs')
 	
@@ -854,7 +827,7 @@ function createStatsSheet(id, stats)
 			"P2W"
 		]
 	}
-	var balRow = createStatSection(balSpec)
+	var balRow = createStatSection(balSpec, "bal")
 	var balInput = balRow.data('inputs')[0]
 	var balInput2 = balRow.data('inputs')[1]
 	
@@ -864,7 +837,7 @@ function createStatsSheet(id, stats)
 	
 	var speedLabel = $("<div class='row stat-head'>Speed from... ?</div>")
 	var speedRow = $("<div class='row' />")
-	var speedInput = createInputBox("speed", "other", null, "30%",null)
+	var speedInput = createInputBox("speed", ["speed", "other"], "30%",null)
 	speedRow.append(speedInput)
 	speedInput.css("text-align", "center")
 	speedInput.val(0)

@@ -250,3 +250,67 @@ var armor_types = [
 	"light",
 	"cloth"
 ]
+
+var g_enhanceable = {
+	"weapon": true
+}
+
+var g_weaponFragments = {
+	"Regina" : { 
+		"speed" : [3,4]
+	},
+	"Braha" : { 
+		"speed" : [3,4]
+	},
+	"Terminus" : { 
+		"speed" : [3,4]
+	},
+	"Lugh" : { 
+		"speed" : [3,4]
+	},
+	
+	"Perfect" : {
+	},
+	"Keen" : {
+		"balance": [27,30],
+		"crit": [28,31]
+	},
+	"Stable" : {
+		"balance": [41,45]
+	},
+	"Lightweight" : {
+		"crit": [19,21],
+		"speed": [4,5]
+	},
+	
+	"Dullahan": {
+		"speed": [3]
+	},
+	"C.Perfect" : {
+		
+	},
+	"C.Keen" : {
+		"balance": [24,27],
+		"crit": [36,40]
+	},
+	"C.Stable" : {
+		"balance": [37,41]
+	},
+	"C.Lightweight" : {
+		"crit": [24,27],
+		"speed": [4,5]
+	}
+}
+
+var g_weaponSide = {
+	90 : ['Perfect', 'Keen', 'Stable', 'Lightweight'],
+	95 : ['C.Perfect', 'C.Keen', 'C.Stable', 'C.Lightweight']
+}
+
+var g_setLevels = {
+	"Regina": 90,
+	"Lugh": 90,
+	"Terminus": 90,
+	"Braha": 90,
+	"Dullahan": 95
+}
