@@ -1277,6 +1277,59 @@ function accumulateBoxes(boxes)
 	return stats
 }
 
+function createStatSection(inputs)
+{
+	var ret = $("<div class='row' >")
+	
+	ret.data('inputs', [])
+	var wrap = $("<div class='col-xs-12' >")
+	ret.append(wrap)
+	
+	var balTips = inputs.tips
+	
+	var balDefaults = inputs.defaults
+	
+	var balLabels = inputs.labels
+	
+	var colsPerRow = 2
+	var numCells = balTips.length
+	var numRows = Math.ceil(numCells / colsPerRow)
+	
+	for (var rowNum = 0; rowNum < numRows; rowNum++)
+	{		
+		var balRow = $("<div class='row' > </div>")
+		for (var i = 0; i < colsPerRow; ++i)
+		{
+			var cellNum = rowNum*colsPerRow + i
+			var thisCol = $("<div class='col-xs-6' />")
+			
+			thisCol.css("padding-top", 0)
+			thisCol.css("padding-left", 0)
+			thisCol.css("padding-right", 0)
+			
+			thisCol.css("margin-top", 0)
+			thisCol.css("margin-left", 0)
+			thisCol.css("margin-right", 0)
+		
+			var balInput = createInputBox("bal", ""+cellNum, null , "70%", null)
+			balInput.css("margin-right", "0.2em")
+			balInput.attr("title", balTips[cellNum])
+			balInput.tooltip()
+			balInput.val(balDefaults[cellNum])
+			balInput.css("text-align", "center")
+			var thisLabel = $("<div/>")
+			thisLabel.html(balLabels[cellNum])
+			thisCol.append(thisLabel)
+			thisCol.append(balInput)
+			balRow.append(thisCol)
+			ret.data('inputs').push(balInput)
+		}	
+		wrap.append(balRow)
+	}
+	
+	return ret
+}
+
 // id is a col
 function createStatsSheet(id, stats)
 {
@@ -1292,106 +1345,59 @@ function createStatsSheet(id, stats)
 		return ret
 	}
 	var statsDiv = $("<div class='col-xs-6'/>")
-	var critLabelRow = $("<div class='row stat-head'>")
-	critLabelRow.html("Crit from...")
-	statsDiv.append(critLabelRow)
-	var critInputs = []
-	var tooltips = [
-	"Crit Mastery adds up to 28 crit",
-	"Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil",
-	"Full gold Einrach gives 3 crit, full silver gives 1 crit",
-	"Clearing Neamhain gives up to 5 crit (+1 for 5, +2 for 50, +3 for 75, and +5 for 100 clears)"
-	]
-	var labels = [
-		"Mastery",
-		"Wil",
-		"Ein",
-		"Neam"
-	]
 	
-	$.each(['Crit (mastery, wil)', '(ein, numa)'], function(rowNum,v)
-	{
-		var critRow = $("<div class='row'/>")
-		for (var i = 0; i < 2; ++i)
-		{
-			var entry = rowNum*2+i
-			var miniCol = $("<div class='col-xs-6' />")
-			miniCol.css("padding-top", 0)
-			miniCol.css("padding-left", 0)
-			miniCol.css("padding-right", 0)
-			
-			miniCol.css("margin-top", 0)
-			miniCol.css("margin-left", 0)
-			miniCol.css("margin-right", 0)
-			var ci = createInputBox("crit", ""+entry, null, "70%", null)
-			
-			ci.attr("title", tooltips[entry])
-			ci.tooltip()
-			
-			ci.css("margin-right", "0.2em")
-			ci.css("text-align", "center")
-			var label = $("<div />")
-			label.html(labels[rowNum*2+i])
-			miniCol.append(label)
-			miniCol.append(ci)
-			
-			critRow.append(miniCol)
-			critInputs.push(ci)
-		}
+	var critSecLabel = $("<div class='row stat-head'>Crits from...</div>")
+	var critSpec = {
+		"tips" : [
+			"Crit Mastery adds up to 28 crit",
+			"Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil",
+			"Full gold Einrach gives 3 crit, full silver gives 1 crit",
+		"Clearing Neamhain gives up to 5 crit (+1 for 5, +2 for 50, +3 for 75, and +5 for 100 clears)"
+		],
+		"defaults": [
+			28,
+			15,
+			3,
+			5
+		],
+		"labels": [
+			"Mastery",
+			"Wil",
+			"Ein",
+			"Neam"
+		]
+	}
 		
-		statsDiv.append(critRow)
-	})
+	var critSec = createStatSection(critSpec)
 	
-	// oh god
-	critInputs[0].val(28)
-	critInputs[1].val(15)
-	critInputs[2].val(3)
-	critInputs[3].val(5)
+	var critInputs = critSec.data('inputs')
 	
+	statsDiv
+	.append(critSecLabel)
+	.append(critSec)
 	
 	var balLabel = $("<div class='row stat-head'>Balance from...</div>")
-	var balRow = $("<div class='row' > </div>")
+	var balSpec = {
+		"tips" : [
+			"Full gold at Einrach gives 5 balance; silver gives 3",
+			"You can get 2 bal from Outfit/Avatar if you want to fund Nexon's evil empire"
+		],
+		"defaults": [
+			5,
+			0
+		],
+		"labels": [
+			"Ein",
+			"P2W"
+		]
+	}
+	var balRow = createStatSection(balSpec)
+	var balInput = balRow.data('inputs')[0]
+	var balInput2 = balRow.data('inputs')[1]
 	
-	var balTips = [
-		"Full gold at Einrach gives 5 balance; silver gives 3",
-		"You can get 2 bal from Outfit/Avatar if you want to fund Nexon's evil empire"
-	]
-	
-	var balDefaults = [
-		5,
-		0
-	]
-	
-	var balLabels = [
-		"Ein",
-		"P2W"
-	]
-	
-	
-	for (var i = 0; i < balTips.length; ++i)
-	{
-		var thisCol = $("<div class='col-xs-6' />")
-		
-		thisCol.css("padding-top", 0)
-		thisCol.css("padding-left", 0)
-		thisCol.css("padding-right", 0)
-		
-		thisCol.css("margin-top", 0)
-		thisCol.css("margin-left", 0)
-		thisCol.css("margin-right", 0)
-	
-		var balInput = createInputBox("bal", ""+i, null , "70%", null)
-		balInput.css("margin-right", "0.2em")
-		balInput.attr("title", balTips[i])
-		balInput.tooltip()
-		balInput.val(balDefaults[i])
-		balInput.css("text-align", "center")
-		var thisLabel = $("<div/>")
-		thisLabel.html(balLabels[i])
-		thisCol.append(thisLabel)
-		thisCol.append(balInput)
-		balRow.append(thisCol)
-	}	
+	statsDiv
+	.append(balLabel)
+	.append(balRow)
 	
 	var speedLabel = $("<div class='row'>Speed (other)</div>")
 	var speedRow = $("<div class='row' />")
@@ -1402,8 +1408,6 @@ function createStatsSheet(id, stats)
 	
 	// TODO: Formatting on these
 	statsDiv
-	.append(balLabel)
-	.append(balRow)
 	.append(speedLabel)
 	.append(speedRow)
 	
@@ -1453,7 +1457,7 @@ function createStatsSheet(id, stats)
 		statsWrap.html(" ")
 		row = $(statRowString)
 		var statCol = $("<div class='col-xs-6'/>")
-		statCol.html("Bal: " + (stats.bal + valOf(balInput)))
+		statCol.html("Bal: " + (stats.bal + valOf(balInput) + valOf(balInput2)))
 		row.append(statCol)
 		statsWrap.append(row)
 		
@@ -1476,7 +1480,7 @@ function createStatsSheet(id, stats)
 	writeStats(stats)
 	target.data('update', writeStats)
 	
-	$.each([balInput,speedInput].concat(critInputs), function(k,v){
+	$.each([balInput,speedInput, balInput2].concat(critInputs), function(k,v){
 		v.on('change', function(){
 			writeStats(target.data('stats'))
 		})
