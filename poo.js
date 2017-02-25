@@ -257,7 +257,7 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
-{	"name":"Echoing",
+{	"name":"Reinforced/Reiterating",
 	"locations":["gloves","feet"] ,
 	"types":["heavy","plate"],
 	"stats":{
@@ -265,7 +265,7 @@ var g_scrolls = [
 		"balance":2,
 		"speed":2
 	},
-	"prefix":false
+	"prefix":true
 },
 {	"name":"Sobbing/Crying",
 	"locations":["gloves","feet"] ,
