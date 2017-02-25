@@ -1,5 +1,3 @@
-
-
 var g_locations =
 {
 	"hat":1,
@@ -16,21 +14,6 @@ var g_locations =
 	"necklace":12
 }
 
-var all_armor = [
-"hat", "chest", "gloves", "legs", "feet"
-]
-
-var all_acc = [ 
-	"rings", "earrings", "artifact", "brooch", "necklace", "belt"
-]
-
-var armor_types = [
-	"plate",
-	"heavy",
-	"light",
-	"cloth"
-]
-
 var g_types =
 {
 	"weapon":["longsword","longhammer"],
@@ -43,259 +26,6 @@ var g_types =
 	
 }
 
-var g_scrolls = [
-{
-	"name":"Immoral",
-	"locations":["weapon"],
-	"stats":{
-		"speed":4,
-		"crit":8
-	},
-	"prefix":true 
-},
-{
-	"name":"Leopard",
-	"locations":["weapon"],
-	"stats":{
-		"speed":8,
-		"balance":2
-	},
-	"prefix":true
-},
-{
-	"name":"Righteous",
-	"locations":["weapon"],
-	"stats":{
-		"speed":8,
-		"balance":2,
-		"crit":2
-	},
-	"prefix":true
-},
-{
-	"name":"Valor",
-	"locations":["weapon"],
-	"stats":{
-		"balance":5,
-		"speed":4
-	},
-	"prefix":false
-},
-{
-	"name":"Judgment",
-	"locations":["weapon"],
-	"stats":{
-		"balance":-1,
-		"speed":3,
-		"crit":4
-	},
-	"prefix":false
-},
-{
-	"name":"Ornate",
-	"locations":["weapon"],
-	"types":["longhammer"],
-	"stats":{
-		"balance":7,
-		"speed":5,
-		"crit":3
-	},
-	"prefix":true
-},
-{
-	"name":"Enlightenment",
-	"locations":["hat", "legs"],
-	"types":["light", "cloth"],
-	"stats":{
-		"balance":1,
-		"speed":2,
-		"crit":2
-	},
-	"prefix":true
-},
-{	"name":"Well-Balanced",
-	"locations":all_armor ,
-	"types":["light", "cloth"],
-	"stats":{
-		"balance":1,
-		"speed":2,
-		"crit":1
-	},
-	"prefix":true
-},
-{	"name":"Enthusiastic",
-	"locations":all_armor ,
-	"types":["light", "cloth"],
-	"stats":{
-		"balance":5,
-		"speed":0,
-		"crit":0
-	},
-	"prefix":false
-},
-{	"name":"Time's",
-	"locations":["chest"] ,
-	"stats":{
-		"balance":-3,
-		"crit":4
-	},
-	"prefix":true
-},
-{	"name":"Master",
-	"locations":["chest"] ,
-	"stats":{
-		"balance":-1,
-		"crit":5
-	},
-	"prefix":false
-},
-{	"name":"Declaration",
-	"locations":["gloves", "feet"] ,
-	"types":["light","cloth"],
-	"stats":{
-		"balance":4,
-		"speed":1
-	},
-	"prefix":false
-},
-{	"name":"Echo",
-	"locations":["gloves", "feet"] ,
-	"types":["heavy","plate"],
-	"stats":{
-		"balance":4,
-		"speed":1
-	},
-	"prefix":false
-},
-{	"name":"Remembering",
-	"locations":["hat", "legs"] ,
-	"types":["heavy","plate"],
-	"stats":{
-		"balance":1,
-		"crit":2,
-		"speed":2
-	},
-	"prefix":true
-},
-{	"name":"Silent",
-	"locations":["gloves", "feet"] ,
-	"stats":{
-		"balance":2,
-		"speed":2,
-		"crit":1
-	},
-	"prefix":true
-},
-{	"name":"The Dead",
-	"locations":["rings"] ,
-	"stats":{
-		"balance":5
-	},
-	"prefix":true
-},
-{	"name":"Fresh",
-	"locations":["offhand"] ,
-	"types":["smallshield","largeshield"],
-	"stats":{
-		"speed":3
-	},
-	"prefix":true
-},
-{	"name":"Tricky",
-	"locations":["offhand"] ,
-	"types":["smallshield","largeshield"],
-	"stats":{
-		"crit":1
-	},
-	"prefix":true
-},
-{	"name":"Diamond",
-	"locations":["offhand"] ,
-	"types":["smallshield","largeshield"],
-	"stats":{
-		"Def":0.1
-	},
-	"prefix":false
-},
-{	"name":"Fast",
-	"locations":all_acc,
-	"stats":{
-		"speed":5,
-		"balance":-8
-	},
-	"prefix":true
-},
-{	"name":"Significant",
-	"locations":all_acc,
-	"stats":{
-		"speed":1
-	},
-	"prefix":true
-},
-{	"name":"Subdued",
-	"locations":["belt"] ,
-	"stats":{
-		"speed":1,
-		"crit":2
-	},
-	"prefix":true
-},
-{	"name":"Passion",
-	"locations":all_acc ,
-	"stats":{
-		"Def": 200
-	},
-	"prefix":false
-},
-{	"name":"Reinforced/Reiterating",
-	"locations":["gloves","feet"] ,
-	"types":["heavy","plate"],
-	"stats":{
-		"crit":1,
-		"balance":2,
-		"speed":2
-	},
-	"prefix":true
-},
-{	"name":"Sobbing/Crying",
-	"locations":["gloves","feet"] ,
-	"types":["heavy","plate"],
-	"stats":{
-		"crit":2,
-		"balance":3,
-		"speed":2
-	},
-	"prefix":true
-},
-{	"name":"Chilly",
-	"locations":["hat","legs"] ,
-	"types":["heavy","plate"],
-	"stats":{
-		"crit":2,
-		"balance":2,
-		"speed":2
-	},
-	"prefix":true
-},
-{	"name":"Chaotic",
-	"locations":["weapon"],
-	"stats":{
-		"crit":9,
-		"speed":4
-	},
-	"prefix":true
-},
-{
-	"name":"Deadly",
-	"locations":all_armor,
-	"types":["light"],
-	"stats":{
-		"crit":3
-	},
-	"prefix":false
-}
-]
-
 function createLookup(arr)
 {
 	ret = {}
@@ -307,218 +37,8 @@ function createLookup(arr)
 
 var g_scrollLookup = createLookup(g_scrolls)
 
-var g_weapons_old = [
-{
-	"name":"Poo Longsword",
-		"type":"longsword",
-	"stats":{
-		"speed":9,
-		"crit":39,
-		"balance":78
-	}
-},
-{
-	"name":"Poo Hammer",
-	"type":"longhammer",
-	"stats":{
-		"speed":9,
-		"crit":42,
-		"balance":69
-	}
-},
-{
-	"name":"Poo Staff or some shit",
-	"type":"staff",
-	"stats":{
-		"speed":4,
-		"crit":500,
-		"balance":69
-	}
-}
-]
-
 var g_weaponLookup = createLookup(g_weapons)
 
-var g_chests = [
-	{
-		"name":"Silky poo",
-		"type":"cloth"
-	},
-	{
-		"name":"Light poo",
-		"type":"light"
-	},
-	{
-		"name":"Heavy poo",
-		"type":"heavy"
-	},
-	{
-		"name":"Stone poo",
-		"type":"plate"
-	}
-]
-
-var g_legs = [
-	{
-		"name":"Silky poo skirt",
-		"type":"cloth"
-	},
-	{
-		"name":"Light poo skirt",
-		"type":"light"
-	},
-	{
-		"name":"Heavy poo pants",
-		"type":"heavy"
-	},
-	{
-		"name":"Stone poo leg armor",
-		"type":"plate"
-	}
-]
-
-var g_feet = [
-	{
-		"name":"Silky poo heels",
-		"type":"cloth"
-	},
-	{
-		"name":"Light poo shoes",
-		"type":"light"
-	},
-	{
-		"name":"Heavy poo boots",
-		"type":"heavy"
-	},
-	{
-		"name":"Stone poo greaves",
-		"type":"plate"
-	}
-]
-
-var g_gloves = [
-	{
-		"name":"Silky poo gloves",
-		"type":"cloth"
-	},
-	{
-		"name":"Light poo gloves",
-		"type":"light"
-	},
-	{
-		"name":"Heavy poo gauntlets",
-		"type":"heavy"
-	},
-	{
-		"name":"Stone poo gauntlets",
-		"type":"plate"
-	}
-]
-
-var g_hats = [
-	{
-		"name":"Silky poo hat",
-		"type":"cloth"
-	},
-	{
-		"name":"Light poo hat",
-		"type":"light"
-	},
-	{
-		"name":"Heavy poo hat",
-		"type":"heavy"
-	},
-	{
-		"name":"Stone poo hat",
-		"type":"plate"
-	}
-]
-
-var g_rings = [
-	{
-		"name":"Ring of Poo"
-	}
-]
-
-var g_belts = [
-	{
-		"name":"Belt of Poo"
-	},
-	{
-		"name":"Belt of new Poo",
-		"stats":{
-			"balance":2
-		}
-	}
-]
-
-var g_artifacts  = [
-	{
-		"name":"Poo statue"
-	},
-	{
-		"name":"Greater Poo statue"
-	}
-]
-
-var g_offhands = [
-	{
-		"name":"Shield of Poo",
-		"type":"smallshield"
-	},
-	{
-		"name":"Dictionary of Poos",
-		"type":"book",
-		"stats":{
-			"crit":3
-		}
-	}
-]
-
-var g_earrings = [
-	{
-		"name":"Poo earring"
-	},
-	{
-		"name":"Tears of poo",
-		"stats":{
-			"crit":1
-		}
-	}
-]
-
-var g_brooches = [
-	{
-		"name":"Shit Poo"
-	},
-	{
-		"name":"Blue Poo brooch",
-		"stats":{
-			"crit":1
-		}
-	},
-	{
-		"name":"White Poo brooch",
-		"stats":{
-			"speed":2
-		}
-	}
-]
-
-var g_bracelets = [
-	{
-		"name":"10k"
-	}
-]
-
-var g_necklaces = [
-	{
-		"name":"Blue poo necklace",
-	},
-	{
-		"name":"Poo necklace",
-	}
-]
 
 var g_items = {
 	"weapon" : g_weapons,
@@ -546,14 +66,6 @@ var g_armour_infusions = g_minor_infusions.concat([
 	"+100 Def"
 ])
 
-var g_major_infusions = [
-	"+2 crit",
-	"+1 crit",
-	"+2 balance",
-	"+1 balance",
-	"+1 speed",
-]
-
 var g_infusions = {
 	"weapon" : g_major_infusions.concat(['att']),
 	"chest": g_armour_infusions,
@@ -574,51 +86,6 @@ $.each(g_items, function(k,v){
 	g_lookups[k] = createLookup(v)
 })
 
-var g_enhancementEffects = {
-	"weapon":[
-	{
-		"name" : "+0",
-		"stats": {
-		}
-	},
-	{
-		"name" : "+10",
-		"stats": {
-			"speed":15
-		}
-	},
-	{
-		"name" : "+11",
-		"stats": {
-			"speed":19
-		}
-	},
-	{
-		"name" : "+12",
-		"stats": {
-			"speed":23
-		}
-	},
-	{
-		"name" : "+13",
-		"stats": {
-			"speed":28
-		}
-	},
-	{
-		"name" : "+14",
-		"stats": {
-			"speed":33
-		}
-	},
-	{
-		"name" : "+15",
-		"stats": {
-			"speed":38
-		}
-	}
-	]
-}
 
 var g_enhanceLookups = {};
 $.each(g_enhancementEffects, function(k,v){
@@ -774,7 +241,6 @@ var g_weaponFragments = {
 		"crit": [19,21],
 		"speed": [4,5]
 	},
-	
 	
 	"Dullahan": {
 		"speed": [3]
@@ -1136,8 +602,6 @@ function createSquare(id, loc, cb, scrolls)
 		}
 	}
 	
-
-	
 	var setOpenOnFocus = function(el)
 	{
 		el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
@@ -1185,7 +649,6 @@ function createSquare(id, loc, cb, scrolls)
 	}))
 	setOpenOnFocus(suffix)
 	suffix.on('blur', setBlur('suffix'))
-	
 	
 	var src = $.map(g_items[loc], function(k,v) {
 		return k.name
@@ -1399,7 +862,7 @@ function createStatsSheet(id, stats)
 	.append(balLabel)
 	.append(balRow)
 	
-	var speedLabel = $("<div class='row'>Speed (other)</div>")
+	var speedLabel = $("<div class='row stat-head'>Speed from... ?</div>")
 	var speedRow = $("<div class='row' />")
 	var speedInput = createInputBox("speed", "other", null, "30%",null)
 	speedRow.append(speedInput)
@@ -1415,9 +878,6 @@ function createStatsSheet(id, stats)
 	var target = $("#"+id)
 	target.html("")
 	target.css("background-color","#aaaaaa")
-	
-	//target.css("height", "30em")
-	//sheet.css("width", "100%")
 	target.css("border-style", "solid")
 	
 	var nameRow = $("<div class='row' />")
@@ -1441,11 +901,9 @@ function createStatsSheet(id, stats)
 	
 	pic.css("border-style", "solid")
 	
-	
 	picdiv.append(pic)
 	row.append(picdiv)
 	row.append(statsDiv)
-	
 	
 	target.append(row)
 	
