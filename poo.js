@@ -625,7 +625,10 @@ $.each(g_enhancementEffects, function(k,v){
 	g_enhanceLookups[k] = createLookup(v)
 })
 
-function createInputBox(placeholder, width, id, height)
+var g_usedIds = {
+}
+
+function createInputBox(placeholder, loc, descr, width, height)
 {
 	width = width||"100%"
 	
@@ -633,7 +636,7 @@ function createInputBox(placeholder, width, id, height)
 	{
 		height = "25%"
 	}
-	var ret= $("<input type='text' />")
+	var ret= $("<input type='text' class='saveable'/>")
 	ret.css("width", width)
 	if(height)
 	{
@@ -646,11 +649,50 @@ function createInputBox(placeholder, width, id, height)
 		ret.attr("placeholder", placeholder)
 	}
 	
-	if(id)
+	descr = descr || placeholder
+	var id = loc + "-" + descr
+	var i = 2
+	if (id in g_usedIds)
 	{
-		ret.attr("id", id)
+		var candidate = id + i
+		while(candidate in g_usedIds)
+		{
+			++i
+			candidate = id + i
+		}
+		id = candidate
 	}
+	ret.attr("id", id)
+	g_usedIds[id] = true
 	return ret
+}
+
+function dumpToJson()
+{
+	var state = []
+	$(".saveable").each(function (k,v)
+	{
+		var id = $(this).attr("id") || ""
+		state.push({
+			"id":id,
+			"val": $(this).val(),
+		})
+	})
+	
+	return JSON.stringify(state)
+}
+
+	
+function loadFromJson(j)
+{
+	j = JSON.parse(j)
+	
+	$.each(j, function(i, v)
+	{
+		var target = $("#"+v.id)
+		target.val(v.val)
+		target.trigger("blur")
+	})
 }
 
 function passFilter(loc, type, scr, prefix)
@@ -920,7 +962,7 @@ function createSquare(id, loc, cb, scrolls)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
 	//leftBox.css("float", "left")
-	var enh = createInputBox('+')
+	var enh = createInputBox('+', "loc", "enh")
 	enh.css("overflow","visible")
 	enh.css("text-align", "center")
 	if( loc in g_enhanceable )
@@ -946,11 +988,11 @@ function createSquare(id, loc, cb, scrolls)
 		return box
 	}
 	
-	var prefix = createInputBox('Prefix')
-	var suffix = createInputBox('Suffix')
-	var item = createInputBox(toTitleCase(loc))
+	var prefix = createInputBox('Prefix', loc)
+	var suffix = createInputBox('Suffix', loc)
+	var item = createInputBox(toTitleCase(loc), loc)
 	item.css("text-overflow","ellipsis")
-	var inf = createInputBox('Infusion')
+	var inf = createInputBox('Infusion', loc)
 	
 	var display = $("<div />")
 	display.css("background-color",'white')
@@ -1249,6 +1291,9 @@ function createStatsSheet(id, stats)
 		return ret
 	}
 	var statsDiv = $("<div class='col-xs-6'/>")
+	var critLabelRow = $("<div class='row stat-head'>")
+	critLabelRow.html("Crit from...")
+	statsDiv.append(critLabelRow)
 	var critInputs = []
 	var tooltips = [
 	"Crit Mastery adds up to 28 crit",
@@ -1256,24 +1301,44 @@ function createStatsSheet(id, stats)
 	"Full gold Einrach gives 3 crit, full silver gives 1 crit",
 	"Clearing Neamhain gives up to 5 crit (+1 for 5, +2 for 50, +3 for 75, and +5 for 100 clears)"
 	]
+	var labels = [
+		"Mastery",
+		"Wil",
+		"Ein",
+		"Neam"
+	]
+	
 	$.each(['Crit (mastery, wil)', '(ein, numa)'], function(rowNum,v)
 	{
 		var critRow = $("<div class='row'/>")
 		for (var i = 0; i < 2; ++i)
 		{
-			var ci = createInputBox("crit", "30%", null, null)
+			var entry = rowNum*2+i
+			var miniCol = $("<div class='col-xs-6' />")
+			miniCol.css("padding-top", 0)
+			miniCol.css("padding-left", 0)
+			miniCol.css("padding-right", 0)
 			
-			ci.attr("title", tooltips[rowNum*2+i])
+			miniCol.css("margin-top", 0)
+			miniCol.css("margin-left", 0)
+			miniCol.css("margin-right", 0)
+			var ci = createInputBox("crit", ""+entry, null, "70%", null)
+			
+			ci.attr("title", tooltips[entry])
 			ci.tooltip()
 			
 			ci.css("margin-right", "0.2em")
 			ci.css("text-align", "center")
-			critRow.append(ci)
+			var label = $("<div />")
+			label.html(labels[rowNum*2+i])
+			miniCol.append(label)
+			miniCol.append(ci)
+			
+			critRow.append(miniCol)
 			critInputs.push(ci)
 		}
-		statsDiv
-		.append($("<div class='row'><span>"+v+"</span></div>"))
-		.append(critRow)
+		
+		statsDiv.append(critRow)
 	})
 	
 	// oh god
@@ -1282,17 +1347,55 @@ function createStatsSheet(id, stats)
 	critInputs[2].val(3)
 	critInputs[3].val(5)
 	
-	var balLabel = $("<div class='row'>Balance (ein)</div>")
+	
+	var balLabel = $("<div class='row stat-head'>Balance from...</div>")
 	var balRow = $("<div class='row' > </div>")
-	var balInput = createInputBox("bal", "30%", null, null)
-	balInput.attr("title", "Full gold at Einrach gives 5 balance; silver gives 3")
-	balInput.tooltip()
-	balRow.append(balInput)
-	balInput.val(5)
-	balInput.css("text-align", "center")
+	
+	var balTips = [
+		"Full gold at Einrach gives 5 balance; silver gives 3",
+		"You can get 2 bal from Outfit/Avatar if you want to fund Nexon's evil empire"
+	]
+	
+	var balDefaults = [
+		5,
+		0
+	]
+	
+	var balLabels = [
+		"Ein",
+		"P2W"
+	]
+	
+	
+	for (var i = 0; i < balTips.length; ++i)
+	{
+		var thisCol = $("<div class='col-xs-6' />")
+		
+		thisCol.css("padding-top", 0)
+		thisCol.css("padding-left", 0)
+		thisCol.css("padding-right", 0)
+		
+		thisCol.css("margin-top", 0)
+		thisCol.css("margin-left", 0)
+		thisCol.css("margin-right", 0)
+	
+		
+		var balInput = createInputBox("bal", ""+i, null , "70%", null)
+		balInput.css("margin-right", "0.2em")
+		balInput.attr("title", balTips[i])
+		balInput.tooltip()
+		balInput.val(balDefaults[i])
+		balInput.css("text-align", "center")
+		var thisLabel = $("<div/>")
+		thisLabel.html(balLabels[i])
+		thisCol.append(thisLabel)
+		thisCol.append(balInput)
+		balRow.append(thisCol)
+	}	
+	
 	var speedLabel = $("<div class='row'>Speed (other)</div>")
 	var speedRow = $("<div class='row' />")
-	var speedInput = createInputBox("speed", "30%", null,null)
+	var speedInput = createInputBox("speed", "other", null, "30%",null)
 	speedRow.append(speedInput)
 	speedInput.css("text-align", "center")
 	speedInput.val(0)

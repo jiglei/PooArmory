@@ -24,6 +24,14 @@ function displayTotals(boxes)
 	fn(stats)
 }
 
+function gatherInputs()
+{
+	var str = dumpToJson()
+	$("#state").val(str)
+}
+
+
+
 $(document).ready( function()
 {
 	statSheet = createStatsSheet("endDisplay", {crit:0, bal:0, speed:0})
@@ -82,6 +90,16 @@ $(document).ready( function()
 	//update()
 	
 	
+	$("#state").attr("title", "Copy this to a friend (who should paste it in this box) to share a build!")
+	$("#state").tooltip()
+	$("#state").focus(function(){
+		$(this)[0].setSelectionRange(0,$(this).val().length)
+	})
+	
+	$("#load").click(function load()
+	{
+		loadFromJson($('#state').val())
+	})
 })
 </script>
 
@@ -97,12 +115,17 @@ $(document).ready( function()
 			<div class="row">
 				<div id="endDisplay" class="col-xs-12"></div>
 			</div>
+			<div class='row'>
+				<button onclick="gatherInputs()" style="margin-left:0.1em">Create save string</button>
+				<input id="state"></input>
+				<button id="load">Load from string</button>
+				<div id="console"></div>	
+			</div>			
 		</div>
 		
 		<div class="col-sm-6" id='equip'>
 		</div>
 	</div>
-  <div id="console" />
 </div>
 <div class='copyright' >
 <hr/>
