@@ -284,6 +284,15 @@ var g_scrolls = [
 		"speed":4
 	},
 	"prefix":true
+},
+{
+	"name":"Deadly",
+	"locations":all_armor,
+	"types":["light"],
+	"stats":{
+		"crit":3
+	}
+	
 }
 ]
 
