@@ -159,7 +159,7 @@ var g_scrolls = [
 	"prefix":false
 },
 {	"name":"Echo",
-	"locations":["hands", "feet"] ,
+	"locations":["gloves", "feet"] ,
 	"types":["heavy","plate"],
 	"stats":{
 		"balance":4,
@@ -246,16 +246,6 @@ var g_scrolls = [
 		"Def": 200
 	},
 	"prefix":false
-},
-{	"name":"Reinforced",
-	"locations":["gloves","feet"] ,
-	"types":["plate", "heavy"],
-	"stats":{
-		"crit":1,
-		"balance":2,
-		"speed":2
-	},
-	"prefix":true
 },
 {	"name":"Reinforced/Reiterating",
 	"locations":["gloves","feet"] ,
