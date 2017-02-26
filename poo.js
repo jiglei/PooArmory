@@ -106,6 +106,11 @@ $.each(g_enhancementEffects, function(k,v){
 	g_enhanceLookups[k] = createLookup(v)
 })
 
+var g_qualityLookups = {};
+$.each(g_qualityEffects, function(k,v){
+	g_qualityLookups[k] = createLookup(v)
+})
+
 var g_usedIds = {
 }
 
@@ -149,6 +154,13 @@ function createInputBox(placeholder, path, width, height)
 	ret.data('path', path)
 	g_usedIds[id] = true
 	return ret
+}
+
+function setSelectAllFocus(el)
+{
+	el.focus(function(){
+		$(this)[0].setSelectionRange(0,$(this).val().length)
+	})
 }
 
 function dumpToJson()
@@ -223,6 +235,8 @@ function passFilter(loc, type, scr, prefix)
 	return true;
 }
 
+var modPat  = /.*Mod/i;
+
 function formatStats(stats)
 {
 	if (!stats)
@@ -230,6 +244,11 @@ function formatStats(stats)
 		return ""
 	}
 	return txt = $.map(stats, function(k,v) { 
+			var sep = "+"
+			if(modPat.exec(v))
+			{
+				sep = ":"
+			}
 			if (k == 0)
 			{
 				return null
@@ -238,7 +257,7 @@ function formatStats(stats)
 			{
 				return v + k
 			}
-			return v + "+" + k
+			return v + sep + k
 		}).join(", ")
 }
 
@@ -422,13 +441,6 @@ function createSquare(id, loc, cb, scrolls)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
 	//leftBox.css("float", "left")
-	var enh = createInputBox('+', [loc, "enh"])
-	enh.css("overflow","visible")
-	enh.css("text-align", "center")
-	if( loc in g_enhanceable )
-	{
-		leftBox.append(enh)
-	}
 	
 	//innerBox.css("float", "left")
 	innerBox.css("height", "8em")
@@ -459,11 +471,16 @@ function createSquare(id, loc, cb, scrolls)
 	
 	var update = function ()
 	{
-		var p = box.data("prefix")
-		var s = box.data("suffix")
-		var w = box.data("item")
-		var i = box.data("inf")
+		var q = box.data("quality")
 		
+		var statMod = 1
+		var attMod = 1
+		if(q)
+		{
+			attMod = q.stats["Att Mod"]
+			statMod = q.stats["Stat Mod"]
+		}
+	
 		var contributions = ['prefix', 'suffix', 'item', 'inf', 'enh']
 		
 		var stats = {}
@@ -475,13 +492,25 @@ function createSquare(id, loc, cb, scrolls)
 					thisStats = v.stats
 					for (stat in thisStats)
 					{
+						var thisContrib = thisStats[stat]
+						if(k == 'item')
+						{
+							if (stat == 'att' || stat == 'matt')
+							{
+								thisContrib *= attMod
+							}
+							else if (stat in g_qualityStats)
+							{
+								thisContrib *= statMod
+							}
+						}
 						if(stat in stats)
 						{
-							stats[stat] += thisStats[stat]
+							stats[stat] += thisContrib
 						}
 						else
 						{
-							stats[stat] = thisStats[stat]
+							stats[stat] = thisContrib
 						}
 					}
 				}
@@ -617,17 +646,6 @@ function createSquare(id, loc, cb, scrolls)
 	{
 		el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
 	}
-	if (loc in g_enhanceable)
-	{
-		enh.autocomplete($.extend({},sharedOpts,
-		{
-			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
-					change: propSet("enh", g_enhancementEffects[loc]),
-					"close": propSet("enh", g_enhancementEffects[loc]),
-					"open": openCb(g_enhanceLookups[loc])
-		}))
-		setOpenOnFocus(enh)
-	}
 	
 	var setBlur = function(loc)
 	{
@@ -728,11 +746,51 @@ function createSquare(id, loc, cb, scrolls)
 		innerBox.append(inf)
 	}
 	
-	enh.position({
-		"my": "right top",
-		"at": "left top",
-		"of": item
-	});
+	if (loc in g_enhanceable)
+	{
+		var enh = createInputBox('+', [loc, "enh"])
+		enh.css("overflow","visible")
+		enh.css("text-align", "center")
+		enh.autocomplete($.extend({},sharedOpts,
+		{
+			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
+					change: propSet("enh", g_enhancementEffects[loc]),
+					"close": propSet("enh", g_enhancementEffects[loc]),
+					"open": openCb(g_enhanceLookups[loc])
+		}))
+		setOpenOnFocus(enh)
+		leftBox.append(enh)
+		enh.position({
+			"my": "right top",
+			"at": "left top",
+			"of": item
+		});
+	}
+	
+	if (loc in g_quality)
+	{
+		var star = '\u2605'
+		var qual = createInputBox(star, [loc, "quality"])
+		qual.css("overflow","visible")
+		qual.css("text-align", "center")
+		qual.autocomplete($.extend({},sharedOpts,
+		{
+			source : [1+star, 2+star, 3+star, 4+star, 5+star],
+					change: propSet("quality", g_qualityEffects[loc]),
+					"close": propSet("quality", g_qualityEffects[loc]),
+					"open": openCb(g_qualityLookups[loc])
+		}))
+		qual.val(2+star)
+		setOpenOnFocus(qual)
+		leftBox.append(qual)
+		qual.position({
+			"my": "right top",
+			"at": "left top",
+			"of": suffix
+		});
+		setSelectAllFocus(qual)
+	}
+	
 	
 	return box
 }
@@ -911,18 +969,21 @@ function createStatsSheet(id, stats)
 		"tips" : [
 			"Outfitter gives some Att (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
 			"Einrach titles give some Att (silver: +84, gold:176)",
-			"Other sources of att (eg Bracelets that I haven't implemented)"
+			"Other sources of att (eg Bracelets that I haven't implemented)",
+			"VIP gives 171 att if you are maxed level. I think?"
 		],
 		"defaults": [
 			500,
 			176,
+			0,
 			0
 			
 		],
 		"labels": [
 			"Outfitter",
 			"Ein",
-			"Other"
+			"Other",
+			"VIP etc"
 		]
 	}
 	var attRow = createStatSection(attSpec, "att")
@@ -973,7 +1034,7 @@ function createStatsSheet(id, stats)
 		statsWrap.html(" ")
 		row = $(statRowString)
 		var statCol = $("<div class='col-xs-6'/>")
-		statCol.html("Bal: " + (stats.balance||0 + valOf(balInput) + valOf(balInput2)))
+		statCol.html("Bal: " + ((stats.balance||0) + valOf(balInput) + valOf(balInput2)))
 		row.append(statCol)
 		statsWrap.append(row)
 		
@@ -982,7 +1043,7 @@ function createStatsSheet(id, stats)
 		
 		var addlCrit = 3 + critInputs.reduce(function(total, e){ return total + valOf(e) }, 0)
 		
-		statCol.html("Crit: " + (stats.crit||0 + addlCrit ))
+		statCol.html("Crit: " + ( (stats.crit||0) + addlCrit ))
 		row.append(statCol)
 		statsWrap.append(row)
 		
@@ -994,7 +1055,7 @@ function createStatsSheet(id, stats)
 		
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
-		var gearAtt = stats.att||0 
+		var gearAtt = Math.floor(stats.att||0)
 		statCol.html("Gear Att: " + gearAtt)
 		row.append(statCol)
 		statsWrap.append(row)
@@ -1018,7 +1079,11 @@ function createStatsSheet(id, stats)
 	writeStats(stats)
 	target.data('update', writeStats)
 	
-	$.each([balInput, strInput, balInput2].concat(critInputs).concat(attInputs), function(k,v){
+	var allStatBoxes = [balInput, strInput, balInput2]
+	allStatBoxes = allStatBoxes.concat(critInputs)
+	allStatBoxes = allStatBoxes.concat(attInputs)
+	
+	$.each(allStatBoxes, function(k,v){
 		v.on('change', function(){
 			writeStats(target.data('stats'))
 		})

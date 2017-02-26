@@ -171,6 +171,14 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
+{	"name":"Crescent Moonlight's",
+	"locations":["rings"] ,
+	"stats":{
+		"balance":2,
+		"att":100
+	},
+	"prefix":true
+},
 {	"name":"Fresh",
 	"locations":["offhand"] ,
 	"types":["smallshield","largeshield"],
@@ -204,10 +212,20 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
+{	"name":"Berserker",
+	"locations":all_acc,
+	"stats":{
+		"att":30,
+		"matt":30
+	},
+	"prefix":false
+},
 {	"name":"Significant",
 	"locations":all_acc,
 	"stats":{
-		"speed":1
+		"speed":1,
+		"att":15,
+		"matt":15
 	},
 	"prefix":true
 },

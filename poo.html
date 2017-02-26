@@ -89,9 +89,7 @@ $(document).ready( function()
 	
 	$("#state").attr("title", "Copy this to a friend (who should paste it in their browser's address bar) to share a build!")
 	$("#state").tooltip()
-	$("#state").focus(function(){
-		$(this)[0].setSelectionRange(0,$(this).val().length)
-	})
+	setSelectAllFocus($("#state"))
 	
 	var ss = getQueryVariable("saveString")
 	if(ss)
