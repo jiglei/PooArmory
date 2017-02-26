@@ -8,35 +8,35 @@ var g_qualityStats = {
 var g_qualityEffects= {	
 	"weapon": [
 		{
-			"name":'1\u2605',
+			"name":'1'+String.fromCharCode(0x2605),
 			"stats": {
 				"Stat Mod": 0.8,
 				"Att Mod": 0.96
 			}
 		},
 		{
-			"name":'2\u2605',
+			"name":'2'+String.fromCharCode(0x2605),
 			"stats": {
 				"Stat Mod": 1.0,
 				"Att Mod": 1.0
 			}
 		},
 		{
-			"name":'3\u2605',
+			"name":'3'+String.fromCharCode(0x2605),
 			"stats": {
 				"Stat Mod": 1.15,
 				"Att Mod": 1.02
 			}
 		},
 		{
-			"name":'4\u2605',
+			"name":'4'+String.fromCharCode(0x2605),
 			"stats": {
 				"Stat Mod": 1.2,
 				"Att Mod": 1.04
 			}
 		},
 		{
-			"name":'5\u2605',
+			"name":'5'+String.fromCharCode(0x2605),
 			"stats": {
 				"Stat Mod": 1.25,
 				"Att Mod": 1.06

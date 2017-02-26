@@ -768,7 +768,7 @@ function createSquare(id, loc, cb, scrolls)
 	
 	if (loc in g_quality)
 	{
-		var star = '\u2605'
+		var star = String.fromCharCode(0x2605)
 		var qual = createInputBox(star, [loc, "quality"])
 		qual.css("overflow","visible")
 		qual.css("text-align", "center")
