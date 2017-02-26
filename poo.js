@@ -746,27 +746,6 @@ function createSquare(id, loc, cb, scrolls)
 		innerBox.append(inf)
 	}
 	
-	if (loc in g_enhanceable)
-	{
-		var enh = createInputBox('+', [loc, "enh"])
-		enh.css("overflow","visible")
-		enh.css("text-align", "center")
-		enh.autocomplete($.extend({},sharedOpts,
-		{
-			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
-					change: propSet("enh", g_enhancementEffects[loc]),
-					"close": propSet("enh", g_enhancementEffects[loc]),
-					"open": openCb(g_enhanceLookups[loc])
-		}))
-		setOpenOnFocus(enh)
-		leftBox.append(enh)
-		enh.position({
-			"my": "right top",
-			"at": "left top",
-			"of": item
-		});
-	}
-	
 	if (loc in g_quality)
 	{
 		var star = '\u2605'
@@ -791,6 +770,26 @@ function createSquare(id, loc, cb, scrolls)
 		setSelectAllFocus(qual)
 	}
 	
+	if (loc in g_enhanceable)
+	{
+		var enh = createInputBox('+', [loc, "enh"])
+		enh.css("overflow","visible")
+		enh.css("text-align", "center")
+		enh.autocomplete($.extend({},sharedOpts,
+		{
+			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
+					change: propSet("enh", g_enhancementEffects[loc]),
+					"close": propSet("enh", g_enhancementEffects[loc]),
+					"open": openCb(g_enhanceLookups[loc])
+		}))
+		setOpenOnFocus(enh)
+		leftBox.append(enh)
+		enh.position({
+			"my": "right top",
+			"at": "left top",
+			"of": item
+		});
+	}
 	
 	return box
 }
