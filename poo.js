@@ -812,7 +812,7 @@ function createStatsSheet(id, stats)
 	}
 	var statsDiv = $("<div class='col-xs-6'/>")
 	
-	var critSecLabel = $("<div class='row stat-head'>Crits from...</div>")
+	var critSecLabel = $("<div class='row stat-head'>Crit from...</div>")
 	var critSpec = {
 		"tips" : [
 			"Crit Mastery adds up to 28 crit",
