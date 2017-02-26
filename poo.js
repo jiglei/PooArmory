@@ -768,10 +768,16 @@ function createSquare(id, loc, cb, scrolls)
 	
 	if (loc in g_quality)
 	{
+		var push = $("<div />")
+		push.css("height", "25%")
+		leftBox.append(push)
+		
 		var star = String.fromCharCode(0x2605)
 		var qual = createInputBox(star, [loc, "quality"])
 		qual.css("overflow","visible")
 		qual.css("text-align", "center")
+		qual.css("margin-top", "1px")
+		qual.css("margin-left", "1px")
 		qual.autocomplete($.extend({},sharedOpts,
 		{
 			source : [1+star, 2+star, 3+star, 4+star, 5+star],
@@ -782,11 +788,13 @@ function createSquare(id, loc, cb, scrolls)
 		qual.val(2+star)
 		setOpenOnFocus(qual)
 		leftBox.append(qual)
+		/*
 		qual.position({
 			"my": "right top",
 			"at": "left top",
 			"of": suffix
-		});
+		})
+		*/;
 		setSelectAllFocus(qual)
 	}
 	
@@ -795,6 +803,7 @@ function createSquare(id, loc, cb, scrolls)
 		var enh = createInputBox('+', [loc, "enh"])
 		enh.css("overflow","visible")
 		enh.css("text-align", "center")
+		enh.css("margin-left", "1px")
 		enh.autocomplete($.extend({},sharedOpts,
 		{
 			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
@@ -804,11 +813,14 @@ function createSquare(id, loc, cb, scrolls)
 		}))
 		setOpenOnFocus(enh)
 		leftBox.append(enh)
+		
+		/*
 		enh.position({
 			"my": "right top",
 			"at": "left top",
 			"of": item
-		});
+		})
+		*/
 	}
 	
 	return box
@@ -1075,9 +1087,9 @@ function createStatsSheet(id, stats)
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
 		var gearAtt = Math.floor(stats.att||0)
-		statCol.html("Gear Att: " + gearAtt)
+		//statCol.html("Gear Att: " + gearAtt)
 		row.append(statCol)
-		statsWrap.append(row)
+		//statsWrap.append(row)
 		target.data('stats',stats)
 		
 		row = $(statRowString)
@@ -1089,7 +1101,7 @@ function createStatsSheet(id, stats)
 			otherAtt += valOf(v)
 		})
 		var totalAtt = Math.floor(valOf(strInput)*2.7 + gearAtt) + baseAtt + otherAtt
-		statCol.html("Total Att: " + (totalAtt))
+		statCol.html("Total Att: " + (totalAtt) + "(beta/estimate)")
 		row.append(statCol)
 		statsWrap.append(row)
 
