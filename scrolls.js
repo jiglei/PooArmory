@@ -6,7 +6,8 @@ var g_scrolls = [
 	"locations":["weapon"],
 	"stats":{
 		"speed":4,
-		"crit":8
+		"crit":8,
+		"att":220
 	},
 	"prefix":true 
 },
@@ -15,7 +16,8 @@ var g_scrolls = [
 	"locations":["weapon"],
 	"stats":{
 		"speed":8,
-		"balance":2
+		"balance":2,
+		"att":-240
 	},
 	"prefix":true
 },
@@ -25,7 +27,8 @@ var g_scrolls = [
 	"stats":{
 		"speed":8,
 		"balance":2,
-		"crit":2
+		"crit":2,
+		"att":430
 	},
 	"prefix":true
 },
@@ -34,7 +37,18 @@ var g_scrolls = [
 	"locations":["weapon"],
 	"stats":{
 		"balance":5,
-		"speed":4
+		"speed":4,
+		"att": 130
+	},
+	"prefix":false
+},
+{
+	"name":"Bloodlust",
+	"locations":["weapon"],
+	"stats":{
+		"balance":3,
+		"speed":5,
+		"att": 150
 	},
 	"prefix":false
 },
@@ -44,7 +58,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":-1,
 		"speed":3,
-		"crit":4
+		"crit":4,
+		"att":870
 	},
 	"prefix":false
 },
@@ -66,7 +81,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":1,
 		"speed":2,
-		"crit":2
+		"crit":2,
+		"att": 210
 	},
 	"prefix":true
 },
@@ -86,7 +102,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":5,
 		"speed":0,
-		"crit":0
+		"crit":0,
+		"att":270
 	},
 	"prefix":false
 },
@@ -111,7 +128,8 @@ var g_scrolls = [
 	"types":["light","cloth"],
 	"stats":{
 		"balance":4,
-		"speed":1
+		"speed":1,
+		"att":330
 	},
 	"prefix":false
 },
@@ -120,7 +138,8 @@ var g_scrolls = [
 	"types":["heavy","plate"],
 	"stats":{
 		"balance":4,
-		"speed":1
+		"speed":1,
+		"att":190
 	},
 	"prefix":false
 },
@@ -130,7 +149,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":1,
 		"crit":2,
-		"speed":2
+		"speed":2,
+		"def":100
 	},
 	"prefix":true
 },
@@ -139,7 +159,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":2,
 		"speed":2,
-		"crit":1
+		"crit":1,
+		"att":110
 	},
 	"prefix":true
 },
@@ -154,7 +175,8 @@ var g_scrolls = [
 	"locations":["offhand"] ,
 	"types":["smallshield","largeshield"],
 	"stats":{
-		"speed":3
+		"speed":3,
+		"att":55
 	},
 	"prefix":true
 },
@@ -247,7 +269,8 @@ var g_scrolls = [
 	"locations":all_armor,
 	"types":["light"],
 	"stats":{
-		"crit":3
+		"crit":3,
+		"att":-250
 	},
 	"prefix":false
 }

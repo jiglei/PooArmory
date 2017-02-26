@@ -466,15 +466,24 @@ function createSquare(id, loc, cb, scrolls)
 		
 		var contributions = ['prefix', 'suffix', 'item', 'inf', 'enh']
 		
-		var stats = {"bal":0, "crit":0, "speed": 0}
+		var stats = {}
 		$.each( box.data(), function(k,v){
 			if(-1 != $.inArray(k,contributions))
 			{
 				if ("stats" in v)
 				{
-					stats.bal += v.stats.balance || 0
-					stats.crit += v.stats.crit || 0 
-					stats.speed += v.stats.speed|| 0
+					thisStats = v.stats
+					for (stat in thisStats)
+					{
+						if(stat in stats)
+						{
+							stats[stat] += thisStats[stat]
+						}
+						else
+						{
+							stats[stat] = thisStats[stat]
+						}
+					}
 				}
 			}
 		})
@@ -730,14 +739,22 @@ function createSquare(id, loc, cb, scrolls)
 
 function accumulateBoxes(boxes)
 {
-	var stats = {"bal":0, "crit":0, "speed":0}
+	var stats = {}
 	$.each(boxes, function(k,v){
 		var boxStats = v.data("stats")
 		if(boxStats)
 		{
-			stats.bal += boxStats.bal||0
-			stats.crit += boxStats.crit||0
-			stats.speed += boxStats.speed||0
+			for (k in boxStats)
+			{
+				if (k in stats)
+				{
+					stats[k] += boxStats[k]
+				}
+				else
+				{
+					stats[k] = boxStats[k]
+				}
+			}
 		}
 	})
 	return stats
@@ -767,6 +784,10 @@ function createStatSection(inputs, statName)
 		for (var i = 0; i < colsPerRow; ++i)
 		{
 			var cellNum = rowNum*colsPerRow + i
+			if(cellNum >= numCells)
+			{
+				break;
+			}
 			var thisCol = $("<div class='col-xs-6' />")
 			
 			thisCol.css("padding-top", 0)
@@ -865,17 +886,51 @@ function createStatsSheet(id, stats)
 	.append(balLabel)
 	.append(balRow)
 	
-	var speedLabel = $("<div class='row stat-head'>Speed from... ?</div>")
-	var speedRow = $("<div class='row' />")
-	var speedInput = createInputBox("speed", ["speed", "other"], "30%",null)
-	speedRow.append(speedInput)
-	speedInput.css("text-align", "center")
-	speedInput.val(0)
-	
-	// TODO: Formatting on these
+	var strLabel  = $("<div class='row stat-head'>Str in stats page</div>")
+	var strSpec = {
+		"tips" : [
+			"Total str from all equipment (stay tuned for updates that help you calculate this!)"
+		],
+		"defaults": [
+			2500
+		],
+		"labels": [
+			"Total Str",
+		]
+	}
+	var strRow = createStatSection(strSpec, "str")
+	var strInput = strRow.data('inputs')[0]
+
+
 	statsDiv
-	.append(speedLabel)
-	.append(speedRow)
+	.append(strLabel)
+	.append(strRow)
+	
+	var attLabel  = $("<div class='row stat-head'>Other sources of Att</div>")
+	var attSpec = {
+		"tips" : [
+			"Outfitter gives some Att (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
+			"Einrach titles give some Att (silver: +84, gold:176)",
+			"Other sources of att (eg Bracelets that I haven't implemented)"
+		],
+		"defaults": [
+			500,
+			176,
+			0
+			
+		],
+		"labels": [
+			"Outfitter",
+			"Ein",
+			"Other"
+		]
+	}
+	var attRow = createStatSection(attSpec, "att")
+	var attInputs = attRow.data('inputs')
+
+	statsDiv
+	.append(attLabel)
+	.append(attRow)
 	
 	var statRowString = "<div class='row m-top-bot' />"
 	var target = $("#"+id)
@@ -918,7 +973,7 @@ function createStatsSheet(id, stats)
 		statsWrap.html(" ")
 		row = $(statRowString)
 		var statCol = $("<div class='col-xs-6'/>")
-		statCol.html("Bal: " + (stats.bal + valOf(balInput) + valOf(balInput2)))
+		statCol.html("Bal: " + (stats.balance||0 + valOf(balInput) + valOf(balInput2)))
 		row.append(statCol)
 		statsWrap.append(row)
 		
@@ -927,21 +982,43 @@ function createStatsSheet(id, stats)
 		
 		var addlCrit = 3 + critInputs.reduce(function(total, e){ return total + valOf(e) }, 0)
 		
-		statCol.html("Crit: " + (stats.crit + addlCrit ))
+		statCol.html("Crit: " + (stats.crit||0 + addlCrit ))
 		row.append(statCol)
 		statsWrap.append(row)
 		
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
-		statCol.html("Speed: " + (stats.speed + valOf(speedInput)))
+		statCol.html("Speed: " + (stats.speed||0))
 		row.append(statCol)
 		statsWrap.append(row)
+		
+		row = $(statRowString)
+		statCol = $("<div class='col-xs-6'/>")
+		var gearAtt = stats.att||0 
+		statCol.html("Gear Att: " + gearAtt)
+		row.append(statCol)
+		statsWrap.append(row)
+		target.data('stats',stats)
+		
+		row = $(statRowString)
+		statCol = $("<div class='col-xs-6'/>")
+		var baseAtt = 485
+		var otherAtt = 0
+		$.each(attInputs, function(k,v)
+		{
+			otherAtt += valOf(v)
+		})
+		var totalAtt = Math.floor(valOf(strInput)*2.7 + gearAtt) + baseAtt + otherAtt
+		statCol.html("Total Att: " + (totalAtt))
+		row.append(statCol)
+		statsWrap.append(row)
+
 		target.data('stats',stats)
 	}
 	writeStats(stats)
 	target.data('update', writeStats)
 	
-	$.each([balInput,speedInput, balInput2].concat(critInputs), function(k,v){
+	$.each([balInput, strInput, balInput2].concat(critInputs).concat(attInputs), function(k,v){
 		v.on('change', function(){
 			writeStats(target.data('stats'))
 		})

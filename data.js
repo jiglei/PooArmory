@@ -8,37 +8,43 @@ var g_enhancementEffects = {
 	{
 		"name" : "+10",
 		"stats": {
-			"speed":15
+			"speed":15,
+			"att":1000
 		}
 	},
 	{
 		"name" : "+11",
 		"stats": {
-			"speed":19
+			"speed":19,
+			"att":1500
 		}
 	},
 	{
 		"name" : "+12",
 		"stats": {
-			"speed":23
+			"speed":23,
+			"att":2000
 		}
 	},
 	{
 		"name" : "+13",
 		"stats": {
-			"speed":28
+			"speed":28,
+			"att":2600
 		}
 	},
 	{
 		"name" : "+14",
 		"stats": {
-			"speed":33
+			"speed":33,
+			"att":3300
 		}
 	},
 	{
 		"name" : "+15",
 		"stats": {
-			"speed":38
+			"speed":38,
+			"att":4100
 		}
 	}
 	]
