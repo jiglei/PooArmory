@@ -1,3 +1,17 @@
+// God, why is this still necessary?
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+	
+	return null
+}
+
 var g_locations =
 {
 	"hat":1,
@@ -149,6 +163,20 @@ function dumpToJson()
 	return LZString.compressToBase64(JSON.stringify(state))
 }
 
+function getUrl()
+{
+	var url = window.location.origin + window.location.pathname
+	
+	var params = {"saveString":dumpToJson()}
+	
+	return url + "?" + $.param( params )
+}
+
+function loadFromUrl()
+{
+	var ss = getQueryVariable("saveString")
+	loadFromJson(ss)
+}
 	
 function loadFromJson(j)
 {
