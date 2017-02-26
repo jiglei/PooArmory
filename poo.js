@@ -443,7 +443,7 @@ function createSquare(id, loc, cb, scrolls)
 	//box.css("margin-left","3em")
 	
 	var leftBox = $("<div class='col-xs-3'/>")
-	leftBox.css("padding",0)
+	leftBox.css("padding","1px")
 	leftBox.css("margin",0)
 	leftBox.css("z-index",100)
 	leftBox.css("overflow","visible")
