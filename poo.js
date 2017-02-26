@@ -116,7 +116,9 @@ function createInputBox(placeholder, path, width, height)
 		ret.attr("placeholder", placeholder)
 	}
 	
-	var id = path.join("-")
+	var truncPath = path.map(function(v) { return v.substring(0,3) })
+	
+	var id = truncPath.join("-")
 	var i = 2
 	if (id in g_usedIds && $("#"+id).length > 0)
 	{
@@ -140,10 +142,7 @@ function dumpToJson()
 	$(".saveable").each(function (k,v)
 	{
 		var id = $(this).attr("id") || ""
-		state.push({
-			"id":id,
-			"val": $(this).val(),
-		})
+		state.push([id, $(this).val()])
 	})
 	
 	return JSON.stringify(state)
@@ -154,13 +153,13 @@ function loadFromJson(j)
 {
 	j = JSON.parse(j)
 	
-	
-	
 	$.each(j, function(i, v)
 	{
-		var target = $("#"+v.id)
+		var id = v[0]
+		var val = v[1]
+		var target = $("#"+id)
 		var path = target.data('path')
-		target.val(v.val)
+		target.val(val)
 		target.trigger("change")
 		target.trigger("blur")
 	})
