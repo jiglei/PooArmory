@@ -186,7 +186,7 @@ function loadFromJson(j)
 	{
 		var id = v[0]
 		var val = v[1]
-		var target = $("#"+id)
+		var target = $("#"+$.escapeSelector(id))
 		var path = target.data('path')
 		target.val(val)
 		target.trigger("change")
@@ -331,7 +331,7 @@ var makeDialog = function(name, loc)
 		row.append(piece)
 		$.each(stats, function(stat){
 			var inputCol = makeColWithWidth(width)
-			input = createInputBox('', [loc, frag.name, stat], null, null)
+			var input = createInputBox('', [loc, frag.name, stat], null, null)
 			input.css('maxwidth', "100%")
 			input.css('width', "100%")
 			if ('stats' in frag && stat in frag.stats){
