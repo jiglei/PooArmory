@@ -116,7 +116,8 @@ function createInputBox(placeholder, path, width, height)
 		ret.attr("placeholder", placeholder)
 	}
 	
-	var truncPath = path.map(function(v) { return v.substring(0,3) })
+	//var truncPath = path.map(function(v) { return v.substring(0,3) })
+	var truncPath = path
 	
 	var id = truncPath.join("-")
 	var i = 2
@@ -145,13 +146,13 @@ function dumpToJson()
 		state.push([id, $(this).val()])
 	})
 	
-	return JSON.stringify(state)
+	return LZString.compressToBase64(JSON.stringify(state))
 }
 
 	
 function loadFromJson(j)
 {
-	j = JSON.parse(j)
+	j = JSON.parse(LZString.decompressFromBase64(j))
 	
 	$.each(j, function(i, v)
 	{
