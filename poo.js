@@ -283,13 +283,6 @@ var getWeaponFragments = function (name)
 	return ret
 }
 
-var makeColWithWidth = function(wid)
-{
-	var ret = $("<div />")
-	ret.attr('class','col-xs-'+wid)
-	return ret
-}
-
 var makeDialogId = function(loc)
 {
 	return loc+"-dialog"
@@ -300,11 +293,18 @@ var guessSetName = function(name)
 	return name.split(" ")[0]
 }
 
+var makeColWithWidth = function(wid)
+{
+	var ret = $("<div />")
+	ret.attr('class','col-xs-'+wid)
+	return ret
+}
+
 var makeDialog = function(name, loc)
 {
 	var ret = $( "<div class='MyDialog' title='Choose your weapon properties'></div>" )
 	ret.attr("id", makeDialogId(loc))
-	var container = $("<div class='container' />")
+	var container = $("<div class='container-fluid' />")
 	container.css("width", "100%")
 	ret.append(container)
 	
@@ -324,11 +324,18 @@ var makeDialog = function(name, loc)
 	})
 	
 	var numCols = Object.keys(stats).length + 1
+	ret.data("numCols", numCols)
 	var width = Math.floor(12/numCols);
+	var headWidth = 12 - width*numCols+width
+	if(headWidth > width)
+	{
+		headWidth -= 1
+	}
 	
 	// piece 
-	var	pieceHead = makeColWithWidth(width)
+	var	pieceHead = makeColWithWidth(headWidth)
 	pieceHead.html("Part")
+	pieceHead.css("text-align", "right")
 	pieceHead.css("font-weight", 'bold')
 	headings.append(pieceHead)
 	// headings for each stat
@@ -343,9 +350,10 @@ var makeDialog = function(name, loc)
 	
 	$.each(frags, function(k,frag){
 		var row = $("<div class = 'row' />")
-		var piece = makeColWithWidth(width)
+		var piece = makeColWithWidth(headWidth)
 		piece.css("margin-left", 0)
 		piece.css("padding-left", 0)
+		piece.css("text-align","right")
 		piece.html(frag.name)
 		row.append(piece)
 		$.each(stats, function(stat){
@@ -391,7 +399,6 @@ var makeDialog = function(name, loc)
 		return ret
 	})
 	
-	ret.append(btn)
 	
 	var max = $("<Button>Max</button>")
 	max.click(function(){
@@ -408,7 +415,18 @@ var makeDialog = function(name, loc)
 			})
 		})
 	})
-	ret.append(max)
+	
+	var btnRow = $("<div class='row'/>")
+	btnRow.append($("<div class='col-xs-8' />"))
+	
+	var btnCol = $("<div class='col-xs-4' />")
+	btnCol.append(btn)
+	btnCol.append(max)
+	btnRow.append(btnCol)
+	btnRow.css("padding-top", "0.5em")
+	
+	
+	ret.append(btnRow)
 	return ret
 }
 
@@ -581,7 +599,9 @@ function createSquare(id, loc, cb, scrolls)
 									update()
 									x.next().focus()			
 								} , 
-						"modal":true})
+						"modal":true,
+						"width" : ((1+dialog.data("numCols")) * 6) + "em"
+						})
 				}
 				if( !$(dialogSel).dialog("isOpen") )
 				{

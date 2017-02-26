@@ -314,19 +314,24 @@ var g_quality = {
 
 var g_weaponFragments = {
 	"Regina" : { 
-		"speed" : [3,4]
+		"speed" : [3,4],
+		"att": [6584, 7080]
 	},
 	"Braha" : { 
-		"speed" : [3,4]
+		"speed" : [3,4],
+		"att": [6584, 7080]
 	},
 	"Terminus" : { 
-		"speed" : [3,4]
+		"speed" : [3,4],
+		"att": [6584, 7080]
 	},
 	"Lugh" : { 
-		"speed" : [3,4]
+		"speed" : [3,4],
+		"att": [6584, 7080]
 	},
 	
 	"Perfect" : {
+		"att": [4390, 4720]
 	},
 	"Keen" : {
 		"balance": [27,30],
@@ -341,10 +346,11 @@ var g_weaponFragments = {
 	},
 	
 	"Dullahan": {
-		"speed": [3]
+		"speed": [3],
+		"att": [8258,8880]
 	},
 	"C.Perfect" : {
-		
+		"att" : [5506,5920]
 	},
 	"C.Keen" : {
 		"balance": [24,27],
