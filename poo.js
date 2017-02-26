@@ -648,16 +648,18 @@ function createSquare(id, loc, cb, scrolls)
 			{
 				$(this).val("")
 				box.removeData('inf')
-				return
 			}
-			var match = statPat.exec(val);
-			if (match && match.length > 2)
+			else
 			{
-				var num = parseInt(match[1])
-				var stat = match[2]
-				var s = {}
-				s[stat] = num
-				box.data("inf", {"name":val, "stats":s})
+				var match = statPat.exec(val);
+				if (match && match.length > 2)
+				{
+					var num = parseInt(match[1])
+					var stat = match[2]
+					var s = {}
+					s[stat] = num
+					box.data("inf", {"name":val, "stats":s})
+				}
 			}
 			update()
 		}
