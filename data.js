@@ -3,6 +3,24 @@ var g_characters = [
 	"Ebie"
 ]
 
+var g_attackStats = {
+	"Fiona" : "att",
+	"Ebie" : "matt",
+	"Delia": "att",
+	"Arisha": "matt"
+}
+
+// prettified casing
+var g_niceStrings = {
+	"att":"Att",
+	"matt":"mAtt"
+}
+
+var g_baseAtt = {
+	"att":485,
+	"matt":700
+}
+
 var g_qualityStats = {
 	"str":true,
 	"wil":true,

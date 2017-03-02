@@ -885,13 +885,6 @@ function createSquare(id, loc, mgr, scrolls)
 		qual.val(2+star)
 		setOpenOnFocus(qual)
 		leftBox.append(qual)
-		/*
-		qual.position({
-			"my": "right top",
-			"at": "left top",
-			"of": suffix
-		})
-		*/;
 		setSelectAllFocus(qual)
 	}
 	
@@ -1099,40 +1092,21 @@ function createStatsSheet(id)
 
 		target.data('stats',stats)
 		
-		var row = $(g_statRowString)
-		statCol = $("<div class='col-xs-6'/>")
-		
-		if(chara == "Fiona")
+		var attStat = g_attackStats[chara]
+		var base = g_baseAtt[attStat]		
+		var gear = Math.floor(stats[attStat]||0)
+		var fromStat = 0
+		if(attStat == "att")
 		{			
-			var gearAtt = Math.floor(stats.att||0)
-
-			var baseAtt = 485
-			var otherAtt = 0
-			$.each($(".att-input"), function(k,v)
-			{
-				otherAtt += valOf($(v))
-			})
-			var totalAtt = Math.floor(valOf($(".str-input"))*2.7 + gearAtt) + baseAtt + otherAtt
-			statCol.html("Total Att: " + (totalAtt) + "(beta/estimate)")
-			row.append(statCol)
-			statsWrap.append(row)
+			fromStat = Math.floor(valOf($(".str-input"))*2.7)
 		}
 		else
 		{
-			var basemAtt = 700
-			var othermAtt = 0
-			$.each($(".matt-input"), function(k,v)
-			{
-				othermAtt += valOf($(v))
-			})
-			var gearmAtt = Math.floor(stats.matt||0)
-			var totalmAtt = Math.floor(valOf($(".int-input"))*2 + gearmAtt) + basemAtt + othermAtt
-			statCol.html("Total Att: " + (totalmAtt) + "(beta/estimate)")
-			row.append(statCol)
-			statsWrap.append(row)
+			fromStat = Math.floor(valOf($(".int-input"))*2)
 		}
-
-		target.data('stats',stats)
+		var selector = "." + attStat + "-input"
+		var attRow = makeStatDiv(g_niceStrings[attStat], base+gear+fromStat, $(selector).toArray())
+		statsWrap.append(attRow)
 	}
 	writeStats({crit:0, bal:0, speed:0})
 	target.data('update', writeStats)
