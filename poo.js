@@ -985,6 +985,25 @@ function createStatSection(inputs, statName)
 	return ret
 }
 
+// returns set of input boxes
+var writeStatSection = function(jParentEl, specList)
+{
+	var theseInputs = []
+
+	$.each(specList, function(i, v){
+		var label = $("<div class = 'row stat-head' />")
+		label.html(v.label)
+		var inputs = createStatSection(v.spec, v.stat)
+
+		jParentEl
+		.append(label)
+		.append(inputs)
+		theseInputs = theseInputs.concat(inputs.data('inputs'))
+	})
+		
+	return theseInputs
+}
+
 // id is a col
 function createStatsSheet(id)
 {
@@ -1008,58 +1027,7 @@ function createStatsSheet(id)
 	charaRow.append(charaSelect)
 	statsDiv.append(charaRow)
 	
-	var critSecLabel = $("<div class='row stat-head'>Crit from...</div>")
-	var critSpec = {
-		"tips" : [
-			"Crit Mastery adds up to 28 crit",
-			"Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil",
-			"Full gold Einrach gives 3 crit, full silver gives 1 crit",
-		"Clearing Neamhain gives up to 5 crit (+1 for 5, +2 for 50, +3 for 75, and +5 for 100 clears)"
-		],
-		"defaults": [
-			28,
-			15,
-			3,
-			5
-		],
-		"labels": [
-			"Mastery",
-			"Wil",
-			"Ein",
-			"Neam"
-		]
-	}
-		
-	var critSec = createStatSection(critSpec, "crit")
-	
-	var critInputs = critSec.data('inputs')
-	
-	statsDiv
-	.append(critSecLabel)
-	.append(critSec)
-	
-	var balLabel = $("<div class='row stat-head'>Balance from...</div>")
-	var balSpec = {
-		"tips" : [
-			"Full gold at Einrach gives 5 balance; silver gives 3",
-			"You can get 2 bal from Outfit/Avatar if you want to fund Nexon's evil empire"
-		],
-		"defaults": [
-			5,
-			0
-		],
-		"labels": [
-			"Ein",
-			"P2W"
-		]
-	}
-	var balRow = createStatSection(balSpec, "bal")
-	var balInput = balRow.data('inputs')[0]
-	var balInput2 = balRow.data('inputs')[1]
-	
-	statsDiv
-	.append(balLabel)
-	.append(balRow)
+	var allStatBoxes =	writeStatSection(statsDiv, g_genericStats)
 	
 	var specificStats = $("<div class='container-fluid' />")
 	specificStats.css("margin",0)
@@ -1067,22 +1035,7 @@ function createStatsSheet(id)
 	
 	statsDiv.append(specificStats)
 	
-	
-	
-	
-	
 	var chara = ""
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	var statRowString = "<div class='row m-top-bot' />"
@@ -1126,14 +1079,17 @@ function createStatsSheet(id)
 		statsWrap.html(" ")
 		row = $(statRowString)
 		var statCol = $("<div class='col-xs-6'/>")
-		statCol.html("Bal: " + ((stats.balance||0) + valOf(balInput) + valOf(balInput2)))
+		var balInputs = $(".bal-input").toArray()
+		var addlBal = balInputs.reduce(function(total, e){ return total + valOf($(e)) }, 0)
+
+		statCol.html("Bal: " + ((stats.balance||0) + addlBal))
 		row.append(statCol)
 		statsWrap.append(row)
 		
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
-		
-		var addlCrit = 3 + critInputs.reduce(function(total, e){ return total + valOf(e) }, 0)
+		var critInputs = $(".crit-input").toArray()
+		var addlCrit = 3 + critInputs.reduce(function(total, e){ return total + valOf($(e)) }, 0)
 		
 		statCol.html("Crit: " + ( (stats.crit||0) + addlCrit ))
 		row.append(statCol)
@@ -1148,7 +1104,6 @@ function createStatsSheet(id)
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
 		row.append(statCol)
-		//statsWrap.append(row)
 		target.data('stats',stats)
 		
 		row = $(statRowString)
@@ -1189,9 +1144,6 @@ function createStatsSheet(id)
 	writeStats({crit:0, bal:0, speed:0})
 	target.data('update', writeStats)
 	
-	var allStatBoxes = [balInput, balInput2]
-	allStatBoxes = allStatBoxes.concat(critInputs)
-	
 	$.each(allStatBoxes, function(k,v){
 		v.on('change', function(){
 			writeStats(target.data('stats'))
@@ -1208,116 +1160,8 @@ function createStatsSheet(id)
 		chara = $(this).val()
 		specificStats.empty()
 		
-		var theseInputs = []
-		if(chara == "Fiona")
-		{
-			var strLabel  = $("<div class='row stat-head'>Str in stats page</div>")
-			var strSpec = {
-				"tips" : [
-					"Total str from all equipment (stay tuned for updates that help you calculate this!)"
-				],
-				"defaults": [
-					2500
-				],
-				"labels": [
-					"Total Str",
-				]
-			}
-			var strRow = createStatSection(strSpec, "str")
-			var strInput = strRow.data('inputs')[0]
 
-
-			specificStats
-			.append(strLabel)
-			.append(strRow)
-			
-			var attLabel  = $("<div class='row stat-head'>Other sources of Att</div>")
-			var attSpec = {
-				"tips" : [
-					"Outfitter gives some Att (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
-					"Einrach titles give some Att (silver: +84, gold:176)",
-					"Other sources of att (eg Bracelets that I haven't implemented)",
-					"VIP gives 171 att if you are maxed level. I think?"
-				],
-				"defaults": [
-					500,
-					176,
-					0,
-					0
-					
-				],
-				"labels": [
-					"Outfitter",
-					"Ein",
-					"Other",
-					"VIP etc"
-				]
-			}
-			var attRow = createStatSection(attSpec, "att")
-			var attInputs = attRow.data('inputs')
-			
-			specificStats
-			.append(attLabel)
-			.append(attRow)
-			
-			theseInputs = attInputs.concat([strInput])
-		}
-		else if (chara == "Ebie")
-		{
-			var intLabel  = $("<div class='row stat-head'>Int in stats page</div>")
-			var intSpec = {
-				"tips" : [
-					"Total int from all equipment (stay tuned for updates that help you calculate this!)"
-				],
-				"defaults": [
-					2500
-				],
-				"labels": [
-					"Total Int",
-				]
-			}
-			var intRow = createStatSection(intSpec, "int")
-			var intInput = intRow.data('inputs')[0]
-
-
-			specificStats
-			.append(intLabel)
-			.append(intRow)
-			
-			var mattLabel  = $("<div class='row stat-head'>Other sources of mAtt</div>")
-			var mattSpec = {
-				"tips" : [
-					"Outfitter gives some mAtt (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
-					"Einrach titles give some mAtt (silver: +84, gold:176)",
-					"Other sources of mAtt (eg Bracelets that I haven't implemented)",
-					"VIP gives 171 mAtt if you are maxed level. I think?",
-					"Evie gets 700 free mAtt because I hate her"
-				],
-				"defaults": [
-					500,
-					176,
-					0,
-					0,
-					700
-					
-				],
-				"labels": [
-					"Outfitter",
-					"Ein",
-					"Other",
-					"VIP etc",
-					"Magic mastery"
-				]
-			}
-			var mattRow = createStatSection(mattSpec, "matt")
-			var mattInputs = mattRow.data('inputs')
-			
-			specificStats
-			.append(mattLabel)
-			.append(mattRow)
-			
-			theseInputs = mattInputs.concat([intInput])
-		}
+		var theseInputs = writeStatSection(specificStats, g_charaStats[chara])
 		
 		$.each(theseInputs, function(k,v){
 			v.on('change', function(){
@@ -1339,7 +1183,6 @@ function createStatsSheet(id)
 		source: g_characters,
 		change: initStats,
 		"close": initStats,
-	//	"open": openCb(g_scrollLookup)
 	}
 	charaSelect.autocomplete(sharedOpts)
 	setOpenOnFocus(charaSelect)

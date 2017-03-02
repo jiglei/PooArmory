@@ -388,3 +388,138 @@ var g_setLevels = {
 	"Braha": 90,
 	"Dullahan": 95
 }
+
+var g_genericStats = [
+	{
+		"label":"Crit from...",
+		"stat":"crit",
+		"spec":{
+			"tips" : [
+				"Crit Mastery adds up to 28 crit",
+				"Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil",
+				"Full gold Einrach gives 3 crit, full silver gives 1 crit",
+			"Clearing Neamhain gives up to 5 crit (+1 for 5, +2 for 50, +3 for 75, and +5 for 100 clears)"
+			],
+			"defaults": [
+				28,
+				15,
+				3,
+				5
+			],
+			"labels": [
+				"Mastery",
+				"Wil",
+				"Ein",
+				"Neam"
+			]
+		}
+	},
+	{
+		"label":"Balance from...",
+		"stat":"bal",
+		"spec":{
+			"tips" : [
+				"Full gold at Einrach gives 5 balance; silver gives 3",
+				"You can get 2 bal from Outfit/Avatar if you want to fund Nexon's evil empire"
+			],
+			"defaults": [
+				5,
+				0
+			],
+			"labels": [
+				"Ein",
+				"P2W"
+			]
+		}
+	}
+]
+
+var g_charaStats = {
+	"Fiona":[
+		{
+			"label":"Str in stats page",
+			"stat": "str",
+			"spec": {
+				"tips" : [
+					"Total str from all equipment (stay tuned for updates that help you calculate this!)"
+				],
+				"defaults": [
+					2500
+				],
+				"labels": [
+					"Total Str",
+				]
+			}
+		},
+		{
+			"label": "Other sources of Att",
+			"stat":"att",
+			"spec": {
+				"tips" : [
+					"Outfitter gives some Att (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
+					"Einrach titles give some Att (silver: +84, gold:176)",
+					"Other sources of att (eg Bracelets that I haven't implemented)",
+					"VIP gives 171 att if you are maxed level. I think?"
+				],
+				"defaults": [
+					500,
+					176,
+					0,
+					0
+					
+				],
+				"labels": [
+					"Outfitter",
+					"Ein",
+					"Other",
+					"VIP etc"
+				]
+			}
+		}
+	],
+	"Ebie": [
+		{
+			"label":"Int in stats page",
+			"stat":"int",
+			"spec": {
+				"tips" : [
+					"Total int from all equipment (stay tuned for updates that help you calculate this!)"
+				],
+				"defaults": [
+					3000
+				],
+				"labels": [
+					"Total Int",
+				]
+			}
+		},
+		{
+			"label":"Other sources of mAtt",
+			"stat":"matt",
+			"spec": {
+				"tips" : [
+					"Outfitter gives some mAtt (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
+					"Einrach titles give some mAtt (silver: +84, gold:176)",
+					"Other sources of mAtt (eg Bracelets that I haven't implemented)",
+					"VIP gives 171 mAtt if you are maxed level. I think?",
+					"Evie gets 700 free mAtt because I hate her"
+				],
+				"defaults": [
+					500,
+					176,
+					0,
+					0,
+					700
+					
+				],
+				"labels": [
+					"Outfitter",
+					"Ein",
+					"Other",
+					"VIP etc",
+					"Magic mastery"
+				]
+			}
+		}
+	]
+}
