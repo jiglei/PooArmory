@@ -7,7 +7,7 @@ var g_weapons = [
             "att": 7676,
             "int": 0,
             "str": 103,
-            "bal": 75,
+            "balance": 75,
             "agi": 8,
             "spd": 2
         },
@@ -24,7 +24,7 @@ var g_weapons = [
             "att": 7429,
             "int": 0,
             "str": 99,
-            "bal": 75,
+            "balance": 75,
             "agi": 33,
             "spd": 9
         },
@@ -41,7 +41,7 @@ var g_weapons = [
             "att": 7597,
             "int": 0,
             "str": 92,
-            "bal": 74,
+            "balance": 74,
             "agi": 38,
             "spd": 3
         },
@@ -58,7 +58,7 @@ var g_weapons = [
             "att": 7277,
             "int": 0,
             "str": 99,
-            "bal": 74,
+            "balance": 74,
             "agi": 38,
             "spd": 3
         },
@@ -75,7 +75,7 @@ var g_weapons = [
             "att": 7536,
             "int": 0,
             "str": 132,
-            "bal": 76,
+            "balance": 76,
             "agi": 40,
             "spd": 4
         },
@@ -92,7 +92,7 @@ var g_weapons = [
             "att": 7350,
             "int": 0,
             "str": 97,
-            "bal": 79,
+            "balance": 79,
             "agi": 35,
             "spd": 2
         },
@@ -109,7 +109,7 @@ var g_weapons = [
             "att": 9731,
             "int": 0,
             "str": 134,
-            "bal": 75,
+            "balance": 75,
             "agi": 51,
             "spd": 5
         },
@@ -126,7 +126,7 @@ var g_weapons = [
             "att": 9731,
             "int": 0,
             "str": 119,
-            "bal": 75,
+            "balance": 75,
             "agi": 61,
             "spd": 2
         },
@@ -143,7 +143,7 @@ var g_weapons = [
             "att": 9829,
             "int": 0,
             "str": 110,
-            "bal": 76,
+            "balance": 76,
             "agi": 55,
             "spd": 2
         },
@@ -160,7 +160,7 @@ var g_weapons = [
             "att": 9454,
             "int": 0,
             "str": 112,
-            "bal": 73,
+            "balance": 73,
             "agi": 59,
             "spd": 9
         },
@@ -178,7 +178,7 @@ var g_weapons = [
             "att": 6155,
             "int": 67,
             "str": 48,
-            "bal": 61,
+            "balance": 61,
             "agi": 0,
             "spd": 34
         },
@@ -196,7 +196,7 @@ var g_weapons = [
             "att": 6088,
             "int": 65,
             "str": 48,
-            "bal": 67,
+            "balance": 67,
             "agi": 26,
             "spd": 36
         },
@@ -214,7 +214,7 @@ var g_weapons = [
             "att": 6220,
             "int": 60,
             "str": 52,
-            "bal": 67,
+            "balance": 67,
             "agi": 23,
             "spd": 30
         },
@@ -232,7 +232,7 @@ var g_weapons = [
             "att": 6374,
             "int": 70,
             "str": 50,
-            "bal": 67,
+            "balance": 67,
             "agi": 0,
             "spd": 30
         },
@@ -250,7 +250,7 @@ var g_weapons = [
             "att": 6100,
             "int": 72,
             "str": 45,
-            "bal": 65,
+            "balance": 65,
             "agi": 0,
             "spd": 35
         },
@@ -268,7 +268,7 @@ var g_weapons = [
             "att": 8013,
             "int": 125,
             "str": 80,
-            "bal": 68,
+            "balance": 68,
             "agi": 49,
             "spd": 39
         },
@@ -286,7 +286,7 @@ var g_weapons = [
             "att": 8088,
             "int": 80,
             "str": 80,
-            "bal": 68,
+            "balance": 68,
             "agi": 49,
             "spd": 40
         },
@@ -304,7 +304,7 @@ var g_weapons = [
             "att": 8286,
             "int": 92,
             "str": 84,
-            "bal": 70,
+            "balance": 70,
             "agi": 40,
             "spd": 38
         },
@@ -322,7 +322,7 @@ var g_weapons = [
             "att": 8306,
             "int": 82,
             "str": 82,
-            "bal": 67,
+            "balance": 67,
             "agi": 50,
             "spd": 39
         },
@@ -340,7 +340,7 @@ var g_weapons = [
             "att": 8007,
             "int": 79,
             "str": 79,
-            "bal": 69,
+            "balance": 69,
             "agi": 49,
             "spd": 39
         },
@@ -358,7 +358,7 @@ var g_weapons = [
             "att": 3000,
             "int": 0,
             "str": 37,
-            "bal": 0,
+            "balance": 0,
             "agi": 5,
             "spd": 0
         },
@@ -376,7 +376,7 @@ var g_weapons = [
             "att": 3280,
             "int": 0,
             "str": 38,
-            "bal": 0,
+            "balance": 0,
             "agi": 6,
             "spd": 0
         },
@@ -394,7 +394,7 @@ var g_weapons = [
             "att": 3600,
             "int": 0,
             "str": 40,
-            "bal": 0,
+            "balance": 0,
             "agi": 7,
             "spd": 0
         },
@@ -411,7 +411,7 @@ var g_weapons = [
             "att": 7032,
             "int": 0,
             "str": 91,
-            "bal": 78,
+            "balance": 78,
             "agi": 25,
             "spd": 9
         },
@@ -428,7 +428,7 @@ var g_weapons = [
             "att": 7106,
             "int": 0,
             "str": 94,
-            "bal": 77,
+            "balance": 77,
             "agi": 28,
             "spd": 7
         },
@@ -445,7 +445,7 @@ var g_weapons = [
             "att": 7016,
             "int": 0,
             "str": 131,
-            "bal": 77,
+            "balance": 77,
             "agi": 27,
             "spd": 8
         },
@@ -462,7 +462,7 @@ var g_weapons = [
             "att": 7000,
             "int": 0,
             "str": 89,
-            "bal": 82,
+            "balance": 82,
             "agi": 20,
             "spd": 5
         },
@@ -479,7 +479,7 @@ var g_weapons = [
             "att": 7230,
             "int": 0,
             "str": 96,
-            "bal": 77,
+            "balance": 77,
             "agi": 12,
             "spd": 5
         },
@@ -496,7 +496,7 @@ var g_weapons = [
             "att": 7457,
             "int": 0,
             "str": 97,
-            "bal": 77,
+            "balance": 77,
             "agi": 6,
             "spd": 3
         },
@@ -513,7 +513,7 @@ var g_weapons = [
             "att": 9425,
             "int": 0,
             "str": 143,
-            "bal": 76,
+            "balance": 76,
             "agi": 59,
             "spd": 7
         },
@@ -530,7 +530,7 @@ var g_weapons = [
             "att": 9100,
             "int": 0,
             "str": 107,
-            "bal": 77,
+            "balance": 77,
             "agi": 65,
             "spd": 5
         },
@@ -547,7 +547,7 @@ var g_weapons = [
             "att": 9554,
             "int": 0,
             "str": 118,
-            "bal": 71,
+            "balance": 71,
             "agi": 60,
             "spd": 2
         },
@@ -564,7 +564,7 @@ var g_weapons = [
             "att": 9370,
             "int": 0,
             "str": 115,
-            "bal": 76,
+            "balance": 76,
             "agi": 58,
             "spd": 3
         },
@@ -581,7 +581,7 @@ var g_weapons = [
             "att": 9276,
             "int": 0,
             "str": 114,
-            "bal": 75,
+            "balance": 75,
             "agi": 57,
             "spd": 9
         },
@@ -598,7 +598,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -615,7 +615,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -632,7 +632,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -649,7 +649,7 @@ var g_weapons = [
             "att": 8264,
             "int": 0,
             "str": 101,
-            "bal": 72,
+            "balance": 72,
             "agi": 6,
             "spd": 2
         },
@@ -666,7 +666,7 @@ var g_weapons = [
             "att": 8050,
             "int": 0,
             "str": 90,
-            "bal": 70,
+            "balance": 70,
             "agi": 0,
             "spd": 6
         },
@@ -683,7 +683,7 @@ var g_weapons = [
             "att": 7922,
             "int": 0,
             "str": 98,
-            "bal": 72,
+            "balance": 72,
             "agi": 28,
             "spd": 6
         },
@@ -700,7 +700,7 @@ var g_weapons = [
             "att": 8052,
             "int": 0,
             "str": 132,
-            "bal": 72,
+            "balance": 72,
             "agi": 25,
             "spd": 5
         },
@@ -717,7 +717,7 @@ var g_weapons = [
             "att": 8100,
             "int": 0,
             "str": 92,
-            "bal": 67,
+            "balance": 67,
             "agi": 10,
             "spd": 4
         },
@@ -734,7 +734,7 @@ var g_weapons = [
             "att": 9937,
             "int": 0,
             "str": 141,
-            "bal": 75,
+            "balance": 75,
             "agi": 57,
             "spd": 7
         },
@@ -751,7 +751,7 @@ var g_weapons = [
             "att": 9790,
             "int": 0,
             "str": 94,
-            "bal": 74,
+            "balance": 74,
             "agi": 60,
             "spd": 7
         },
@@ -768,7 +768,7 @@ var g_weapons = [
             "att": 10050,
             "int": 0,
             "str": 105,
-            "bal": 75,
+            "balance": 75,
             "agi": 56,
             "spd": 3
         },
@@ -785,7 +785,7 @@ var g_weapons = [
             "att": 10301,
             "int": 0,
             "str": 108,
-            "bal": 73,
+            "balance": 73,
             "agi": 57,
             "spd": 2
         },
@@ -802,7 +802,7 @@ var g_weapons = [
             "att": 9849,
             "int": 0,
             "str": 103,
-            "bal": 75,
+            "balance": 75,
             "agi": 55,
             "spd": 9
         },
@@ -819,7 +819,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -836,7 +836,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -853,7 +853,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -870,7 +870,7 @@ var g_weapons = [
             "att": 7032,
             "int": 0,
             "str": 93,
-            "bal": 64,
+            "balance": 64,
             "agi": 25,
             "spd": 9
         },
@@ -887,7 +887,7 @@ var g_weapons = [
             "att": 7305,
             "int": 0,
             "str": 135,
-            "bal": 64,
+            "balance": 64,
             "agi": 25,
             "spd": 8
         },
@@ -904,7 +904,7 @@ var g_weapons = [
             "att": 7000,
             "int": 0,
             "str": 89,
-            "bal": 66,
+            "balance": 66,
             "agi": 20,
             "spd": 5
         },
@@ -921,7 +921,7 @@ var g_weapons = [
             "att": 7457,
             "int": 0,
             "str": 97,
-            "bal": 62,
+            "balance": 62,
             "agi": 6,
             "spd": 3
         },
@@ -938,7 +938,7 @@ var g_weapons = [
             "att": 7230,
             "int": 0,
             "str": 96,
-            "bal": 62,
+            "balance": 62,
             "agi": 12,
             "spd": 5
         },
@@ -955,7 +955,7 @@ var g_weapons = [
             "att": 9370,
             "int": 0,
             "str": 110,
-            "bal": 67,
+            "balance": 67,
             "agi": 58,
             "spd": 3
         },
@@ -972,7 +972,7 @@ var g_weapons = [
             "att": 9425,
             "int": 0,
             "str": 140,
-            "bal": 67,
+            "balance": 67,
             "agi": 59,
             "spd": 7
         },
@@ -989,7 +989,7 @@ var g_weapons = [
             "att": 9130,
             "int": 0,
             "str": 120,
-            "bal": 65,
+            "balance": 65,
             "agi": 60,
             "spd": 5
         },
@@ -1006,7 +1006,7 @@ var g_weapons = [
             "att": 9540,
             "int": 0,
             "str": 113,
-            "bal": 63,
+            "balance": 63,
             "agi": 60,
             "spd": 3
         },
@@ -1023,7 +1023,7 @@ var g_weapons = [
             "att": 9089,
             "int": 0,
             "str": 107,
-            "bal": 65,
+            "balance": 65,
             "agi": 56,
             "spd": 9
         },
@@ -1040,7 +1040,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -1057,7 +1057,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -1074,7 +1074,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -1091,7 +1091,7 @@ var g_weapons = [
             "att": 1390,
             "int": 0,
             "str": 85,
-            "bal": 78,
+            "balance": 78,
             "agi": 10,
             "spd": 0
         },
@@ -1108,7 +1108,7 @@ var g_weapons = [
             "att": 1460,
             "int": 0,
             "str": 85,
-            "bal": 66,
+            "balance": 66,
             "agi": 10,
             "spd": 0
         },
@@ -1125,7 +1125,7 @@ var g_weapons = [
             "att": 1532,
             "int": 0,
             "str": 75,
-            "bal": 51,
+            "balance": 51,
             "agi": 9,
             "spd": 0
         },
@@ -1142,7 +1142,7 @@ var g_weapons = [
             "att": 1500,
             "int": 0,
             "str": 95,
-            "bal": 50,
+            "balance": 50,
             "agi": 10,
             "spd": 0
         },
@@ -1159,7 +1159,7 @@ var g_weapons = [
             "att": 1477,
             "int": 0,
             "str": 91,
-            "bal": 59,
+            "balance": 59,
             "agi": 11,
             "spd": 0
         },
@@ -1176,7 +1176,7 @@ var g_weapons = [
             "att": 2064,
             "int": 0,
             "str": 103,
-            "bal": 95,
+            "balance": 95,
             "agi": 6,
             "spd": 0
         },
@@ -1193,7 +1193,7 @@ var g_weapons = [
             "att": 2000,
             "int": 0,
             "str": 90,
-            "bal": 99,
+            "balance": 99,
             "agi": 6,
             "spd": 0
         },
@@ -1210,7 +1210,7 @@ var g_weapons = [
             "att": 1843,
             "int": 0,
             "str": 113,
-            "bal": 107,
+            "balance": 107,
             "agi": 9,
             "spd": 0
         },
@@ -1227,7 +1227,7 @@ var g_weapons = [
             "att": 1920,
             "int": 0,
             "str": 110,
-            "bal": 95,
+            "balance": 95,
             "agi": 9,
             "spd": 0
         },
@@ -1244,7 +1244,7 @@ var g_weapons = [
             "att": 1890,
             "int": 0,
             "str": 135,
-            "bal": 99,
+            "balance": 99,
             "agi": 7,
             "spd": 0
         },
@@ -1261,7 +1261,7 @@ var g_weapons = [
             "att": 7312,
             "int": 0,
             "str": 98,
-            "bal": 78,
+            "balance": 78,
             "agi": 52,
             "spd": 3
         },
@@ -1278,7 +1278,7 @@ var g_weapons = [
             "att": 7224,
             "int": 0,
             "str": 99,
-            "bal": 79,
+            "balance": 79,
             "agi": 40,
             "spd": 9
         },
@@ -1295,7 +1295,7 @@ var g_weapons = [
             "att": 7099,
             "int": 0,
             "str": 99,
-            "bal": 80,
+            "balance": 80,
             "agi": 47,
             "spd": 4
         },
@@ -1312,7 +1312,7 @@ var g_weapons = [
             "att": 7504,
             "int": 0,
             "str": 103,
-            "bal": 79,
+            "balance": 79,
             "agi": 32,
             "spd": 2
         },
@@ -1329,7 +1329,7 @@ var g_weapons = [
             "att": 7338,
             "int": 0,
             "str": 132,
-            "bal": 80,
+            "balance": 80,
             "agi": 47,
             "spd": 5
         },
@@ -1346,7 +1346,7 @@ var g_weapons = [
             "att": 7159,
             "int": 0,
             "str": 97,
-            "bal": 83,
+            "balance": 83,
             "agi": 42,
             "spd": 3
         },
@@ -1363,7 +1363,7 @@ var g_weapons = [
             "att": 9493,
             "int": 0,
             "str": 142,
-            "bal": 80,
+            "balance": 80,
             "agi": 58,
             "spd": 7
         },
@@ -1380,7 +1380,7 @@ var g_weapons = [
             "att": 9382,
             "int": 0,
             "str": 115,
-            "bal": 80,
+            "balance": 80,
             "agi": 58,
             "spd": 3
         },
@@ -1397,7 +1397,7 @@ var g_weapons = [
             "att": 9513,
             "int": 0,
             "str": 119,
-            "bal": 79,
+            "balance": 79,
             "agi": 63,
             "spd": 2
         },
@@ -1414,7 +1414,7 @@ var g_weapons = [
             "att": 9645,
             "int": 0,
             "str": 119,
-            "bal": 75,
+            "balance": 75,
             "agi": 60,
             "spd": 2
         },
@@ -1431,7 +1431,7 @@ var g_weapons = [
             "att": 9223,
             "int": 0,
             "str": 115,
-            "bal": 79,
+            "balance": 79,
             "agi": 60,
             "spd": 9
         },
@@ -1448,7 +1448,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 4,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -1465,7 +1465,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -1482,7 +1482,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -1499,7 +1499,7 @@ var g_weapons = [
             "att": 8062,
             "int": 0,
             "str": 100,
-            "bal": 63,
+            "balance": 63,
             "agi": 36,
             "spd": 4
         },
@@ -1516,7 +1516,7 @@ var g_weapons = [
             "att": 7901,
             "int": 0,
             "str": 98,
-            "bal": 63,
+            "balance": 63,
             "agi": 32,
             "spd": 6
         },
@@ -1533,7 +1533,7 @@ var g_weapons = [
             "att": 8297,
             "int": 0,
             "str": 104,
-            "bal": 63,
+            "balance": 63,
             "agi": 3,
             "spd": 2
         },
@@ -1550,7 +1550,7 @@ var g_weapons = [
             "att": 7950,
             "int": 0,
             "str": 133,
-            "bal": 63,
+            "balance": 63,
             "agi": 29,
             "spd": 7
         },
@@ -1567,7 +1567,7 @@ var g_weapons = [
             "att": 7884,
             "int": 0,
             "str": 97,
-            "bal": 63,
+            "balance": 63,
             "agi": 31,
             "spd": 3
         },
@@ -1584,7 +1584,7 @@ var g_weapons = [
             "att": 7989,
             "int": 0,
             "str": 90,
-            "bal": 64,
+            "balance": 64,
             "agi": 35,
             "spd": 4
         },
@@ -1601,7 +1601,7 @@ var g_weapons = [
             "att": 9803,
             "int": 0,
             "str": 142,
-            "bal": 65,
+            "balance": 65,
             "agi": 51,
             "spd": 7
         },
@@ -1618,7 +1618,7 @@ var g_weapons = [
             "att": 10093,
             "int": 0,
             "str": 121,
-            "bal": 64,
+            "balance": 64,
             "agi": 59,
             "spd": 3
         },
@@ -1635,7 +1635,7 @@ var g_weapons = [
             "att": 9670,
             "int": 0,
             "str": 110,
-            "bal": 65,
+            "balance": 65,
             "agi": 50,
             "spd": 2
         },
@@ -1652,7 +1652,7 @@ var g_weapons = [
             "att": 9748,
             "int": 0,
             "str": 116,
-            "bal": 65,
+            "balance": 65,
             "agi": 50,
             "spd": 5
         },
@@ -1669,7 +1669,7 @@ var g_weapons = [
             "att": 9411,
             "int": 0,
             "str": 112,
-            "bal": 64,
+            "balance": 64,
             "agi": 59,
             "spd": 9
         },
@@ -1686,7 +1686,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 0
         },
@@ -1703,7 +1703,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -1720,7 +1720,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -1737,7 +1737,7 @@ var g_weapons = [
             "att": 7050,
             "int": 0,
             "str": 90,
-            "bal": 77,
+            "balance": 77,
             "agi": 40,
             "spd": 8
         },
@@ -1754,7 +1754,7 @@ var g_weapons = [
             "att": 6889,
             "int": 0,
             "str": 99,
-            "bal": 80,
+            "balance": 80,
             "agi": 44,
             "spd": 8
         },
@@ -1771,7 +1771,7 @@ var g_weapons = [
             "att": 7258,
             "int": 0,
             "str": 102,
-            "bal": 80,
+            "balance": 80,
             "agi": 0,
             "spd": 3
         },
@@ -1788,7 +1788,7 @@ var g_weapons = [
             "att": 7202,
             "int": 0,
             "str": 132,
-            "bal": 80,
+            "balance": 80,
             "agi": 45,
             "spd": 8
         },
@@ -1805,7 +1805,7 @@ var g_weapons = [
             "att": 6950,
             "int": 0,
             "str": 95,
-            "bal": 75,
+            "balance": 75,
             "agi": 48,
             "spd": 5
         },
@@ -1822,7 +1822,7 @@ var g_weapons = [
             "att": 9113,
             "int": 0,
             "str": 141,
-            "bal": 78,
+            "balance": 78,
             "agi": 52,
             "spd": 8
         },
@@ -1839,7 +1839,7 @@ var g_weapons = [
             "att": 9300,
             "int": 0,
             "str": 118,
-            "bal": 78,
+            "balance": 78,
             "agi": 60,
             "spd": 4
         },
@@ -1856,7 +1856,7 @@ var g_weapons = [
             "att": 9578,
             "int": 0,
             "str": 122,
-            "bal": 74,
+            "balance": 74,
             "agi": 54,
             "spd": 3
         },
@@ -1873,7 +1873,7 @@ var g_weapons = [
             "att": 9166,
             "int": 0,
             "str": 115,
-            "bal": 78,
+            "balance": 78,
             "agi": 51,
             "spd": 5
         },
@@ -1890,7 +1890,7 @@ var g_weapons = [
             "att": 9001,
             "int": 0,
             "str": 120,
-            "bal": 78,
+            "balance": 78,
             "agi": 50,
             "spd": 9
         },
@@ -1907,7 +1907,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -1924,7 +1924,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -1941,7 +1941,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -1958,7 +1958,7 @@ var g_weapons = [
             "att": 7636,
             "int": 0,
             "str": 98,
-            "bal": 60,
+            "balance": 60,
             "agi": 42,
             "spd": 9
         },
@@ -1975,7 +1975,7 @@ var g_weapons = [
             "att": 7540,
             "int": 0,
             "str": 90,
-            "bal": 61,
+            "balance": 61,
             "agi": 52,
             "spd": 9
         },
@@ -1992,7 +1992,7 @@ var g_weapons = [
             "att": 7642,
             "int": 0,
             "str": 135,
-            "bal": 60,
+            "balance": 60,
             "agi": 43,
             "spd": 8
         },
@@ -2009,7 +2009,7 @@ var g_weapons = [
             "att": 7800,
             "int": 0,
             "str": 93,
-            "bal": 60,
+            "balance": 60,
             "agi": 30,
             "spd": 6
         },
@@ -2026,7 +2026,7 @@ var g_weapons = [
             "att": 8011,
             "int": 0,
             "str": 101,
-            "bal": 60,
+            "balance": 60,
             "agi": 15,
             "spd": 5
         },
@@ -2043,7 +2043,7 @@ var g_weapons = [
             "att": 9835,
             "int": 0,
             "str": 143,
-            "bal": 64,
+            "balance": 64,
             "agi": 53,
             "spd": 8
         },
@@ -2060,7 +2060,7 @@ var g_weapons = [
             "att": 9731,
             "int": 0,
             "str": 102,
-            "bal": 64,
+            "balance": 64,
             "agi": 52,
             "spd": 7
         },
@@ -2077,7 +2077,7 @@ var g_weapons = [
             "att": 9440,
             "int": 0,
             "str": 110,
-            "bal": 60,
+            "balance": 60,
             "agi": 65,
             "spd": 9
         },
@@ -2094,7 +2094,7 @@ var g_weapons = [
             "att": 10005,
             "int": 0,
             "str": 105,
-            "bal": 61,
+            "balance": 61,
             "agi": 53,
             "spd": 6
         },
@@ -2111,7 +2111,7 @@ var g_weapons = [
             "att": 9681,
             "int": 0,
             "str": 101,
-            "bal": 63,
+            "balance": 63,
             "agi": 51,
             "spd": 9
         },
@@ -2128,7 +2128,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -2145,7 +2145,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -2162,7 +2162,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -2180,7 +2180,7 @@ var g_weapons = [
             "att": 4951,
             "int": 105,
             "str": 0,
-            "bal": 70,
+            "balance": 70,
             "agi": 66,
             "spd": 38
         },
@@ -2198,7 +2198,7 @@ var g_weapons = [
             "att": 4937,
             "int": 100,
             "str": 0,
-            "bal": 67,
+            "balance": 67,
             "agi": 59,
             "spd": 40
         },
@@ -2216,7 +2216,7 @@ var g_weapons = [
             "att": 4941,
             "int": 118,
             "str": 0,
-            "bal": 66,
+            "balance": 66,
             "agi": 55,
             "spd": 40
         },
@@ -2234,7 +2234,7 @@ var g_weapons = [
             "att": 4918,
             "int": 99,
             "str": 0,
-            "bal": 71,
+            "balance": 71,
             "agi": 64,
             "spd": 40
         },
@@ -2252,7 +2252,7 @@ var g_weapons = [
             "att": 4905,
             "int": 94,
             "str": 0,
-            "bal": 69,
+            "balance": 69,
             "agi": 62,
             "spd": 41
         },
@@ -2270,7 +2270,7 @@ var g_weapons = [
             "att": 6371,
             "int": 138,
             "str": 0,
-            "bal": 68,
+            "balance": 68,
             "agi": 62,
             "spd": 40
         },
@@ -2288,7 +2288,7 @@ var g_weapons = [
             "att": 6306,
             "int": 120,
             "str": 0,
-            "bal": 69,
+            "balance": 69,
             "agi": 67,
             "spd": 42
         },
@@ -2306,7 +2306,7 @@ var g_weapons = [
             "att": 6276,
             "int": 116,
             "str": 0,
-            "bal": 73,
+            "balance": 73,
             "agi": 66,
             "spd": 40
         },
@@ -2324,7 +2324,7 @@ var g_weapons = [
             "att": 6524,
             "int": 120,
             "str": 0,
-            "bal": 70,
+            "balance": 70,
             "agi": 69,
             "spd": 40
         },
@@ -2342,7 +2342,7 @@ var g_weapons = [
             "att": 6033,
             "int": 116,
             "str": 0,
-            "bal": 70,
+            "balance": 70,
             "agi": 69,
             "spd": 41
         },
@@ -2360,7 +2360,7 @@ var g_weapons = [
             "att": 1260,
             "int": 0,
             "str": 41,
-            "bal": 0,
+            "balance": 0,
             "agi": 5,
             "spd": 0
         },
@@ -2378,7 +2378,7 @@ var g_weapons = [
             "att": 1378,
             "int": 0,
             "str": 42,
-            "bal": 0,
+            "balance": 0,
             "agi": 6,
             "spd": 0
         },
@@ -2396,7 +2396,7 @@ var g_weapons = [
             "att": 1512,
             "int": 0,
             "str": 44,
-            "bal": 0,
+            "balance": 0,
             "agi": 7,
             "spd": 0
         },
@@ -2413,7 +2413,7 @@ var g_weapons = [
             "att": 7238,
             "int": 0,
             "str": 99,
-            "bal": 76,
+            "balance": 76,
             "agi": 28,
             "spd": 9
         },
@@ -2430,7 +2430,7 @@ var g_weapons = [
             "att": 7513,
             "int": 0,
             "str": 101,
-            "bal": 77,
+            "balance": 77,
             "agi": 6,
             "spd": 3
         },
@@ -2447,7 +2447,7 @@ var g_weapons = [
             "att": 7163,
             "int": 0,
             "str": 98,
-            "bal": 77,
+            "balance": 77,
             "agi": 28,
             "spd": 7
         },
@@ -2464,7 +2464,7 @@ var g_weapons = [
             "att": 7218,
             "int": 0,
             "str": 133,
-            "bal": 77,
+            "balance": 77,
             "agi": 29,
             "spd": 8
         },
@@ -2481,7 +2481,7 @@ var g_weapons = [
             "att": 7200,
             "int": 0,
             "str": 95,
-            "bal": 76,
+            "balance": 76,
             "agi": 15,
             "spd": 5
         },
@@ -2498,7 +2498,7 @@ var g_weapons = [
             "att": 7320,
             "int": 0,
             "str": 97,
-            "bal": 77,
+            "balance": 77,
             "agi": 30,
             "spd": 5
         },
@@ -2515,7 +2515,7 @@ var g_weapons = [
             "att": 9163,
             "int": 0,
             "str": 113,
-            "bal": 77,
+            "balance": 77,
             "agi": 49,
             "spd": 3
         },
@@ -2532,7 +2532,7 @@ var g_weapons = [
             "att": 9208,
             "int": 0,
             "str": 140,
-            "bal": 77,
+            "balance": 77,
             "agi": 50,
             "spd": 7
         },
@@ -2549,7 +2549,7 @@ var g_weapons = [
             "att": 9510,
             "int": 0,
             "str": 120,
-            "bal": 75,
+            "balance": 75,
             "agi": 60,
             "spd": 2
         },
@@ -2566,7 +2566,7 @@ var g_weapons = [
             "att": 9621,
             "int": 0,
             "str": 119,
-            "bal": 74,
+            "balance": 74,
             "agi": 51,
             "spd": 3
         },
@@ -2583,7 +2583,7 @@ var g_weapons = [
             "att": 9071,
             "int": 0,
             "str": 112,
-            "bal": 76,
+            "balance": 76,
             "agi": 49,
             "spd": 9
         },
@@ -2600,7 +2600,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -2617,7 +2617,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -2634,7 +2634,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -2651,7 +2651,7 @@ var g_weapons = [
             "att": 916,
             "int": 0,
             "str": 30,
-            "bal": 43,
+            "balance": 43,
             "agi": 10,
             "spd": 0
         },
@@ -2668,7 +2668,7 @@ var g_weapons = [
             "att": 1001,
             "int": 0,
             "str": 34,
-            "bal": 26,
+            "balance": 26,
             "agi": 11,
             "spd": 0
         },
@@ -2685,7 +2685,7 @@ var g_weapons = [
             "att": 1100,
             "int": 0,
             "str": 30,
-            "bal": 32,
+            "balance": 32,
             "agi": 7,
             "spd": 0
         },
@@ -2702,7 +2702,7 @@ var g_weapons = [
             "att": 1243,
             "int": 0,
             "str": 27,
-            "bal": 42,
+            "balance": 42,
             "agi": 9,
             "spd": 0
         },
@@ -2719,7 +2719,7 @@ var g_weapons = [
             "att": 1200,
             "int": 0,
             "str": 35,
-            "bal": 35,
+            "balance": 35,
             "agi": 9,
             "spd": 0
         },
@@ -2736,7 +2736,7 @@ var g_weapons = [
             "att": 1640,
             "int": 0,
             "str": 56,
-            "bal": 50,
+            "balance": 50,
             "agi": 7,
             "spd": 0
         },
@@ -2753,7 +2753,7 @@ var g_weapons = [
             "att": 1600,
             "int": 0,
             "str": 50,
-            "bal": 55,
+            "balance": 55,
             "agi": 6,
             "spd": 0
         },
@@ -2770,7 +2770,7 @@ var g_weapons = [
             "att": 1414,
             "int": 0,
             "str": 52,
-            "bal": 74,
+            "balance": 74,
             "agi": 9,
             "spd": 0
         },
@@ -2787,7 +2787,7 @@ var g_weapons = [
             "att": 1540,
             "int": 0,
             "str": 63,
-            "bal": 49,
+            "balance": 49,
             "agi": 9,
             "spd": 0
         },
@@ -2804,7 +2804,7 @@ var g_weapons = [
             "att": 1462,
             "int": 0,
             "str": 82,
-            "bal": 64,
+            "balance": 64,
             "agi": 8,
             "spd": 0
         },
@@ -2822,7 +2822,7 @@ var g_weapons = [
             "att": 5001,
             "int": 99,
             "str": 0,
-            "bal": 75,
+            "balance": 75,
             "agi": 61,
             "spd": 33
         },
@@ -2840,7 +2840,7 @@ var g_weapons = [
             "att": 5126,
             "int": 103,
             "str": 0,
-            "bal": 73,
+            "balance": 73,
             "agi": 45,
             "spd": 34
         },
@@ -2858,7 +2858,7 @@ var g_weapons = [
             "att": 5041,
             "int": 115,
             "str": 0,
-            "bal": 71,
+            "balance": 71,
             "agi": 51,
             "spd": 35
         },
@@ -2876,7 +2876,7 @@ var g_weapons = [
             "att": 4920,
             "int": 97,
             "str": 0,
-            "bal": 74,
+            "balance": 74,
             "agi": 55,
             "spd": 37
         },
@@ -2894,7 +2894,7 @@ var g_weapons = [
             "att": 4993,
             "int": 98,
             "str": 0,
-            "bal": 76,
+            "balance": 76,
             "agi": 60,
             "spd": 35
         },
@@ -2912,7 +2912,7 @@ var g_weapons = [
             "att": 5038,
             "int": 99,
             "str": 0,
-            "bal": 72,
+            "balance": 72,
             "agi": 49,
             "spd": 35
         },
@@ -2930,7 +2930,7 @@ var g_weapons = [
             "att": 6367,
             "int": 130,
             "str": 0,
-            "bal": 73,
+            "balance": 73,
             "agi": 58,
             "spd": 35
         },
@@ -2948,7 +2948,7 @@ var g_weapons = [
             "att": 6502,
             "int": 119,
             "str": 0,
-            "bal": 74,
+            "balance": 74,
             "agi": 63,
             "spd": 37
         },
@@ -2966,7 +2966,7 @@ var g_weapons = [
             "att": 6404,
             "int": 115,
             "str": 0,
-            "bal": 78,
+            "balance": 78,
             "agi": 66,
             "spd": 35
         },
@@ -2984,7 +2984,7 @@ var g_weapons = [
             "att": 6657,
             "int": 119,
             "str": 0,
-            "bal": 75,
+            "balance": 75,
             "agi": 65,
             "spd": 35
         },
@@ -3002,7 +3002,7 @@ var g_weapons = [
             "att": 6284,
             "int": 115,
             "str": 0,
-            "bal": 75,
+            "balance": 75,
             "agi": 65,
             "spd": 36
         },
@@ -3020,7 +3020,7 @@ var g_weapons = [
             "att": 6289,
             "int": 109,
             "str": 24,
-            "bal": 69,
+            "balance": 69,
             "agi": 41,
             "spd": 38
         },
@@ -3038,7 +3038,7 @@ var g_weapons = [
             "att": 6317,
             "int": 108,
             "str": 25,
-            "bal": 70,
+            "balance": 70,
             "agi": 37,
             "spd": 39
         },
@@ -3056,7 +3056,7 @@ var g_weapons = [
             "att": 6186,
             "int": 137,
             "str": 23,
-            "bal": 70,
+            "balance": 70,
             "agi": 48,
             "spd": 39
         },
@@ -3074,7 +3074,7 @@ var g_weapons = [
             "att": 6200,
             "int": 102,
             "str": 20,
-            "bal": 72,
+            "balance": 72,
             "agi": 30,
             "spd": 40
         },
@@ -3092,7 +3092,7 @@ var g_weapons = [
             "att": 6317,
             "int": 112,
             "str": 25,
-            "bal": 70,
+            "balance": 70,
             "agi": 37,
             "spd": 39
         },
@@ -3110,7 +3110,7 @@ var g_weapons = [
             "att": 6169,
             "int": 105,
             "str": 23,
-            "bal": 70,
+            "balance": 70,
             "agi": 48,
             "spd": 43
         },
@@ -3128,7 +3128,7 @@ var g_weapons = [
             "att": 8186,
             "int": 141,
             "str": 60,
-            "bal": 72,
+            "balance": 72,
             "agi": 54,
             "spd": 43
         },
@@ -3146,7 +3146,7 @@ var g_weapons = [
             "att": 8169,
             "int": 120,
             "str": 60,
-            "bal": 72,
+            "balance": 72,
             "agi": 54,
             "spd": 43
         },
@@ -3164,7 +3164,7 @@ var g_weapons = [
             "att": 8018,
             "int": 113,
             "str": 48,
-            "bal": 73,
+            "balance": 73,
             "agi": 44,
             "spd": 44
         },
@@ -3182,7 +3182,7 @@ var g_weapons = [
             "att": 8373,
             "int": 123,
             "str": 62,
-            "bal": 71,
+            "balance": 71,
             "agi": 55,
             "spd": 41
         },
@@ -3200,7 +3200,7 @@ var g_weapons = [
             "att": 8006,
             "int": 118,
             "str": 59,
-            "bal": 74,
+            "balance": 74,
             "agi": 53,
             "spd": 42
         },
@@ -3218,7 +3218,7 @@ var g_weapons = [
             "att": 3000,
             "int": 0,
             "str": 37,
-            "bal": 0,
+            "balance": 0,
             "agi": 5,
             "spd": 0
         },
@@ -3236,7 +3236,7 @@ var g_weapons = [
             "att": 3280,
             "int": 0,
             "str": 38,
-            "bal": 0,
+            "balance": 0,
             "agi": 6,
             "spd": 0
         },
@@ -3254,7 +3254,7 @@ var g_weapons = [
             "att": 3600,
             "int": 0,
             "str": 40,
-            "bal": 0,
+            "balance": 0,
             "agi": 7,
             "spd": 0
         },
@@ -3271,7 +3271,7 @@ var g_weapons = [
             "att": 7091,
             "int": 0,
             "str": 106,
-            "bal": 65,
+            "balance": 65,
             "agi": 42,
             "spd": 9
         },
@@ -3288,7 +3288,7 @@ var g_weapons = [
             "att": 7113,
             "int": 0,
             "str": 130,
-            "bal": 66,
+            "balance": 66,
             "agi": 37,
             "spd": 5
         },
@@ -3305,7 +3305,7 @@ var g_weapons = [
             "att": 7339,
             "int": 0,
             "str": 105,
-            "bal": 67,
+            "balance": 67,
             "agi": 35,
             "spd": 3
         },
@@ -3322,7 +3322,7 @@ var g_weapons = [
             "att": 7527,
             "int": 0,
             "str": 108,
-            "bal": 69,
+            "balance": 69,
             "agi": 36,
             "spd": 0
         },
@@ -3339,7 +3339,7 @@ var g_weapons = [
             "att": 6972,
             "int": 0,
             "str": 100,
-            "bal": 64,
+            "balance": 64,
             "agi": 33,
             "spd": 6
         },
@@ -3356,7 +3356,7 @@ var g_weapons = [
             "att": 9350,
             "int": 0,
             "str": 144,
-            "bal": 66,
+            "balance": 66,
             "agi": 36,
             "spd": 8
         },
@@ -3373,7 +3373,7 @@ var g_weapons = [
             "att": 9533,
             "int": 0,
             "str": 116,
-            "bal": 67,
+            "balance": 67,
             "agi": 36,
             "spd": 3
         },
@@ -3390,7 +3390,7 @@ var g_weapons = [
             "att": 9760,
             "int": 0,
             "str": 119,
-            "bal": 64,
+            "balance": 64,
             "agi": 37,
             "spd": 6
         },
@@ -3407,7 +3407,7 @@ var g_weapons = [
             "att": 9295,
             "int": 0,
             "str": 113,
-            "bal": 66,
+            "balance": 66,
             "agi": 35,
             "spd": 6
         },
@@ -3424,7 +3424,7 @@ var g_weapons = [
             "att": 9150,
             "int": 0,
             "str": 112,
-            "bal": 64,
+            "balance": 64,
             "agi": 35,
             "spd": 9
         },
@@ -3441,7 +3441,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -3458,7 +3458,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -3475,7 +3475,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -3492,7 +3492,7 @@ var g_weapons = [
             "att": 7230,
             "int": 0,
             "str": 98,
-            "bal": 71,
+            "balance": 71,
             "agi": 52,
             "spd": 1
         },
@@ -3509,7 +3509,7 @@ var g_weapons = [
             "att": 6959,
             "int": 0,
             "str": 81,
-            "bal": 70,
+            "balance": 70,
             "agi": 28,
             "spd": 9
         },
@@ -3526,7 +3526,7 @@ var g_weapons = [
             "att": 7051,
             "int": 0,
             "str": 98,
-            "bal": 70,
+            "balance": 70,
             "agi": 46,
             "spd": 3
         },
@@ -3543,7 +3543,7 @@ var g_weapons = [
             "att": 7371,
             "int": 0,
             "str": 101,
-            "bal": 70,
+            "balance": 70,
             "agi": 34,
             "spd": 0
         },
@@ -3560,7 +3560,7 @@ var g_weapons = [
             "att": 7106,
             "int": 0,
             "str": 135,
-            "bal": 70,
+            "balance": 70,
             "agi": 47,
             "spd": 7
         },
@@ -3577,7 +3577,7 @@ var g_weapons = [
             "att": 7150,
             "int": 0,
             "str": 95,
-            "bal": 71,
+            "balance": 71,
             "agi": 40,
             "spd": 0
         },
@@ -3594,7 +3594,7 @@ var g_weapons = [
             "att": 9185,
             "int": 0,
             "str": 143,
-            "bal": 72,
+            "balance": 72,
             "agi": 54,
             "spd": 7
         },
@@ -3611,7 +3611,7 @@ var g_weapons = [
             "att": 9649,
             "int": 0,
             "str": 113,
-            "bal": 74,
+            "balance": 74,
             "agi": 40,
             "spd": 0
         },
@@ -3628,7 +3628,7 @@ var g_weapons = [
             "att": 9692,
             "int": 0,
             "str": 116,
-            "bal": 70,
+            "balance": 70,
             "agi": 56,
             "spd": 2
         },
@@ -3645,7 +3645,7 @@ var g_weapons = [
             "att": 9230,
             "int": 0,
             "str": 110,
-            "bal": 72,
+            "balance": 72,
             "agi": 53,
             "spd": 3
         },
@@ -3662,7 +3662,7 @@ var g_weapons = [
             "att": 9015,
             "int": 0,
             "str": 109,
-            "bal": 71,
+            "balance": 71,
             "agi": 52,
             "spd": 9
         },
@@ -3679,7 +3679,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -3696,7 +3696,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -3713,7 +3713,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
@@ -3730,7 +3730,7 @@ var g_weapons = [
             "att": 7040,
             "int": 0,
             "str": 99,
-            "bal": 75,
+            "balance": 75,
             "agi": 15,
             "spd": 3
         },
@@ -3747,7 +3747,7 @@ var g_weapons = [
             "att": 7043,
             "int": 0,
             "str": 101,
-            "bal": 75,
+            "balance": 75,
             "agi": 36,
             "spd": 6
         },
@@ -3764,7 +3764,7 @@ var g_weapons = [
             "att": 6857,
             "int": 0,
             "str": 81,
-            "bal": 75,
+            "balance": 75,
             "agi": 29,
             "spd": 9
         },
@@ -3781,7 +3781,7 @@ var g_weapons = [
             "att": 6835,
             "int": 0,
             "str": 98,
-            "bal": 75,
+            "balance": 75,
             "agi": 48,
             "spd": 3
         },
@@ -3798,7 +3798,7 @@ var g_weapons = [
             "att": 7002,
             "int": 0,
             "str": 133,
-            "bal": 75,
+            "balance": 75,
             "agi": 49,
             "spd": 7
         },
@@ -3815,7 +3815,7 @@ var g_weapons = [
             "att": 6900,
             "int": 0,
             "str": 92,
-            "bal": 77,
+            "balance": 77,
             "agi": 50,
             "spd": 4
         },
@@ -3832,7 +3832,7 @@ var g_weapons = [
             "att": 9113,
             "int": 0,
             "str": 141,
-            "bal": 80,
+            "balance": 80,
             "agi": 54,
             "spd": 8
         },
@@ -3849,7 +3849,7 @@ var g_weapons = [
             "att": 9110,
             "int": 0,
             "str": 101,
-            "bal": 80,
+            "balance": 80,
             "agi": 53,
             "spd": 6
         },
@@ -3866,7 +3866,7 @@ var g_weapons = [
             "att": 9241,
             "int": 0,
             "str": 110,
-            "bal": 79,
+            "balance": 79,
             "agi": 40,
             "spd": 3
         },
@@ -3883,7 +3883,7 @@ var g_weapons = [
             "att": 9566,
             "int": 0,
             "str": 106,
-            "bal": 72,
+            "balance": 72,
             "agi": 56,
             "spd": 3
         },
@@ -3900,7 +3900,7 @@ var g_weapons = [
             "att": 9019,
             "int": 0,
             "str": 100,
-            "bal": 78,
+            "balance": 78,
             "agi": 52,
             "spd": 9
         },
@@ -3917,7 +3917,7 @@ var g_weapons = [
             "att": 3000,
             "int": 20,
             "str": 5,
-            "bal": 0,
+            "balance": 0,
             "agi": 46,
             "spd": 37
         },
@@ -3934,7 +3934,7 @@ var g_weapons = [
             "att": 3280,
             "int": 23,
             "str": 6,
-            "bal": 0,
+            "balance": 0,
             "agi": 53,
             "spd": 38
         },
@@ -3951,7 +3951,7 @@ var g_weapons = [
             "att": 3600,
             "int": 26,
             "str": 7,
-            "bal": 0,
+            "balance": 0,
             "agi": 60,
             "spd": 40
         },
