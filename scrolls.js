@@ -210,6 +210,15 @@ var g_scrolls = [
 	},
 	"prefix":false
 },
+{	"name":"Subdued",
+	"locations":["belt"] ,
+	"stats":{
+		"speed":1,
+		"crit":2
+	},
+	"prefix":true
+},
+
 {	"name":"Fast",
 	"locations":all_acc,
 	"stats":{
@@ -217,6 +226,13 @@ var g_scrolls = [
 		"balance":-8
 	},
 	"prefix":true
+},
+{	"name":"Passion",
+	"locations":all_acc ,
+	"stats":{
+		"Def": 200
+	},
+	"prefix":false
 },
 {	"name":"Berserker",
 	"locations":all_acc,
@@ -234,21 +250,6 @@ var g_scrolls = [
 		"matt":15
 	},
 	"prefix":true
-},
-{	"name":"Subdued",
-	"locations":["belt"] ,
-	"stats":{
-		"speed":1,
-		"crit":2
-	},
-	"prefix":true
-},
-{	"name":"Passion",
-	"locations":all_acc ,
-	"stats":{
-		"Def": 200
-	},
-	"prefix":false
 },
 {	"name":"Reinforced/Reiterating",
 	"locations":["gloves","feet"] ,
@@ -296,6 +297,26 @@ var g_scrolls = [
 		"crit":3,
 		"att":-250,
 		"matt":-250
+	},
+	"prefix":false
+},
+{
+	"name":"Hateful",
+	"locations":["weapon"],
+	"stats":{
+		"crit":4,
+		"speed":5
+	},
+	"prefix":true
+},
+{
+	"name":"Divine Punishment",
+	"locations":["weapon"],
+	"stats":{
+		"crit":2,
+		"speed":1,
+		"balance":-2,
+		"matt":677
 	},
 	"prefix":false
 }
