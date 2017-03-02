@@ -82,7 +82,8 @@ var g_scrolls = [
 		"balance":1,
 		"speed":2,
 		"crit":2,
-		"att": 210
+		"att": 210,
+		"matt": 210
 	},
 	"prefix":true
 },
@@ -103,7 +104,8 @@ var g_scrolls = [
 		"balance":5,
 		"speed":0,
 		"crit":0,
-		"att":270
+		"att":270,
+		"matt":282
 	},
 	"prefix":false
 },
@@ -129,7 +131,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":4,
 		"speed":1,
-		"att":330
+		"att":330,
+		"matt":330
 	},
 	"prefix":false
 },
@@ -139,7 +142,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":4,
 		"speed":1,
-		"att":190
+		"att":190,
+		"matt":190
 	},
 	"prefix":false
 },
@@ -160,7 +164,8 @@ var g_scrolls = [
 		"balance":2,
 		"speed":2,
 		"crit":1,
-		"att":110
+		"att":110,
+		"matt":110
 	},
 	"prefix":true
 },
@@ -175,7 +180,8 @@ var g_scrolls = [
 	"locations":["rings"] ,
 	"stats":{
 		"balance":2,
-		"att":100
+		"att":100,
+		"matt":100
 	},
 	"prefix":true
 },
@@ -288,7 +294,8 @@ var g_scrolls = [
 	"types":["light"],
 	"stats":{
 		"crit":3,
-		"att":-250
+		"att":-250,
+		"matt":-250
 	},
 	"prefix":false
 }

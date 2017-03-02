@@ -396,6 +396,7 @@ var makeDialog = function(name, loc)
 				ret[name] += parseInt(v.val())
 			})
 		})
+		ret["matt"] = ret["att"]
 		return ret
 	})
 	
@@ -424,13 +425,119 @@ var makeDialog = function(name, loc)
 	btnCol.append(max)
 	btnRow.append(btnCol)
 	btnRow.css("padding-top", "0.5em")
-	
-	
+
 	ret.append(btnRow)
 	return ret
 }
 
-function createSquare(id, loc, cb, scrolls)
+function ValueData()
+{
+	this.scrolls = g_scrolls
+	this.items = g_items
+}
+
+function StateManager(statSheetDisplayId, equipId)
+{
+	var rows = 7;
+	var cols = 3;
+	var container = $("<div class='row' />")
+	var view = $("<div class='col-xs-11'/>")
+	
+	for (var row = 0; row < rows; ++row)
+	{
+		var rowEl = $("<div class='row m-big-top-bot'/>")
+		
+		for (var col = 0; col < cols; ++col)
+		{
+			var colEl = $("<div class='col-xs-4'/>")
+						
+			var boxEl = $("<div/>")
+			boxEl.attr('id', "box"+(1+ row*cols+ col) )
+			
+			colEl.append(boxEl)
+			rowEl.append(colEl)
+			
+		}
+		view.append(rowEl)
+	}
+	container.append(view)
+	$("#"+equipId).append(container)
+	this.boxes = []
+	this.vd = new ValueData()
+
+	
+	this.statSheet = createStatsSheet(statSheetDisplayId)
+	
+	this.accumulateBoxes = function()
+	{
+		var stats = {}
+		var boxes = this.boxes
+		$.each(boxes, function(k,v){
+			var boxStats = v.data("stats")
+			if(boxStats)
+			{
+				for (k in boxStats)
+				{
+					if (k in stats)
+					{
+						stats[k] += boxStats[k]
+					}
+					else
+					{
+						stats[k] = boxStats[k]
+					}
+				}
+			}
+		})
+		return stats
+	}
+	
+	this.displayTotals = function ()
+	{
+		var stats = this.accumulateBoxes()
+		var fn = this.statSheet.data('update')
+		fn(stats)
+	}
+
+	this.triggerUpdate = function(el)
+	{
+		this.displayTotals()
+	}
+	
+	this.registerBox = function(box)
+	{
+		this.boxes.push(box)
+	}
+	
+	var i = 1
+
+	createSquare("box"+(i++), "earrings", this)
+	createSquare("box"+(i++), "hat", this)
+	createSquare("box"+(i++), "wings", this)
+	createSquare("box"+(i++), "weapon", this)
+	createSquare("box"+(i++), "chest", this)
+	createSquare("box"+(i++), "offhand", this)
+	createSquare("box"+(i++), "secondary", this)
+	createSquare("box"+(i++), "legs", this)
+	createSquare("box"+(i++), "gloves", this)
+	createSquare("box"+(i++), "belt", this)
+	createSquare("box"+(i++), "feet", this)
+	createSquare("box"+(i++), "brooch", this)
+	createSquare("box"+(i++), "rings", this)
+	createSquare("box"+(i++), "artifact", this)
+	createSquare("box"+(i++), "rings", this)
+	createSquare("box"+(i++), "bracelet", this, false)
+	createSquare("box"+(i++), "", this)
+	createSquare("box"+(i++), "bracelet", this, false)
+	createSquare("box"+(i+2), "necklace", this)
+}
+
+var setOpenOnFocus = function(el)
+{
+	el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
+}
+
+function createSquare(id, loc, mgr, scrolls)
 {	
 	if (scrolls === undefined)
 	{
@@ -440,8 +547,7 @@ function createSquare(id, loc, cb, scrolls)
 	var target = $("#"+id)
 	
 	var box = $("<div class='row' />")
-	//box.css("margin-left","3em")
-	
+
 	var leftBox = $("<div class='col-xs-3'/>")
 	leftBox.css("padding","1px")
 	leftBox.css("margin",0)
@@ -453,14 +559,10 @@ function createSquare(id, loc, cb, scrolls)
 	innerBox.css("padding",0)
 	innerBox.css("margin",0)
 	
-	//target.append(padding)
 	box.append(leftBox)
 	box.append(innerBox)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
-	//leftBox.css("float", "left")
-	
-	//innerBox.css("float", "left")
 	innerBox.css("height", "8em")
 	innerBox.css("width", "8em")
 	innerBox.css("border-style", "solid")
@@ -468,7 +570,7 @@ function createSquare(id, loc, cb, scrolls)
 	innerBox.css("background-size", "cover")
 	target.append(box)
 	   
-	if (!loc || !(loc in g_items))
+	if (!loc || !(loc in mgr.vd.items))
 	{
 		var overlay = $("<div />")
 		overlay.css("background-color", "rgba(0,0,0,0.5)")
@@ -539,7 +641,7 @@ function createSquare(id, loc, cb, scrolls)
 		var txt = formatStats(stats)
 		$("#console").html(txt)
 		
-		cb(box)
+		mgr.triggerUpdate(box)
 		return true
 	}
 	
@@ -662,10 +764,7 @@ function createSquare(id, loc, cb, scrolls)
 		}
 	}
 	
-	var setOpenOnFocus = function(el)
-	{
-		el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
-	}
+
 	
 	var setBlur = function(loc)
 	{
@@ -699,18 +798,18 @@ function createSquare(id, loc, cb, scrolls)
 	setOpenOnFocus(suffix)
 	suffix.on('blur', setBlur('suffix'))
 	
-	var src = $.map(g_items[loc], function(k,v) {
+	var src = $.map(mgr.vd.items[loc], function(k,v) {
 		return k.name
 	})
 
 	item.autocomplete($.extend({},sharedOpts,
 	{
 		source:src, 
-		"close": propSet("item", g_items[loc]),
+		"close": propSet("item", mgr.vd.items[loc]),
 		"open": openCb(g_lookups[loc])
 	}))
 	// TODO: set this on other boxes too
-	item.on('change', propSet("item", g_items[loc]))
+	item.on('change', propSet("item", mgr.vd.items[loc]))
 	item.on('blur', setBlur('item'))
 	setOpenOnFocus(item)
 	
@@ -823,31 +922,10 @@ function createSquare(id, loc, cb, scrolls)
 		*/
 	}
 	
+	mgr.registerBox(box)
 	return box
 }
 
-function accumulateBoxes(boxes)
-{
-	var stats = {}
-	$.each(boxes, function(k,v){
-		var boxStats = v.data("stats")
-		if(boxStats)
-		{
-			for (k in boxStats)
-			{
-				if (k in stats)
-				{
-					stats[k] += boxStats[k]
-				}
-				else
-				{
-					stats[k] = boxStats[k]
-				}
-			}
-		}
-	})
-	return stats
-}
 
 function createStatSection(inputs, statName)
 {
@@ -888,6 +966,7 @@ function createStatSection(inputs, statName)
 			thisCol.css("margin-right", 0)
 		
 			var balInput = createInputBox(statName, [statName, ""+cellNum] , "70%", null)
+			balInput.addClass(statName+"-input")
 			balInput.css("margin-right", "0.2em")
 			balInput.attr("title", balTips[cellNum])
 			balInput.tooltip()
@@ -907,7 +986,7 @@ function createStatSection(inputs, statName)
 }
 
 // id is a col
-function createStatsSheet(id, stats)
+function createStatsSheet(id)
 {
 	// base stats
 	
@@ -921,6 +1000,13 @@ function createStatsSheet(id, stats)
 		return ret
 	}
 	var statsDiv = $("<div class='col-xs-6'/>")
+	
+	var charaRow = $("<div class='row' />")
+	var charaSelect = createInputBox("character", ["character"] , "100%", null)
+	
+	charaRow.css("margin-right", "0.18em")
+	charaRow.append(charaSelect)
+	statsDiv.append(charaRow)
 	
 	var critSecLabel = $("<div class='row stat-head'>Crit from...</div>")
 	var critSpec = {
@@ -975,54 +1061,29 @@ function createStatsSheet(id, stats)
 	.append(balLabel)
 	.append(balRow)
 	
-	var strLabel  = $("<div class='row stat-head'>Str in stats page</div>")
-	var strSpec = {
-		"tips" : [
-			"Total str from all equipment (stay tuned for updates that help you calculate this!)"
-		],
-		"defaults": [
-			2500
-		],
-		"labels": [
-			"Total Str",
-		]
-	}
-	var strRow = createStatSection(strSpec, "str")
-	var strInput = strRow.data('inputs')[0]
-
-
-	statsDiv
-	.append(strLabel)
-	.append(strRow)
+	var specificStats = $("<div class='container-fluid' />")
+	specificStats.css("margin",0)
+	specificStats.css("padding",0)
 	
-	var attLabel  = $("<div class='row stat-head'>Other sources of Att</div>")
-	var attSpec = {
-		"tips" : [
-			"Outfitter gives some Att (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
-			"Einrach titles give some Att (silver: +84, gold:176)",
-			"Other sources of att (eg Bracelets that I haven't implemented)",
-			"VIP gives 171 att if you are maxed level. I think?"
-		],
-		"defaults": [
-			500,
-			176,
-			0,
-			0
-			
-		],
-		"labels": [
-			"Outfitter",
-			"Ein",
-			"Other",
-			"VIP etc"
-		]
-	}
-	var attRow = createStatSection(attSpec, "att")
-	var attInputs = attRow.data('inputs')
-
-	statsDiv
-	.append(attLabel)
-	.append(attRow)
+	statsDiv.append(specificStats)
+	
+	
+	
+	
+	
+	var chara = ""
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	var statRowString = "<div class='row m-top-bot' />"
 	var target = $("#"+id)
@@ -1086,39 +1147,202 @@ function createStatsSheet(id, stats)
 		
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
-		var gearAtt = Math.floor(stats.att||0)
-		//statCol.html("Gear Att: " + gearAtt)
 		row.append(statCol)
 		//statsWrap.append(row)
 		target.data('stats',stats)
 		
 		row = $(statRowString)
 		statCol = $("<div class='col-xs-6'/>")
-		var baseAtt = 485
-		var otherAtt = 0
-		$.each(attInputs, function(k,v)
+		
+		if(chara == "Fiona")
+		{			
+			var gearAtt = Math.floor(stats.att||0)
+
+			var baseAtt = 485
+			var otherAtt = 0
+			$.each($(".att-input"), function(k,v)
+			{
+				otherAtt += valOf($(v))
+			})
+			var totalAtt = Math.floor(valOf($(".str-input"))*2.7 + gearAtt) + baseAtt + otherAtt
+			statCol.html("Total Att: " + (totalAtt) + "(beta/estimate)")
+			row.append(statCol)
+			statsWrap.append(row)
+		}
+		else
 		{
-			otherAtt += valOf(v)
-		})
-		var totalAtt = Math.floor(valOf(strInput)*2.7 + gearAtt) + baseAtt + otherAtt
-		statCol.html("Total Att: " + (totalAtt) + "(beta/estimate)")
-		row.append(statCol)
-		statsWrap.append(row)
+			var basemAtt = 700
+			var othermAtt = 0
+			$.each($(".matt-input"), function(k,v)
+			{
+				othermAtt += valOf($(v))
+			})
+			var gearmAtt = Math.floor(stats.matt||0)
+			var totalmAtt = Math.floor(valOf($(".int-input"))*2 + gearmAtt) + basemAtt + othermAtt
+			statCol.html("Total Att: " + (totalmAtt) + "(beta/estimate)")
+			row.append(statCol)
+			statsWrap.append(row)
+		}
 
 		target.data('stats',stats)
 	}
-	writeStats(stats)
+	writeStats({crit:0, bal:0, speed:0})
 	target.data('update', writeStats)
 	
-	var allStatBoxes = [balInput, strInput, balInput2]
+	var allStatBoxes = [balInput, balInput2]
 	allStatBoxes = allStatBoxes.concat(critInputs)
-	allStatBoxes = allStatBoxes.concat(attInputs)
 	
 	$.each(allStatBoxes, function(k,v){
 		v.on('change', function(){
 			writeStats(target.data('stats'))
 		})
 	})
+	
+	
+	var initStats = function()
+	{
+		if (chara == $(this).val())
+		{
+			return
+		}
+		chara = $(this).val()
+		specificStats.empty()
+		
+		var theseInputs = []
+		if(chara == "Fiona")
+		{
+			var strLabel  = $("<div class='row stat-head'>Str in stats page</div>")
+			var strSpec = {
+				"tips" : [
+					"Total str from all equipment (stay tuned for updates that help you calculate this!)"
+				],
+				"defaults": [
+					2500
+				],
+				"labels": [
+					"Total Str",
+				]
+			}
+			var strRow = createStatSection(strSpec, "str")
+			var strInput = strRow.data('inputs')[0]
+
+
+			specificStats
+			.append(strLabel)
+			.append(strRow)
+			
+			var attLabel  = $("<div class='row stat-head'>Other sources of Att</div>")
+			var attSpec = {
+				"tips" : [
+					"Outfitter gives some Att (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
+					"Einrach titles give some Att (silver: +84, gold:176)",
+					"Other sources of att (eg Bracelets that I haven't implemented)",
+					"VIP gives 171 att if you are maxed level. I think?"
+				],
+				"defaults": [
+					500,
+					176,
+					0,
+					0
+					
+				],
+				"labels": [
+					"Outfitter",
+					"Ein",
+					"Other",
+					"VIP etc"
+				]
+			}
+			var attRow = createStatSection(attSpec, "att")
+			var attInputs = attRow.data('inputs')
+			
+			specificStats
+			.append(attLabel)
+			.append(attRow)
+			
+			theseInputs = attInputs.concat([strInput])
+		}
+		else if (chara == "Ebie")
+		{
+			var intLabel  = $("<div class='row stat-head'>Int in stats page</div>")
+			var intSpec = {
+				"tips" : [
+					"Total int from all equipment (stay tuned for updates that help you calculate this!)"
+				],
+				"defaults": [
+					2500
+				],
+				"labels": [
+					"Total Int",
+				]
+			}
+			var intRow = createStatSection(intSpec, "int")
+			var intInput = intRow.data('inputs')[0]
+
+
+			specificStats
+			.append(intLabel)
+			.append(intRow)
+			
+			var mattLabel  = $("<div class='row stat-head'>Other sources of mAtt</div>")
+			var mattSpec = {
+				"tips" : [
+					"Outfitter gives some mAtt (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
+					"Einrach titles give some mAtt (silver: +84, gold:176)",
+					"Other sources of mAtt (eg Bracelets that I haven't implemented)",
+					"VIP gives 171 mAtt if you are maxed level. I think?",
+					"Evie gets 700 free mAtt because I hate her"
+				],
+				"defaults": [
+					500,
+					176,
+					0,
+					0,
+					700
+					
+				],
+				"labels": [
+					"Outfitter",
+					"Ein",
+					"Other",
+					"VIP etc",
+					"Magic mastery"
+				]
+			}
+			var mattRow = createStatSection(mattSpec, "matt")
+			var mattInputs = mattRow.data('inputs')
+			
+			specificStats
+			.append(mattLabel)
+			.append(mattRow)
+			
+			theseInputs = mattInputs.concat([intInput])
+		}
+		
+		$.each(theseInputs, function(k,v){
+			v.on('change', function(){
+				writeStats(target.data('stats'))
+			})
+		})
+		writeStats(target.data('stats'))
+	}
+	
+	var sharedOpts = 
+	{
+		delay: 100,
+		minLength: 0,
+		position: {my:"top", at :"bottom"},		
+		messages: {
+			noResults: '',
+			results: function() {}
+		},
+		source: g_characters,
+		change: initStats,
+		"close": initStats,
+	//	"open": openCb(g_scrollLookup)
+	}
+	charaSelect.autocomplete(sharedOpts)
+	setOpenOnFocus(charaSelect)
 	
 	return target	
 }

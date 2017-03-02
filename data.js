@@ -1,3 +1,8 @@
+var g_characters = [
+	"Fiona",
+	"Ebie"
+]
+
 var g_qualityStats = {
 	"str":true,
 	"wil":true,
@@ -56,42 +61,48 @@ var g_enhancementEffects = {
 		"name" : "+10",
 		"stats": {
 			"speed":15,
-			"att":1000
+			"att":1000,
+			"matt":1000
 		}
 	},
 	{
 		"name" : "+11",
 		"stats": {
 			"speed":19,
-			"att":1500
+			"att":1500,
+			"matt":1500
 		}
 	},
 	{
 		"name" : "+12",
 		"stats": {
 			"speed":23,
-			"att":2000
+			"att":2000,
+			"matt":2000
 		}
 	},
 	{
 		"name" : "+13",
 		"stats": {
 			"speed":28,
-			"att":2600
+			"att":2600,
+			"matt":2600
 		}
 	},
 	{
 		"name" : "+14",
 		"stats": {
 			"speed":33,
-			"att":3300
+			"att":3300,
+			"matt":3300
 		}
 	},
 	{
 		"name" : "+15",
 		"stats": {
 			"speed":38,
-			"att":4100
+			"att":4100,
+			"matt":4100
 		}
 	}
 	]

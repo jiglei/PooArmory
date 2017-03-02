@@ -17,13 +17,6 @@
 <link rel="stylesheet" type="text/css" href="poo.css"></link>
 <script type="text/javascript">
 var boxes = []
-var statSheet
-function displayTotals(boxes)
-{
-	var stats = accumulateBoxes(boxes)
-	var fn = statSheet.data('update')
-	fn(stats)
-}
 
 function gatherInputs()
 {
@@ -33,59 +26,7 @@ function gatherInputs()
 
 $(document).ready( function()
 {
-	statSheet = createStatsSheet("endDisplay", {crit:0, bal:0, speed:0})
-
-	var update = function()
-	{
-		displayTotals(boxes)
-	}
-	
-	var rows = 7;
-	var cols = 3;
-	var container = $("<div class='row' />")
-	var view = $("<div class='col-xs-11'/>")
-	
-	for (var row = 0; row < rows; ++row)
-	{
-		var rowEl = $("<div class='row m-big-top-bot'/>")
-		
-		for (var col = 0; col < cols; ++col)
-		{
-			var colEl = $("<div class='col-xs-4'/>")
-						
-			var boxEl = $("<div/>")
-			boxEl.attr('id', "box"+(1+ row*cols+ col) )
-			
-			colEl.append(boxEl)
-			rowEl.append(colEl)
-			
-		}
-		view.append(rowEl)
-	}
-	container.append(view)
-	$("#equip").append(container)
-	var i = 1
-	boxes = [
-		createSquare("box"+(i++), "earrings", update),
-		createSquare("box"+(i++), "hat", update),
-		createSquare("box"+(i++), "wings", update),
-		createSquare("box"+(i++), "weapon", update),
-		createSquare("box"+(i++), "chest", update),
-		createSquare("box"+(i++), "offhand", update),
-		createSquare("box"+(i++), "secondary", update),
-		createSquare("box"+(i++), "legs", update),
-		createSquare("box"+(i++), "gloves", update),
-		createSquare("box"+(i++), "belt", update),
-		createSquare("box"+(i++), "feet", update),
-		createSquare("box"+(i++), "brooch", update),
-		createSquare("box"+(i++), "rings", update),
-		createSquare("box"+(i++), "artifact", update),
-		createSquare("box"+(i++), "rings", update),
-		createSquare("box"+(i++), "bracelet", update, false),
-		createSquare("box"+(i++), "", update),
-		createSquare("box"+(i++), "bracelet", update, false),
-		createSquare("box"+(i+2), "necklace", update)
-	]
+	var s = new StateManager("endDisplay", "equip")
 	
 	$("#state").attr("title", "Copy this to a friend (who should paste it in their browser's address bar) to share a build!")
 	$("#state").tooltip()
