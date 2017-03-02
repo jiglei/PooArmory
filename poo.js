@@ -764,8 +764,6 @@ function createSquare(id, loc, mgr, scrolls)
 		}
 	}
 	
-
-	
 	var setBlur = function(loc)
 	{
 		return function()
@@ -1004,20 +1002,34 @@ var writeStatSection = function(jParentEl, specList)
 	return theseInputs
 }
 
+var valOf = function(el)
+{
+	var ret = parseInt(el.val())
+	if (isNaN(ret))
+	{
+		return 0
+	}
+	return ret
+}
+
+var g_statRowString = "<div class='row m-top-bot' />"
+// returns a row
+var makeStatDiv = function(statLabel, baseStat, inputArray)
+{
+	row = $(g_statRowString)
+	var statCol = $("<div class='col-xs-6'/>")
+	var inputs= inputArray
+	var additional = inputs.reduce(function(total, e){ return total + valOf($(e)) }, 0)
+
+	statCol.html(statLabel+ ": " + ((baseStat||0) + additional))
+	row.append(statCol)
+	return row
+}
+
 // id is a col
 function createStatsSheet(id)
 {
 	// base stats
-	
-	var valOf = function(el)
-	{
-		var ret = parseInt(el.val())
-		if (isNaN(ret))
-		{
-			return 0
-		}
-		return ret
-	}
 	var statsDiv = $("<div class='col-xs-6'/>")
 	
 	var charaRow = $("<div class='row' />")
@@ -1037,8 +1049,6 @@ function createStatsSheet(id)
 	
 	var chara = ""
 	
-	
-	var statRowString = "<div class='row m-top-bot' />"
 	var target = $("#"+id)
 	target.html("")
 	target.css("background-color","#aaaaaa")
@@ -1051,7 +1061,7 @@ function createStatsSheet(id)
 	target.append(nameRow)
 	
 	// row for picture and title?
-	var row = $(statRowString)
+	var row = $(g_statRowString)
 	var picdiv = $("<div class='col-xs-6'/>")
 	var pic = $("<div />")
 	pic.css("background-image", "url('resource/a_cute_poo.png')")
@@ -1077,36 +1087,19 @@ function createStatsSheet(id)
 	var writeStats = function(stats)
 	{
 		statsWrap.html(" ")
-		row = $(statRowString)
-		var statCol = $("<div class='col-xs-6'/>")
-		var balInputs = $(".bal-input").toArray()
-		var addlBal = balInputs.reduce(function(total, e){ return total + valOf($(e)) }, 0)
+		
+		var row = makeStatDiv("Bal", stats.balance, $(".bal-input").toArray())
+		statsWrap.append(row)
+		
+		var row = makeStatDiv("Crit", 3+(stats.crit||0), $(".crit-input").toArray())
+		statsWrap.append(row)
+		
+		var row = makeStatDiv("Speed", (stats.speed||0), [])
+		statsWrap.append(row)
 
-		statCol.html("Bal: " + ((stats.balance||0) + addlBal))
-		row.append(statCol)
-		statsWrap.append(row)
-		
-		row = $(statRowString)
-		statCol = $("<div class='col-xs-6'/>")
-		var critInputs = $(".crit-input").toArray()
-		var addlCrit = 3 + critInputs.reduce(function(total, e){ return total + valOf($(e)) }, 0)
-		
-		statCol.html("Crit: " + ( (stats.crit||0) + addlCrit ))
-		row.append(statCol)
-		statsWrap.append(row)
-		
-		row = $(statRowString)
-		statCol = $("<div class='col-xs-6'/>")
-		statCol.html("Speed: " + (stats.speed||0))
-		row.append(statCol)
-		statsWrap.append(row)
-		
-		row = $(statRowString)
-		statCol = $("<div class='col-xs-6'/>")
-		row.append(statCol)
 		target.data('stats',stats)
 		
-		row = $(statRowString)
+		var row = $(g_statRowString)
 		statCol = $("<div class='col-xs-6'/>")
 		
 		if(chara == "Fiona")

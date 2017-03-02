@@ -64,6 +64,16 @@ var g_scrolls = [
 	"prefix":false
 },
 {
+	"name":"Spirited",
+	"locations":["weapon"],
+	"stats":{
+		"crit":6,
+		"att":680,
+		"matt":680
+	},
+	"prefix":false
+},
+{
 	"name":"Ornate",
 	"locations":["weapon"],
 	"types":["longhammer"],
