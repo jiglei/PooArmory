@@ -335,15 +335,14 @@ var makeDialog = function(name, loc)
 	// piece 
 	var	pieceHead = makeColWithWidth(headWidth)
 	pieceHead.html("Part")
-	pieceHead.css("text-align", "right")
-	pieceHead.css("font-weight", 'bold')
+	pieceHead.addClass("piece-head")
 	headings.append(pieceHead)
 	// headings for each stat
 	var inputs = {}
 	$.each(stats, function(name, v){
 		var statHead = makeColWithWidth(width)
 		statHead.html(toTitleCase(name))
-		statHead.css("font-weight", 'bold')
+		statHead.addClass("stat-head")
 		headings.append(statHead)
 		inputs[name] = []
 	})
@@ -351,9 +350,7 @@ var makeDialog = function(name, loc)
 	$.each(frags, function(k,frag){
 		var row = $("<div class = 'row' />")
 		var piece = makeColWithWidth(headWidth)
-		piece.css("margin-left", 0)
-		piece.css("padding-left", 0)
-		piece.css("text-align","right")
+		piece.addClass("piece")
 		piece.html(frag.name)
 		row.append(piece)
 		$.each(stats, function(stat){
@@ -549,33 +546,19 @@ function createSquare(id, loc, mgr, scrolls)
 	var box = $("<div class='row' />")
 
 	var leftBox = $("<div class='col-xs-3'/>")
-	leftBox.css("padding","1px")
-	leftBox.css("margin",0)
-	leftBox.css("z-index",100)
-	leftBox.css("overflow","visible")
+	leftBox.addClass("equip-box-left")
 	var innerBox = $("<div class='col-xs-9'/>")
-	innerBox.css("border-style",'solid')
-	innerBox.css("border-color", "black")
-	innerBox.css("padding",0)
-	innerBox.css("margin",0)
-	
+	innerBox.addClass("equip-box-right")
 	box.append(leftBox)
 	box.append(innerBox)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
-	innerBox.css("height", "8em")
-	innerBox.css("width", "8em")
-	innerBox.css("border-style", "solid")
-	innerBox.css("background-image", "url('resource/poo.png')")
-	innerBox.css("background-size", "cover")
 	target.append(box)
 	   
 	if (!loc || !(loc in mgr.vd.items))
 	{
 		var overlay = $("<div />")
-		overlay.css("background-color", "rgba(0,0,0,0.5)")
-		overlay.css("height", "100%")
-		overlay.css("weight", "100%")
+		overlay.addClass("overlay-blacked-out")
 		innerBox.append(overlay)
 		return box
 	}
@@ -871,10 +854,7 @@ function createSquare(id, loc, mgr, scrolls)
 		
 		var star = String.fromCharCode(0x2605)
 		var qual = createInputBox(star, [loc, "quality"])
-		qual.css("overflow","visible")
-		qual.css("text-align", "center")
-		qual.css("margin-top", "1px")
-		qual.css("margin-left", "1px")
+		qual.addClass("quality-square")
 		qual.autocomplete($.extend({},sharedOpts,
 		{
 			source : [1+star, 2+star, 3+star, 4+star, 5+star],
@@ -891,9 +871,7 @@ function createSquare(id, loc, mgr, scrolls)
 	if (loc in g_enhanceable)
 	{
 		var enh = createInputBox('+', [loc, "enh"])
-		enh.css("overflow","visible")
-		enh.css("text-align", "center")
-		enh.css("margin-left", "1px")
+		enh.addClass("enhance-square")
 		enh.autocomplete($.extend({},sharedOpts,
 		{
 			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
@@ -948,13 +926,7 @@ function createStatSection(inputs, statName)
 			}
 			var thisCol = $("<div class='col-xs-6' />")
 			
-			thisCol.css("padding-top", 0)
-			thisCol.css("padding-left", 0)
-			thisCol.css("padding-right", 0)
-			
-			thisCol.css("margin-top", 0)
-			thisCol.css("margin-left", 0)
-			thisCol.css("margin-right", 0)
+			thisCol.addClass(".no-padding-l-r-t")
 		
 			var balInput = createInputBox(statName, [statName, ""+cellNum] , "70%", null)
 			balInput.addClass(statName+"-input")
@@ -1057,16 +1029,7 @@ function createStatsSheet(id)
 	var row = $(g_statRowString)
 	var picdiv = $("<div class='col-xs-6'/>")
 	var pic = $("<div />")
-	pic.css("background-image", "url('resource/a_cute_poo.png')")
-	pic.css("background-size", "cover")
-	pic.css("background-position", "10%")
-	pic.css("background-color", "pink")
-
-	pic.css("width", "100%")
-	pic.css("display", "block")
-	pic.css("padding-top", "100%")
-	
-	pic.css("border-style", "solid")
+	pic.addClass("main-pic")
 	
 	picdiv.append(pic)
 	row.append(picdiv)

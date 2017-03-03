@@ -70,3 +70,75 @@ body{
 .stat-head{
 	font-weight:bold;
 }
+
+.piece-head{
+	text-align: right;
+	font-weight: bold;
+}
+
+.piece{
+	margin-left: 0px;
+	padding-left: 0px;
+	text-align: right;
+}
+
+.equip-box-right{
+	height: 8em;
+	width: 8em;
+	border-style: solid;
+	background-image: url('resource/poo.png');
+	background-size: cover;
+	border-color:black;
+	padding:0px;
+	margin:0px;
+}
+
+.overlay-blacked-out{
+	background-color:rgba(0,0,0,0.5);
+	height:100%;
+	width:100%;
+}
+
+.equip-box-left{
+	padding:1px;
+	margin:0px;
+	overflow:visible;
+	z-index:100;
+}
+
+.quality-square{
+	overflow:visible;
+	text-align:center;
+	margin-top:1px;
+	margin-left:1px;
+}
+
+.enhance-square{
+	overflow:visible;
+	text-align:center;
+	margin-left:1px;
+}
+
+.no-padding-l-r-t{
+	padding-top:0px;
+	padding-left:0px;
+	padding-right:0px;
+	
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+}
+
+.main-pic{
+	
+	background-image: url('resource/a_cute_poo.png');
+	background-size: cover;
+	background-position: 10%;
+	background-color: pink;
+
+	width:100%;
+	display:block;
+	padding-top: 100%;
+	
+	border-style:solid;
+}
