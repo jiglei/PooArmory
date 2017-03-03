@@ -38,7 +38,7 @@ var g_scrolls = [
 	"stats":{
 		"balance":5,
 		"speed":4,
-		"att": 130,
+		"att": 130
 		"matt": 119
 	},
 	"prefix":false
@@ -113,7 +113,7 @@ var g_scrolls = [
 	"stats":{
 		"balance":1,
 		"speed":2,
-		"crit":1,
+		"crit":1
 		"critres":-1
 	},
 	"prefix":true
@@ -143,7 +143,7 @@ var g_scrolls = [
 	"locations":["chest"] ,
 	"stats":{
 		"balance":-1,
-		"crit":5,
+		"crit":5
 		"critres":5
 	},
 	"prefix":false
@@ -254,7 +254,7 @@ var g_scrolls = [
 {	"name":"Passion",
 	"locations":all_acc ,
 	"stats":{
-		"def": 200,
+		"def": 200
 		"stamina":2
 	},
 	"prefix":false

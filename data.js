@@ -138,102 +138,151 @@ var g_major_infusions = [
 
 var g_chests = [
 	{
-		"name":"Silky poo",
+		"name":"Lugh Lamhfada",
 		"type":"cloth"
 	},
 	{
-		"name":"Light poo",
+		"name":"Terminus Sentinel",
 		"type":"light"
 	},
 	{
-		"name":"Heavy poo",
+		"name":"Braha",
 		"type":"heavy"
 	},
 	{
-		"name":"Stone poo",
+		"name":"Regina",
 		"type":"plate"
 	}
 ]
 
 var g_legs = [
 	{
-		"name":"Silky poo skirt",
+		"name":"Lugh Lamhfada",
 		"type":"cloth"
 	},
 	{
-		"name":"Light poo skirt",
+		"name":"Terminus Sentinel",
 		"type":"light"
 	},
 	{
-		"name":"Heavy poo pants",
+		"name":"Braha",
 		"type":"heavy"
 	},
 	{
-		"name":"Stone poo leg armor",
+		"name":"Regina",
 		"type":"plate"
 	}
 ]
 
 var g_feet = [
 	{
-		"name":"Silky poo heels",
+		"name":"Lugh Lamhfada",
 		"type":"cloth"
 	},
 	{
-		"name":"Light poo shoes",
+		"name":"Terminus Sentinel",
 		"type":"light"
 	},
 	{
-		"name":"Heavy poo boots",
+		"name":"Braha",
 		"type":"heavy"
 	},
 	{
-		"name":"Stone poo greaves",
+		"name":"Regina",
 		"type":"plate"
 	}
 ]
 
 var g_gloves = [
 	{
-		"name":"Silky poo gloves",
+		"name":"Lugh Lamhfada",
 		"type":"cloth"
 	},
 	{
-		"name":"Light poo gloves",
+		"name":"Terminus Sentinel",
 		"type":"light"
 	},
 	{
-		"name":"Heavy poo gauntlets",
+		"name":"Braha",
 		"type":"heavy"
 	},
 	{
-		"name":"Stone poo gauntlets",
+		"name":"Regina",
 		"type":"plate"
 	}
 ]
 
 var g_hats = [
 	{
-		"name":"Silky poo hat",
+		"name":"Lugh Lamhfada",
 		"type":"cloth"
 	},
 	{
-		"name":"Light poo hat",
+		"name":"Terminus Sentinel",
 		"type":"light"
 	},
 	{
-		"name":"Heavy poo hat",
+		"name":"Braha",
 		"type":"heavy"
 	},
 	{
-		"name":"Stone poo hat",
+		"name":"Regina",
 		"type":"plate"
 	}
 ]
 
 var g_rings = [
 	{
-		"name":"Ring of Poo"
+		"name":"Thunder Ring"
+	},
+	{
+		"name":"Crescent Moon Announcement"
+	},
+	{
+		"name":"Crescent Moonlight Ring"
+	},
+	{
+		"name":"Ocean Depths Monster"
+	},
+	{
+		"name":"Cold Thorn",
+		"stats":{
+			"balance": 1,
+			"str": 140,
+			"agi": 70,
+			"wil": 80,
+			"hp": 125
+		}
+	},
+	{
+		"name":"Cold Dagger",
+		"stats":{
+			"balance": 1,
+			"str": 140,
+			"agi": 70,
+			"wil": 80,
+			"hp": 125
+		}
+	},
+	{
+		"name":"Cold Desire",
+		"stats":{
+			"balance": 1,
+			"int": 180,
+			"agi": 70,
+			"wil": 80,
+			"hp": 125
+		}
+	},
+	{
+		"name":"Cold Witch",
+		"stats":{
+			"balance": 1,
+			"int": 180,
+			"agi": 70,
+			"wil": 80,
+			"hp": 125
+		}
 	}
 ]
 
@@ -260,11 +309,11 @@ var g_artifacts  = [
 
 var g_offhands = [
 	{
-		"name":"Shield of Poo",
+		"name":"Shield",
 		"type":"smallshield"
 	},
 	{
-		"name":"Dictionary of Poos",
+		"name":"Fomorian Book",
 		"type":"book",
 		"stats":{
 			"crit":3
@@ -274,10 +323,17 @@ var g_offhands = [
 
 var g_earrings = [
 	{
-		"name":"Poo earring"
+		"name":"Earrings"
 	},
 	{
-		"name":"Tears of poo",
+		"name":"Innocent Cry",
+		"stats":{
+			"crit":1
+		}
+
+	},
+	{
+		"name":"Innocent Tear",
 		"stats":{
 			"crit":1
 		}
@@ -286,16 +342,16 @@ var g_earrings = [
 
 var g_brooches = [
 	{
-		"name":"Shit Poo"
+		"name":"Brooch"
 	},
 	{
-		"name":"Blue Poo brooch",
+		"name":"Blue Kitty brooch",
 		"stats":{
 			"crit":1
 		}
 	},
 	{
-		"name":"White Poo brooch",
+		"name":"White Kitty brooch",
 		"stats":{
 			"speed":2
 		}
@@ -310,10 +366,10 @@ var g_bracelets = [
 
 var g_necklaces = [
 	{
-		"name":"Blue poo necklace",
+		"name":"Blue Kitty Necklace",
 	},
 	{
-		"name":"Poo necklace",
+		"name":"Kitty Necklace",
 	}
 ]
 
