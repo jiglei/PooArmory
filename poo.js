@@ -916,7 +916,7 @@ function createStatSection(inputs, statName)
 	
 	for (var rowNum = 0; rowNum < numRows; rowNum++)
 	{		
-		var balRow = $("<div class='row' > </div>")
+		var balRow = $("<div class='row no-padding-container' > </div>")
 		for (var i = 0; i < colsPerRow; ++i)
 		{
 			var cellNum = rowNum*colsPerRow + i
@@ -926,7 +926,7 @@ function createStatSection(inputs, statName)
 			}
 			var thisCol = $("<div class='col-xs-6' />")
 			
-			thisCol.addClass(".no-padding-l-r-t")
+			thisCol.addClass("no-padding-l-r-t")
 		
 			var balInput = createInputBox(statName, [statName, ""+cellNum] , "70%", null)
 			balInput.addClass(statName+"-input")
