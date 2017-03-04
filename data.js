@@ -360,7 +360,7 @@ var g_brooches = [
 
 var g_bracelets = [
 	{
-		"name":"10k"
+		"name":"Bracelet"
 	}
 ]
 

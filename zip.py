@@ -9,6 +9,7 @@ from urllib.request import Request, urlopen
 def min(filename):
 	url = 'https://javascript-minifier.com/raw' # Set destination URL here
 	input = open(filename).read()
+	
 	post_fields = {'input': input}     # Set POST fields here
 
 	request = Request(url, urlencode(post_fields).encode())

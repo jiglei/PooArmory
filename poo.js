@@ -28,6 +28,26 @@ var g_locations =
 	"necklace":12
 }
 
+var g_scrollable = 
+{
+	"earrings": true,
+	"hat": true,
+	"wings": false,
+	"weapon": true,
+	"chest": true,
+	"offhand": true,
+	"secondary":false,
+	"legs": true,
+	"gloves": true,
+	"belt": true,
+	"feet": true,
+	"brooch": true,
+	"rings": true,
+	"artifact": true,
+	"bracelet": false,
+	"necklace": true
+}
+
 var g_types =
 {
 	"weapon":["longsword","longhammer"],
@@ -44,7 +64,7 @@ function createLookup(arr)
 {
 	ret = {}
 	$.each(arr, function(k,v){
-		ret[v.name] = v
+		ret[v.name.toLowerCase()] = v
 	})
 	return ret
 }
@@ -431,10 +451,12 @@ function ValueData()
 {
 	this.scrolls = g_scrolls
 	this.items = g_items
+	this.itemLookups = g_lookups
 }
 
 function StateManager(statSheetDisplayId, equipId)
 {
+	var _this = this;
 	var rows = 7;
 	var cols = 3;
 	var container = $("<div class='row' />")
@@ -506,27 +528,51 @@ function StateManager(statSheetDisplayId, equipId)
 		this.boxes.push(box)
 	}
 	
-	var i = 1
+	var squares = [
+		"earrings",
+		"hat",
+		"wings",
+		"weapon",
+		"chest",
+		"offhand",
+		"secondary",
+		"legs",
+		"gloves",
+		"belt",
+		"feet",
+		"brooch",
+		"rings",
+		"artifact",
+		"rings",
+		"bracelet",
+		undefined,
+		"bracelet",
+		undefined,
+		undefined,
+		"necklace"
+	]
+	
+	this.ids = {}
+	
+	this.getIdFor = function(loc)
+	{
+		if (!(loc in this.ids))
+		{
+			this.ids[loc] = 0
+		}
+		
+		this.ids[loc] += 1
+		
+		return loc + "-" + this.ids[loc]
+	}
 
-	createSquare("box"+(i++), "earrings", this)
-	createSquare("box"+(i++), "hat", this)
-	createSquare("box"+(i++), "wings", this)
-	createSquare("box"+(i++), "weapon", this)
-	createSquare("box"+(i++), "chest", this)
-	createSquare("box"+(i++), "offhand", this)
-	createSquare("box"+(i++), "secondary", this)
-	createSquare("box"+(i++), "legs", this)
-	createSquare("box"+(i++), "gloves", this)
-	createSquare("box"+(i++), "belt", this)
-	createSquare("box"+(i++), "feet", this)
-	createSquare("box"+(i++), "brooch", this)
-	createSquare("box"+(i++), "rings", this)
-	createSquare("box"+(i++), "artifact", this)
-	createSquare("box"+(i++), "rings", this)
-	createSquare("box"+(i++), "bracelet", this, false)
-	createSquare("box"+(i++), "", this)
-	createSquare("box"+(i++), "bracelet", this, false)
-	createSquare("box"+(i+2), "necklace", this)
+	for (var i = 0; i < squares.length; ++i)
+	{
+		if(squares[i])
+		{
+			$("#box"+(i+1)).append(createSquare(squares[i], this))
+		}
+	}
 }
 
 var setOpenOnFocus = function(el)
@@ -534,16 +580,34 @@ var setOpenOnFocus = function(el)
 	el.on("focus", function(){	$(this).autocomplete("search", $(this).val())})
 }
 
-function createSquare(id, loc, mgr, scrolls)
-{	
-	if (scrolls === undefined)
+var requiresDialogue = function (loc, entry)
+{
+	if (loc == "bracelet")
 	{
-		scrolls = true
+		return true
 	}
 	
-	var target = $("#"+id)
+	if (loc == "weapon")
+	{
+		if ('level' in entry && entry["level"] >= 90)
+		{
+			return true
+		}
+	}
 	
+	return false
+}
+
+function dialogExists(selector)
+{
+	return $(selector).length && $(selector).dialog("isOpen")
+}
+
+function createSquare(loc, mgr)
+{
+	var id = mgr.getIdFor(loc)
 	var box = $("<div class='row' />")
+	box.attr("id", id)
 
 	var leftBox = $("<div class='col-xs-3'/>")
 	leftBox.addClass("equip-box-left")
@@ -553,7 +617,6 @@ function createSquare(id, loc, mgr, scrolls)
 	box.append(innerBox)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
-	target.append(box)
 	   
 	if (!loc || !(loc in mgr.vd.items))
 	{
@@ -629,74 +692,86 @@ function createSquare(id, loc, mgr, scrolls)
 	}
 	
 	// arrayOfItems should be g_scrolls or g_items[loc]
-	var propSet = function(key, arrayOfItems)
+	var propSet = function(key, entryLookup)
 	{
 		return function(){
 			var name = $(this).val().toLowerCase()
-			var entry = null
-			$.each(arrayOfItems, function(k,v)
-			{
-				if (v.name.toLowerCase() == name)
-				{
-					entry = v
-					return false 
-				}
-			})
+			var entry = entryLookup[name]
+			
 			if(!entry)
 			{
 				box.removeData(key)
+				return
 			}
-			else if ('level' in entry && entry['level'] >= 90)
+			
+			var existing = box.data(key)
+			var canSetStats = !requiresDialogue(loc, entry)
+			if(canSetStats)
 			{
-				// I really hate this bit
-				var dialogId = makeDialogId(loc)
-				var dialogSel = '#'+dialogId
-				
-				if( $(dialogSel).length && $(dialogSel).dialog("isOpen") )
+				box.data(key, entry)
+			}
+			else
+			{
+				var tempEntry = JSON.parse(JSON.stringify(entry))
+				delete tempEntry["stats"]
+				box.data(key, tempEntry)
+			}
+			
+			if (requiresDialogue(loc, entry))
+			{
+				var input = $(this)
+				var dia = input.data("dialog")
+				if(dia)
 				{
-					return
+					if( dia.dialog("isOpen") )
+					{
+						return
+					}
+					else
+					{
+						
+						var existingLevel = 0
+						if (existing)
+						{
+							existingLevel = existing.level||0
+						}
+						
+						if (entry['level'] != existingLevel)
+						{
+							input.removeData("dialog")
+						}
+					}
 				}
 				
-				var x = $(this)
-				var existing = box.data(key)
-				box.data(key, {})
-				x.blur()
-				var existingLevel = 0
-				if (existing)
-				{
-					existingLevel = existing.level||0
-				}
-				
-				if (entry['level'] != existingLevel)
-				{
-					$(dialogSel).remove()
-				}
-				
-				if(!$(dialogSel).length)
+				if(!input.data("dialog"))
 				{
 					var dialog = makeDialog(entry.name, loc)	
+					input.data("dialog", dialog)
+					input.blur()
 					dialog.dialog( {
 						"dialogClass" : "no-close",
 						"close": function(){
 									var userEntry = JSON.parse(JSON.stringify(entry))
 									userEntry["stats"] = dialog.data("getStats")()
 									box.data(key, userEntry)
+									
 									update()
-									x.next().focus()			
+									input.next().focus()			
 								} , 
 						"modal":true,
 						"width" : ((1+dialog.data("numCols")) * 6) + "em"
-						})
+					})
+					
 				}
-				if( !$(dialogSel).dialog("isOpen") )
+				else
 				{
-					$(dialogSel).dialog("open")
-					return
+					if( !dia.dialog("isOpen") )
+					{
+						dia.dialog("open")
+						return
+					}
 				}
-			}
-			else
-			{
-				box.data(key, entry)
+				// I really hate this bit
 			}
 			update()
 		}
@@ -762,8 +837,8 @@ function createSquare(id, loc, mgr, scrolls)
 	prefix.autocomplete($.extend({},sharedOpts,
 	{
 		source: scrollSource(true),
-		change: propSet("prefix", g_scrolls),
-		"close": propSet("prefix", g_scrolls),
+		change: propSet("prefix", g_scrollLookup),
+		"close": propSet("prefix", g_scrollLookup),
 		"open": openCb(g_scrollLookup)
 	}))
 	setOpenOnFocus(prefix)
@@ -772,8 +847,8 @@ function createSquare(id, loc, mgr, scrolls)
 	suffix.autocomplete($.extend({},sharedOpts,
 	{
 		source: scrollSource(false),
-		change: propSet("suffix", g_scrolls),
-		"close": propSet("suffix", g_scrolls),
+		change: propSet("suffix", g_scrollLookup),
+		"close": propSet("suffix", g_scrollLookup),
 		"open": openCb(g_scrollLookup)
 	}))
 	setOpenOnFocus(suffix)
@@ -786,11 +861,11 @@ function createSquare(id, loc, mgr, scrolls)
 	item.autocomplete($.extend({},sharedOpts,
 	{
 		source:src, 
-		"close": propSet("item", mgr.vd.items[loc]),
-		"open": openCb(g_lookups[loc])
+		"close": propSet("item", mgr.vd.itemLookups[loc]),
+		"open": openCb(mgr.vd.itemLookups[loc])
 	}))
 	// TODO: set this on other boxes too
-	item.on('change', propSet("item", mgr.vd.items[loc]))
+	item.on('change', propSet("item", mgr.vd.itemLookups[loc]))
 	item.on('blur', setBlur('item'))
 	setOpenOnFocus(item)
 	
@@ -832,7 +907,7 @@ function createSquare(id, loc, mgr, scrolls)
 	
 	innerBox.append(prefix)
 	innerBox.append(suffix)
-	if(!scrolls)
+	if(!g_scrollable[loc])
 	{
 		prefix.attr("disabled","disabled")
 		prefix.css("background-color","gray")
@@ -858,8 +933,8 @@ function createSquare(id, loc, mgr, scrolls)
 		qual.autocomplete($.extend({},sharedOpts,
 		{
 			source : [1+star, 2+star, 3+star, 4+star, 5+star],
-					change: propSet("quality", g_qualityEffects[loc]),
-					"close": propSet("quality", g_qualityEffects[loc]),
+					change: propSet("quality", g_qualityLookups[loc]),
+					"close": propSet("quality", g_qualityLookups[loc]),
 					"open": openCb(g_qualityLookups[loc])
 		}))
 		qual.val(2+star)
@@ -875,8 +950,8 @@ function createSquare(id, loc, mgr, scrolls)
 		enh.autocomplete($.extend({},sharedOpts,
 		{
 			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
-					change: propSet("enh", g_enhancementEffects[loc]),
-					"close": propSet("enh", g_enhancementEffects[loc]),
+					change: propSet("enh", g_enhanceLookups[loc]),
+					"close": propSet("enh", g_enhanceLookups[loc]),
 					"open": openCb(g_enhanceLookups[loc])
 		}))
 		setOpenOnFocus(enh)
@@ -1055,7 +1130,7 @@ function createStatsSheet(id)
 
 		target.data('stats',stats)
 		
-		var attStat = g_attackStats[chara]
+		var attStat = g_attackStats[chara] || 'att'
 		var base = g_baseAtt[attStat]		
 		var gear = Math.floor(stats[attStat]||0)
 		var fromStat = 0
