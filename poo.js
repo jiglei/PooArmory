@@ -695,13 +695,14 @@ function createSquare(loc, mgr)
 	var propSet = function(key, entryLookup)
 	{
 		return function(){
+			
 			var name = $(this).val().toLowerCase()
 			var entry = entryLookup[name]
 			
 			if(!entry)
 			{
 				box.removeData(key)
-				return
+				return true
 			}
 			
 			var existing = box.data(key)
@@ -719,61 +720,64 @@ function createSquare(loc, mgr)
 			
 			if (requiresDialogue(loc, entry))
 			{
+				// I really hate this bit
 				var input = $(this)
+				
 				var dia = input.data("dialog")
-				if(dia)
+				if(input.data("hasDialog"))
 				{
-					if( dia.dialog("isOpen") )
+					 if(dia.dialog("isOpen"))
+					 {
+						return true
+					 }
+					 
+					var existingLevel = -1
+					if (existing)
 					{
-						return
+						existingLevel = existing.level||-1
 					}
-					else
+					
+					// need to re-init the dialog 
+					if ("level" in entry && entry['level'] != existingLevel)
 					{
-						
-						var existingLevel = 0
-						if (existing)
-						{
-							existingLevel = existing.level||0
-						}
-						
-						if (entry['level'] != existingLevel)
-						{
-							input.removeData("dialog")
-						}
+						input.removeData("dialog")
+						input.data("hasDialog", false)
 					}
 				}
 				
 				if(!input.data("dialog"))
 				{
-					var dialog = makeDialog(entry.name, loc)	
-					input.data("dialog", dialog)
-					input.blur()
-					dialog.dialog( {
+					dia = makeDialog(entry.name, loc)	
+					input.data("dialog", dia)
+					dia.dialog( {
+						"autoOpen" : false,
 						"dialogClass" : "no-close",
-						"close": function(){
+						"beforeClose": function(){
 									var userEntry = JSON.parse(JSON.stringify(entry))
-									userEntry["stats"] = dialog.data("getStats")()
+									userEntry["stats"] = dia.data("getStats")()
 									box.data(key, userEntry)
+									input.next().focus()
 									
-									update()
-									input.next().focus()			
 								} , 
+						"close": function(){
+									update()
+									
+								},
 						"modal":true,
-						"width" : ((1+dialog.data("numCols")) * 6) + "em"
+						"width" : ((1+dia.data("numCols")) * 6) + "em"
 					})
-					
+					input.data("hasDialog", true)
 				}
-				else
+				
+				if( input.data("hasDialog") && !dia.dialog("isOpen") )
 				{
-					if( !dia.dialog("isOpen") )
-					{
-						dia.dialog("open")
-						return
-					}
+					input.blur()
+					dia.dialog("open")
+					return true
 				}
-				// I really hate this bit
 			}
 			update()
+			return true
 		}
 	}
 
