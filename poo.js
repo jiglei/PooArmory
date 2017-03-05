@@ -213,7 +213,7 @@ function loadFromUrl()
 function loadFromJson(j)
 {
 	j = JSON.parse(LZString.decompressFromBase64(j))
-	
+	var inputsWithDialogs = []
 	$.each(j, function(i, v)
 	{
 		var id = v[0]
@@ -223,14 +223,18 @@ function loadFromJson(j)
 		target.val(val)
 		target.trigger("change")
 		target.trigger("blur")
+		if(target.data("hasDialog"))
+		{
+			target.data("dialog").dialog("close")
+			inputsWithDialogs.push(target)
+		}
 	})
-	
-	$(".MyDialog").dialog("close")
-	
+	$.each(inputsWithDialogs, function(i,v){
+		v.data("pullDialogStats")()
+	})
 	var activeObj = document.activeElement
 	
 	$(activeObj).trigger("blur")
-
 }
 
 function passFilter(loc, type, scr, prefix)
@@ -410,7 +414,7 @@ var makeGeneralDialog = function(name, loc, id)
 		row.append(piece)
 		$.each(stats, function(stat){
 			var inputCol = makeColWithWidth(width)
-			var input = createInputBox('', [loc, component.name, stat], null, null)
+			var input = createInputBox('', [id, component.name, stat], null, null)
 			input.css('maxwidth', "100%")
 			input.css('width', "100%")
 			if ('stats' in component && stat in component.stats){
@@ -692,11 +696,12 @@ function dialogExists(selector)
 
 var dialogCompatible = function(existingEntry, entry, loc)
 {		 
-	var existingLevel = -1
-	if (existingEntry)
+	if(!existingEntry)
 	{
-		existingLevel = existingEntry.level||-1
+		return false
 	}
+	var existingLevel = -1
+	existingLevel = existingEntry.level||-1
 	
 	// need to re-init the dialog 
 	if(loc == "weapon")
@@ -814,6 +819,7 @@ function createSquare(loc, mgr)
 			if(!entry)
 			{
 				box.removeData(key)
+				update()
 				return true
 			}
 			
@@ -857,20 +863,20 @@ function createSquare(loc, mgr)
 						"autoOpen" : false,
 						"dialogClass" : "no-close",
 						"beforeClose": function(){
-									var userEntry = JSON.parse(JSON.stringify(entry))
-									userEntry["stats"] = dia.data("getStats")()
-									box.data(key, userEntry)
 									input.next().focus()
 									
 								} , 
 						"close": function(){
-									update()
-									
+									input.data("pullDialogStats")()
 								},
 						"modal":true,
 						"width" : ((1+dia.data("numCols")) * 6) + "em"
 					})
 					input.data("hasDialog", true)
+					input.data("pullDialogStats", function(){
+						box.data(key)["stats"] = dia.data("getStats")()
+						update()
+					})
 				}
 				
 				if( input.data("hasDialog") && !dia.dialog("isOpen") )
