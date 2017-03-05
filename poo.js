@@ -627,11 +627,25 @@ var makeGeneralDialog = function(name, loc, id)
 	return ret
 }
 
-function ValueData()
+function ValueData(chara)
 {
 	this.scrolls = g_scrolls
-	this.items = g_items
+	this.items = Object.assign({}, g_items)
 	this.itemLookups = g_lookups
+	var specifics = {"weapon":true, "offhand": true}
+	for (k in specifics)
+	{
+		this.items[k] = this.items[k].filter(function(el)
+		{
+			if (!el.type || !chara)
+			{
+				return true
+			}
+			return el.type in g_weaponTypes[chara]
+		})
+
+		this.itemLookups[k] = createLookup(this.items[k])
+	}
 }
 
 function StateManager(statSheetDisplayId, equipId)
@@ -665,7 +679,20 @@ function StateManager(statSheetDisplayId, equipId)
 	this.vd = new ValueData()
 
 	
-	this.statSheet = createStatsSheet(statSheetDisplayId)
+	this.statSheet = createStatsSheet(statSheetDisplayId, function(el)
+	{
+		if(_this.isReady)
+		{
+			var chara = el.data("chara")
+
+			_this.vd = new ValueData(chara)
+			if ("weapon" in _this.squares)
+			{
+				_this.squares["weapon"].data("refreshData")()
+				_this.squares["offhand"].data("refreshData")()
+			}
+		}
+	})
 	
 	this.accumulateBoxes = function()
 	{
@@ -745,14 +772,21 @@ function StateManager(statSheetDisplayId, equipId)
 		
 		return loc + "-" + this.ids[loc]
 	}
+	
+	this.squares = {
+	}
 
 	for (var i = 0; i < squares.length; ++i)
 	{
 		if(squares[i])
 		{
-			$("#box"+(i+1)).append(createSquare(squares[i], this))
+			var sq = createSquare(squares[i], this)
+			this.squares[squares[i]] = sq
+			$("#box"+(i+1)).append(sq)
 		}
 	}
+	
+	this.isReady = true
 }
 
 var setOpenOnFocus = function(el)
@@ -1003,7 +1037,7 @@ function createSquare(loc, mgr)
 		return function(e,ui) {			
 			var x = $(".ui-menu-item-wrapper")
 			$.each(x, function(k,v){
-				var data = lookupMap[v.innerHTML]
+				var data = lookupMap[v.innerHTML.toLowerCase()]
 				if(data)
 				{
 					$(v).attr("title", formatStats(data.stats))
@@ -1016,7 +1050,7 @@ function createSquare(loc, mgr)
 	var sharedOpts = {
 		delay: 100,
 		minLength: 0,
-		position: {my:"left center", at :"right center"},		
+		position: {my:"left center", at :"right center"},
 		messages: {
 			noResults: '',
 			results: function() {}
@@ -1055,18 +1089,23 @@ function createSquare(loc, mgr)
 	setOpenOnFocus(suffix)
 	suffix.on('blur', setBlur('suffix'))
 	
-	var src = $.map(mgr.vd.items[loc], function(k,v) {
-		return k.name
-	})
+	var refreshData = function()
+	{	
+		var src = $.map(mgr.vd.items[loc], function(k,v) {
+			return k.name
+		})
 
-	item.autocomplete($.extend({},sharedOpts,
-	{
-		source:src, 
-		"close": propSet("item", mgr.vd.itemLookups[loc]),
-		"open": openCb(mgr.vd.itemLookups[loc])
-	}))
-	// TODO: set this on other boxes too
-	item.on('change', propSet("item", mgr.vd.itemLookups[loc]))
+		item.autocomplete($.extend({},sharedOpts,
+		{
+			source:src, 
+			"close": propSet("item", mgr.vd.itemLookups[loc]),
+			"open": openCb(mgr.vd.itemLookups[loc])
+		}))
+		// TODO: set this on other boxes too
+		item.on('change', propSet("item", mgr.vd.itemLookups[loc]))
+	}
+	box.data("refreshData", refreshData)
+	refreshData()
 	item.on('blur', setBlur('item'))
 	setOpenOnFocus(item)
 	
@@ -1261,7 +1300,7 @@ var makeStatDiv = function(statLabel, baseStat, inputArray)
 }
 
 // id is a col
-function createStatsSheet(id)
+function createStatsSheet(id, onChange)
 {
 	// base stats
 	var statsDiv = $("<div class='col-xs-6'/>")
@@ -1281,9 +1320,9 @@ function createStatsSheet(id)
 	
 	statsDiv.append(specificStats)
 	
-	var chara = ""
 	
 	var target = $("#"+id)
+	target.data("chara", "")
 	target.html("")
 	target.css("background-color","#aaaaaa")
 	target.css("border-style", "solid")
@@ -1324,7 +1363,7 @@ function createStatsSheet(id)
 
 		target.data('stats',stats)
 		
-		var attStat = g_attackStats[chara] || 'att'
+		var attStat = g_attackStats[target.data("chara")] || 'att'
 		var base = g_baseAtt[attStat]		
 		var gear = Math.floor(stats[attStat]||0)
 		var fromStat = 0
@@ -1352,15 +1391,15 @@ function createStatsSheet(id)
 	
 	var initStats = function()
 	{
-		if (chara == $(this).val())
+		if (target.data("chara") == $(this).val())
 		{
 			return
 		}
-		chara = $(this).val()
+		target.data("chara", $(this).val())
 		specificStats.empty()
 		
 
-		var theseInputs = writeStatSection(specificStats, g_charaStats[chara])
+		var theseInputs = writeStatSection(specificStats, g_charaStats[target.data("chara")])
 		
 		$.each(theseInputs, function(k,v){
 			v.on('change', function(){
@@ -1368,6 +1407,10 @@ function createStatsSheet(id)
 			})
 		})
 		writeStats(target.data('stats'))
+		if(onChange)
+		{
+			onChange(target)
+		}
 	}
 	
 	var sharedOpts = 

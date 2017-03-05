@@ -3,6 +3,20 @@ var g_characters = [
 	"Ebie"
 ]
 
+var g_weaponTypes = {
+	"Fiona":{
+		"longsword":true,
+		"long_hammer":true,
+		"smallshield":true,
+		"largeshield":true
+	},
+	"Ebie":{
+		"staff" :true,
+		"battle_scythe" :true,
+		"book": true
+	}
+}
+
 var g_attackStats = {
 	"Fiona" : "att",
 	"Ebie" : "matt",
