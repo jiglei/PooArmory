@@ -398,57 +398,162 @@ var g_quality = {
 }
 
 var g_weaponFragments = {
-	"Regina" : { 
-		"speed" : [3,4],
-		"att": [6584, 7080]
+	"Regina" : {
+		"name" : "Regina",
+		"stats": {
+			"speed" : [3,4],
+			"att": [6584, 7080]
+		}
 	},
-	"Braha" : { 
-		"speed" : [3,4],
-		"att": [6584, 7080]
+	"Braha" : {
+		"name" : "Braha",
+		"stats":{
+			"speed" : [3,4],
+			"att": [6584, 7080]
+		}
 	},
 	"Terminus" : { 
-		"speed" : [3,4],
-		"att": [6584, 7080]
+		"name" :"Terminus",
+		"stats":{
+			"speed" : [3,4],
+			"att": [6584, 7080]
+		}
 	},
 	"Lugh" : { 
-		"speed" : [3,4],
-		"att": [6584, 7080]
+		"name" : "Lugh",
+		"stats":{
+			"speed" : [3,4],
+			"att": [6584, 7080]
+		}
 	},
 	
 	"Perfect" : {
-		"att": [4390, 4720]
+		"name" : "Perfect",
+		"stats":{
+			"att": [4390, 4720]
+		}
 	},
 	"Keen" : {
-		"balance": [27,30],
-		"crit": [28,31]
+		"name" : "Keen",
+		"stats":{
+			"balance": [27,30],
+			"crit": [28,31]
+		}
 	},
 	"Stable" : {
-		"balance": [41,45]
+		"name" :"Stable",
+		"stats":{
+			"balance": [41,45]
+		}
 	},
 	"Lightweight" : {
-		"crit": [19,21],
-		"speed": [4,5]
+		"name" : "Lightweight",
+		"stats":{
+			"crit": [19,21],
+			"speed": [4,5]
+		}
 	},
-	
 	"Dullahan": {
-		"speed": [3],
-		"att": [8258,8880]
+		"name" : "Dullahan",
+		"stats":{
+			"speed": [3],
+			"att": [8258,8880]
+		}
 	},
 	"C.Perfect" : {
-		"att" : [5506,5920]
+		"name" : "C.Perfect",
+		"stats":{
+			"att" : [5506,5920]
+		}
 	},
 	"C.Keen" : {
-		"balance": [24,27],
-		"crit": [36,40]
+		"name" : "C.Keen",
+		"stats":{
+			"balance": [24,27],
+			"crit": [36,40]
+		}
 	},
 	"C.Stable" : {
-		"balance": [37,41]
+		"name" : "C.Stable",
+		"stats":{
+			"balance": [37,41]
+		}
 	},
 	"C.Lightweight" : {
-		"crit": [24,27],
-		"speed": [4,5]
+		"name" : "C.Lightweight",
+		"stats":{
+			"crit": [24,27],
+			"speed": [4,5]
+		}
 	}
 }
+
+var g_braceGems = {
+	"ruby" : {
+		"name" : "Ruby",
+		"stats" : {
+			"att": [25,115],
+			"matt": [25,115],
+			"def": [25,115],
+			"hp": [75,650]
+		},
+	},
+	"emerald" : {
+		"name":"Emerald",
+		"stats":{
+			"att": [25,115],
+			"matt": [25,115],
+			"def": [50,583],
+			"hp": [25,115]
+		}
+	},
+	"sapphire" : {
+		"name":"Sapphire",
+		"stats":{
+			"att": [25,115],
+			"matt": [50,505],
+			"def": [25,115],
+			"hp": [25,115]
+		}
+	},
+	"diamond" : {
+		"name": "Diamond",
+		"stats":{
+			"att": [50,503],
+			"matt": [25,115],
+			"def": [25,115],
+			"hp": [25,115]
+		}
+	}	
+}
+var braceSideComment = "Up to 25 for a normal gem, 70 for a Fine, 115 for a Superior"
+var g_braceGemComments = {
+	"ruby" : {
+		"att": braceSideComment,
+		"matt": braceSideComment,
+		"def": braceSideComment,
+		"hp": "75-250 for a normal gem,\n 175-450 for a Fine,\n 300-650 for a Superior"
+	},
+	"emerald" : {
+		"att": braceSideComment,
+		"matt": braceSideComment,
+		"def": "50-225 for a normal gem, 150-450 for a Fine, 275-583 for a Superior",
+		"hp": braceSideComment,
+	},
+	"sapphire" : {
+		"att": braceSideComment,
+		"matt": "50-175 for a normal gem, 125-350 for a Fine, 250-505 for a Superior",
+		"def": braceSideComment,
+		"hp": braceSideComment,
+	},
+	"diamond" : {
+		"att": "50-175 for a normal gem, 125-350 for a Fine, 250-503 for a Superior",
+		"matt": braceSideComment,
+		"def": braceSideComment,
+		"hp": braceSideComment,
+	}	
+}
+
 
 var g_weaponSide = {
 	90 : ['Perfect', 'Keen', 'Stable', 'Lightweight'],

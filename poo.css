@@ -142,3 +142,11 @@ body{
 	
 	border-style:solid;
 }
+
+.tooltip
+{
+	z-index:100;
+	position:fixed;
+    max-width: 800px !important; 
+}
+

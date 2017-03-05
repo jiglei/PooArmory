@@ -293,9 +293,9 @@ var getWeaponFragments = function (name)
 	var	ret = []
 	try{
 		var level = g_setLevels[name] || 0
-		ret.push({'name': name, 'stats':g_weaponFragments[name]})
+		ret.push(g_weaponFragments[name])
 		$.each(g_weaponSide[level], function(k,v){
-			ret.push({'name':v, 'stats':g_weaponFragments[v]})
+			ret.push(g_weaponFragments[v])
 		})
 	}catch(err)
 	{
@@ -320,10 +320,10 @@ var makeColWithWidth = function(wid)
 	return ret
 }
 
-var makeDialog = function(name, loc)
+var makeDialog = function(name, loc, id)
 {
-	var ret = $( "<div class='MyDialog' title='Choose your weapon properties'></div>" )
-	ret.attr("id", makeDialogId(loc))
+	var ret = $( "<div class='MyDialog' title='Choose your "+loc+" properties'></div>" )
+	ret.attr("id", id)
 	var container = $("<div class='container-fluid' />")
 	container.css("width", "100%")
 	ret.append(container)
@@ -411,6 +411,177 @@ var makeDialog = function(name, loc)
 			ret[name] = 0
 			$.each(inputBoxes, function(k,v){
 				ret[name] += parseInt(v.val())
+			})
+		})
+		ret["matt"] = ret["att"]
+		return ret
+	})
+	
+	
+	var max = $("<Button>Max</button>")
+	max.click(function(){
+		$.each(inputs, function(name, inputBoxes){
+			$.each(inputBoxes, function(k,v){
+				if(!v.prop('disabled'))
+				{
+					var range = v.data('range')
+					if(range)
+					{
+						v.val(range[range.length-1])
+					}
+				}
+			})
+		})
+	})
+	
+	var btnRow = $("<div class='row'/>")
+	btnRow.append($("<div class='col-xs-8' />"))
+	
+	var btnCol = $("<div class='col-xs-4' />")
+	btnCol.append(btn)
+	btnCol.append(max)
+	btnRow.append(btnCol)
+	btnRow.css("padding-top", "0.5em")
+
+	ret.append(btnRow)
+	return ret
+}
+
+function getComponents(loc, name)
+{
+	if (loc == "weapon")
+	{
+		return getWeaponFragments(guessSetName(name))
+	}
+	if (loc == "bracelet")
+	{
+		return g_braceGems
+	}
+}
+
+function getComments(loc, name)
+{
+	if (loc == "weapon")
+	{
+		return undefined 
+		
+	}
+	if (loc == "bracelet")
+	{
+		return g_braceGemComments
+	}
+}
+
+var makeGeneralDialog = function(name, loc, id)
+{
+	var useDefault = loc != "bracelet"
+	var ret = $( "<div class='MyDialog' title='Choose your "+loc+" properties'></div>" )
+	ret.attr("id", id)
+	var container = $("<div class='container-fluid' />")
+	container.css("width", "100%")
+	ret.append(container)
+	
+	var components = getComponents(loc, name)
+	var comments = getComments(loc, name)
+	if(components.length < 1)
+	{
+		return
+	}
+	
+	var headings = $("<div class = 'row' />")
+	container.append(headings)
+	
+	var stats = {}
+	$.each(components, function(i,component){
+		$.each(component.stats, function(stat, range){
+			stats[stat] = true
+		})
+	})
+	
+	var numCols = Object.keys(stats).length + 1
+	ret.data("numCols", numCols)
+	var width = Math.floor(12/numCols);
+	var headWidth = 12 - width*numCols+width
+	if(headWidth > width)
+	{
+		headWidth -= 1
+	}
+	
+	// piece 
+	var	pieceHead = makeColWithWidth(headWidth)
+	pieceHead.html("Part")
+	pieceHead.addClass("piece-head")
+	headings.append(pieceHead)
+	// headings for each stat
+	var inputs = {}
+	$.each(stats, function(name, v){
+		var statHead = makeColWithWidth(width)
+		statHead.html(toTitleCase(name))
+		statHead.addClass("stat-head")
+		headings.append(statHead)
+		inputs[name] = []
+	})
+	
+	$.each(components, function(k,frag){
+		var row = $("<div class = 'row' />")
+		var piece = makeColWithWidth(headWidth)
+		piece.addClass("piece")
+		piece.html(frag.name)
+		row.append(piece)
+		$.each(stats, function(stat){
+			var inputCol = makeColWithWidth(width)
+			var input = createInputBox('', [loc, frag.name, stat], null, null)
+			input.css('maxwidth', "100%")
+			input.css('width', "100%")
+			if ('stats' in frag && stat in frag.stats){
+				var statRange = frag.stats[stat]
+				if(useDefault)
+				{
+					input.val(Math.floor((statRange[0]+statRange[statRange.length-1])/2))
+				}
+				setSelectAllFocus(input)
+				input.data('range', statRange)
+				if(comments)
+				{
+					input.attr("title", comments[k][stat])
+				}
+				else
+				{
+					input.attr("title", statRange.join(" to "))
+				}
+				input.tooltip({
+					 "classes": {
+						"ui-tooltip-content": "my-ui-tooltip",
+						"ui-tooltip": "my-ui-tooltip"
+					}
+				})
+				input.css('text-align','center')
+				inputs[stat].push(input)
+			}
+			else{
+				input.attr('disabled', 'disabled')
+			}
+			inputCol.append(input)
+			row.append(inputCol)
+			
+		})
+		container.append(row)
+	})
+	var btn = $("<Button >Ok</button>")
+	btn.click(function (k,v) {
+		$(ret).dialog("close")
+	})
+	
+	ret.data('getStats', function(){
+		var ret = {}
+		$.each(inputs, function(name, inputBoxes){
+			ret[name] = 0
+			$.each(inputBoxes, function(k,v){
+				value = v.val()
+				if(value)
+				{
+					ret[name] += parseInt(value)
+				}
 			})
 		})
 		ret["matt"] = ret["att"]
@@ -747,7 +918,7 @@ function createSquare(loc, mgr)
 				
 				if(!input.data("dialog"))
 				{
-					dia = makeDialog(entry.name, loc)	
+					dia = makeGeneralDialog(entry.name, loc, makeDialogId(id))	
 					input.data("dialog", dia)
 					dia.dialog( {
 						"autoOpen" : false,
@@ -959,15 +1130,8 @@ function createSquare(loc, mgr)
 					"open": openCb(g_enhanceLookups[loc])
 		}))
 		setOpenOnFocus(enh)
+		setSelectAllFocus(enh)
 		leftBox.append(enh)
-		
-		/*
-		enh.position({
-			"my": "right top",
-			"at": "left top",
-			"of": item
-		})
-		*/
 	}
 	
 	mgr.registerBox(box)
@@ -1195,6 +1359,7 @@ function createStatsSheet(id)
 	}
 	charaSelect.autocomplete(sharedOpts)
 	setOpenOnFocus(charaSelect)
+	setSelectAllFocus(charaSelect)
 	
 	return target	
 }
