@@ -332,7 +332,177 @@ var g_offhands = [
 		"stats":{
 			"crit":3
 		}
-	}
+	},
+    {
+        "name": "Altar Shield",
+        "sell": 10693,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 43,
+            "def": 916,
+            "speed": 0,
+            "critres": 10,
+            "wil": 30,
+            "agi": 40
+        },
+        "level": 70,
+        "type": "smallshield"
+    },
+    {
+        "name": "Godwing Targe",
+        "sell": 10693,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 26,
+            "def": 1001,
+            "speed": 0,
+            "critres": 11,
+            "wil": 34,
+            "agi": 58
+        },
+        "level": 70,
+        "type": "smallshield"
+    },
+    {
+        "name": "Kraken's Small Shield",
+        "sell": 10693,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 32,
+            "def": 1100,
+            "speed": 0,
+            "critres": 7,
+            "wil": 30,
+            "agi": 50
+        },
+        "level": 70,
+        "type": "smallshield"
+    },
+    {
+        "name": "Majesty Shield",
+        "sell": 10693,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 42,
+            "def": 1243,
+            "speed": 0,
+            "critres": 9,
+            "wil": 27,
+            "agi": 30
+        },
+        "level": 70,
+        "type": "smallshield"
+    },
+    {
+        "name": "Nighthawk Small Shield",
+        "sell": 10693,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 35,
+            "def": 1200,
+            "speed": 0,
+            "critres": 9,
+            "wil": 35,
+            "agi": 45
+        },
+        "level": 70,
+        "type": "smallshield"
+    },
+    {
+        "name": "Armageddon Shield",
+        "sell": 23000,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 50,
+            "def": 1640,
+            "speed": 0,
+            "critres": 7,
+            "wil": 56,
+            "agi": 83
+        },
+        "level": 80,
+        "type": "smallshield"
+    },
+    {
+        "name": "Heremon Small Shield",
+        "sell": 23000,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 55,
+            "def": 1600,
+            "speed": 0,
+            "critres": 6,
+            "wil": 50,
+            "agi": 60
+        },
+        "level": 80,
+        "type": "smallshield"
+    },
+    {
+        "name": "Noblesse Shield",
+        "sell": 23000,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 74,
+            "def": 1414,
+            "speed": 0,
+            "critres": 9,
+            "wil": 52,
+            "agi": 105
+        },
+        "level": 80,
+        "type": "smallshield"
+    },
+    {
+        "name": "Pirate Small Shield",
+        "sell": 23000,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 49,
+            "def": 1540,
+            "speed": 0,
+            "critres": 9,
+            "wil": 63,
+            "agi": 70
+        },
+        "level": 80,
+        "type": "smallshield"
+    },
+    {
+        "name": "Skeleton Shield",
+        "sell": 23000,
+        "rank": "6",
+        "stats": {
+            "int": 0,
+            "wil": 0,
+            "str": 64,
+            "def": 1462,
+            "speed": 0,
+            "critres": 8,
+            "wil": 82,
+            "agi": 90
+        },
+        "level": 80,
+        "type": "smallshield"
+    }
 ]
 
 var g_earrings = [
