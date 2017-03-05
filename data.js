@@ -360,7 +360,16 @@ var g_brooches = [
 
 var g_bracelets = [
 	{
-		"name":"Bracelet"
+		"name":"Bracelet",
+		"components": {
+			"list":["ruby", "emerald", "sapphire", "diamond"]
+		}
+	},
+	{
+		"name":"Bracelet (combined)",
+		"components": {
+			"list":["combined_gem"]
+		}
 	}
 ]
 
@@ -524,7 +533,16 @@ var g_braceGems = {
 			"def": [25,115],
 			"hp": [25,115]
 		}
-	}	
+	},
+	"combined_gem": {
+		"name" : "Total",
+		"stats":{
+			"att": [25,848],
+			"matt": [25, 850],
+			"def": [25, 928],
+			"hp" : [25,995] 
+		}
+	}
 }
 var braceSideComment = "Up to 25 for a normal gem, 70 for a Fine, 115 for a Superior"
 var g_braceGemComments = {

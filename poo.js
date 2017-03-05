@@ -455,7 +455,13 @@ function getComponents(loc, name)
 	}
 	if (loc == "bracelet")
 	{
-		return g_braceGems
+		var list = g_lookups["bracelet"][name.toLowerCase()]["components"]["list"]
+		var ret = []
+		for (var index in list)
+		{
+			ret.push(g_braceGems[list[index]])
+		}
+		return ret
 	}
 }
 
@@ -522,28 +528,29 @@ var makeGeneralDialog = function(name, loc, id)
 		inputs[name] = []
 	})
 	
-	$.each(components, function(k,frag){
+	$.each(components, function(i,component){
 		var row = $("<div class = 'row' />")
 		var piece = makeColWithWidth(headWidth)
 		piece.addClass("piece")
-		piece.html(frag.name)
+		piece.html(component.name)
+		var key = component.name.toLowerCase()
 		row.append(piece)
 		$.each(stats, function(stat){
 			var inputCol = makeColWithWidth(width)
-			var input = createInputBox('', [loc, frag.name, stat], null, null)
+			var input = createInputBox('', [loc, component.name, stat], null, null)
 			input.css('maxwidth', "100%")
 			input.css('width', "100%")
-			if ('stats' in frag && stat in frag.stats){
-				var statRange = frag.stats[stat]
+			if ('stats' in component && stat in component.stats){
+				var statRange = component.stats[stat]
 				if(useDefault)
 				{
 					input.val(Math.floor((statRange[0]+statRange[statRange.length-1])/2))
 				}
 				setSelectAllFocus(input)
 				input.data('range', statRange)
-				if(comments)
+				if(comments && key in comments)
 				{
-					input.attr("title", comments[k][stat])
+					input.attr("title", comments[key][stat])
 				}
 				else
 				{
@@ -551,8 +558,7 @@ var makeGeneralDialog = function(name, loc, id)
 				}
 				input.tooltip({
 					 "classes": {
-						"ui-tooltip-content": "my-ui-tooltip",
-						"ui-tooltip": "my-ui-tooltip"
+						// why doesn't this do anything when populated?
 					}
 				})
 				input.css('text-align','center')
@@ -584,7 +590,10 @@ var makeGeneralDialog = function(name, loc, id)
 				}
 			})
 		})
-		ret["matt"] = ret["att"]
+		if (!("matt" in ret))
+		{
+			ret["matt"] = ret["att"]
+		}
 		return ret
 	})
 	
@@ -774,6 +783,31 @@ function dialogExists(selector)
 	return $(selector).length && $(selector).dialog("isOpen")
 }
 
+var dialogCompatible = function(existingEntry, entry, loc)
+{		 
+	var existingLevel = -1
+	if (existingEntry)
+	{
+		existingLevel = existingEntry.level||-1
+	}
+	
+	// need to re-init the dialog 
+	if(loc == "weapon")
+	{
+		if ("level" in entry && entry['level'] != existingLevel)
+		{
+			return false;
+		}
+	}
+	
+	if(loc == "bracelet")
+	{
+		return entry.name == existingEntry.name
+	}
+	
+	return true;
+}
+
 function createSquare(loc, mgr)
 {
 	var id = mgr.getIdFor(loc)
@@ -866,7 +900,7 @@ function createSquare(loc, mgr)
 	var propSet = function(key, entryLookup)
 	{
 		return function(){
-			
+			var existing = box.data(key)
 			var name = $(this).val().toLowerCase()
 			var entry = entryLookup[name]
 			
@@ -876,7 +910,6 @@ function createSquare(loc, mgr)
 				return true
 			}
 			
-			var existing = box.data(key)
 			var canSetStats = !requiresDialogue(loc, entry)
 			if(canSetStats)
 			{
@@ -897,19 +930,12 @@ function createSquare(loc, mgr)
 				var dia = input.data("dialog")
 				if(input.data("hasDialog"))
 				{
-					 if(dia.dialog("isOpen"))
-					 {
-						return true
-					 }
-					 
-					var existingLevel = -1
-					if (existing)
+					if(dia.dialog("isOpen"))
 					{
-						existingLevel = existing.level||-1
+						return true
 					}
-					
-					// need to re-init the dialog 
-					if ("level" in entry && entry['level'] != existingLevel)
+					 
+					if(!dialogCompatible(existing, entry, loc))
 					{
 						input.removeData("dialog")
 						input.data("hasDialog", false)
