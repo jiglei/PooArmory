@@ -3,6 +3,11 @@ var g_characters = [
 	"Ebie"
 ]
 
+var g_charactersLookup = {
+	"Fiona":"Best class",
+	"Ebie":"Healslut"
+}
+
 var g_weaponTypes = {
 	"Fiona":{
 		"longsword":true,
@@ -770,88 +775,22 @@ var g_setLevels = {
 	"Dullahan": 95
 }
 
-var g_genericStats = [
-	{
-		"label":"Crit from...",
-		"stat":"crit",
-		"spec":{
-			"tips" : [
-				"Crit Mastery adds up to 28 crit",
-				"Each 133.3 Wil gives 1 crit, up to a max of 15 crit  at 2,000 Wil",
-				"Full gold Einrach gives 3 crit, full silver gives 1 crit",
-			"Clearing Neamhain gives up to 5 crit (+1 for 5, +2 for 50, +3 for 75, and +5 for 100 clears)"
-			],
-			"defaults": [
-				28,
-				15,
-				3,
-				5
-			],
-			"labels": [
-				"Mastery",
-				"Wil",
-				"Ein",
-				"Neam"
-			]
-		}
-	},
-	{
-		"label":"Balance from...",
-		"stat":"bal",
-		"spec":{
-			"tips" : [
-				"Full gold at Einrach gives 5 balance; silver gives 3",
-				"You can get 2 bal from Outfit/Avatar if you want to fund Nexon's evil empire"
-			],
-			"defaults": [
-				5,
-				0
-			],
-			"labels": [
-				"Ein",
-				"P2W"
-			]
-		}
-	}
-]
-
 var g_charaStats = {
 	"Fiona":[
-		{
-			"label":"Str in stats page",
-			"stat": "str",
-			"spec": {
-				"tips" : [
-					"Total str from all equipment (stay tuned for updates that help you calculate this!)"
-				],
-				"defaults": [
-					2500
-				],
-				"labels": [
-					"Total Str",
-				]
-			}
-		},
 		{
 			"label": "Other sources of Att",
 			"stat":"att",
 			"spec": {
 				"tips" : [
-					"Outfitter gives some Att (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
-					"Einrach titles give some Att (silver: +84, gold:176)",
-					"Other sources of att (eg Bracelets that I haven't implemented)",
+					"Other sources of att (eg scroll bonuses that I haven't implemented)",
 					"VIP gives 171 att if you are maxed level. I think?"
 				],
 				"defaults": [
-					500,
-					176,
 					0,
 					0
 					
 				],
 				"labels": [
-					"Outfitter",
-					"Ein",
 					"Other",
 					"VIP etc"
 				]
@@ -860,47 +799,168 @@ var g_charaStats = {
 	],
 	"Ebie": [
 		{
-			"label":"Int in stats page",
-			"stat":"int",
-			"spec": {
-				"tips" : [
-					"Total int from all equipment (stay tuned for updates that help you calculate this!)"
-				],
-				"defaults": [
-					3000
-				],
-				"labels": [
-					"Total Int",
-				]
-			}
-		},
-		{
 			"label":"Other sources of mAtt",
 			"stat":"matt",
 			"spec": {
 				"tips" : [
-					"Outfitter gives some mAtt (20 for cheap, 70 for premium pieces, and 150 for having 5 parts equipped)",
-					"Einrach titles give some mAtt (silver: +84, gold:176)",
-					"Other sources of mAtt (eg Bracelets that I haven't implemented)",
+					"Other sources of mAtt (eg scroll bonuses that I haven't implemented)",
 					"VIP gives 171 mAtt if you are maxed level. I think?",
-					"Evie gets 700 free mAtt because I hate her"
 				],
 				"defaults": [
-					500,
-					176,
 					0,
 					0,
-					700
 					
 				],
 				"labels": [
-					"Outfitter",
-					"Ein",
 					"Other",
 					"VIP etc",
-					"Magic mastery"
 				]
 			}
 		}
+	]
+}
+
+var g_einDetail = {
+	"name": "Einrach",
+	"placeholder": "tier",
+	"options": [
+		{
+			"name" : "Bronze",
+			"stats" : {
+				"att": 10,
+				"matt": 10
+			},
+		},
+		{
+			"name" : "Silver",
+			"stats" : {
+				"att": 50,
+				"matt": 50,
+				"balance": 1,
+				"crit": 1
+			}
+		},
+		{
+			"name" : "Silver (no pots)",
+			"stats" : {
+				"att": 50,
+				"matt": 50,
+				"balance": 3,
+				"crit": 1
+			}
+		},
+		{
+			"name" : "Gold",
+			"stats" : {
+				"att": 176,
+				"matt": 176,
+				"balance": 5,
+				"crit": 3
+			}
+		}
+	]
+}
+
+
+var g_neamDetail = {
+	"name": "Neamhain",
+	"placeholder":"run count",
+	"options": [
+		{
+			"name" : "5",
+			"stats" : {
+				"crit": 1,
+			}
+		},
+		{
+			"name" : "25",
+			"stats" : {
+				"HP": 1000,
+				"crit": 1
+			}
+		},
+		{
+			"name" : "50",
+			"stats" : {
+				"HP": 1000,
+				"att": 500,
+				"matt": 500,
+				"crit": 2
+			}
+		},
+		{
+			"name" : "75",
+			"stats" : {
+				"HP": 1000,
+				"att": 500,
+				"matt": 500,
+				"crit": 3,
+				"uncap": 300
+			}
+		},
+				{
+			"name" : "100",
+			"stats" : {
+				"HP": 1000,
+				"att": 1000,
+				"matt": 1000,
+				"crit": 5,
+				"uncap": 300
+			}
+		}
+	]
+}
+
+var g_statComments = {
+	"str" : "1 str grants 2.7 Att",
+	"int" : "1 int grants 2.0 mAtt",
+	"wil": "133 wil grants 1 Crit (up to a max of 2000 wil for 15 crit)",
+	"agi": "2 agi grants 1 Def",
+}
+
+var g_p2wSpec = {
+	"title": "p2w stuff",
+	"id":"p2w",
+	"specs" : [
+		{ 
+			"stat": "att", 
+			"placeholder": "(m)Att", 
+			"caption": "(m)Att",
+			"comment":"Expensive avatar pieces give 70 (m)Att, others give 20. You also get 150 (m)Att for having any 5 avatar pieces equipped",
+			"default":500
+		} ,
+		{ 
+			"stat": "balance", 
+			"placeholder": "balance", 
+			"caption": "Balance",
+			"comment":"Expensive avatar body and skirt give 1 Bal each",
+			"default":2
+		} 
+	]
+}
+
+var g_skillSpecs = {
+	"title": "Passive skills",
+	"id":"passives",
+	"specs" : [
+		{ 
+			"stat": "crit", 
+			"placeholder": "crit", 
+			"caption": "Crit Mastery",
+			"comment":"Crit Mastery grants up to 28 crit",
+			"default":28
+		} 
+	]
+}
+
+var g_charaSpecs = {
+	"Ebie" : [
+		{ 
+			"stat": "matt",
+			"placeholder": "mAtt", 
+			"caption": "Magic Mastery",
+			"comment":"Evie gets 700 free mAtt because I hate her",
+			"default":700
+		} 
 	]
 }

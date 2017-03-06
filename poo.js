@@ -134,6 +134,12 @@ $.each(g_qualityEffects, function(k,v){
 var g_usedIds = {
 }
 
+var disableInput = function(box)
+{
+	box.attr("disabled","disabled")
+	box.addClass("disabled-input")
+}
+
 function createInputBox(placeholder, path, width, height)
 {
 	width = width||"100%"
@@ -181,6 +187,16 @@ function setSelectAllFocus(el)
 	el.focus(function(){
 		$(this)[0].setSelectionRange(0,$(this).val().length)
 	})
+}
+
+var valOf = function(el)
+{
+	var ret = parseInt(el.val())
+	if (isNaN(ret))
+	{
+		return 0
+	}
+	return ret
 }
 
 function dumpToJson()
@@ -514,7 +530,7 @@ function ValueData(chara)
 	{
 		this.items[k] = this.items[k].filter(function(el)
 		{
-			if (!el.type || !chara)
+			if (!el.type || !chara || !(chara in g_weaponTypes))
 			{
 				return true
 			}
@@ -720,6 +736,21 @@ var dialogCompatible = function(existingEntry, entry, loc)
 	return true;
 }
 
+
+var openCb = function(lookupMap){
+	return function(e,ui) {			
+		var x = $(".ui-menu-item-wrapper")
+		$.each(x, function(k,v){
+			var data = lookupMap[v.innerHTML.toLowerCase()]
+			if(data)
+			{
+				$(v).attr("title", formatStats(data.stats))
+				$(v).tooltip()
+			}
+		})
+	}
+}
+
 function createSquare(loc, mgr)
 {
 	var id = mgr.getIdFor(loc)
@@ -912,20 +943,6 @@ function createSquare(loc, mgr)
 		}
 	}
 	
-	var openCb = function(lookupMap){
-		return function(e,ui) {			
-			var x = $(".ui-menu-item-wrapper")
-			$.each(x, function(k,v){
-				var data = lookupMap[v.innerHTML.toLowerCase()]
-				if(data)
-				{
-					$(v).attr("title", formatStats(data.stats))
-					$(v).tooltip()
-				}
-			})
-        }
-	}
-	
 	var sharedOpts = {
 		delay: 100,
 		minLength: 0,
@@ -1028,10 +1045,8 @@ function createSquare(loc, mgr)
 	innerBox.append(suffix)
 	if(!g_scrollable[loc])
 	{
-		prefix.attr("disabled","disabled")
-		prefix.css("background-color","gray")
-		suffix.attr("disabled","disabled")
-		suffix.css("background-color","gray")
+		disableInput(prefix)
+		disableInput(suffix)
 	}
 	innerBox.append(item)
 	
@@ -1154,14 +1169,75 @@ var writeStatSection = function(jParentEl, specList)
 	return theseInputs
 }
 
-var valOf = function(el)
+var setUpValueBox = function(input, stat, def, comment)
 {
-	var ret = parseInt(el.val())
-	if (isNaN(ret))
-	{
-		return 0
+	var update = function()
+	{	
+		var stats = {}
+		stats[stat] = valOf(input)
+		if(stat == "att")
+		{
+			stats["matt"] = stats[stat]
+		}
+		input.data("stats", stats)
+	
+		var cb = input.data("updateCb")
+		if(cb)
+		{
+			cb()
+		}
 	}
-	return ret
+	
+	if(def != undefined)
+	{
+		input.val(def)
+		update()
+	}
+	
+	input.on("change", update)
+	input.data("stat", "att")
+	input.attr("title", comment)
+	input.tooltip()
+	input.css("text-align", "center")
+}
+
+// returns set of input boxes
+var writeStatCategory = function(jParentEl, sectionOpts)
+{
+	var allOpts = sectionOpts.specs
+	
+	var theseInputs = []
+	var label = $("<div class = 'row stat-head' />")
+	label.html(sectionOpts.title)
+	jParentEl.append(label)
+	
+	for (var i in allOpts)
+	{
+		var thisOpts = allOpts[i]
+		
+		var col = $("<div class='col-xs-6' />")
+		col.addClass("no-padding")
+		var thisLabel = $("<div class='row' />")
+		var p = $("<p />")
+		p.html(thisOpts.caption)
+		p.addClass("no-padding")
+		thisLabel.append(p)
+		thisLabel.addClass("no-padding")
+		
+		var inputRow = $("<div class='row' />")
+		var input = createInputBox(thisOpts.placeholder, ["character", sectionOpts.id, thisOpts.caption], "70%", null)
+		inputRow.addClass("no-padding")	
+		
+		setUpValueBox(input, thisOpts.stat, thisOpts["default"], thisOpts.comment)
+		
+		inputRow.append(input)
+		theseInputs.push(input)
+		col.append(thisLabel)
+		col.append(inputRow)
+		jParentEl.append(col)
+	}
+		
+	return theseInputs
 }
 
 var g_statRowString = "<div class='row m-top-bot' />"
@@ -1178,112 +1254,296 @@ var makeStatDiv = function(statLabel, baseStat, inputArray)
 	return row
 }
 
+var makeStatSelection = function(options)
+{
+	var statCol = $("<div class='col-xs-6'/>")
+	statCol.addClass('no-padding')
+	
+	var titleRow = $("<div class='row' />")
+	titleRow.addClass('no-padding')
+	var p =$("<p />")
+	p.html(options["name"])
+	p.addClass('no-padding')
+	
+	titleRow.append(p)
+	
+	var inputRow = $("<div class='row' />")
+	inputRow.addClass('no-padding')
+	
+	var input = createInputBox(options["placeholder"], [options["name"]], "70%", null)
+	var lookup = createLookup(options.options)
+	
+	var update = function()
+	{
+		var val = $(this).val().toLowerCase()
+		var entry = lookup[val]
+		if(entry)
+		{
+			input.data("stats", entry.stats)
+		}
+		else
+		{
+			input.removeData("stats")
+		}
+		
+		var cb = input.data("updateCb")
+		if(cb)
+		{
+			cb()
+		}
+	}
+	
+	input.autocomplete({
+		delay: 100,
+		minLength: 0,
+		messages: {
+			noResults: '',
+			results: function() {}
+		},
+		source: options.options.map(function(el){
+			return el.name
+		}),
+		"open": openCb(lookup),
+		"close": update,
+		change: update
+	})
+	input.css('text-align','center')
+	setOpenOnFocus(input)
+	
+	inputRow.append(input)
+	
+	statCol.append(titleRow)
+	statCol.append(inputRow)
+	
+	statCol.data("input", input)
+	setSelectAllFocus(input)
+	return statCol
+}
+
 // id is a col
+// onChange is really on chara change
 function createStatsSheet(id, onChange)
 {
-	// base stats
-	var statsDiv = $("<div class='col-xs-6'/>")
-	
-	var charaRow = $("<div class='row' />")
-	var charaSelect = createInputBox("character", ["character"] , "100%", null)
-	
-	charaRow.css("margin-right", "0.18em")
-	charaRow.append(charaSelect)
-	statsDiv.append(charaRow)
-	
-	var allStatBoxes =	writeStatSection(statsDiv, g_genericStats)
-	
-	var specificStats = $("<div class='container-fluid' />")
-	specificStats.css("margin",0)
-	specificStats.css("padding",0)
-	
-	statsDiv.append(specificStats)
-	
-	
 	var target = $("#"+id)
 	target.data("chara", "")
 	target.html("")
-	target.css("background-color","#aaaaaa")
-	target.css("border-style", "solid")
+	target.addClass("stat-sheet")
 	
+	// heading of whole stats section
 	var nameRow = $("<div class='row' />")
 	nameRow.html("A poo")
 	nameRow.css("text-align", "center")
 	nameRow.css("font-size", "2em")
 	target.append(nameRow)
 	
-	// row for picture and title?
-	var row = $(g_statRowString)
-	var picdiv = $("<div class='col-xs-6'/>")
-	var pic = $("<div />")
+	// character select
+	var charaRow = $("<div class='row' />")
+	var charaSelect = createInputBox("character", ["character"] , "30%", null)
+	charaSelect.css("margin-left", "0.5em")
+	
+	charaRow.css("margin-right", "0.18em")
+	charaRow.append(charaSelect)
+	
+	target.append(charaRow)
+	
+	// base stats
+	
+	var baseStatsHeader = $(g_statRowString)
+	
+	var baseStatsLabel = $("<p class = 'row stat-head' />")
+	baseStatsLabel.html("Base stats")
+
+	var baseStats = {'str':2500, 'wil':2000, 'agi':undefined, 'int':3000, 'hp':undefined, 'sta':undefined}
+	
+	var baseStatRow = $("<div class='row' />")
+	var baseStatInputs = {}
+	for (var k in baseStats)
+	{
+		var col = $("<div class='col-xs-2' />")
+		col.addClass("no-padding")
+		col.css("text-align",  "center")
+		var thisBox = createInputBox(k, ["character", ["base"], k], "80%", null)
+		thisBox.css("text-align", "center")
+		if(baseStats[k])
+		{
+			thisBox.val(baseStats[k])
+		}
+		else
+		{
+			disableInput(thisBox)
+		}
+		
+		if(g_statComments[k])
+		{
+			thisBox.attr("title", g_statComments[k])
+			thisBox.tooltip()
+		}
+		baseStatInputs[k] = thisBox
+		
+		col.append(thisBox)
+		baseStatRow.append(col)
+	}
+	
+	target.append(baseStatsLabel)
+	target.append(baseStatRow)
+	
+	
+	var rightCol = $("<div class='col-xs-6'/>")
+	rightCol.css("text-align", "center")
+	
+	
+	var inputs = {}
+	
+	var moreBoxes = writeStatCategory(rightCol, g_p2wSpec)
+	inputs["p2w"] = moreBoxes
+	
+	var specificStats = $("<div class='container-fluid' />")
+	specificStats.addClass("no-padding")
+	
+	rightCol.append(specificStats)
+	var yetMoreBoxes = writeStatCategory(specificStats, g_skillSpecs)
+	inputs["passives"] = yetMoreBoxes
+	
+	// this row has 2 columns. left contains pic and achievements, right contains other stats
+	var topRow = $(g_statRowString)
+	var leftCol  = $("<div class='col-xs-6'/>")
+	leftCol.css("text-align", "center")
+	
+	var pic = $("<div class='row'/>")
 	pic.addClass("main-pic")
 	
-	picdiv.append(pic)
-	row.append(picdiv)
-	row.append(statsDiv)
+	leftCol.append(pic)
+	topRow.append(leftCol)
+	topRow.append(rightCol)
 	
-	target.append(row)
+	target.append(topRow)
+	
+	var achievementHeader = $(g_statRowString)
+	
+	var label = $("<p class = 'row stat-head' />")
+	//label.addClass('no-padding')
+	label.html("Achievements")
+	var achievementRow = $(g_statRowString)
+	var neam = makeStatSelection(g_neamDetail)
+	achievementRow.append(neam)
+	var ein = makeStatSelection(g_einDetail)
+	achievementRow.append(ein)
+	var achievements = [neam, ein]
+	rightCol.append(label)
+	rightCol.append(achievementRow)
+	inputs["achievements"] = [neam.data("input"), ein.data("input")]
 	
 	var statsWrap = $("<div class='col-xs-12'/>")
 	target.append(statsWrap)
 	
+	
+	// stats are "external" stats
 	var writeStats = function(stats)
 	{
+		target.data('stats',stats)
+		
 		statsWrap.html(" ")
 		
-		var row = makeStatDiv("Bal", stats.balance, $(".bal-input").toArray())
+		var newStats = Object.assign({}, stats)
+		$.each(inputs, function(source, arr){
+			$.each(arr, function(i, input){
+				
+				var contribution = input.data("stats")
+				if(contribution)
+				{
+					for (var k in contribution)
+					{
+						if (! (k in newStats))
+						{
+							newStats[k] = 0
+						}
+						newStats[k] += contribution[k]
+					}
+				}
+				
+			})
+		})
+		
+		var row = makeStatDiv("Bal", newStats.balance, $(".bal-input").toArray())
+		statsWrap.append(row)
+		var wilCrit = Math.floor(valOf(baseStatInputs["wil"]) *3/400)
+		wilCrit = Math.min(wilCrit, 15)
+		var row = makeStatDiv("Crit", wilCrit+3+(newStats.crit||0), $(".crit-input").toArray())
 		statsWrap.append(row)
 		
-		var row = makeStatDiv("Crit", 3+(stats.crit||0), $(".crit-input").toArray())
-		statsWrap.append(row)
-		
-		var row = makeStatDiv("Speed", (stats.speed||0), [])
+		var row = makeStatDiv("Speed", (newStats.speed||0), [])
 		statsWrap.append(row)
 
-		target.data('stats',stats)
 		
 		var attStat = g_attackStats[target.data("chara")] || 'att'
 		var base = g_baseAtt[attStat]		
-		var gear = Math.floor(stats[attStat]||0)
+		var gear = Math.floor(newStats[attStat]||0)
 		var fromStat = 0
 		if(attStat == "att")
 		{			
-			fromStat = Math.floor(valOf($(".str-input"))*2.7)
+			fromStat = Math.floor(valOf(baseStatInputs["str"])*2.7)
 		}
 		else
 		{
-			fromStat = Math.floor(valOf($(".int-input"))*2)
+			fromStat = Math.floor(valOf(baseStatInputs["int"])*2)
 		}
 		var selector = "." + attStat + "-input"
 		var attRow = makeStatDiv(g_niceStrings[attStat], base+gear+fromStat, $(selector).toArray())
 		statsWrap.append(attRow)
 	}
 	writeStats({crit:0, bal:0, speed:0})
+	
+	// This is what the calling code should call to update
 	target.data('update', writeStats)
 	
-	$.each(allStatBoxes, function(k,v){
+	$.each(inputs, function(source, arr){
+		$.each(arr, function(i, input){
+			input.data('updateCb', function(){
+					writeStats(target.data('stats'))
+			})
+		})
+	})
+	
+	$.each(baseStatInputs, function(k,v){
 		v.on('change', function(){
+			// rewrite with current external stats
 			writeStats(target.data('stats'))
 		})
 	})
 	
+	// This is the onChange for chara select
 	var initStats = function()
 	{
-		if (target.data("chara") == $(this).val())
+		var chara = $(this).val()
+		if (target.data("chara") == chara)
 		{
 			return
 		}
-		target.data("chara", $(this).val())
+		
+		if(chara in g_charactersLookup)
+		{
+			pic.css("background-image", "url('resource/"+chara+".png')")
+		}
+		else
+		{
+			pic.css("background-image", "")
+		}
+		
+		target.data("chara", chara)
 		specificStats.empty()
 		
-
-		var theseInputs = writeStatSection(specificStats, g_charaStats[target.data("chara")])
+		var spec = Object.assign({}, g_skillSpecs)
+		spec["specs"] = spec["specs"].concat(g_charaSpecs[chara] || [])
 		
-		$.each(theseInputs, function(k,v){
-			v.on('change', function(){
+		var yetMoreBoxes = writeStatCategory(specificStats, spec)
+		for (var i in yetMoreBoxes)
+		{
+			yetMoreBoxes[i].data('updateCb', function(){
 				writeStats(target.data('stats'))
 			})
-		})
+		}
+		
+		inputs["passives"] = yetMoreBoxes
 		writeStats(target.data('stats'))
 		if(onChange)
 		{
@@ -1307,6 +1567,8 @@ function createStatsSheet(id, onChange)
 	charaSelect.autocomplete(sharedOpts)
 	setOpenOnFocus(charaSelect)
 	setSelectAllFocus(charaSelect)
+	
+	
 	
 	return target	
 }

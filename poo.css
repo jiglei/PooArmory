@@ -51,6 +51,7 @@ input[type="text"]{
 
 body{
 	background-color:#333333;
+	background-image: url('resource/bg.png')
 }
 
 .no-close .ui-dialog-titlebar-close {
@@ -86,18 +87,6 @@ body{
 	height: 8em;
 	width: 8em;
 	border-style: solid;
-	background-image: url('resource/poo.png');
-	background-size: cover;
-	border-color:black;
-	padding:0px;
-	margin:0px;
-}
-
-#offhand-1 .equip-box-right{
-	height: 8em;
-	width: 8em;
-	border-style: solid;
-	background-image: url('resource/a_cute_poo.png');
 	background-size: cover;
 	border-color:black;
 	padding:0px;
@@ -220,4 +209,10 @@ body{
 }
 #necklace-1 .equip-box-right {
 	background-image: url('resource/necklace.png');
+}
+
+.stat-sheet{
+	border-style:solid;
+	background-color:rgba(0,0,0,0.2);
+	
 }
