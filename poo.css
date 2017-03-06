@@ -171,3 +171,53 @@ body{
 .disabled-input{
 	background-color:gray !important;
 }
+
+
+#weapon-1 .equip-box-right {
+	background-image: url('resource/weapon.png');
+}
+#earrings-1 .equip-box-right {
+	background-image: url('resource/earrings.png')
+}
+#belt-1 .equip-box-right {
+	background-image: url('resource/belt.png');
+}
+#hat-1 .equip-box-right {
+	background-image: url('resource/helm.png');
+}
+#chest-1 .equip-box-right {
+	background-image: url('resource/armor.png');
+}
+#legs-1 .equip-box-right {
+	background-image: url('resource/pants.png');
+}
+#feet-1 .equip-box-right {
+	background-image: url('resource/boots.png');
+}
+#gloves-1 .equip-box-right {
+	background-image: url('resource/hand.png');
+}
+#rings-1 .equip-box-right {
+	background-image: url('resource/ring_1.png');
+}
+#rings-2 .equip-box-right {
+	background-image: url('resource/ring_2.png');
+}
+#brooch-1 .equip-box-right {
+	background-image: url('resource/brooch.png');
+}
+#offhand-1 .equip-box-right {
+	background-image: url('resource/shield.png')
+}
+#artifact-1 .equip-box-right {
+	background-image: url('resource/artefact.png');
+}
+#bracelet-1 .equip-box-right {
+	background-image: url('resource/bracelet.png');
+}
+#bracelet-2 .equip-box-right {
+	background-image: url('resource/bracelet.png');
+}
+#necklace-1 .equip-box-right {
+	background-image: url('resource/necklace.png');
+}
