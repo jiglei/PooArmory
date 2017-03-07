@@ -1528,7 +1528,7 @@ function createStatsSheet(id, onChange)
 		
 		if(chara in g_charactersLookup)
 		{
-			pic.css("background-image", "url('resource/"+chara+".png')")
+			pic.css("background-image", "url('resource/"+chara+".jpg')")
 		}
 		else
 		{
