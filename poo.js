@@ -782,6 +782,8 @@ function createSquare(loc, mgr)
 	
 	var display = $("<div />")
 	display.css("background-color",'white')
+
+	var contributions = ['prefix', 'suffix', 'item', 'inf', 'enh']
 	
 	var update = function ()
 	{
@@ -794,8 +796,6 @@ function createSquare(loc, mgr)
 			attMod = q.stats["Att Mod"]
 			statMod = q.stats["Stat Mod"]
 		}
-	
-		var contributions = ['prefix', 'suffix', 'item', 'inf', 'enh']
 		
 		var stats = {}
 		$.each( box.data(), function(k,v){
@@ -990,7 +990,13 @@ function createSquare(loc, mgr)
 		if (!loc || !(loc in mgr.vd.items) || mgr.vd.items[loc].length == 0)
 		{
 			overlay.addClass("overlay-blacked-out")
+			$("#"+id + " input").val("")
+			for (var i in contributions)
+			{
+				box.removeData(contributions[i])
+			}
 			$("#"+id + " input").hide()
+			update()
 			return 
 		}
 		
