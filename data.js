@@ -918,8 +918,19 @@ var g_statComments = {
 	"agi": "2 agi grants 1 Def",
 }
 
+var g_achievementsSpec = {
+	"title": "Achievements",
+	"simple": false,
+	"id":"ach",
+	"specs" : [
+		g_neamDetail,
+		g_einDetail
+	]
+}
+
 var g_p2wSpec = {
 	"title": "p2w stuff",
+	"simple": true,
 	"id":"p2w",
 	"specs" : [
 		{ 
@@ -942,6 +953,7 @@ var g_p2wSpec = {
 var g_skillSpecs = {
 	"title": "Passive skills",
 	"id":"passives",
+	"simple": true,
 	"specs" : [
 		{ 
 			"stat": "crit", 

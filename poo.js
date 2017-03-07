@@ -1204,37 +1204,49 @@ var setUpValueBox = function(input, stat, def, comment)
 // returns set of input boxes
 var writeStatCategory = function(jParentEl, sectionOpts)
 {
+	var outer = $("<div class='row no-padding' />")
+	var inner = $("<div class='container-fluid no-padding' />")
+	outer.append(inner)
+	jParentEl.append(outer)
 	var allOpts = sectionOpts.specs
 	
 	var theseInputs = []
 	var label = $("<div class = 'row stat-head' />")
 	label.html(sectionOpts.title)
-	jParentEl.append(label)
+	inner.append(label)
 	
 	for (var i in allOpts)
 	{
 		var thisOpts = allOpts[i]
-		
-		var col = $("<div class='col-xs-6' />")
-		col.addClass("no-padding")
-		var thisLabel = $("<div class='row' />")
-		var p = $("<p />")
-		p.html(thisOpts.caption)
-		p.addClass("no-padding")
-		thisLabel.append(p)
-		thisLabel.addClass("no-padding")
-		
-		var inputRow = $("<div class='row' />")
-		var input = createInputBox(thisOpts.placeholder, ["character", sectionOpts.id, thisOpts.caption], "70%", null)
-		inputRow.addClass("no-padding")	
-		
-		setUpValueBox(input, thisOpts.stat, thisOpts["default"], thisOpts.comment)
-		
-		inputRow.append(input)
-		theseInputs.push(input)
-		col.append(thisLabel)
-		col.append(inputRow)
-		jParentEl.append(col)
+		if(sectionOpts.simple)
+		{
+			var col = $("<div class='col-xs-6' />")
+			col.addClass("no-padding")
+			var thisLabel = $("<div class='row' />")
+			var p = $("<p />")
+			p.html(thisOpts.caption)
+			p.addClass("no-padding")
+			thisLabel.append(p)
+			thisLabel.addClass("no-padding")
+			
+			var inputRow = $("<div class='row' />")
+			var input = createInputBox(thisOpts.placeholder, ["character", sectionOpts.id, thisOpts.caption], "70%", null)
+			inputRow.addClass("no-padding")	
+			
+			setUpValueBox(input, thisOpts.stat, thisOpts["default"], thisOpts.comment)
+			
+			inputRow.append(input)
+			theseInputs.push(input)
+			col.append(thisLabel)
+			col.append(inputRow)
+			inner.append(col)
+		}
+		else
+		{
+			var input = makeStatSelection(thisOpts)
+			inner.append(input)
+			theseInputs.push(input.data("input"))
+		}
 	}
 		
 	return theseInputs
@@ -1404,34 +1416,28 @@ function createStatsSheet(id, onChange)
 	var yetMoreBoxes = writeStatCategory(specificStats, g_skillSpecs)
 	inputs["passives"] = yetMoreBoxes
 	
+	var evenMoreBoxes = writeStatCategory(rightCol, g_achievementsSpec)
+	inputs["achievements"] = evenMoreBoxes
 	// this row has 2 columns. left contains pic and achievements, right contains other stats
 	var topRow = $(g_statRowString)
 	var leftCol  = $("<div class='col-xs-6'/>")
 	leftCol.css("text-align", "center")
 	
-	var pic = $("<div class='row'/>")
-	pic.addClass("main-pic")
+	var picRow = $("<div class='row '/>")
+	picRow.css("position", "relative")
+	var pic = $("<div class='main-pic' />")
+	pic.css("position", "relative")
+	pic.css("text-align", "center")
+
+	picRow.append(pic)
 	
-	leftCol.append(pic)
+	leftCol.append(picRow)
 	topRow.append(leftCol)
 	topRow.append(rightCol)
 	
 	target.append(topRow)
 	
 	var achievementHeader = $(g_statRowString)
-	
-	var label = $("<p class = 'row stat-head' />")
-	//label.addClass('no-padding')
-	label.html("Achievements")
-	var achievementRow = $(g_statRowString)
-	var neam = makeStatSelection(g_neamDetail)
-	achievementRow.append(neam)
-	var ein = makeStatSelection(g_einDetail)
-	achievementRow.append(ein)
-	var achievements = [neam, ein]
-	rightCol.append(label)
-	rightCol.append(achievementRow)
-	inputs["achievements"] = [neam.data("input"), ein.data("input")]
 	
 	var statsWrap = $("<div class='col-xs-12'/>")
 	target.append(statsWrap)

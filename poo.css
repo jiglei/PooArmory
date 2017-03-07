@@ -135,14 +135,13 @@ body{
 	background-size: cover;
 	background-position: 10%;
 	background-color: pink;
+	margin: 0 auto;
 
-	width:100%;
+	width:15em;
+	height:15em;
 	display:block;
-	padding-top: 100%;
 	
 	border-style:solid;
-	text-align:center;
-	margin-left: 0.0em;
 }
 
 .tooltip
@@ -214,5 +213,4 @@ body{
 .stat-sheet{
 	border-style:solid;
 	background-color:rgba(0,0,0,0.2);
-	
 }
