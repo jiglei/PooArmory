@@ -170,6 +170,19 @@ var g_scrolls = [
 		"att":330,
 		"matt":330
 	},
+	"bonuses":[
+		{
+			"condition": {
+				"target":"item",
+				"prop":"type",
+				"values":["cloth"]
+			},
+			"stats":{
+				"att":35,
+				"matt":35
+			}
+		}
+	],
 	"prefix":false
 },
 {	"name":"Echo",
@@ -181,6 +194,19 @@ var g_scrolls = [
 		"att":190,
 		"matt":190
 	},
+	"bonuses":[
+		{
+			"condition": {
+				"target":"item",
+				"prop":"type",
+				"values":["heavy"]
+			},
+			"stats":{
+				"att":35,
+				"matt":35
+			}
+		}
+	],
 	"prefix":false
 },
 {	"name":"Memorable",
@@ -192,6 +218,19 @@ var g_scrolls = [
 		"speed":2,
 		"def":100
 	},
+	"bonuses":[
+		{
+			"condition": {
+				"target":"item",
+				"prop":"type",
+				"values":["heavy"]
+			},
+			"stats":{
+				"att":35,
+				"matt":35
+			}
+		}
+	],
 	"prefix":true
 },
 {	"name":"Silent",
@@ -203,6 +242,19 @@ var g_scrolls = [
 		"att":110,
 		"matt":110
 	},
+	"bonuses":[
+		{
+			"condition": {
+				"target":"item",
+				"prop":"type",
+				"values":["cloth"]
+			},
+			"stats":{
+				"att":35,
+				"matt":35
+			}
+		}
+	],
 	"prefix":true
 },
 {	"name":"The Dead",
@@ -297,6 +349,19 @@ var g_scrolls = [
 		"balance":2,
 		"speed":2
 	},
+	"bonuses":[
+		{
+			"condition": {
+				"target":"item",
+				"prop":"type",
+				"values":["heavy"]
+			},
+			"stats":{
+				"att":35,
+				"matt":35
+			}
+		}
+	],
 	"prefix":true
 },
 {	"name":"Sobbing",
