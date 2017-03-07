@@ -51,7 +51,7 @@ input[type="text"]{
 
 body{
 	background-color:#333333;
-	background-image: url('resource/bg.png')
+	background-image: url('resource/bg.jpg')
 }
 
 .no-close .ui-dialog-titlebar-close {
@@ -97,6 +97,7 @@ body{
 	background-color:rgba(0,0,0,0.5);
 	height:100%;
 	width:100%;
+	z-index:100;
 }
 
 .equip-box-left{

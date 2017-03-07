@@ -765,12 +765,12 @@ function createSquare(loc, mgr)
 	box.append(innerBox)
 	leftBox.css("width", "2em")
 	leftBox.css("height", "8em")
+	var overlay = $("<div class='no-padding'/>")
+	innerBox.append(overlay)
 	   
 	if (!loc || !(loc in mgr.vd.items))
 	{
-		var overlay = $("<div />")
 		overlay.addClass("overlay-blacked-out")
-		innerBox.append(overlay)
 		return box
 	}
 	
@@ -987,6 +987,17 @@ function createSquare(loc, mgr)
 	
 	var refreshData = function()
 	{	
+		if (!loc || !(loc in mgr.vd.items) || mgr.vd.items[loc].length == 0)
+		{
+			overlay.addClass("overlay-blacked-out")
+			$("#"+id + " input").hide()
+			return 
+		}
+		
+		overlay.removeClass("overlay-blacked-out")
+		$("#"+id + " input").show()
+
+		
 		var src = $.map(mgr.vd.items[loc], function(k,v) {
 			return k.name
 		})
