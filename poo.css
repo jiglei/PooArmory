@@ -1,5 +1,9 @@
 .ui-helper-hidden-accessible { display:none; }
 
+.tooltip {
+    white-space: pre-line;
+}
+
 .m-top-bot { 
 	margin-top:0.5em;
 	margin-bottom:0.5em;

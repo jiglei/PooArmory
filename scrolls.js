@@ -105,6 +105,19 @@ var g_scrolls = [
 		"att": 210,
 		"matt": 210
 	},
+	"bonuses":[
+		{
+			"condition": {
+				"target":"item",
+				"prop":"type",
+				"values":["cloth"]
+			},
+			"stats":{
+				"att":35,
+				"matt":35
+			}
+		}
+	],
 	"prefix":true
 },
 {	"name":"Well-Balanced",

@@ -277,28 +277,45 @@ function passFilter(loc, type, scr, prefix)
 
 var modPat  = /.*Mod/i;
 
-function formatStats(stats)
+function formatStats(stats, bonuses)
 {
-	if (!stats)
-	{
-		return ""
+	var txt = ""
+	var format = function(k,v) { 
+		var sep = "+"
+		if(modPat.exec(v))
+		{
+			sep = ":"
+		}
+		if (k == 0)
+		{
+			return null
+		}
+		if (k < 0)
+		{
+			return v + k
+		}
+		return v + sep + k
 	}
-	return txt = $.map(stats, function(k,v) { 
-			var sep = "+"
-			if(modPat.exec(v))
+	
+	if(stats)
+	{
+		txt += $.map(stats, format).join(", ")
+	}
+	
+	if(bonuses)
+	{
+		$.each(bonuses, function(i, bonus){
+			if( txt )
 			{
-				sep = ":"
+				txt += "\n"
 			}
-			if (k == 0)
-			{
-				return null
-			}
-			if (k < 0)
-			{
-				return v + k
-			}
-			return v + sep + k
-		}).join(", ")
+			var bonusText = "if " + bonus.condition.target + " is " + bonus.condition.values.join("/") + ", "
+			bonusText += $.map(bonus.stats, format).join(", ")
+			txt += bonusText
+		})
+	}
+		
+	return txt
 }
 
 function toTitleCase(str) {
@@ -744,7 +761,7 @@ var openCb = function(lookupMap){
 			var data = lookupMap[v.innerHTML.toLowerCase()]
 			if(data)
 			{
-				$(v).attr("title", formatStats(data.stats))
+				$(v).attr("title", formatStats(data.stats, data.bonuses))
 				$(v).tooltip()
 			}
 		})
@@ -827,6 +844,31 @@ function createSquare(loc, mgr)
 							stats[stat] = thisContrib
 						}
 					}
+				}
+				
+				if("bonuses" in v)
+				{
+					$.each(v.bonuses, function(i, bonus){
+						var cond = bonus.condition
+						var target = box.data(cond.target)
+						if (target)
+						{
+							if( $.inArray(target[cond.prop], cond.values) != -1)
+							{
+								for(k in bonus.stats)
+								{
+									if (k in stats)
+									{
+										stats[k] += bonus.stats[k]
+									}
+									else
+									{
+										stats[k] = bonus.stats[k]
+									}
+								}
+							}
+						}
+					})
 				}
 			}
 		})
