@@ -2,12 +2,14 @@ var g_characters = [
 	"Fiona",
 	"Ebie",
 	"Delia",
+	"Karok",
 ]
 
 var g_charactersLookup = {
 	"Fiona":"Best class",
 	"Ebie":"Healslut",
-	"Delia":"Also slut"
+	"Delia":"Also slut",
+	"Karok":"Carrot"
 }
 
 var g_weaponTypes = {
@@ -24,6 +26,10 @@ var g_weaponTypes = {
 	},
 	"Delia":{
 		"bastard_sword" :true
+	},
+	"Karok":{
+		"cestuse" :true,
+		"pillar" :true
 	}
 }
 

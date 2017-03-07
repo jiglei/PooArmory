@@ -9,7 +9,7 @@ from jsmin import jsmin
 
 def min(filename):
 
-	if True:
+	if False:
 		with open(filename) as js_file:
 			minified = jsmin(js_file.read())
 			return minified 
