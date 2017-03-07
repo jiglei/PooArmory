@@ -1360,9 +1360,7 @@ function createStatsSheet(id, onChange)
 	
 	// base stats
 	
-	var baseStatsHeader = $(g_statRowString)
-	
-	var baseStatsLabel = $("<p class = 'row stat-head' />")
+	var baseStatsLabel = $("<p class = 'row stat-head no-padding' />")
 	baseStatsLabel.html("Base stats")
 
 	var baseStats = {'str':2500, 'wil':2000, 'agi':undefined, 'int':3000, 'hp':undefined, 'sta':undefined}
@@ -1372,9 +1370,13 @@ function createStatsSheet(id, onChange)
 	for (var k in baseStats)
 	{
 		var col = $("<div class='col-xs-2' />")
+		var caption = $("<div />")
+		caption.html(k)
+		col.append(caption)
 		col.addClass("no-padding")
 		col.css("text-align",  "center")
 		var thisBox = createInputBox(k, ["character", ["base"], k], "80%", null)
+		col.append(thisBox)
 		thisBox.css("text-align", "center")
 		if(baseStats[k])
 		{
@@ -1392,7 +1394,6 @@ function createStatsSheet(id, onChange)
 		}
 		baseStatInputs[k] = thisBox
 		
-		col.append(thisBox)
 		baseStatRow.append(col)
 	}
 	
