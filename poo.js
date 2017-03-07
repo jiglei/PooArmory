@@ -953,14 +953,15 @@ function createSquare(loc, mgr)
 		}
 	}
 	
-	var setBlur = function(loc)
+	var setBlur = function(lookup)
 	{
 		return function()
 		{		
-			var x = box.data(loc)
-			if (!x)
+			var _this = $(this)
+			if (!(_this.val().toLowerCase() in lookup))
 			{
 				$(this).val("")
+				
 			}
 		}
 	}
@@ -973,7 +974,7 @@ function createSquare(loc, mgr)
 		"open": openCb(g_scrollLookup)
 	}))
 	setOpenOnFocus(prefix)
-	prefix.on('blur', setBlur('prefix'))
+	prefix.on('blur', setBlur(g_scrollLookup))
 	
 	suffix.autocomplete($.extend({},sharedOpts,
 	{
@@ -983,7 +984,7 @@ function createSquare(loc, mgr)
 		"open": openCb(g_scrollLookup)
 	}))
 	setOpenOnFocus(suffix)
-	suffix.on('blur', setBlur('suffix'))
+	suffix.on('blur', setBlur(g_scrollLookup))
 	
 	var refreshData = function()
 	{	
@@ -1016,10 +1017,18 @@ function createSquare(loc, mgr)
 		}))
 		// TODO: set this on other boxes too
 		item.on('change', propSet("item", mgr.vd.itemLookups[loc]))
+		item.unbind('blur')
+		item.on('blur', setBlur(mgr.vd.itemLookups[loc]))
+		$("#"+id + " input").trigger("blur")
+		if(item.val() == "")
+		{
+			box.removeData("item")
+		}
+		update()
 	}
 	box.data("refreshData", refreshData)
 	refreshData()
-	item.on('blur', setBlur('item'))
+	item.on('blur', setBlur(mgr.vd.itemLookups[loc]))
 	setOpenOnFocus(item)
 	
 	var statPat = /[+-]?(\d)\s*(.*)/;
@@ -1056,7 +1065,12 @@ function createSquare(loc, mgr)
 		"change":updateInf(loc)
 	}))
 	setOpenOnFocus(inf)
-	inf.on('blur', setBlur('inf'))
+	var infLookup = {}
+	for (var i in g_infusions[loc])
+	{
+		infLookup[g_infusions[loc][i].toLowerCase()] = true
+	}
+	inf.on('blur', setBlur(infLookup))
 	
 	innerBox.append(prefix)
 	innerBox.append(suffix)
@@ -1114,77 +1128,6 @@ function createSquare(loc, mgr)
 	return box
 }
 
-
-function createStatSection(inputs, statName)
-{
-	var ret = $("<div class='row' >")
-	
-	ret.data('inputs', [])
-	var wrap = $("<div class='col-xs-12' >")
-	ret.append(wrap)
-	
-	var balTips = inputs.tips
-	
-	var balDefaults = inputs.defaults
-	
-	var balLabels = inputs.labels
-	
-	var colsPerRow = 2
-	var numCells = balTips.length
-	var numRows = Math.ceil(numCells / colsPerRow)
-	
-	for (var rowNum = 0; rowNum < numRows; rowNum++)
-	{		
-		var balRow = $("<div class='row no-padding-container' > </div>")
-		for (var i = 0; i < colsPerRow; ++i)
-		{
-			var cellNum = rowNum*colsPerRow + i
-			if(cellNum >= numCells)
-			{
-				break;
-			}
-			var thisCol = $("<div class='col-xs-6' />")
-			
-			thisCol.addClass("no-padding-l-r-t")
-		
-			var balInput = createInputBox(statName, [statName, ""+cellNum] , "70%", null)
-			balInput.addClass(statName+"-input")
-			balInput.css("margin-right", "0.2em")
-			balInput.attr("title", balTips[cellNum])
-			balInput.tooltip()
-			balInput.val(balDefaults[cellNum])
-			balInput.css("text-align", "center")
-			var thisLabel = $("<div/>")
-			thisLabel.html(balLabels[cellNum])
-			thisCol.append(thisLabel)
-			thisCol.append(balInput)
-			balRow.append(thisCol)
-			ret.data('inputs').push(balInput)
-		}	
-		wrap.append(balRow)
-	}
-	
-	return ret
-}
-
-// returns set of input boxes
-var writeStatSection = function(jParentEl, specList)
-{
-	var theseInputs = []
-
-	$.each(specList, function(i, v){
-		var label = $("<div class = 'row stat-head' />")
-		label.html(v.label)
-		var inputs = createStatSection(v.spec, v.stat)
-
-		jParentEl
-		.append(label)
-		.append(inputs)
-		theseInputs = theseInputs.concat(inputs.data('inputs'))
-	})
-		
-	return theseInputs
-}
 
 var setUpValueBox = function(input, stat, def, comment)
 {
