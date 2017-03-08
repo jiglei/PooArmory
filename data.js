@@ -59,6 +59,42 @@ var g_qualityStats = {
 	"agi":true
 }
 
+var g_locations =
+{
+	"hat":1,
+	"weapon":2,
+	"offhand":3,
+	"chest":4,
+	"gloves":5,
+	"legs":6,
+	"feet":7,
+	"rings":8,
+	"earrings":9,
+	"artifact":10,
+	"brooch":11,
+	"necklace":12
+}
+
+var g_scrollable = 
+{
+	"earrings": true,
+	"hat": true,
+	"wings": false,
+	"weapon": true,
+	"chest": true,
+	"offhand": true,
+	"secondary":false,
+	"legs": true,
+	"gloves": true,
+	"belt": true,
+	"feet": true,
+	"brooch": true,
+	"rings": true,
+	"artifact": true,
+	"bracelet": false,
+	"necklace": true
+}
+
 var g_qualityEffects= {	
 	"weapon": [
 		{

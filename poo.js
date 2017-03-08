@@ -12,42 +12,6 @@ function getQueryVariable(variable) {
 	return null
 }
 
-var g_locations =
-{
-	"hat":1,
-	"weapon":2,
-	"offhand":3,
-	"chest":4,
-	"gloves":5,
-	"legs":6,
-	"feet":7,
-	"rings":8,
-	"earrings":9,
-	"artifact":10,
-	"brooch":11,
-	"necklace":12
-}
-
-var g_scrollable = 
-{
-	"earrings": true,
-	"hat": true,
-	"wings": false,
-	"weapon": true,
-	"chest": true,
-	"offhand": true,
-	"secondary":false,
-	"legs": true,
-	"gloves": true,
-	"belt": true,
-	"feet": true,
-	"brooch": true,
-	"rings": true,
-	"artifact": true,
-	"bracelet": false,
-	"necklace": true
-}
-
 var g_types =
 {
 	"weapon":["longsword","longhammer"],
@@ -142,6 +106,11 @@ var disableInput = function(box)
 
 var absorb = function(totals, increment)
 {
+	if(!totals || !increment)
+	{
+		return totals
+	}
+	
 	for (k in increment)
 	{
 		if (k in totals)
@@ -153,6 +122,8 @@ var absorb = function(totals, increment)
 			totals[k] = increment[k]
 		}
 	}
+	
+	return totals
 }
 
 function createInputBox(placeholder, path, width, height)
@@ -625,10 +596,7 @@ function StateManager(statSheetDisplayId, equipId)
 		var boxes = this.boxes
 		$.each(boxes, function(k,v){
 			var boxStats = v.data("stats")
-			if(boxStats)
-			{
-				absorb(stats, boxStats)
-			}
+			absorb(stats, boxStats)
 		})
 		return stats
 	}
@@ -796,6 +764,18 @@ var applyQualityMod = function(stats, attMod, statMod)
 	return stats
 }
 
+
+
+var g_sharedOpts = {
+	delay: 100,
+	minLength: 0,
+	position: {my:"left center", at :"right center"},
+	messages: {
+		noResults: '',
+		results: function() {}
+	}
+}
+
 function createSquare(loc, mgr)
 {
 	var id = mgr.getIdFor(loc)
@@ -853,7 +833,6 @@ function createSquare(loc, mgr)
 					{
 						applyQualityMod(thisStats, attMod, statMod)
 					}
-					
 					absorb(stats, thisStats)
 				}
 				
@@ -986,16 +965,6 @@ function createSquare(loc, mgr)
 		}
 	}
 	
-	var sharedOpts = {
-		delay: 100,
-		minLength: 0,
-		position: {my:"left center", at :"right center"},
-		messages: {
-			noResults: '',
-			results: function() {}
-		}
-	}
-	
 	var setBlur = function(lookup)
 	{
 		return function()
@@ -1009,7 +978,7 @@ function createSquare(loc, mgr)
 		}
 	}
 	
-	prefix.autocomplete($.extend({},sharedOpts,
+	prefix.autocomplete($.extend({},g_sharedOpts,
 	{
 		source: scrollSource(true),
 		change: propSet("prefix", g_scrollLookup),
@@ -1019,7 +988,7 @@ function createSquare(loc, mgr)
 	setOpenOnFocus(prefix)
 	prefix.on('blur', setBlur(g_scrollLookup))
 	
-	suffix.autocomplete($.extend({},sharedOpts,
+	suffix.autocomplete($.extend({},g_sharedOpts,
 	{
 		source: scrollSource(false),
 		change: propSet("suffix", g_scrollLookup),
@@ -1052,7 +1021,7 @@ function createSquare(loc, mgr)
 			return k.name
 		})
 
-		item.autocomplete($.extend({},sharedOpts,
+		item.autocomplete($.extend({}, g_sharedOpts,
 		{
 			source:src, 
 			"close": propSet("item", mgr.vd.itemLookups[loc]),
@@ -1101,7 +1070,7 @@ function createSquare(loc, mgr)
 		}
 	}
 	
-	inf.autocomplete($.extend({},sharedOpts,
+	inf.autocomplete($.extend({},g_sharedOpts,
 	{
 		source: g_infusions[loc], 
 		"close":updateInf(loc), 
@@ -1138,7 +1107,7 @@ function createSquare(loc, mgr)
 		var star = String.fromCharCode(0x2605)
 		var qual = createInputBox(star, [loc, "quality"])
 		qual.addClass("quality-square")
-		qual.autocomplete($.extend({},sharedOpts,
+		qual.autocomplete($.extend({},g_sharedOpts,
 		{
 			source : [1+star, 2+star, 3+star, 4+star, 5+star],
 					change: propSet("quality", g_qualityLookups[loc]),
@@ -1155,7 +1124,7 @@ function createSquare(loc, mgr)
 	{
 		var enh = createInputBox('+', [loc, "enh"])
 		enh.addClass("enhance-square")
-		enh.autocomplete($.extend({},sharedOpts,
+		enh.autocomplete($.extend({},g_sharedOpts,
 		{
 			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
 					change: propSet("enh", g_enhanceLookups[loc]),
@@ -1308,20 +1277,16 @@ var makeStatSelection = function(options)
 		}
 	}
 	
-	input.autocomplete({
-		delay: 100,
-		minLength: 0,
-		messages: {
-			noResults: '',
-			results: function() {}
-		},
+	input.autocomplete($.extend({},g_sharedOpts,
+	{
+		position: {my:"top", at :"bottom"},
 		source: options.options.map(function(el){
 			return el.name
 		}),
 		"open": openCb(lookup),
 		"close": update,
 		change: update
-	})
+	}))
 	input.css('text-align','center')
 	setOpenOnFocus(input)
 	
@@ -1403,10 +1368,8 @@ function createStatsSheet(id, onChange)
 	target.append(baseStatsLabel)
 	target.append(baseStatRow)
 	
-	
 	var rightCol = $("<div class='col-xs-6'/>")
 	rightCol.css("text-align", "center")
-	
 	
 	var inputs = {}
 	
@@ -1456,12 +1419,8 @@ function createStatsSheet(id, onChange)
 		var newStats = Object.assign({}, stats)
 		$.each(inputs, function(source, arr){
 			$.each(arr, function(i, input){
-				
 				var contribution = input.data("stats")
-				if(contribution)
-				{
-					absorb(newStats, contribution)
-				}
+				absorb(newStats, contribution)
 			})
 		})
 		
@@ -1474,7 +1433,6 @@ function createStatsSheet(id, onChange)
 		
 		var row = makeStatDiv("Speed", (newStats.speed||0), [])
 		statsWrap.append(row)
-
 		
 		var attStat = g_attackStats[target.data("chara")] || 'att'
 		var base = g_baseAtt[attStat]		
@@ -1521,14 +1479,12 @@ function createStatsSheet(id, onChange)
 			return
 		}
 		
+		var bgUrl = ""
 		if(chara in g_charactersLookup)
 		{
-			pic.css("background-image", "url('resource/"+chara+".jpg')")
+			url = "url('resource/"+chara+".jpg')"
 		}
-		else
-		{
-			pic.css("background-image", "")
-		}
+		pic.css("background-image", bgUrl)
 		
 		target.data("chara", chara)
 		specificStats.empty()
@@ -1552,20 +1508,13 @@ function createStatsSheet(id, onChange)
 		}
 	}
 	
-	var sharedOpts = 
+	charaSelect.autocomplete($.extend({},g_sharedOpts,
 	{
-		delay: 100,
-		minLength: 0,
-		position: {my:"top", at :"bottom"},		
-		messages: {
-			noResults: '',
-			results: function() {}
-		},
+		position: {my:"top", at :"bottom"},
 		source: g_characters,
 		change: initStats,
 		"close": initStats,
-	}
-	charaSelect.autocomplete(sharedOpts)
+	}))
 	setOpenOnFocus(charaSelect)
 	setSelectAllFocus(charaSelect)
 	
