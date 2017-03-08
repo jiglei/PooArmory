@@ -574,7 +574,6 @@ function StateManager(statSheetDisplayId, equipId)
 	this.boxes = []
 	this.vd = new ValueData()
 
-	
 	this.statSheet = createStatsSheet(statSheetDisplayId, function(el)
 	{
 		if(_this.isReady)
@@ -916,12 +915,11 @@ function createSquare(loc, mgr)
 						"autoOpen" : false,
 						"dialogClass" : "no-close",
 						"beforeClose": function(){
-									input.next().focus()
-									
-								} , 
+							input.next().focus()							
+						}, 
 						"close": function(){
-									input.data("pullDialogStats")()
-								},
+							input.data("pullDialogStats")()
+						},
 						"modal":true,
 						"width" : ((1+dia.data("numCols")) * 6) + "em"
 					})
@@ -945,7 +943,7 @@ function createSquare(loc, mgr)
 	}
 
 	var scrollSource = function (prefix){
-	return function(state, cb){
+		return function(state, cb){
 			var term = $.ui.autocomplete.escapeRegex(state.term)
 			var re = new RegExp(term, "i")
 			var ret = []
@@ -1015,8 +1013,7 @@ function createSquare(loc, mgr)
 		
 		overlay.removeClass("overlay-blacked-out")
 		$("#"+id + " input").show()
-
-		
+	
 		var src = $.map(mgr.vd.items[loc], function(k,v) {
 			return k.name
 		})
@@ -1226,14 +1223,12 @@ var writeStatCategory = function(jParentEl, sectionOpts)
 
 var g_statRowString = "<div class='row m-top-bot' />"
 // returns a row
-var makeStatDiv = function(statLabel, baseStat, inputArray)
+var makeStatDiv = function(statLabel, baseStat)
 {
 	row = $(g_statRowString)
 	var statCol = $("<div class='col-xs-6'/>")
-	var inputs= inputArray
-	var additional = inputs.reduce(function(total, e){ return total + valOf($(e)) }, 0)
 
-	statCol.html(statLabel+ ": " + ((baseStat||0) + additional))
+	statCol.html(statLabel+ ": " + ((baseStat||0)))
 	row.append(statCol)
 	return row
 }
@@ -1424,14 +1419,14 @@ function createStatsSheet(id, onChange)
 			})
 		})
 		
-		var row = makeStatDiv("Bal", newStats.balance, $(".bal-input").toArray())
+		var row = makeStatDiv("Bal", newStats.balance)
 		statsWrap.append(row)
 		var wilCrit = Math.floor(valOf(baseStatInputs["wil"]) *3/400)
 		wilCrit = Math.min(wilCrit, 15)
-		var row = makeStatDiv("Crit", wilCrit+3+(newStats.crit||0), $(".crit-input").toArray())
+		var row = makeStatDiv("Crit", wilCrit+3+(newStats.crit||0))
 		statsWrap.append(row)
 		
-		var row = makeStatDiv("Speed", (newStats.speed||0), [])
+		var row = makeStatDiv("Speed", (newStats.speed||0))
 		statsWrap.append(row)
 		
 		var attStat = g_attackStats[target.data("chara")] || 'att'
@@ -1447,7 +1442,7 @@ function createStatsSheet(id, onChange)
 			fromStat = Math.floor(valOf(baseStatInputs["int"])*2)
 		}
 		var selector = "." + attStat + "-input"
-		var attRow = makeStatDiv(g_niceStrings[attStat], base+gear+fromStat, $(selector).toArray())
+		var attRow = makeStatDiv(g_niceStrings[attStat], base+gear+fromStat)
 		statsWrap.append(attRow)
 	}
 	writeStats({crit:0, bal:0, speed:0})
