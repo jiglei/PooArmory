@@ -37,6 +37,7 @@ var g_attackStats = {
 	"Fiona" : "att",
 	"Ebie" : "matt",
 	"Delia": "att",
+	"Karok": "att",
 	"Arisha": "matt"
 }
 

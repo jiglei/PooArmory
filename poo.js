@@ -140,6 +140,21 @@ var disableInput = function(box)
 	box.addClass("disabled-input")
 }
 
+var absorb = function(totals, increment)
+{
+	for (k in increment)
+	{
+		if (k in totals)
+		{
+			totals[k] += increment[k]
+		}
+		else
+		{
+			totals[k] = increment[k]
+		}
+	}
+}
+
 function createInputBox(placeholder, path, width, height)
 {
 	width = width||"100%"
@@ -612,17 +627,7 @@ function StateManager(statSheetDisplayId, equipId)
 			var boxStats = v.data("stats")
 			if(boxStats)
 			{
-				for (k in boxStats)
-				{
-					if (k in stats)
-					{
-						stats[k] += boxStats[k]
-					}
-					else
-					{
-						stats[k] = boxStats[k]
-					}
-				}
+				absorb(stats, boxStats)
 			}
 		})
 		return stats
@@ -768,6 +773,29 @@ var openCb = function(lookupMap){
 	}
 }
 
+var applyQualityMod = function(stats, attMod, statMod)
+{
+	if ('att' in stats)
+	{
+		stats['att'] = stats['att'] * attMod
+	}
+	
+	if ('matt' in stats)
+	{
+		stats['matt'] = stats['matt'] * attMod
+	}
+	
+	for (var stat in g_qualityStats)
+	{
+		if (stat in stats)
+		{
+			stats[stat] = stats[stat] * statMod
+		}
+	}
+	
+	return stats
+}
+
 function createSquare(loc, mgr)
 {
 	var id = mgr.getIdFor(loc)
@@ -820,30 +848,13 @@ function createSquare(loc, mgr)
 			{
 				if ("stats" in v)
 				{
-					thisStats = v.stats
-					for (stat in thisStats)
+					var thisStats = Object.assign({}, v.stats)
+					if (k == 'item')
 					{
-						var thisContrib = thisStats[stat]
-						if(k == 'item')
-						{
-							if (stat == 'att' || stat == 'matt')
-							{
-								thisContrib *= attMod
-							}
-							else if (stat in g_qualityStats)
-							{
-								thisContrib *= statMod
-							}
-						}
-						if(stat in stats)
-						{
-							stats[stat] += thisContrib
-						}
-						else
-						{
-							stats[stat] = thisContrib
-						}
+						applyQualityMod(thisStats, attMod, statMod)
 					}
+					
+					absorb(stats, thisStats)
 				}
 				
 				if("bonuses" in v)
@@ -855,17 +866,7 @@ function createSquare(loc, mgr)
 						{
 							if( $.inArray(target[cond.prop], cond.values) != -1)
 							{
-								for(k in bonus.stats)
-								{
-									if (k in stats)
-									{
-										stats[k] += bonus.stats[k]
-									}
-									else
-									{
-										stats[k] = bonus.stats[k]
-									}
-								}
+								absorb(stats, bonus.stats)
 							}
 						}
 					})
@@ -1445,7 +1446,6 @@ function createStatsSheet(id, onChange)
 	var statsWrap = $("<div class='col-xs-12'/>")
 	target.append(statsWrap)
 	
-	
 	// stats are "external" stats
 	var writeStats = function(stats)
 	{
@@ -1460,16 +1460,8 @@ function createStatsSheet(id, onChange)
 				var contribution = input.data("stats")
 				if(contribution)
 				{
-					for (var k in contribution)
-					{
-						if (! (k in newStats))
-						{
-							newStats[k] = 0
-						}
-						newStats[k] += contribution[k]
-					}
+					absorb(newStats, contribution)
 				}
-				
 			})
 		})
 		
@@ -1576,8 +1568,6 @@ function createStatsSheet(id, onChange)
 	charaSelect.autocomplete(sharedOpts)
 	setOpenOnFocus(charaSelect)
 	setSelectAllFocus(charaSelect)
-	
-	
 	
 	return target	
 }
