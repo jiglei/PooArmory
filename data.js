@@ -739,7 +739,21 @@ var g_enhanceable = {
 }
 
 var g_quality = {
-	"weapon": true
+	"weapon": true,
+	"smallshield": true,
+	"largeshield": true,
+	"book": true,
+	"fomorian": true,
+	"focus": true,
+	"gloves": true,
+	"hat": true,
+	"chest": true,
+	"legs": true,
+	"feet": true,
+	"earrings": true,
+	"brooch": true,
+	"necklace": true,
+	"rings": true
 }
 
 var g_weaponFragments = {
