@@ -358,16 +358,42 @@ var g_hats = [
 
 var g_rings = [
 	{
-		"name":"Thunder Ring"
+		"name":"Thunder Ring",
+		"stats":{
+			"str":120,
+			"agi":60,
+			"wil":60,
+			"int":60
+		},
 	},
 	{
-		"name":"Crescent Moon Announcement"
+		"name":"Crescent Moon Announcement",
+		"stats":{
+			"str":130,
+			"agi":70,
+			"wil":70,
+			"int":70,
+			"hp":100
+		},
 	},
 	{
-		"name":"Crescent Moonlight Ring"
+		"name":"Crescent Moonlight Ring",
+		"stats":{
+			"str":60,
+			"agi":60,
+			"wil":60,
+			"int":120
+		},
 	},
 	{
-		"name":"Ocean Depths Monster"
+		"name":"Ocean Depths Monster",
+		"stats":{
+			"str":70,
+			"agi":70,
+			"wil":70,
+			"int":130,
+			"hp":100
+		},
 	},
 	{
 		"name":"Frozen Thorn",
@@ -399,7 +425,8 @@ var g_rings = [
 			"agi": 70,
 			"wil": 80,
 			"hp": 125
-		}
+		},
+		"sets":["Lv90Rings"]
 	},
 	{
 		"name":"Frozen Witch",
@@ -409,7 +436,8 @@ var g_rings = [
 			"agi": 70,
 			"wil": 80,
 			"hp": 125
-		}
+		},
+		"sets":["Lv90Rings"]
 	}
 ]
 
