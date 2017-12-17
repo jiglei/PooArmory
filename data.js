@@ -319,7 +319,8 @@ var g_rings = [
 			"agi": 70,
 			"wil": 80,
 			"hp": 125
-		}
+		},
+		"sets":["Lv90Rings"]
 	},
 	{
 		"name":"Cold Dagger",
@@ -329,7 +330,8 @@ var g_rings = [
 			"agi": 70,
 			"wil": 80,
 			"hp": 125
-		}
+		},
+		"sets":["Lv90Rings"]
 	},
 	{
 		"name":"Cold Desire",
@@ -1024,3 +1026,20 @@ var g_charaSpecs = {
 		} 
 	]
 }
+
+var g_setStats = [
+	{
+		"name" : "Lv90Rings",
+		"stats": [
+			{
+			}
+			,
+			{
+			}
+			,
+			{
+				"crit" : 1
+			}
+		]
+	}
+]

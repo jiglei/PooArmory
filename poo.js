@@ -37,6 +37,8 @@ var g_scrollLookup = createLookup(g_scrolls)
 
 var g_weaponLookup = createLookup(g_weapons)
 
+var g_setLookup = createLookup(g_setStats)
+
 
 var g_items = {
 	"weapon" : g_weapons,
@@ -589,14 +591,50 @@ function StateManager(statSheetDisplayId, equipId)
 		}
 	})
 	
+	this.gatherSetBonuses = function(setCounts)
+	{
+		var ret = {}
+		
+		$.each(setCounts, function (setName, itemNames){
+			var lookupval = setName.toLowerCase()
+			if (lookupval in g_setLookup)
+			{
+				var setStats = g_setLookup[lookupval]["stats"] // array of set bonuses, indexed by how many items you have, ie, every array starts with 2 crap ones
+				
+				var num = Object.keys(itemNames).length
+				num = Math.min(num, setStats.length-1)
+				var result = setStats[num]
+				
+				if (result)
+				{
+					absorb(ret, result)
+				}
+			}
+		})
+		
+		return ret
+	}
+	
 	this.accumulateBoxes = function()
 	{
 		var stats = {}
+		var setCounts = {}
 		var boxes = this.boxes
 		$.each(boxes, function(k,v){
 			var boxStats = v.data("stats")
 			absorb(stats, boxStats)
+			
+			$.each(v.data("sets"), function(k, v){
+				if (!(k in setCounts))
+				{
+					setCounts[k] = {}
+				}
+				setCounts[k][v] = true
+			})
 		})
+		
+		setStats = this.gatherSetBonuses(setCounts)
+		absorb(stats, setStats)
 		return stats
 	}
 	
@@ -822,6 +860,7 @@ function createSquare(loc, mgr)
 		}
 		
 		var stats = {}
+		var sets = {}
 		$.each( box.data(), function(k,v){
 			if(-1 != $.inArray(k,contributions))
 			{
@@ -849,9 +888,20 @@ function createSquare(loc, mgr)
 						}
 					})
 				}
+				
+				if ("sets" in v)
+				{
+					$.each(v.sets, function(i, set){
+						if ("name" in v)
+						{
+							sets[set] = v.name
+						}
+					})
+				}
 			}
 		})
-
+		
+		box.data("sets", sets)
 		box.data("stats", stats)
 		var txt = formatStats(stats)
 		$("#console").html(txt)
