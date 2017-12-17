@@ -217,26 +217,31 @@ var g_armourEnhancementEffects = [
 	{
 		"name" : "+11",
 		"stats": {
+			"add":200
 		}
 	},
 	{
 		"name" : "+12",
 		"stats": {
+			"add":300
 		}
 	},
 	{
 		"name" : "+13",
 		"stats": {
+			"add":400
 		}
 	},
 	{
 		"name" : "+14",
 		"stats": {
+			"add":500
 		}
 	},
 	{
 		"name" : "+15",
 		"stats": {
+			"add":600
 		}
 	}
 ]
@@ -267,7 +272,8 @@ var g_enhancementEffects = {
 		"stats": {
 			"speed":23,
 			"att":1500,
-			"matt":1500
+			"matt":1500,
+			"add":1000
 		}
 	},
 	{
@@ -275,7 +281,8 @@ var g_enhancementEffects = {
 		"stats": {
 			"speed":26,
 			"att":2000,
-			"matt":2000
+			"matt":2000,
+			"add":1500
 		}
 	},
 	{
@@ -283,7 +290,8 @@ var g_enhancementEffects = {
 		"stats": {
 			"speed":30,
 			"att":2600,
-			"matt":2600
+			"matt":2600,
+			"add":2000
 		}
 	},
 	{
@@ -291,7 +299,8 @@ var g_enhancementEffects = {
 		"stats": {
 			"speed":34,
 			"att":3300,
-			"matt":3300
+			"matt":3300,
+			"add:"2500
 		}
 	},
 	{
@@ -299,7 +308,8 @@ var g_enhancementEffects = {
 		"stats": {
 			"speed":38,
 			"att":4100,
-			"matt":4100
+			"matt":4100,
+			"add":3000
 		}
 	}
 	]
