@@ -33,27 +33,33 @@ var g_weaponTypes = {
 		"book": true
 	},
 	"Delia":{
-		"bastard_sword" :true
+		"bastard_sword" :true,
+		"book": true
 	},
 	"Karok":{
 		"cestuse" :true,
-		"pillar" :true
+		"pillar" :true,
+		"book": true
 	},
 	"Kai":{
 		"bow" : true,
-		"cross_gun": true
+		"cross_gun": true,
+		"book": true
 	},
 	"Vella":{
 		"twin_chainblade":true,
-		"twin_sword":true
+		"twin_sword":true,
+		"book": true
 	},
 	"Lann":{
 		"twin_spear":true,
-		"twin_sword":true
+		"twin_sword":true,
+		"book": true
 	},
 	"Lynn":{
 		"glaive":true,
-		"blute":true
+		"blute":true,
+		"book": true
 	},
 	"Arisha":{
 		"spellsword":true,
@@ -61,14 +67,17 @@ var g_weaponTypes = {
 		"whip":true
 	},
 	"Miri":{
-		"dragonspine":true
+		"dragonspine":true,
+		"book": true
 	},
 	"Sylas":{
-		"phantom_dagger":true
+		"phantom_dagger":true,
+		"book": true
 	},
 	"Hurk":{
 		"greatsword":true,
-		"teide":true
+		"teide":true,
+		"book": true
 	}
 }
 
@@ -77,7 +86,15 @@ var g_attackStats = {
 	"Ebie" : "matt",
 	"Delia": "att",
 	"Karok": "att",
-	"Arisha": "matt"
+	"Arisha": "matt",
+	"Lynn": "att",
+	"Sylas": "matt",
+	"Hurk": "att",
+	"Miri": "att",
+	"Lann": "att",
+	"Kai": "att",
+	"Vella": "att"
+	
 }
 
 // prettified casing
