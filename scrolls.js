@@ -8,7 +8,8 @@ var g_scrolls = [
 		"speed":4,
 		"crit":8,
 		"att":220,
-		"matt":220
+		"matt":220,
+		"critres":-5
 	},
 	"prefix":true 
 },
@@ -88,46 +89,8 @@ var g_scrolls = [
 	},
 	"prefix":false
 },
-{
-	"name":"Ornate",
-	"locations":["weapon"],
-	"types":["longhammer"],
-	"stats":{
-		"balance":7,
-		"speed":5,
-		"crit":3
-	},
-	"prefix":true
-},
-{
-	"name":"Enlightened",
-	"locations":["hat", "legs"],
-	"types":["light", "cloth"],
-	"stats":{
-		"balance":1,
-		"speed":2,
-		"crit":2,
-		"att": 210,
-		"matt": 210
-	},
-	"bonuses":[
-		{
-			"condition": {
-				"target":"item",
-				"prop":"type",
-				"values":["cloth"]
-			},
-			"stats":{
-				"att":35,
-				"matt":35
-			}
-		}
-	],
-	"prefix":true
-},
 {	"name":"Well-Balanced",
 	"locations":all_armor ,
-	"types":["light", "cloth"],
 	"stats":{
 		"balance":1,
 		"speed":2,
@@ -138,12 +101,11 @@ var g_scrolls = [
 },
 {	"name":"Enthusiastic",
 	"locations":all_armor ,
-	"types":["light", "cloth"],
 	"stats":{
 		"balance":5,
 		"speed":0,
 		"crit":0,
-		"att":270,
+		"att":282,
 		"matt":282,
 		"def":-370
 	},
@@ -153,7 +115,10 @@ var g_scrolls = [
 	"locations":["chest"] ,
 	"stats":{
 		"balance":-3,
-		"crit":4
+		"crit":4,
+		"def":160",
+		"stamina":5,
+		"critres":6
 	},
 	"prefix":true
 },
@@ -163,6 +128,17 @@ var g_scrolls = [
 		"balance":-1,
 		"crit":5,
 		"critres":5
+	},
+	"prefix":false
+},
+{	"name":"Stigma",
+	"locations":["chest"] ,
+	"stats":{
+		"balance":-1,
+		"crit":6,
+		"critres":7,
+		"def":70,
+		"stamina":5
 	},
 	"prefix":false
 },
@@ -179,23 +155,14 @@ var g_scrolls = [
 },
 {	"name":"Memorable",
 	"locations":["hat", "legs"] ,
-	"types":["heavy","plate"],
 	"stats":{
 		"balance":1,
 		"crit":2,
 		"speed":2,
-		"def":100
-	},
-	"prefix":true
-},
-{	"name":"Silent",
-	"locations":["gloves", "feet"] ,
-	"stats":{
-		"balance":2,
-		"speed":2,
-		"crit":1,
-		"att":110,
-		"matt":110
+		"def":100,
+		"att":245,
+		"matt":245,
+		"critres":2
 	},
 	"prefix":true
 },
@@ -204,6 +171,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":5,
 		"str":-40,
+		"critres":5,
+		"hp":-450
 		
 	},
 	"prefix":true
@@ -214,6 +183,15 @@ var g_scrolls = [
 		"balance":2,
 		"att":100,
 		"matt":100
+	},
+	"prefix":true
+},
+{	"name":"Crescent Moonlight's",
+	"locations":["rings"] ,
+	"stats":{
+		"balance":2,
+		"hp":-280,
+		"critres":3
 	},
 	"prefix":true
 },
@@ -247,7 +225,9 @@ var g_scrolls = [
 	"locations":["belt"] ,
 	"stats":{
 		"speed":1,
-		"crit":2
+		"crit":2,
+		"stamina":5,
+		"critres":-3
 	},
 	"prefix":true
 },
@@ -261,7 +241,7 @@ var g_scrolls = [
 	"prefix":true
 },
 {	"name":"Passion",
-	"locations":all_acc ,
+	"locations":all_acc,
 	"stats":{
 		"def": 200,
 		"stamina":2
@@ -286,48 +266,41 @@ var g_scrolls = [
 	"prefix":true
 },
 {	"name":"Reinforced",
-	"locations":["gloves","feet"] ,
-	"types":["heavy","plate"],
+	"locations":["gloves","feet"],
 	"stats":{
 		"crit":1,
 		"balance":2,
-		"speed":2
+		"speed":2,
+		"att":145,
+		"matt":145,
+		"def":150,
+		"critres":-1
 	},
-	"bonuses":[
-		{
-			"condition": {
-				"target":"item",
-				"prop":"type",
-				"values":["heavy"]
-			},
-			"stats":{
-				"att":35,
-				"matt":35
-			}
-		}
-	],
 	"prefix":true
 },
 {	"name":"Weeping",
-	"locations":["gloves","feet"] ,
-	"types":["heavy","plate"],
+	"locations":["gloves","feet"],
 	"stats":{
 		"crit":2,
 		"balance":3,
-		"speed":2
+		"speed":2,
+		"att":145,
+		"matt":145,
+		"def":300,
+		"critres"-1
 	},
 	"prefix":true
 },
 {	"name":"Heartless",
 	"locations":["hat","legs"] ,
-	"types":["heavy","plate"],
 	"stats":{
 		"crit":2,
 		"balance":2,
 		"speed":2,
 		"def":200,
 		"att":245,
-		"matt":245
+		"matt":245,
+		"critres":4
 	},
 	"prefix":true
 },
@@ -335,7 +308,10 @@ var g_scrolls = [
 	"locations":["weapon"],
 	"stats":{
 		"crit":9,
-		"speed":4
+		"speed":4,
+		"att":340,
+		"matt":340,
+		"critres":-4
 	},
 	"prefix":true
 },
@@ -350,22 +326,25 @@ var g_scrolls = [
 	"prefix":false
 },
 {
-	"name":"Hateful",
-	"locations":["weapon"],
-	"stats":{
-		"crit":4,
-		"speed":5
-	},
-	"prefix":true
-},
-{
 	"name":"Divine Punishment",
 	"locations":["weapon"],
 	"stats":{
 		"crit":2,
 		"speed":1,
+		"matt":677,
+		"att":677
+	},
+	"prefix":false
+}
+{
+	"name":"Maelstrom",
+	"locations":["weapon"],
+	"stats":{
+		"crit":2,
+		"speed":1,
 		"balance":-2,
-		"matt":677
+		"att":752,
+		"matt":752
 	},
 	"prefix":false
 }
