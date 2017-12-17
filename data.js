@@ -17,7 +17,16 @@ var g_charactersLookup = {
 	"Fiona":"Best class",
 	"Evie":"Healslut",
 	"Delia":"Also slut",
-	"Karok":"Carrot"
+	"Karok":"Carrot",
+	"Vella":"Marta is angry",
+	"Sylas":"Korea",
+	"Miri":"Boobs",
+	"Arisha":"More boobs",
+	"Lynn":"Stupid jailbait",
+	"Kai":"Robina",
+	"Hurk":"Biggus dickus",
+	"Lann":"What is this again?"
+	
 }
 
 var g_weaponTypes = {
