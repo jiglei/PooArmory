@@ -15,7 +15,7 @@ var g_characters = [
 
 var g_charactersLookup = {
 	"Fiona":"Best class",
-	"Ebie":"Healslut",
+	"Evie":"Healslut",
 	"Delia":"Also slut",
 	"Karok":"Carrot"
 }
@@ -27,7 +27,7 @@ var g_weaponTypes = {
 		"smallshield":true,
 		"largeshield":true
 	},
-	"Ebie":{
+	"Evie":{
 		"staff" :true,
 		"battle_scythe" :true,
 		"book": true,
@@ -85,7 +85,7 @@ var g_weaponTypes = {
 
 var g_attackStats = {
 	"Fiona" : "att",
-	"Ebie" : "matt",
+	"Evie" : "matt",
 	"Delia": "att",
 	"Karok": "att",
 	"Arisha": "matt",
@@ -937,7 +937,7 @@ var g_charaStats = {
 			}
 		}
 	],
-	"Ebie": [
+	"Evie": [
 		{
 			"label":"Other sources of mAtt",
 			"stat":"matt",
@@ -1106,7 +1106,7 @@ var g_skillSpecs = {
 }
 
 var g_charaSpecs = {
-	"Ebie" : [
+	"Evie" : [
 		{ 
 			"stat": "matt",
 			"placeholder": "mAtt", 
