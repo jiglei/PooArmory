@@ -1,8 +1,16 @@
 var g_characters = [
 	"Fiona",
-	"Ebie",
+	"Evie",
 	"Delia",
 	"Karok",
+	"Vella",
+	"Miri",
+	"Kai",
+	"Sylas",
+	"Arisha",
+	"Hurk",
+	"Lynn",
+	"Lann"
 ]
 
 var g_charactersLookup = {
@@ -30,7 +38,37 @@ var g_weaponTypes = {
 	"Karok":{
 		"cestuse" :true,
 		"pillar" :true
-	}
+	},
+	"Kai":{
+		"bow" : true,
+		"cross_gun": true
+	},
+	"Vella":{
+		"twin_chainblade":true,
+		"twin_sword":true
+	},
+	"Lann":{
+		"twin_spear":true,
+		"twin_sword":true
+	},
+	"Lynn":{
+		"glaive":true,
+		"blute":true
+	},
+	"Arisha":{
+		"spellsword":true,
+		"focus":true,
+		"whip":true
+	},
+	"Miri":{
+		"dragonspine":true
+	},
+	"Sylas":{
+		"phantom_dagger":true
+	},
+	"Hurk":{
+		"greatsword":true,
+		"teide":true
 }
 
 var g_attackStats = {
