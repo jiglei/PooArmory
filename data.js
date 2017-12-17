@@ -358,7 +358,7 @@ var g_hats = [
 
 var g_rings = [
 	{
-		"name":"Thunder Ring"
+		"name":"Thunder Ring",
 		"stats":{
 			"str":120,
 			"agi":60,
@@ -367,7 +367,7 @@ var g_rings = [
 		},
 	},
 	{
-		"name":"Crescent Moon Announcement"
+		"name":"Crescent Moon Announcement",
 		"stats":{
 			"str":130,
 			"agi":70,
@@ -377,7 +377,7 @@ var g_rings = [
 		},
 	},
 	{
-		"name":"Crescent Moonlight Ring"
+		"name":"Crescent Moonlight Ring",
 		"stats":{
 			"str":60,
 			"agi":60,
@@ -386,7 +386,7 @@ var g_rings = [
 		},
 	},
 	{
-		"name":"Ocean Depths Monster"
+		"name":"Ocean Depths Monster",
 		"stats":{
 			"str":70,
 			"agi":70,
