@@ -221,6 +221,25 @@ var g_scrolls = [
 	},
 	"prefix":false
 },
+{	"name":"Sealed",
+	"locations":["offhand"] ,
+	"types":["book"],
+	"stats":{
+		"speed":1,
+		"def":500
+	},
+	"prefix":true
+},
+{	"name":"Truth",
+	"locations":["offhand"] ,
+	"types":["book"],
+	"stats":{
+		"att":230,
+		"matt":230,
+		"critres":5
+	},
+	"prefix":false
+},
 {	"name":"Subdued",
 	"locations":["belt"] ,
 	"stats":{
