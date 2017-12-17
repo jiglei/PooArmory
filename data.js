@@ -735,7 +735,8 @@ var g_enhanceable = {
 	"hat": true,
 	"chest": true,
 	"legs": true,
-	"feet": true
+	"feet": true,
+	"offhand": true
 }
 
 var g_quality = {
