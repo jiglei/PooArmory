@@ -728,7 +728,14 @@ var armor_types = [
 ]
 
 var g_enhanceable = {
-	"weapon": true
+	"weapon": true,
+	"smallshield": true,
+	"largeshield": true,
+	"gloves": true,
+	"hat": true,
+	"chest": true,
+	"legs": true,
+	"feet": true
 }
 
 var g_quality = {
