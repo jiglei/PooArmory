@@ -465,6 +465,7 @@ var g_offhands = [
 			"int":144,
 			"wil":49,
 			"critres":7
+		}
 	},
     {
         "name": "Altar Shield",
