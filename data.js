@@ -532,6 +532,7 @@ var g_belts = [
 			"str":95,
 			"agi":80,
 			"wil":80
+		}
 	},
 	{
 		"name":"Peridot Belt",
@@ -539,6 +540,7 @@ var g_belts = [
 			"str":120,
 			"agi":90,
 			"wil":90
+		}
 	},
 	{
 		"name":"Ruby Belt",
@@ -546,6 +548,7 @@ var g_belts = [
 			"int":95,
 			"agi":80,
 			"wil":80
+		}
 	},
 	{
 		"name":"Amethyst Belt",
@@ -553,6 +556,7 @@ var g_belts = [
 			"int":188,
 			"agi":90,
 			"wil":90
+		}
 	},
 	{
 		"name":"Grim Belt",
@@ -561,6 +565,7 @@ var g_belts = [
 			"int":140,
 			"agi":90,
 			"wil":100
+		}
 	},
 	{
 		"name":"Woeful Belt",
