@@ -193,7 +193,51 @@ var g_qualityEffects= {
 	]
 }
 
+var g_armourEnhancementEffects = [
+	{
+		"name" : "+0",
+		"stats": {
+		}
+	},
+	{
+		"name" : "+10",
+		"stats": {
+			"add":130
+		}
+	},
+	{
+		"name" : "+11",
+		"stats": {
+		}
+	},
+	{
+		"name" : "+12",
+		"stats": {
+		}
+	},
+	{
+		"name" : "+13",
+		"stats": {
+		}
+	},
+	{
+		"name" : "+14",
+		"stats": {
+		}
+	},
+	{
+		"name" : "+15",
+		"stats": {
+		}
+	}
+]
+
 var g_enhancementEffects = {
+	"hat": g_armourEnhancementEffects,
+	"chest": g_armourEnhancementEffects,
+	"gloves": g_armourEnhancementEffects,
+	"feet": g_armourEnhancementEffects,
+	"legs": g_armourEnhancementEffects,
 	"weapon":[
 	{
 		"name" : "+0",
@@ -205,7 +249,8 @@ var g_enhancementEffects = {
 		"stats": {
 			"speed":20,
 			"att":1000,
-			"matt":1000
+			"matt":1000,
+			"add":650
 		}
 	},
 	{
