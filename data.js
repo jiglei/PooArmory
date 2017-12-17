@@ -300,7 +300,7 @@ var g_enhancementEffects = {
 			"speed":34,
 			"att":3300,
 			"matt":3300,
-			"add:"2500
+			"add":2500
 		}
 	},
 	{
