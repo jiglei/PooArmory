@@ -335,7 +335,7 @@ var g_scrolls = [
 		"att":677
 	},
 	"prefix":false
-}
+},
 {
 	"name":"Maelstrom",
 	"locations":["weapon"],
