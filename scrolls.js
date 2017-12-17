@@ -166,52 +166,15 @@ var g_scrolls = [
 	},
 	"prefix":false
 },
-{	"name":"Declaration",
+{	"name":"Echoing",
 	"locations":["gloves", "feet"] ,
-	"types":["light","cloth"],
 	"stats":{
 		"balance":4,
 		"speed":1,
-		"att":330,
-		"matt":330
+		"att":365,
+		"matt":365,
+		"def":-260,
 	},
-	"bonuses":[
-		{
-			"condition": {
-				"target":"item",
-				"prop":"type",
-				"values":["cloth"]
-			},
-			"stats":{
-				"att":35,
-				"matt":35
-			}
-		}
-	],
-	"prefix":false
-},
-{	"name":"Echo",
-	"locations":["gloves", "feet"] ,
-	"types":["heavy","plate"],
-	"stats":{
-		"balance":4,
-		"speed":1,
-		"att":190,
-		"matt":190
-	},
-	"bonuses":[
-		{
-			"condition": {
-				"target":"item",
-				"prop":"type",
-				"values":["heavy"]
-			},
-			"stats":{
-				"att":35,
-				"matt":35
-			}
-		}
-	],
 	"prefix":false
 },
 {	"name":"Memorable",
@@ -223,19 +186,6 @@ var g_scrolls = [
 		"speed":2,
 		"def":100
 	},
-	"bonuses":[
-		{
-			"condition": {
-				"target":"item",
-				"prop":"type",
-				"values":["heavy"]
-			},
-			"stats":{
-				"att":35,
-				"matt":35
-			}
-		}
-	],
 	"prefix":true
 },
 {	"name":"Silent",
@@ -247,25 +197,14 @@ var g_scrolls = [
 		"att":110,
 		"matt":110
 	},
-	"bonuses":[
-		{
-			"condition": {
-				"target":"item",
-				"prop":"type",
-				"values":["cloth"]
-			},
-			"stats":{
-				"att":35,
-				"matt":35
-			}
-		}
-	],
 	"prefix":true
 },
 {	"name":"The Dead",
 	"locations":["rings"] ,
 	"stats":{
-		"balance":5
+		"balance":5,
+		"str":-40,
+		
 	},
 	"prefix":true
 },
@@ -369,7 +308,7 @@ var g_scrolls = [
 	],
 	"prefix":true
 },
-{	"name":"Sobbing",
+{	"name":"Weeping",
 	"locations":["gloves","feet"] ,
 	"types":["heavy","plate"],
 	"stats":{
@@ -379,13 +318,16 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
-{	"name":"Chilly",
+{	"name":"Heartless",
 	"locations":["hat","legs"] ,
 	"types":["heavy","plate"],
 	"stats":{
 		"crit":2,
 		"balance":2,
-		"speed":2
+		"speed":2,
+		"def":200,
+		"att":245,
+		"matt":245
 	},
 	"prefix":true
 },
