@@ -444,6 +444,28 @@ var g_offhands = [
 			"crit":3
 		}
 	},
+	{
+		"name":"The Book of Legacy",
+		"type":"book",
+		"stats":{
+			"crit":3,
+			"def":40,
+			"str:60,
+			"int":80,
+			"critres":1
+		}
+	},
+	{
+		"name":"Runic Focus",
+		"type":"focus",
+		"stats":{
+			"matt":545,
+			"def":700,
+			"agi":51,
+			"int":144,
+			"wil":49,
+			"critres":7
+	}
     {
         "name": "Altar Shield",
         "sell": 10693,
