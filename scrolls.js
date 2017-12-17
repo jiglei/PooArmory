@@ -117,6 +117,7 @@ var g_scrolls = [
 		"balance":-3,
 		"crit":4,
 		"stamina":5,
+		"def":160,
 		"critres":6
 	},
 	"prefix":true
