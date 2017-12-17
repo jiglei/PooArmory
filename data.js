@@ -527,12 +527,48 @@ var g_rings = [
 
 var g_belts = [
 	{
-		"name":"Belt of Poo"
+		"name":"Emerald Belt",
+		"stats":{
+			"str":95,
+			"agi":80,
+			"wil":80
 	},
 	{
-		"name":"Belt of new Poo",
+		"name":"Peridot Belt",
 		"stats":{
-			"balance":2
+			"str":120,
+			"agi":90,
+			"wil":90
+	},
+	{
+		"name":"Ruby Belt",
+		"stats":{
+			"int":95,
+			"agi":80,
+			"wil":80
+	},
+	{
+		"name":"Amethyst Belt",
+		"stats":{
+			"int":188,
+			"agi":90,
+			"wil":90
+	},
+	{
+		"name":"Grim Belt",
+		"stats":{
+			"balance":2,
+			"int":140,
+			"agi":90,
+			"wil":100
+	},
+	{
+		"name":"Woeful Belt",
+		"stats":{
+			"balance":2,
+			"str":140,
+			"agi":90,
+			"wil":100
 		}
 	}
 ]
