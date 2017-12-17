@@ -916,6 +916,11 @@ function createSquare(loc, mgr)
 		return function(){
 			var existing = box.data(key)
 			var name = $(this).val().toLowerCase()
+			
+			if(!entryLookup)
+			{
+				console.log("No entry lookup for "+ name+ " for " + key + " in " + box.attr("id"))
+			}
 			var entry = entryLookup[name]
 			
 			if(!entry)
