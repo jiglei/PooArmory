@@ -1151,3 +1151,19 @@ var g_setStats = [
 		]
 	}
 ]
+
+var g_statDisplayNames = {
+	"speed": "Speed",
+	"balance": "Bal",
+	"crit": "Crit",
+	"att": "Att",
+	"matt": "mAtt",
+	"add": "Additional Damage"
+}
+
+var g_displayableStatsCommon = {
+	"speed" : true,
+	"balance": true,
+	"crit": true,
+	"add": true
+}

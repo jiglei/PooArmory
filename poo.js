@@ -1469,18 +1469,15 @@ function createStatsSheet(id, onChange)
 			})
 		})
 		
-		var row = makeStatDiv("Bal", newStats.balance)
-		statsWrap.append(row)
+		// Add other contributions
+		// Wil -> Crit
 		var wilCrit = Math.floor(valOf(baseStatInputs["wil"]) *3/400)
 		wilCrit = Math.min(wilCrit, 15)
-		var row = makeStatDiv("Crit", wilCrit+3+(newStats.crit||0))
-		statsWrap.append(row)
+		newStats["crit"] = wilCrit+3+(newStats.crit||0)
 		
-		var row = makeStatDiv("Speed", (newStats.speed||0))
-		statsWrap.append(row)
-		
+		// str/int -> att/mAtt
 		var attStat = g_attackStats[target.data("chara")] || 'att'
-		var base = g_baseAtt[attStat]		
+		var base = g_baseAtt[attStat]
 		var gear = Math.floor(newStats[attStat]||0)
 		var fromStat = 0
 		if(attStat == "att")
@@ -1491,11 +1488,19 @@ function createStatsSheet(id, onChange)
 		{
 			fromStat = Math.floor(valOf(baseStatInputs["int"])*2)
 		}
+		newStats[attStat] = base+gear+fromStat
+		
+		// write out the values
+		$.each(g_displayableStatsCommon, function(statName, t){
+			var row = makeStatDiv(g_statDisplayNames[statName], newStats[statName]||0)
+			statsWrap.append(row)
+		})
+		
 		var selector = "." + attStat + "-input"
-		var attRow = makeStatDiv(g_niceStrings[attStat], base+gear+fromStat)
+		var attRow = makeStatDiv(g_niceStrings[attStat], newStats[attStat])
 		statsWrap.append(attRow)
 	}
-	writeStats({crit:0, bal:0, speed:0})
+	writeStats({crit:0, bal:0, speed:0, add:0})
 	
 	// This is what the calling code should call to update
 	target.data('update', writeStats)
