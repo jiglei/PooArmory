@@ -740,11 +740,7 @@ var g_enhanceable = {
 
 var g_quality = {
 	"weapon": true,
-	"smallshield": true,
-	"largeshield": true,
-	"book": true,
-	"fomorian": true,
-	"focus": true,
+	"offhand": true,
 	"gloves": true,
 	"hat": true,
 	"chest": true,
