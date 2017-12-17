@@ -287,7 +287,7 @@ var g_scrolls = [
 		"att":145,
 		"matt":145,
 		"def":300,
-		"critres"-1
+		"critres":-1
 	},
 	"prefix":true
 },
