@@ -450,7 +450,7 @@ var g_offhands = [
 		"stats":{
 			"crit":3,
 			"def":40,
-			"str:60,
+			"str":60,
 			"int":80,
 			"critres":1
 		}
