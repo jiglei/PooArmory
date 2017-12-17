@@ -7,7 +7,8 @@ var g_scrolls = [
 	"stats":{
 		"speed":4,
 		"crit":8,
-		"att":220
+		"att":220,
+		"matt":220
 	},
 	"prefix":true 
 },
@@ -17,7 +18,8 @@ var g_scrolls = [
 	"stats":{
 		"speed":8,
 		"balance":2,
-		"att":-240
+		"att":-240,
+		"matt":-240
 	},
 	"prefix":true
 },
@@ -28,7 +30,8 @@ var g_scrolls = [
 		"speed":8,
 		"balance":2,
 		"crit":2,
-		"att":430
+		"att":430,
+		"matt":430
 	},
 	"prefix":true
 },
@@ -38,8 +41,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":5,
 		"speed":4,
-		"att": 130,
-		"matt": 119
+		"att":130,
+		"matt":130
 	},
 	"prefix":false
 },
@@ -49,7 +52,8 @@ var g_scrolls = [
 	"stats":{
 		"balance":3,
 		"speed":5,
-		"att": 150
+		"att":150,
+		"matt":150
 	},
 	"prefix":false
 },
@@ -60,7 +64,8 @@ var g_scrolls = [
 		"balance":-1,
 		"speed":3,
 		"crit":4,
-		"att":870
+		"att":870,
+		"matt":870
 	},
 	"prefix":false
 },
