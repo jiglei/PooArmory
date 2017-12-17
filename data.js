@@ -30,7 +30,8 @@ var g_weaponTypes = {
 	"Ebie":{
 		"staff" :true,
 		"battle_scythe" :true,
-		"book": true
+		"book": true,
+		"fomorian": true
 	},
 	"Delia":{
 		"bastard_sword" :true,
@@ -72,7 +73,8 @@ var g_weaponTypes = {
 	},
 	"Sylas":{
 		"phantom_dagger":true,
-		"book": true
+		"book": true,
+		"fomorian":true
 	},
 	"Hurk":{
 		"greatsword":true,
@@ -439,9 +441,10 @@ var g_offhands = [
 	},
 	{
 		"name":"Fomorian Book",
-		"type":"book",
+		"type":"fomorian",
 		"stats":{
-			"crit":3
+			"crit":3,
+			"int":80
 		}
 	},
 	{
