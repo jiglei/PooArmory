@@ -920,6 +920,7 @@ function createSquare(loc, mgr)
 			if(!entryLookup)
 			{
 				console.log("No entry lookup for "+ name+ " for " + key + " in " + box.attr("id"))
+				return
 			}
 			var entry = entryLookup[name]
 			
@@ -1539,7 +1540,7 @@ function createStatsSheet(id, onChange)
 		{
 			url = "url('resource/"+chara+".jpg')"
 		}
-		pic.css("background-image", bgUrl)
+		pic.css("background-image", url)
 		
 		target.data("chara", chara)
 		specificStats.empty()
