@@ -347,5 +347,17 @@ var g_scrolls = [
 		"matt":752
 	},
 	"prefix":false
+},
+{
+	"name":"Enhanced",
+	"locations":["weapon"],
+	"stats":{
+		"crit":1,
+		"speed":5,
+		"balance":1,
+		"att":120,
+		"matt":120
+	},
+	"prefix":true
 }
 ]
