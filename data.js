@@ -312,7 +312,7 @@ var g_rings = [
 		"name":"Ocean Depths Monster"
 	},
 	{
-		"name":"Cold Thorn",
+		"name":"Frozen Thorn",
 		"stats":{
 			"balance": 1,
 			"str": 140,
@@ -323,7 +323,7 @@ var g_rings = [
 		"sets":["Lv90Rings"]
 	},
 	{
-		"name":"Cold Dagger",
+		"name":"Frozen Dagger",
 		"stats":{
 			"balance": 1,
 			"str": 140,
@@ -334,7 +334,7 @@ var g_rings = [
 		"sets":["Lv90Rings"]
 	},
 	{
-		"name":"Cold Desire",
+		"name":"Frozen Will",
 		"stats":{
 			"balance": 1,
 			"int": 180,
@@ -344,7 +344,7 @@ var g_rings = [
 		}
 	},
 	{
-		"name":"Cold Witch",
+		"name":"Frozen Witch",
 		"stats":{
 			"balance": 1,
 			"int": 180,
@@ -567,14 +567,22 @@ var g_earrings = [
 	{
 		"name":"Innocent Cry",
 		"stats":{
-			"crit":1
+			"crit":1,
+			"str":120,
+			"agi":45,
+			"wil":53,
+			"stamina":3
 		}
 
 	},
 	{
 		"name":"Innocent Tear",
 		"stats":{
-			"crit":1
+			"crit":1,
+			"int":162,
+			"agi":45,
+			"wil":53,
+			"stamina":3
 		}
 	}
 ]
