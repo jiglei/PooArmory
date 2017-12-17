@@ -341,6 +341,10 @@ var g_chests = [
 	{
 		"name":"Regina",
 		"type":"plate"
+	},
+		{
+		"name":"Dullahan",
+		"type":"plate"
 	}
 ]
 
@@ -359,6 +363,10 @@ var g_legs = [
 	},
 	{
 		"name":"Regina",
+		"type":"plate"
+	},
+		{
+		"name":"Dullahan",
 		"type":"plate"
 	}
 ]
@@ -379,6 +387,10 @@ var g_feet = [
 	{
 		"name":"Regina",
 		"type":"plate"
+	},
+		{
+		"name":"Dullahan",
+		"type":"plate"
 	}
 ]
 
@@ -398,6 +410,10 @@ var g_gloves = [
 	{
 		"name":"Regina",
 		"type":"plate"
+	},
+	{
+		"name":"Dullahan",
+		"type":"plate"
 	}
 ]
 
@@ -416,6 +432,10 @@ var g_hats = [
 	},
 	{
 		"name":"Regina",
+		"type":"plate"
+	},
+		{
+		"name":"Dullahan",
 		"type":"plate"
 	}
 ]
