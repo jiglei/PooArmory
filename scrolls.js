@@ -186,7 +186,7 @@ var g_scrolls = [
 	},
 	"prefix":true
 },
-{	"name":"Crescent Moonlight's",
+{	"name":"Sparkling",
 	"locations":["rings"] ,
 	"stats":{
 		"balance":2,
@@ -246,6 +246,15 @@ var g_scrolls = [
 		"speed":1,
 		"crit":2,
 		"stamina":5,
+		"critres":-3
+	},
+	"prefix":true
+},
+{	"name":"Petite",
+	"locations":["belt"] ,
+	"stats":{
+		"speed":1,
+		"crit":1,
 		"critres":-3
 	},
 	"prefix":true
