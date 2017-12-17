@@ -69,6 +69,7 @@ var g_weaponTypes = {
 	"Hurk":{
 		"greatsword":true,
 		"teide":true
+	}
 }
 
 var g_attackStats = {
