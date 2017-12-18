@@ -1219,14 +1219,62 @@ var g_charaSpecs = {
 }
 
 var g_setStats = [
-	{
-		"name" : "Lv90Rings",
-		"stats": [
-			{
-				"crit" : 1
-			}
-		]
-	},
+    {
+        "name" : "Lv90Rings",
+        "stats": [
+            {         
+            }         
+            ,
+            {         
+            }         
+            ,
+            {                    
+                "crit" : 1
+            }                     
+        ]
+    },
+	
+ {
+        "name" : "Regina",
+        "stats": [
+            {         
+            }         
+            ,
+            {         
+            }         
+            ,
+            {                    
+            },
+		{
+		"def":165,
+		"str":60,
+		"int":81,
+		"hp":120,
+		"stamina":5
+		},
+		{
+		"def":220,
+		"str":80,
+		"int":108,
+		"hp":160,
+		"stamina":6
+		},
+		{
+		"def":275,
+		"str":100,
+		"int":135,
+		"hp":200,
+		"stamina":7
+		},
+		{
+		"def":330,
+		"str":120,
+		"int":162,
+		"hp":240,
+		"stamina":10
+		}
+        ]
+    },
 ]
 
 var g_statDisplayNames = {
