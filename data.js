@@ -1233,7 +1233,6 @@ var g_setStats = [
 			{
 			}
 			]
-]
 
 var g_statDisplayNames = {
 	"speed": "Speed",
