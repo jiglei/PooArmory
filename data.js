@@ -1227,13 +1227,7 @@ var g_setStats = [
 			}
 		]
 	},
-	{
-		"name": "Lv90Set",
-		"stats": [
-			{
-			}
-			]
-	}
+]
 
 var g_statDisplayNames = {
 	"speed": "Speed",
