@@ -580,10 +580,10 @@ var g_belts = [
 
 var g_artifacts  = [
 	{
-		"name":"Poo statue"
+		"name":"Artifact"
 	},
 	{
-		"name":"Greater Poo statue"
+		"name":"Greater Artifact"
 	}
 ]
 
@@ -623,91 +623,6 @@ var g_offhands = [
 			"critres":7
 		}
 	},
-    {
-        "name": "Altar Shield",
-        "sell": 10693,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 43,
-            "def": 916,
-            "speed": 0,
-            "critres": 10,
-            "wil": 30,
-            "agi": 40
-        },
-        "level": 70,
-        "type": "smallshield"
-    },
-    {
-        "name": "Godwing Targe",
-        "sell": 10693,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 26,
-            "def": 1001,
-            "speed": 0,
-            "critres": 11,
-            "wil": 34,
-            "agi": 58
-        },
-        "level": 70,
-        "type": "smallshield"
-    },
-    {
-        "name": "Kraken's Small Shield",
-        "sell": 10693,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 32,
-            "def": 1100,
-            "speed": 0,
-            "critres": 7,
-            "wil": 30,
-            "agi": 50
-        },
-        "level": 70,
-        "type": "smallshield"
-    },
-    {
-        "name": "Majesty Shield",
-        "sell": 10693,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 42,
-            "def": 1243,
-            "speed": 0,
-            "critres": 9,
-            "wil": 27,
-            "agi": 30
-        },
-        "level": 70,
-        "type": "smallshield"
-    },
-    {
-        "name": "Nighthawk Small Shield",
-        "sell": 10693,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 35,
-            "def": 1200,
-            "speed": 0,
-            "critres": 9,
-            "wil": 35,
-            "agi": 45
-        },
-        "level": 70,
-        "type": "smallshield"
-    },
     {
         "name": "Armageddon Shield",
         "sell": 23000,
@@ -824,18 +739,33 @@ var g_earrings = [
 
 var g_brooches = [
 	{
-		"name":"Brooch"
+		"name":"Ruler's Brooch",
+		"stats":{
+			"str":25,
+			"wil":25,
+			"int":25,
+			"agi":25
+		}
 	},
 	{
 		"name":"Blue Kitty brooch",
 		"stats":{
-			"crit":1
+			"crit":1,
+			"def":50,
+			"str":33,
+			"agi":33,
+			"int":33,
+			"wil":33
 		}
 	},
 	{
 		"name":"White Kitty brooch",
 		"stats":{
-			"speed":2
+			"speed":2,
+			"agi":48,
+			"str":48,
+			"int":48,
+			"wil":48
 		}
 	}
 ]
