@@ -1223,16 +1223,16 @@ var g_setStats = [
 		"name" : "Lv90Rings",
 		"stats": [
 			{
-			}
-			,
-			{
-			}
-			,
-			{
 				"crit" : 1
 			}
 		]
-	}
+	},
+	{
+		"name": "Lv90Set",
+		"stats": [
+			{
+			}
+			]
 ]
 
 var g_statDisplayNames = {
