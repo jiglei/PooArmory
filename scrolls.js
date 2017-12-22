@@ -197,7 +197,7 @@ var g_scrolls = [
 },
 {	"name":"Fresh",
 	"locations":["offhand"] ,
-	"types":["smallshield","largeshield"],
+	"types":["smallshield","largeshield","focus"],
 	"stats":{
 		"speed":3,
 		"att":55,
