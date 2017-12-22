@@ -215,7 +215,7 @@ var g_scrolls = [
 },
 {	"name":"Diamond",
 	"locations":["offhand"] ,
-	"types":["smallshield","largeshield"],
+	"types":["smallshield","largeshield","focus"],
 	"stats":{
 		"def":0.1
 	},
