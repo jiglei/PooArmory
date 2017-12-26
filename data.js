@@ -790,7 +790,7 @@ var g_necklaces = [
 		"name":"Kitty Necklace",
 		"stats":{
 			"wil":3,
-			"agi":3,
+			"agi":16,
 			"str":3,
 			"int":3
 		}
