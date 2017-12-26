@@ -787,10 +787,31 @@ var g_bracelets = [
 
 var g_necklaces = [
 	{
-		"name":"Blue Kitty Necklace",
+		"name":"Kitty Necklace",
+		"stats":{
+			"wil":3,
+			"agi":3,
+			"str":3,
+			"int":3
+		}
 	},
 	{
-		"name":"Kitty Necklace",
+		"name":"Blue Kitty Necklace",
+		"stats":{
+			"wil":5,
+			"agi":5,
+			"str":5,
+			"int":5
+		}
+	},
+	{
+		"name":"White Kitty Necklace",
+		"stats":{
+			"wil":10,
+			"agi":10,
+			"str":10,
+			"int":10
+		}
 	}
 ]
 
