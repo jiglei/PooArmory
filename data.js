@@ -801,7 +801,8 @@ var g_necklaces = [
 			"wil":5,
 			"agi":5,
 			"str":5,
-			"int":5
+			"int":5,
+			"hp":100
 		}
 	},
 	{
@@ -810,7 +811,8 @@ var g_necklaces = [
 			"wil":10,
 			"agi":10,
 			"str":10,
-			"int":10
+			"int":10,
+			"def":50
 		}
 	}
 ]
