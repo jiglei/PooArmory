@@ -346,7 +346,6 @@ var g_scrolls = [
 {
 	"name":"Deadly",
 	"locations":all_armor,
-	"types":["light"],
 	"stats":{
 		"crit":3,
 		"balance":-1
