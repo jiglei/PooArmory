@@ -142,7 +142,6 @@ function createInputBox(placeholder, path, width, height)
 	{
 		ret.css("height", height)
 	}
-	ret.css("background", "rgba(255,255,255,0.5)")
 	
 	if(placeholder)
 	{
@@ -313,19 +312,20 @@ function toTitleCase(str) {
 }
 
 
-var getWeaponFragments = function (name)
+var getEquipComponents = function (loc, name)
 {
-	var	ret = []
-	try{
-		var level = g_setLevels[name] || 0
-		ret.push(g_weaponFragments[name])
-		$.each(g_weaponSide[level], function(k,v){
-			ret.push(g_weaponFragments[v])
+	try {
+		var lookup = g_lookups[loc]
+		var item = lookup[name.toLowerCase()]
+		level = item["level"]
+		var componentNames = [loc].concat(g_sides[loc])
+		var ret = $.map(componentNames, function (v, i) {
+			return g_componentData[level][v]
 		})
-	}catch(err)
-	{
+		return ret
+	} catch (ex) {
+		return []
 	}
-	return ret
 }
 
 var makeDialogId = function(loc)
@@ -347,10 +347,6 @@ var makeColWithWidth = function(wid)
 
 function getComponents(loc, name)
 {
-	if (loc == "weapon")
-	{
-		return getWeaponFragments(guessSetName(name))
-	}
 	if (loc == "bracelet")
 	{
 		var list = g_lookups["bracelet"][name.toLowerCase()]["components"]["list"]
@@ -361,6 +357,10 @@ function getComponents(loc, name)
 		}
 		return ret
 	}
+
+
+	ret = getEquipComponents(loc, name)
+	return ret
 }
 
 function getComments(loc, name)
@@ -721,7 +721,7 @@ var requiresDialogue = function (loc, entry)
 		return true
 	}
 	
-	if (loc == "weapon")
+	if (loc in g_sides)
 	{
 		if ('level' in entry && entry["level"] >= 90)
 		{
@@ -1382,7 +1382,7 @@ function createStatsSheet(id, onChange)
 	var baseStatsLabel = $("<p class = 'row stat-head no-padding' />")
 	baseStatsLabel.html("Base stats")
 
-	var baseStats = {'str':2500, 'wil':2000, 'agi':undefined, 'int':3000, 'hp':undefined, 'sta':undefined}
+	var baseStats = {'str':2500, 'wil':2000, 'agi':1000, 'int':3000, 'hp':1000, 'sta':undefined}
 	
 	var baseStatRow = $("<div class='row' />")
 	var baseStatInputs = {}
@@ -1479,7 +1479,9 @@ function createStatsSheet(id, onChange)
 		// Wil -> Crit
 		var wilCrit = Math.floor(valOf(baseStatInputs["wil"]) *3/400)
 		wilCrit = Math.min(wilCrit, 15)
-		newStats["crit"] = wilCrit+3+(newStats.crit||0)
+		newStats["crit"] = wilCrit + 3 + (newStats.crit || 0)
+
+		newStats["hp"] = valOf(baseStatInputs["hp"]) + (newStats["hp"]||0)
 		
 		// str/int -> att/mAtt
 		var attStat = g_attackStats[target.data("chara")] || 'att'
@@ -1506,7 +1508,7 @@ function createStatsSheet(id, onChange)
 		var attRow = makeStatDiv(g_niceStrings[attStat], newStats[attStat])
 		statsWrap.append(attRow)
 	}
-	writeStats({crit:0, bal:0, speed:0, add:0})
+	writeStats({crit:0, bal:0, speed:0, add:0, hp:0})
 	
 	// This is what the calling code should call to update
 	target.data('update', writeStats)

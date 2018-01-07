@@ -47,9 +47,10 @@ input[type="text"][disabled]{
 	text-shadow: none;
 }
 
-input[type="text"]{
-    font-weight:bold;
+input[type="text"] {
+	font-weight: bold;
 	text-shadow: -1px 0 1px #fefefe, 0 1px 1px #fefefe, 1px 0 1px #fefefe, 0 -1px 1px #fefefe;
+	background-color:rgba(255,255,255,0.5);
 	color:#333333;
 }
 

@@ -328,11 +328,13 @@ var g_major_infusions = [
 var g_chests = [
 	{
 		"name":"Lugh Lamhfada",
-		"type":"cloth"
+		"type": "cloth",
+		"level": 90
 	},
 	{
 		"name":"Terminus Sentinel",
-		"type":"light"
+		"type": "light",
+		"level": 90
 	},
 	{
 		"name":"Braha",
@@ -340,11 +342,13 @@ var g_chests = [
 	},
 	{
 		"name":"Regina",
-		"type":"plate"
+		"type": "plate",
+		"level": 90
 	},
 		{
 		"name":"Dullahan",
-		"type":"plate"
+		"type": "plate",
+		"level":95
 	}
 ]
 
@@ -363,11 +367,13 @@ var g_legs = [
 	},
 	{
 		"name":"Regina",
-		"type":"plate"
+		"type": "plate",
+		"level": 90
 	},
 		{
 		"name":"Dullahan",
-		"type":"plate"
+		"type": "plate",
+		"level": 95
 	}
 ]
 
@@ -386,11 +392,13 @@ var g_feet = [
 	},
 	{
 		"name":"Regina",
-		"type":"plate"
+		"type": "plate",
+		"level": 90
 	},
 		{
 		"name":"Dullahan",
-		"type":"plate"
+		"type": "plate",
+		"level": 95
 	}
 ]
 
@@ -409,11 +417,13 @@ var g_gloves = [
 	},
 	{
 		"name":"Regina",
-		"type":"plate"
+		"type": "plate",
+		"level": 90
 	},
 	{
 		"name":"Dullahan",
-		"type":"plate"
+		"type": "plate",
+		"level": 95
 	}
 ]
 
@@ -1026,17 +1036,175 @@ var g_braceGemComments = {
 }
 
 
-var g_weaponSide = {
-	90 : ['Perfect', 'Keen', 'Stable', 'Lightweight'],
-	95 : ['C.Perfect', 'C.Keen', 'C.Stable', 'C.Lightweight']
+var g_sides = {
+	"weapon": ['Perfect', 'Keen', 'Stable', 'Lightweight'],
+	"hat": ["Solid"],
+	"chest": ["Solid", "Smooth"],
+	"gloves": ["Solid"],
+	"legs": ["Solid", "Smooth"],
+	"feet": ["Solid"]
 }
 
-var g_setLevels = {
-	"Regina": 90,
-	"Lugh": 90,
-	"Terminus": 90,
-	"Braha": 90,
-	"Dullahan": 95
+var g_componentData = {
+	90: {
+		"weapon": {
+			"name": "Core",
+			"stats": {
+				"speed": [3, 4],
+				"att": [6584, 7080]
+			}
+		},
+		"chest": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"legs": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"gloves": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"feet": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"hat": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"Perfect": {
+			"name": "Perfect",
+			"stats": {
+				"att": [4390, 4720]
+			}
+		},
+		"Keen": {
+			"name": "Keen",
+			"stats": {
+				"balance": [27, 30],
+				"crit": [28, 31]
+			}
+		},
+		"Stable": {
+			"name": "Stable",
+			"stats": {
+				"balance": [41, 45]
+			}
+		},
+		"Lightweight": {
+			"name": "Lightweight",
+			"stats": {
+				"crit": [19, 21],
+				"speed": [4, 5]
+			}
+		},
+		"Solid": {
+			"name": "Solid",
+			"stats": {
+				"def": [1, 100],
+				"critres": [1,3]
+			}
+		},
+		"Smooth": {
+			"name": "Smooth",
+			"stats": {
+				"def": [1, 500],
+				"critres": [4,9]
+			}
+		}
+	},
+	95: {
+		"weapon": {
+			"name": "Core",
+			"stats": {
+				"speed": [3, 4],
+				"att": [8258, 8880]
+			}
+		},
+		"chest": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"legs": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"gloves": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"feet": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"hat": {
+			"name": "Core",
+			"stats": {
+				"def": [3, 4],
+			}
+		},
+		"Perfect": {
+			"name": "Perfect",
+			"stats": {
+				"att": [5506, 5920]
+			}
+		},
+		"Keen": {
+			"name": "Keen",
+			"stats": {
+				"balance": [24, 27],
+				"crit": [36, 40]
+			}
+		},
+		"Stable": {
+			"name": "Stable",
+			"stats": {
+				"balance": [37, 41]
+			}
+		},
+		"Lightweight": {
+			"name": "Lightweight",
+			"stats": {
+				"crit": [24, 27],
+				"speed": [4, 5]
+			}
+		},
+		"Solid": {
+			"name": "Solid",
+			"stats": {
+				"def": [10, 1000],
+				"critres": [10, 30]
+			}
+		},
+		"Smooth": {
+			"name": "Smooth",
+			"stats": {
+				"def": [10, 5000],
+				"critres": [40, 90]
+			}
+		}
+	}
+
 }
 
 var g_charaStats = {
@@ -1139,14 +1307,14 @@ var g_neamDetail = {
 		{
 			"name" : "25",
 			"stats" : {
-				"HP": 1000,
+				"hp": 1000,
 				"crit": 1
 			}
 		},
 		{
 			"name" : "50",
 			"stats" : {
-				"HP": 1000,
+				"hp": 1000,
 				"att": 500,
 				"matt": 500,
 				"crit": 2
@@ -1155,7 +1323,7 @@ var g_neamDetail = {
 		{
 			"name" : "75",
 			"stats" : {
-				"HP": 1000,
+				"hp": 1000,
 				"att": 500,
 				"matt": 500,
 				"crit": 3,
@@ -1165,7 +1333,7 @@ var g_neamDetail = {
 				{
 			"name" : "100",
 			"stats" : {
-				"HP": 1000,
+				"hp": 1000,
 				"att": 1000,
 				"matt": 1000,
 				"crit": 5,
@@ -1306,12 +1474,18 @@ var g_statDisplayNames = {
 	"crit": "Crit",
 	"att": "Att",
 	"matt": "mAtt",
-	"add": "Additional Damage"
+	"add": "Additional Damage",
+	"hp": "HP",
+	"critres": "Crit Res",
+	"def": "Def"
 }
 
 var g_displayableStatsCommon = {
 	"speed" : true,
 	"balance": true,
 	"crit": true,
-	"add": true
+	"add": true,
+	"hp": true,
+	"critres": true,
+	"def": true
 }
