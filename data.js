@@ -918,7 +918,7 @@ var g_weaponFragments = {
 	"Dullahan": {
 		"name" : "Dullahan",
 		"stats":{
-			"speed": [3],
+			"speed": [3,4],
 			"att": [8258,8880]
 		}
 	},
