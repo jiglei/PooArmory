@@ -1057,31 +1057,36 @@ var g_componentData = {
 		"chest": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [793, 932],
+				"critres": [3,4]
 			}
 		},
 		"legs": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [726, 855],
+				"critres": [3, 4]
 			}
 		},
 		"gloves": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [1255, 1476]
+				"critres": 3
 			}
 		},
 		"feet": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [1255, 1476]
+				"critres": 3
 			}
 		},
 		"hat": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [1255, 1476]
+				"critres": 3
 			}
 		},
 		"Perfect": {
@@ -1113,15 +1118,18 @@ var g_componentData = {
 		"Solid": {
 			"name": "Solid",
 			"stats": {
-				"def": [1, 100],
-				"critres": [1,3]
+				"str": [144, 180],
+				"agi": [72, 90],
+				"int": [194, 243],
+				"wil": [64, 80],
+				"critres": [10, 13]
 			}
 		},
 		"Smooth": {
 			"name": "Smooth",
 			"stats": {
-				"def": [1, 500],
-				"critres": [4,9]
+				"def": [629, 740],
+				"critres": [3, 4]
 			}
 		}
 	},
@@ -1136,31 +1144,36 @@ var g_componentData = {
 		"chest": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [997, 1172],
+				"critres": [4, 5]
 			}
 		},
 		"legs": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [913, 1075],
+				"critres": [6, 8]
 			}
 		},
 		"gloves": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [1578, 1856],
+				"critres": [3, 4]
 			}
 		},
 		"feet": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [1578, 1856],
+				"critres": [3, 4]
 			}
 		},
 		"hat": {
 			"name": "Core",
 			"stats": {
-				"def": [3, 4],
+				"def": [1578, 1856],
+				"critres": [3, 4]
 			}
 		},
 		"Perfect": {
@@ -1192,15 +1205,18 @@ var g_componentData = {
 		"Solid": {
 			"name": "Solid",
 			"stats": {
-				"def": [10, 1000],
-				"critres": [10, 30]
+				"str": [144, 180],
+				"agi": [72, 90],
+				"int": [194, 243],
+				"wil": [64, 80],
+				"critres": [11, 13]
 			}
 		},
 		"Smooth": {
 			"name": "Smooth",
 			"stats": {
-				"def": [10, 5000],
-				"critres": [40, 90]
+				"def": [714, 840],
+				"critres": [3, 4]
 			}
 		}
 	}
