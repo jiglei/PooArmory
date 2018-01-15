@@ -1092,7 +1092,12 @@ var g_componentData = {
 		"Perfect": {
 			"name": "Perfect",
 			"stats": {
-				"att": [4390, 4720]
+				"att": [4390, 4720],
+				"matt": [4390, 4720],
+				"str": [53, 66],
+				"agi": [29, 36],
+				"int": [71, 89],
+				"wil": [38, 48]
 			}
 		},
 		"Keen": {
@@ -1105,7 +1110,12 @@ var g_componentData = {
 		"Stable": {
 			"name": "Stable",
 			"stats": {
-				"balance": [41, 45]
+				"balance": [41, 45],
+				"str": [35, 44],
+				"agi": [19, 24],
+				"int": [47, 59],
+				"wil": [26, 32]
+				
 			}
 		},
 		"Lightweight": {
@@ -1179,7 +1189,12 @@ var g_componentData = {
 		"Perfect": {
 			"name": "Perfect",
 			"stats": {
-				"att": [5506, 5920]
+				"att": [5506, 5920],
+				"matt": [5506, 5920],
+				"str": [53, 66],
+				"agi": [29, 36],
+				"int": [71, 89],
+				"wil": [38, 48]
 			}
 		},
 		"Keen": {
@@ -1192,7 +1207,11 @@ var g_componentData = {
 		"Stable": {
 			"name": "Stable",
 			"stats": {
-				"balance": [37, 41]
+				"balance": [37, 41],
+				"str": [35, 44],
+				"agi": [19, 24],
+				"int": [47, 59],
+				"wil": [26, 32]
 			}
 		},
 		"Lightweight": {
