@@ -1071,22 +1071,22 @@ var g_componentData = {
 		"gloves": {
 			"name": "Core",
 			"stats": {
-				"def": [1255, 1476]
-				"critres": [3]
+				"def": [1255, 1476],
+				"critres": 3
 			}
 		},
 		"feet": {
 			"name": "Core",
 			"stats": {
-				"def": [1255, 1476]
-				"critres": [3]
+				"def": [1255, 1476],
+				"critres": 3
 			}
 		},
 		"hat": {
 			"name": "Core",
 			"stats": {
-				"def": [1255, 1476]
-				"critres": [3]
+				"def": [1255, 1476],
+				"critres": 3
 			}
 		},
 		"Perfect": {
