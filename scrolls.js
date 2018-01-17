@@ -118,10 +118,23 @@ var g_scrolls = [
 		"crit":4,
 		"stamina":5,
 		"def":160,
-		"critres":6
+		"critres":6,
+		"hp": 50
 	},
 	"prefix":true
 },
+{	"name":"Infinite",
+	"locations":["chest"] ,
+	"stats":{
+		"balance":-3,
+		"crit":5,
+		"stamina":8,
+		"def":160,
+		"critres":8,
+		"hp":100
+	},
+	"prefix":true
+},	
 {	"name":"Master",
 	"locations":["chest"] ,
 	"stats":{
@@ -165,6 +178,28 @@ var g_scrolls = [
 		"critres":2
 	},
 	"prefix":true
+},
+{	"name":"Expeditionary",
+	"locations":["hat", "legs"],
+ 	"stats":{
+		"att":285,
+		"matt":285,
+		"def":280,
+		"crit":1,
+		"critres":4
+	},
+ 	"prefix":false
+},
+{	"name":"Captive",
+	"locations":["hat", "legs"],
+ 	"stats":{
+		"att":285,
+		"matt":285,
+		"def":280,
+		"crit":3,
+		"critres":5
+	},
+ 	"prefix":false
 },
 {	"name":"The Dead",
 	"locations":["rings"] ,
