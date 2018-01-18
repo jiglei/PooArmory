@@ -841,9 +841,7 @@ var g_weaponFragments = {
 			"str": [53,66],
 			"agi": [29,36],
 			"int": [71,89],
-			"wil" [38,48]
-			
-			
+			"wil": [38,48]			
 		}
 	},
 	"Keen" : {
@@ -1336,7 +1334,7 @@ var g_neamDetail = {
 var g_statComments = {
 	"str" : "1 str grants 2.7 Att [Str is not calculated from gear - enter your totals for now!]",
 	"int" : "1 int grants 2.0 mAtt [Int is not calculated from gear - enter your totals for now!]",
-	"wil": "133 wil grants 1 Crit (up to a max of 2000 wil for 15 crit)  [Wil is not calculated from gear - enter your totals for now!]",
+	"wil": "133 grants 1 Crit (up to a max of 2000 wil for 15 crit)  [is not calculated from gear - enter your totals for now!]",
 	"agi": "2 agi grants 1 Def",
 }
 
