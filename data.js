@@ -338,7 +338,8 @@ var g_chests = [
 	},
 	{
 		"name":"Braha",
-		"type":"heavy"
+		"type":"heavy",
+		"level": 90
 	},
 	{
 		"name":"Regina",
@@ -355,15 +356,18 @@ var g_chests = [
 var g_legs = [
 	{
 		"name":"Lugh Lamhfada",
-		"type":"cloth"
+		"type":"cloth",
+		"level": 90
 	},
 	{
 		"name":"Terminus Sentinel",
-		"type":"light"
+		"type":"light",
+		"level": 90
 	},
 	{
 		"name":"Braha",
-		"type":"heavy"
+		"type":"heavy",
+		"level": 90
 	},
 	{
 		"name":"Regina",
@@ -380,15 +384,18 @@ var g_legs = [
 var g_feet = [
 	{
 		"name":"Lugh Lamhfada",
-		"type":"cloth"
+		"type":"cloth",
+		"level": 90
 	},
 	{
 		"name":"Terminus Sentinel",
-		"type":"light"
+		"type":"light",
+		"level": 90
 	},
 	{
 		"name":"Braha",
-		"type":"heavy"
+		"type":"heavy",
+		"level": 90
 	},
 	{
 		"name":"Regina",
@@ -405,15 +412,18 @@ var g_feet = [
 var g_gloves = [
 	{
 		"name":"Lugh Lamhfada",
-		"type":"cloth"
+		"type":"cloth",
+		"level": 90
 	},
 	{
 		"name":"Terminus Sentinel",
-		"type":"light"
+		"type":"light",
+		"level": 90
 	},
 	{
 		"name":"Braha",
-		"type":"heavy"
+		"type":"heavy",
+		"level": 90
 	},
 	{
 		"name":"Regina",
@@ -430,23 +440,28 @@ var g_gloves = [
 var g_hats = [
 	{
 		"name":"Lugh Lamhfada",
-		"type":"cloth"
+		"type":"cloth",
+		"level": 90
 	},
 	{
 		"name":"Terminus Sentinel",
-		"type":"light"
+		"type":"light",
+		"level": 90
 	},
 	{
 		"name":"Braha",
-		"type":"heavy"
+		"type":"heavy",
+		"level": 90
 	},
 	{
 		"name":"Regina",
-		"type":"plate"
+		"type":"plate",
+		"level": 90
 	},
 		{
 		"name":"Dullahan",
-		"type":"plate"
+		"type":"plate",
+		"level": 95
 	}
 ]
 
@@ -633,91 +648,6 @@ var g_offhands = [
 			"critres":7
 		}
 	},
-    {
-        "name": "Armageddon Shield",
-        "sell": 23000,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 50,
-            "def": 1640,
-            "speed": 0,
-            "critres": 7,
-            "wil": 56,
-            "agi": 83
-        },
-        "level": 80,
-        "type": "smallshield"
-    },
-    {
-        "name": "Heremon Small Shield",
-        "sell": 23000,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 55,
-            "def": 1600,
-            "speed": 0,
-            "critres": 6,
-            "wil": 50,
-            "agi": 60
-        },
-        "level": 80,
-        "type": "smallshield"
-    },
-    {
-        "name": "Noblesse Shield",
-        "sell": 23000,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 74,
-            "def": 1414,
-            "speed": 0,
-            "critres": 9,
-            "wil": 52,
-            "agi": 105
-        },
-        "level": 80,
-        "type": "smallshield"
-    },
-    {
-        "name": "Pirate Small Shield",
-        "sell": 23000,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 49,
-            "def": 1540,
-            "speed": 0,
-            "critres": 9,
-            "wil": 63,
-            "agi": 70
-        },
-        "level": 80,
-        "type": "smallshield"
-    },
-    {
-        "name": "Skeleton Shield",
-        "sell": 23000,
-        "rank": "6",
-        "stats": {
-            "int": 0,
-            "wil": 0,
-            "str": 64,
-            "def": 1462,
-            "speed": 0,
-            "critres": 8,
-            "wil": 82,
-            "agi": 90
-        },
-        "level": 80,
-        "type": "smallshield"
-    }
 ]
 
 var g_earrings = [
@@ -874,35 +804,46 @@ var g_weaponFragments = {
 		"name" : "Regina",
 		"stats": {
 			"speed" : [3,4],
-			"att": [6584, 7080]
+			"att": [6584, 7080],
+			"matt": [6584, 7080]
 		}
 	},
 	"Braha" : {
 		"name" : "Braha",
 		"stats":{
 			"speed" : [3,4],
-			"att": [6584, 7080]
+			"att": [6584, 7080],
+			"matt": [6584, 7080]
 		}
 	},
 	"Terminus" : { 
 		"name" :"Terminus",
 		"stats":{
 			"speed" : [3,4],
-			"att": [6584, 7080]
+			"att": [6584, 7080],
+			"matt": [6584, 7080]
 		}
 	},
 	"Lugh" : { 
 		"name" : "Lugh",
 		"stats":{
 			"speed" : [3,4],
-			"att": [6584, 7080]
+			"att": [6584, 7080],
+			"matt": [6584, 7080]
 		}
 	},
 	
 	"Perfect" : {
 		"name" : "Perfect",
 		"stats":{
-			"att": [4390, 4720]
+			"att": [4390, 4720],
+			"matt": [4390, 4720],
+			"str": [53,66],
+			"agi": [29,36],
+			"int": [71,89],
+			"wil" [38,48]
+			
+			
 		}
 	},
 	"Keen" : {
@@ -915,7 +856,11 @@ var g_weaponFragments = {
 	"Stable" : {
 		"name" :"Stable",
 		"stats":{
-			"balance": [41,45]
+			"balance": [41,45],
+			"str": [35,44],
+			"agi": [19,24],
+			"int": [47,59],
+			"wil": [26,32]
 		}
 	},
 	"Lightweight" : {
