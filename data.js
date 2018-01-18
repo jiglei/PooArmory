@@ -162,12 +162,12 @@ var g_scrollable =
 	"necklace": true
 }
 
-var g_qualityEffects= {	
-	"hat": g_qualityEffects,
-	"chest": g_qualityEffects,
-	"gloves": g_qualityEffects,
-	"feet": g_qualityEffects,
-	"legs": g_qualityEffects,
+var g_QualityEffects= {	
+	"hat": g_armourQualityEffects,
+	"chest": g_armourQualityEffects,
+	"gloves": g_armourQualityEffects,
+	"feet": g_armourQualityEffects,
+	"legs": g_armourQualityEffects,
 	"weapon": [
 		{
 			"name":'1'+String.fromCharCode(0x2605),
@@ -204,9 +204,50 @@ var g_qualityEffects= {
 				"Att Mod": 1.06
 			}
 		}
-	],
+	]
+	
 }
 
+var g_armourQualityEffects = [
+		{
+			"name":'1'+String.fromCharCode(0x2605),
+			"stats": {
+				"Stat Mod": 0.8,
+				"Att Mod": 0.96
+			}
+		},
+		{
+			"name":'2'+String.fromCharCode(0x2605),
+			"stats": {
+				"Stat Mod": 1.0,
+				"Att Mod": 1.0
+			}
+		},
+		{
+			"name":'3'+String.fromCharCode(0x2605),
+			"stats": {
+				"Stat Mod": 1.15,
+				"Att Mod": 1.02
+			}
+		},
+		{
+			"name":'4'+String.fromCharCode(0x2605),
+			"stats": {
+				"Stat Mod": 1.2,
+				"Att Mod": 1.04
+			}
+		},
+		{
+			"name":'5'+String.fromCharCode(0x2605),
+			"stats": {
+				"Stat Mod": 1.25,
+				"Att Mod": 1.06
+			}
+		}
+	]
+	
+		
+		
 var g_armourEnhancementEffects = [
 	{
 		"name" : "+0",
