@@ -163,6 +163,11 @@ var g_scrollable =
 }
 
 var g_qualityEffects= {	
+	"hat": g_qualityEffects,
+	"chest": g_qualityEffects,
+	"gloves": g_qualityEffects,
+	"feet": g_qualityEffects,
+	"legs": g_qualityEffects,
 	"weapon": [
 		{
 			"name":'1'+String.fromCharCode(0x2605),
@@ -199,7 +204,7 @@ var g_qualityEffects= {
 				"Att Mod": 1.06
 			}
 		}
-	]
+	],
 }
 
 var g_armourEnhancementEffects = [
