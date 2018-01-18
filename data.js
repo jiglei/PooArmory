@@ -162,7 +162,7 @@ var g_scrollable =
 	"necklace": true
 }
 
-var g_QualityEffects= {	
+var g_qualityEffects= {	
 	"hat": g_armourQualityEffects,
 	"chest": g_armourQualityEffects,
 	"gloves": g_armourQualityEffects,
