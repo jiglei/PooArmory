@@ -929,13 +929,19 @@ var g_weaponFragments = {
 		"name" : "Dullahan",
 		"stats":{
 			"speed": [3,4],
-			"att": [8258,8880]
+			"att": [8258,8880],
+			"matt": [8258,8880]
 		}
 	},
 	"C.Perfect" : {
 		"name" : "C.Perfect",
 		"stats":{
-			"att" : [5506,5920]
+			"att" : [5506,5920],
+			"matt": [5506,5920],
+			"str": [53,66],
+			"agi": [29,36],
+			"int": [71,89],
+			"wil": [38,48]
 		}
 	},
 	"C.Keen" : {
@@ -948,7 +954,11 @@ var g_weaponFragments = {
 	"C.Stable" : {
 		"name" : "C.Stable",
 		"stats":{
-			"balance": [37,41]
+			"balance": [37,41],
+			"str": [35,44],
+			"agi": [19,24],
+			"int": [47,59],
+			"wil": [26,32]
 		}
 	},
 	"C.Lightweight" : {
