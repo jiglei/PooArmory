@@ -842,7 +842,8 @@ var g_quality = {
 	"earrings": true,
 	"brooch": true,
 	"necklace": true,
-	"rings": true
+	"rings": true,
+	"belt": true
 }
 
 var g_weaponFragments = {
