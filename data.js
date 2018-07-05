@@ -673,7 +673,7 @@ var g_belts = [
 		}
 	},
 	{
-		"name":"New Str Belt",
+		"name":"Sealmaker Belt",
 		"stats":{
 			"balance":3,
 			"str":145,
@@ -681,10 +681,10 @@ var g_belts = [
 			"wil":105
 		}
 	},
-	{	"name":"New Int Belt",
+	{	"name":"Enchanted Belt",
 	 	"stats":{
 			"balance":3,
-			"int":197,
+			"int":193,
 			"agi":95,
 			"wil":105
 		}
@@ -764,7 +764,7 @@ var g_earrings = [
 		}
 	},
 	{
-		"name":"New Int Earrings",
+		"name":"Devil's Tear",
 		"stats":{
 			"crit":2,
 			"int":167,
@@ -774,7 +774,7 @@ var g_earrings = [
 		}
 	},
 	{
-		"name":"New Str Earrings",
+		"name":"Devil's Cry",
 		"stats":{
 			"crit":2,
 			"str":145,
