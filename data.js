@@ -396,6 +396,11 @@ var g_chests = [
 		"name":"Dullahan",
 		"type": "plate",
 		"level":95
+	},
+		{
+		"name":"Astra",
+		"type": "plate",
+		"level":100
 	}
 ]
 
@@ -424,6 +429,11 @@ var g_legs = [
 		"name":"Dullahan",
 		"type": "plate",
 		"level": 95
+	},
+		{
+		"name":"Astra",
+		"type": "plate",
+		"level":100
 	}
 ]
 
@@ -452,6 +462,11 @@ var g_feet = [
 		"name":"Dullahan",
 		"type": "plate",
 		"level": 95
+	},
+		{
+		"name":"Astra",
+		"type": "plate",
+		"level":100
 	}
 ]
 
@@ -480,6 +495,11 @@ var g_gloves = [
 		"name":"Dullahan",
 		"type": "plate",
 		"level": 95
+	},
+		{
+		"name":"Astra",
+		"type": "plate",
+		"level":100
 	}
 ]
 
@@ -508,6 +528,11 @@ var g_hats = [
 		"name":"Dullahan",
 		"type":"plate",
 		"level": 95
+	},
+		{
+		"name":"Astra",
+		"type": "plate",
+		"level":100
 	}
 ]
 
@@ -646,6 +671,23 @@ var g_belts = [
 			"agi":90,
 			"wil":100
 		}
+	},
+	{
+		"name":"New Str Belt",
+		"stats":{
+			"balance":3,
+			"str":145,
+			"agi":95,
+			"wil":105
+		}
+	},
+	{	"name":"New Int Belt",
+	 	"stats":{
+			"balance":3,
+			"int":197,
+			"agi":95,
+			"wil":105
+		}
 	}
 ]
 
@@ -719,6 +761,26 @@ var g_earrings = [
 			"agi":45,
 			"wil":53,
 			"stamina":3
+		}
+	},
+	{
+		"name":"New Int Earrings",
+		"stats":{
+			"crit":2,
+			"int":167,
+			"agi":50,
+			"wil":58,
+			"stamina":4
+		}
+	},
+	{
+		"name":"New Str Earrings",
+		"stats":{
+			"crit":2,
+			"str":145,
+			"agi":50,
+			"wil":58,
+			"stamina":4
 		}
 	}
 ]
@@ -956,6 +1018,49 @@ var g_weaponFragments = {
 		"stats":{
 			"crit": [24,27],
 			"speed": [4,5]
+		}
+	},
+	"Astra": {
+		"name": "Astra",
+		"stats":{
+			"speed":[3,4],
+			"att":[10490,11280],
+			"matt":[10490,11280]
+		}
+	},
+	"A.Perfect": {
+		"name":"A.Perfect",
+		"stats":{
+			"att" : [6994,7520],
+			"matt": [6994,7520],
+			"str": [53,66],
+			"agi": [29,36],
+			"int": [71,89],
+			"wil": [38,48]
+		}
+		},
+	"A.Keen": {
+		"name": "A.Keen",
+		"stats":{
+			"crit": [44-49],
+			"balance":[21-23]
+		}
+	},
+	"A.Stable": {
+		"name": "A.Stable",
+		"stats":{
+			"balance": [31,35],
+			"str": [35,44],
+			"agi": [19,24],
+			"int": [47,59],
+			"wil": [26,32]
+		}
+	},
+	"A.Lightweight":{
+		"name": "A.Lightweight",
+		"stats":{
+			"crit":[30-33],
+			"speed":[4-5]
 		}
 	}
 }
