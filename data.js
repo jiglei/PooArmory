@@ -289,7 +289,40 @@ var g_armourEnhancementEffects = [
 		"stats": {
 			"add":600
 		}
+	},
+	{
+		"name" : "+16",
+		"stats": {
+			"add":750
+		}
+	},
+	{
+		"name": "+17",
+		"stats": {
+			"add":900
+		}
+	},
+	{
+		"name": "+18",
+		"stats": {
+			"add":1140
+		}
+	},
+	{
+		"name": "+19",
+		"stats": {
+			"add":1440
+		}
+	},
+	{
+		"name": "+20",
+		"stats": {
+			"add":2500
+		}
 	}
+
+		
+	
 ]
 
 var g_enhancementEffects = {
