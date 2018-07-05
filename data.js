@@ -390,7 +390,52 @@ var g_enhancementEffects = {
 			"matt":4100,
 			"add":3000
 		}
-	}
+	},
+	{
+		"name" : "+16",
+		"stats": {
+			"speed":42,
+			"att":4900,
+			"matt":4900,
+			"add":3750
+		}
+	},
+		{
+		"name" : "+17",
+		"stats": {
+			"speed":46,
+			"att":5700,
+			"matt":5700,
+			"add":4500
+		}
+	},
+		{
+		"name" : "+18",
+		"stats": {
+			"speed":50,
+			"att":6600,
+			"matt":6600,
+			"add":5700
+		}
+	},
+		{
+		"name" : "+19",
+		"stats": {
+			"speed":54,
+			"att":7500,
+			"matt":7500,
+			"add":7200
+		}
+	},
+		{
+		"name" : "+20",
+		"stats": {
+			"speed":58,
+			"att":8500,
+			"matt":8500,
+			"add":12500
+		}
+	},
 	]
 }
 
