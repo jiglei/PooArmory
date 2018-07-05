@@ -1343,6 +1343,104 @@ var g_componentData = {
 				"critres": [3, 4]
 			}
 		}
+		
+	},
+	100: {
+		"weapon": {
+			"name": "Core",
+			"stats": {
+				"speed": [3, 4],
+				"att": [10490, 11280]
+			}
+		},
+		"chest": {
+			"name": "Core",
+			"stats": {
+				"def": [997, 1172],
+				"critres": [4, 5]
+			}
+		},
+		"legs": {
+			"name": "Core",
+			"stats": {
+				"def": [913, 1075],
+				"critres": [6, 8]
+			}
+		},
+		"gloves": {
+			"name": "Core",
+			"stats": {
+				"def": [1578, 1856],
+				"critres": [3, 4]
+			}
+		},
+		"feet": {
+			"name": "Core",
+			"stats": {
+				"def": [1578, 1856],
+				"critres": [3, 4]
+			}
+		},
+		"hat": {
+			"name": "Core",
+			"stats": {
+				"def": [1578, 1856],
+				"critres": [3, 4]
+			}
+		},
+		"Perfect": {
+			"name": "Perfect",
+			"stats": {
+				"att": [6994, 7520],
+				"matt": [6994, 7520],
+				"str": [53, 66],
+				"agi": [29, 36],
+				"int": [71, 89],
+				"wil": [38, 48]
+			}
+		},
+		"Keen": {
+			"name": "Keen",
+			"stats": {
+				"balance": [21, 23],
+				"crit": [44, 49]
+			}
+		},
+		"Stable": {
+			"name": "Stable",
+			"stats": {
+				"balance": [31, 35],
+				"str": [35, 44],
+				"agi": [19, 24],
+				"int": [47, 59],
+				"wil": [26, 32]
+			}
+		},
+		"Lightweight": {
+			"name": "Lightweight",
+			"stats": {
+				"crit": [30, 33],
+				"speed": [4, 5]
+			}
+		},
+		"Solid": {
+			"name": "Solid",
+			"stats": {
+				"str": [144, 180],
+				"agi": [72, 90],
+				"int": [194, 243],
+				"wil": [64, 80],
+				"critres": [11, 13]
+			}
+		},
+		"Smooth": {
+			"name": "Smooth",
+			"stats": {
+				"def": [714, 840],
+				"critres": [3, 4]
+			}
+		}
+		
 	}
 
 }
