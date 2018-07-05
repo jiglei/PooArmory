@@ -1356,36 +1356,36 @@ var g_componentData = {
 		"chest": {
 			"name": "Core",
 			"stats": {
-				"def": [997, 1172],
+				"def": [997, 1532],
 				"critres": [4, 5]
 			}
 		},
 		"legs": {
 			"name": "Core",
 			"stats": {
-				"def": [913, 1075],
-				"critres": [6, 8]
+				"def": [913, 1405],
+				"critres": [7, 9]
 			}
 		},
 		"gloves": {
 			"name": "Core",
 			"stats": {
-				"def": [1578, 1856],
-				"critres": [3, 4]
+				"def": [1578, 2426],
+				"critres": [4, 5]
 			}
 		},
 		"feet": {
 			"name": "Core",
 			"stats": {
-				"def": [1578, 1856],
-				"critres": [3, 4]
+				"def": [1578, 2426],
+				"critres": [4, 5]
 			}
 		},
 		"hat": {
 			"name": "Core",
 			"stats": {
-				"def": [1578, 1856],
-				"critres": [3, 4]
+				"def": [1578, 2426],
+				"critres": [4, 5]
 			}
 		},
 		"Perfect": {
@@ -1430,13 +1430,13 @@ var g_componentData = {
 				"agi": [72, 90],
 				"int": [194, 243],
 				"wil": [64, 80],
-				"critres": [11, 13]
+				"critres": [12, 14]
 			}
 		},
 		"Smooth": {
 			"name": "Smooth",
 			"stats": {
-				"def": [714, 840],
+				"def": [814, 940],
 				"critres": [3, 4]
 			}
 		}
