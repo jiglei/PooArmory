@@ -1580,6 +1580,54 @@ var g_neamDetail = {
 		}
 	]
 }
+var g_balorDetail = {
+	"name": "Balor",
+	"placeholder":"run count",
+	"options": [
+		{
+			"name" : "5",
+			"stats" : {
+				"crit": 1,
+			}
+		},
+		{
+			"name" : "25",
+			"stats" : {
+				"hp": 1000,
+				"crit": 1
+			}
+		},
+		{
+			"name" : "50",
+			"stats" : {
+				"hp": 1000,
+				"att": 500,
+				"matt": 500,
+				"crit": 2
+			}
+		},
+		{
+			"name" : "75",
+			"stats" : {
+				"hp": 1000,
+				"att": 500,
+				"matt": 500,
+				"crit": 3,
+				"uncap": 300
+			}
+		},
+				{
+			"name" : "100",
+			"stats" : {
+				"hp": 1000,
+				"att": 1000,
+				"matt": 1000,
+				"crit": 5,
+				"uncap": 300
+			}
+		}
+	]
+}
 
 var g_statComments = {
 	"str" : "1 str grants 2.7 Att [Str is not calculated from gear - enter your totals for now!]",
@@ -1594,6 +1642,7 @@ var g_achievementsSpec = {
 	"id":"ach",
 	"specs" : [
 		g_neamDetail,
+		g_balorDetail,
 		g_einDetail
 	]
 }
