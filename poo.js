@@ -1179,7 +1179,7 @@ function createSquare(loc, mgr)
 		enh.addClass("enhance-square")
 		enh.autocomplete($.extend({},g_sharedOpts,
 		{
-			source : ["+0", "+10", "+11", "+12", "+13","+14","+15"],
+			source : ["+0", "+10", "+11", "+12", "+13","+14","+15","+16","+17","+18","+19","+20"],
 					change: propSet("enh", g_enhanceLookups[loc]),
 					"close": propSet("enh", g_enhanceLookups[loc]),
 					"open": openCb(g_enhanceLookups[loc])
