@@ -448,7 +448,10 @@ var g_major_infusions = [
 	"+1 speed",
 ]
 
-
+var g_alr_toplegs = [0-180]
+var g_alr_helmglovesboots = [0-120]
+var g_alr_weapon = [0-2000]
+	
 var g_chests = [
 	{
 		"name":"Lugh Lamhfada",
