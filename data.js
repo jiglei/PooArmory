@@ -449,8 +449,10 @@ var g_major_infusions = [
 ]
 
 var g_alr_toplegs = [0-180]
+<input type="number" min="0" max="2000" />
 var g_alr_helmglovesboots = [0-120]
-var g_alr_weapon = [0-2000]
+<input type="number" min="0" max="2000" />
+var g_alr_weapon = <input type="number" min="0" max="2000" />
 	
 var g_chests = [
 	{
