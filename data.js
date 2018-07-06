@@ -1842,7 +1842,8 @@ var g_statDisplayNames = {
 	"add": "Additional Damage",
 	"hp": "HP",
 	"critres": "Crit Res",
-	"def": "Def"
+	"def": "Def",
+	"alr": "Attack Limit Release"
 }
 
 var g_displayableStatsCommon = {
@@ -1852,5 +1853,6 @@ var g_displayableStatsCommon = {
 	"add": true,
 	"hp": true,
 	"critres": true,
-	"def": true
+	"def": true,
+	"alr": true
 }
