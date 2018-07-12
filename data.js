@@ -1807,7 +1807,6 @@ var g_parthDetail = {
 				"matt": 1000,
 				"def": 300,
 				"crit": 1,
-				"pen": 10
 			}
 		},
 						{
@@ -1818,7 +1817,6 @@ var g_parthDetail = {
 				"matt": 1000,
 				"def": 300,
 				"crit": 1,
-				"pen": 10
 			}
 		},
 						{
@@ -1829,7 +1827,6 @@ var g_parthDetail = {
 				"matt": 1000,
 				"def": 300,
 				"crit": 1,
-				"pen": 10
 			}
 		},
 						{
@@ -1840,7 +1837,6 @@ var g_parthDetail = {
 				"matt": 1000,
 				"def": 300,
 				"crit": 1,
-				"pen": 10
 			}
 		},
 						{
@@ -1851,7 +1847,6 @@ var g_parthDetail = {
 				"matt": 1000,
 				"def": 300,
 				"crit": 1,
-				"pen": 10
 			}
 		},
 						{
@@ -1862,7 +1857,6 @@ var g_parthDetail = {
 				"matt": 1000,
 				"def": 300,
 				"crit": 1,
-				"pen": 10
 			}
 		},
 	]
