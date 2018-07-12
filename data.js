@@ -1709,7 +1709,7 @@ var g_balorDetail = {
 		}
 	]
 }
-var g_parthDetail = {
+var g_vanguardDetail = {
 	"name": "Partholon Vanguard",
 	"placeholder":"run count",
 	"options": [
@@ -1875,7 +1875,8 @@ var g_achievementsSpec = {
 	"specs" : [
 		g_neamDetail,
 		g_balorDetail,
-		g_einDetail
+		g_einDetail,
+		g_vanguardDetail
 	]
 }
 
