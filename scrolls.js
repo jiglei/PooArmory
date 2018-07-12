@@ -71,6 +71,18 @@ var g_scrolls = [
 	"prefix":false
 },
 {
+	"name":"Belief",
+	"locations":["weapon"],
+	"stats":{
+		"balance":-1,
+		"speed":3,
+		"crit":5,
+		"att":970,
+		"matt":970
+	},
+	"prefix":false
+},
+{
 	"name":"Spirited",
 	"locations":["weapon"],
 	"stats":{
@@ -155,6 +167,18 @@ var g_scrolls = [
 	},
 	"prefix":false
 },
+{
+	"name":"Enchanted",
+	"locations":["chest"],
+	"stats":{
+		"balance"-1,
+		"crit":7,
+		"critres":8,
+		"stamina":5,
+		"def":120
+	},
+	"prefix":false
+},
 {	"name":"Echoing",
 	"locations":["gloves", "feet"] ,
 	"stats":{
@@ -163,6 +187,17 @@ var g_scrolls = [
 		"att":365,
 		"matt":365,
 		"def":-260,
+	},
+	"prefix":false
+},
+{	"name":"Soul",
+	"locations":["gloves", "feet"] ,
+	"stats":{
+		"balance":5,
+		"speed":1,
+		"att":465,
+		"matt":465,
+		"def":-300,
 	},
 	"prefix":false
 },
@@ -190,7 +225,7 @@ var g_scrolls = [
 	},
  	"prefix":false
 },
-{	"name":"Captive",
+{	"name":"Capture",
 	"locations":["hat", "legs"],
  	"stats":{
 		"att":285,
