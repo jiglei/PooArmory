@@ -1437,35 +1437,35 @@ var g_componentData = {
 		"chest": {
 			"name": "Core",
 			"stats": {
-				"def": [997, 1532],
+				"def": [1303, 1532],
 				"critres": [4, 5]
 			}
 		},
 		"legs": {
 			"name": "Core",
 			"stats": {
-				"def": [913, 1405],
+				"def": [1194, 1405],
 				"critres": [7, 9]
 			}
 		},
 		"gloves": {
 			"name": "Core",
 			"stats": {
-				"def": [1578, 2426],
+				"def": [2062, 2426],
 				"critres": [4, 5]
 			}
 		},
 		"feet": {
 			"name": "Core",
 			"stats": {
-				"def": [1578, 2426],
+				"def": [2062, 2426],
 				"critres": [4, 5]
 			}
 		},
 		"hat": {
 			"name": "Core",
 			"stats": {
-				"def": [1578, 2426],
+				"def": [2062, 2426],
 				"critres": [4, 5]
 			}
 		},
