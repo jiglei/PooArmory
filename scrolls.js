@@ -171,7 +171,7 @@ var g_scrolls = [
 	"name":"Enchanted",
 	"locations":["chest"],
 	"stats":{
-		"balance"-1,
+		"balance":-1,
 		"crit":7,
 		"critres":8,
 		"stamina":5,
