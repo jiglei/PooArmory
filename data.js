@@ -1709,7 +1709,164 @@ var g_balorDetail = {
 		}
 	]
 }
-
+var g_parthDetail = {
+	"name": "Partholon Vanguard",
+	"placeholder":"run count",
+	"options": [
+		{
+			"name" : "1",
+			"stats" : {
+				"stamina": 1,
+				"att": 100,
+				"matt": 100,
+				"def": 50
+			}
+		},
+		{
+			"name" : "2",
+			"stats" : {
+				"stamina": 2,
+				"att": 200,
+				"matt": 300,
+				"def": 100
+			}
+		},
+		{
+			"name" : "3",
+			"stats" : {
+				"stamina": 3,
+				"att": 300,
+				"matt": 300,
+				"def": 150
+			}
+		},
+		{
+			"name" : "4",
+			"stats" : {
+				"stamina": 4,
+				"att": 400,
+				"matt": 400,
+				"def": 200
+			}
+		},
+				{
+			"name" : "5",
+			"stats" : {
+				"stamina": 5,
+				"att": 500,
+				"matt": 500,
+				"def": 250,
+				"crit": 1
+			}
+		},
+				{
+			"name" : "6",
+			"stats" : {
+				"stamina": 6,
+				"att": 600,
+				"matt": 600,
+				"def": 300,
+				"crit": 1
+			}
+		},
+				{
+			"name" : "7",
+			"stats" : {
+				"stamina": 7,
+				"att": 700,
+				"matt": 700,
+				"def": 300,
+				"crit": 1
+			}
+		},
+						{
+			"name" : "8",
+			"stats" : {
+				"stamina": 8,
+				"att": 800,
+				"matt": 800,
+				"def": 300,
+				"crit": 1
+			}
+		},
+						{
+			"name" : "9",
+			"stats" : {
+				"stamina": 9,
+				"att": 900,
+				"matt": 900,
+				"def": 300,
+				"crit": 1
+			}
+		},
+						{
+			"name" : "10",
+			"stats" : {
+				"stamina": 10,
+				"att": 1000,
+				"matt": 1000,
+				"def": 300,
+				"crit": 1,
+				"pen": 10
+			}
+		},
+						{
+			"name" : "11",
+			"stats" : {
+				"stamina": 11,
+				"att": 1000,
+				"matt": 1000,
+				"def": 300,
+				"crit": 1,
+				"pen": 10
+			}
+		},
+						{
+			"name" : "12",
+			"stats" : {
+				"stamina": 12,
+				"att": 1000,
+				"matt": 1000,
+				"def": 300,
+				"crit": 1,
+				"pen": 10
+			}
+		},
+						{
+			"name" : "13",
+			"stats" : {
+				"stamina": 13,
+				"att": 1000,
+				"matt": 1000,
+				"def": 300,
+				"crit": 1,
+				"pen": 10
+			}
+		},
+						{
+			"name" : "14",
+			"stats" : {
+				"stamina": 14,
+				"att": 1000,
+				"matt": 1000,
+				"def": 300,
+				"crit": 1,
+				"pen": 10
+			}
+		},
+						{
+			"name" : "15",
+			"stats" : {
+				"stamina": 15,
+				"att": 1000,
+				"matt": 1000,
+				"def": 300,
+				"crit": 1,
+				"pen": 10
+			}
+		},
+	]
+}
 var g_statComments = {
 	"str" : "1 str grants 2.7 Att [Str is not calculated from gear - enter your totals for now!]",
 	"int" : "1 int grants 2.0 mAtt [Int is not calculated from gear - enter your totals for now!]",
