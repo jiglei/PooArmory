@@ -20,8 +20,14 @@ var boxes = []
 
 function gatherInputs()
 {
-	var str = getUrl()
+	var str = dumpToJsonCompressed()
 	$("#state").val(str)
+}
+
+function populate()
+{
+	var state = $("#state").val()
+	loadFromJsonCompressed(state)
 }
 
 $(document).ready( function()
@@ -54,8 +60,9 @@ $(document).ready( function()
 				<div id="endDisplay" class="col-xs-12"></div>
 			</div>
 			<div class='row'>
-				<button onclick="gatherInputs()" style="margin-left:0.1em">Make shareable URL</button>
+				<button onclick="gatherInputs()" style="margin-left:0.1em">Generate shareable data</button>
 				<input id="state"></input>
+				<button onclick="populate()" style="margin-left:0.1em">Load from shareable data</button>
 				<div id="console" style="visibility:hidden"></div>	
 			</div>			
 		</div>

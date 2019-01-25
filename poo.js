@@ -194,7 +194,12 @@ function dumpToJson()
 		var id = $(this).attr("id") || ""
 		state.push([id, $(this).val()])
 	})
-	
+	return state;
+}
+
+function dumpToJsonCompressed()
+{
+	var state = dumpToJson();
 	return LZString.compressToBase64(JSON.stringify(state))
 }
 
@@ -213,9 +218,14 @@ function loadFromUrl()
 	loadFromJson(ss)
 }
 	
+function loadFromJsonCompressed(j)
+{
+	var jd = JSON.parse(LZString.decompressFromBase64(j))
+	return loadFromJson(jd)
+}
+
 function loadFromJson(j)
 {
-	j = JSON.parse(LZString.decompressFromBase64(j))
 	var inputsWithDialogs = []
 	$.each(j, function(i, v)
 	{
@@ -440,6 +450,11 @@ var makeGeneralDialog = function(name, loc, id)
 			input.css('width', "100%")
 			if ('stats' in component && stat in component.stats){
 				var statRange = component.stats[stat]
+				if (typeof statRange == "number")
+				{
+					statRange = [statRange, statRange]
+				}
+				
 				if(useDefault)
 				{
 					input.val(Math.floor((statRange[0]+statRange[statRange.length-1])/2))
@@ -452,6 +467,7 @@ var makeGeneralDialog = function(name, loc, id)
 				}
 				else
 				{
+					
 					input.attr("title", statRange.join(" to "))
 				}
 				input.tooltip({
