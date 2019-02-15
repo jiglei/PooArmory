@@ -877,7 +877,7 @@ var g_brooches = [
 		}
 	},
 	{
-		"name":"Blue Kitty brooch",
+		"name":"Blue Kitty Brooch",
 		"stats":{
 			"crit":1,
 			"def":50,
@@ -888,7 +888,19 @@ var g_brooches = [
 		}
 	},
 	{
-		"name":"White Kitty brooch",
+		"name":"Moon Moon Brooch",
+		"stats":{
+			"crit":1,
+			"speed":2,
+			"def":50,
+			"str":50,
+			"agi":50,
+			"int":50,
+			"wil":50
+		}
+	},
+	{
+		"name":"White Kitty Brooch",
 		"stats":{
 			"speed":2,
 			"agi":48,
