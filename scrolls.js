@@ -71,7 +71,7 @@ var g_scrolls = [
 	"prefix":false
 },
 {
-	"name":"Belief",
+	"name":"Conviction",
 	"locations":["weapon"],
 	"stats":{
 		"balance":-1,
@@ -168,7 +168,7 @@ var g_scrolls = [
 	"prefix":false
 },
 {
-	"name":"Enchanted",
+	"name":"Barrier",
 	"locations":["chest"],
 	"stats":{
 		"balance":-1,
