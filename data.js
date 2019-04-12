@@ -699,6 +699,52 @@ var g_rings = [
 			"hp": 125
 		},
 		"sets":["Lv90Rings"]
+	},
+		{
+		"name":"Dawn Transcender",
+		"stats":{
+			"balance": 2,
+			"str": 140,
+			"agi": 70,
+			"wil": 80,
+			"hp": 125
+		},
+		"sets":["Lv100Rings"]
+	},
+	{
+		"name":"Dawn Pursuer",
+		"stats":{
+			"balance": 2,
+			"str": 140,
+			"agi": 70,
+			"wil": 80,
+			"hp": 125
+		},
+		"sets":["Lv100Rings"]
+	},
+	{
+		"name":"Dawn Conqueror",
+		"stats":{
+			"balance": 2,
+			"str": 140,
+			"agi": 70,
+			"wil": 80,
+			"hp": 140,
+                        "crit": 1
+		},
+		"sets":["Lv100Rings"]
+	},
+	{
+		"name":"Dawn Bringer",
+		"stats":{
+			"balance": 2,
+			"int": 180,
+			"agi": 70,
+			"wil": 80,
+			"hp": 140,
+                        "crit": 1
+		},
+		"sets":["Lv100Rings"]
 	}
 ]
 
@@ -1956,8 +2002,21 @@ var g_setStats = [
             }                     
         ]
     },
-	
- {
+    {
+        "name" : "Lv100Rings",
+        "stats": [
+            {         
+            }         
+            ,
+            {         
+            }         
+            ,
+            {                    
+                "crit" : 1
+            }                     
+        ]
+    },
+    {
         "name" : "Regina",
         "stats": [
             {         
