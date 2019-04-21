@@ -104,9 +104,7 @@ var g_attackStats = {
 	"Miri": "att",
 	"Lann": "att",
 	"Kai": "att",
-	"Vella": "att",
-	"Eira": "matt"
-	
+	"Vella": "att",	
 }
 
 // prettified casing
