@@ -876,6 +876,8 @@ var g_offhands = [
 			"critres": 5,
 			"wil": 80,
 			"agi": 90
+		}
+	},
 			
 ]
 
