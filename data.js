@@ -104,7 +104,8 @@ var g_attackStats = {
 	"Miri": "att",
 	"Lann": "att",
 	"Kai": "att",
-	"Vella": "att"
+	"Vella": "att",
+	"Eira": "matt"
 	
 }
 
@@ -479,7 +480,7 @@ var g_chests = [
 		"level":95
 	},
 		{
-		"name":"Astra",
+		"name":"Astera",
 		"type": "plate",
 		"level":100
 	}
@@ -512,7 +513,7 @@ var g_legs = [
 		"level": 95
 	},
 		{
-		"name":"Astra",
+		"name":"Astera",
 		"type": "plate",
 		"level":100
 	}
@@ -545,7 +546,7 @@ var g_feet = [
 		"level": 95
 	},
 		{
-		"name":"Astra",
+		"name":"Astera",
 		"type": "plate",
 		"level":100
 	}
@@ -578,7 +579,7 @@ var g_gloves = [
 		"level": 95
 	},
 		{
-		"name":"Astra",
+		"name":"Astera",
 		"type": "plate",
 		"level":100
 	}
@@ -611,7 +612,7 @@ var g_hats = [
 		"level": 95
 	},
 		{
-		"name":"Astra",
+		"name":"Astera",
 		"type": "plate",
 		"level":100
 	}
@@ -696,7 +697,8 @@ var g_rings = [
 			"int": 180,
 			"agi": 70,
 			"wil": 80,
-			"hp": 125
+			"hp": 125,
+			"crit": 1
 		},
 		"sets":["Lv90Rings"]
 	},
@@ -707,7 +709,8 @@ var g_rings = [
 			"str": 140,
 			"agi": 70,
 			"wil": 80,
-			"hp": 125
+			"hp": 125,
+			"crit": 1
 		},
 		"sets":["Lv100Rings"]
 	},
@@ -800,7 +803,7 @@ var g_belts = [
 		}
 	},
 	{
-		"name":"Sealmaker Belt",
+		"name":"Seal Belt",
 		"stats":{
 			"balance":3,
 			"str":145,
@@ -808,7 +811,7 @@ var g_belts = [
 			"wil":105
 		}
 	},
-	{	"name":"Enchanted Belt",
+	{	"name":"Barrier Belt",
 	 	"stats":{
 			"balance":3,
 			"int":193,
@@ -863,6 +866,19 @@ var g_offhands = [
 			"critres":7
 		}
 	},
+	{
+		"name":"The Book of Succession",
+		"type":"book",
+		"stats":{
+			"def": 1040,
+			"crit": 3,
+			"speed": 3,
+			"int": 243,
+			"str":180,
+			"critres": 5,
+			"wil": 80,
+			"agi": 90
+			
 ]
 
 var g_earrings = [
@@ -934,7 +950,7 @@ var g_brooches = [
 		}
 	},
 	{
-		"name":"Moon Moon Brooch",
+		"name":"Red Moon Brooch",
 		"stats":{
 			"crit":1,
 			"speed":2,
