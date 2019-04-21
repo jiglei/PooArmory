@@ -695,8 +695,7 @@ var g_rings = [
 			"int": 180,
 			"agi": 70,
 			"wil": 80,
-			"hp": 125,
-			"crit": 1
+			"hp": 125
 		},
 		"sets":["Lv90Rings"]
 	},
@@ -719,7 +718,8 @@ var g_rings = [
 			"str": 140,
 			"agi": 70,
 			"wil": 80,
-			"hp": 125
+			"hp": 125,
+			"crit": 1
 		},
 		"sets":["Lv100Rings"]
 	},
