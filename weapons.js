@@ -55,7 +55,7 @@ var g_weapons = [
         "rank": "4"
     },
 	{
-	"name": "Astra",
+	"name": "Astera",
 	"stats": {
 		"balance": "52-58",
 		"speed": "7-9",
