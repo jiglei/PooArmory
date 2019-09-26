@@ -700,7 +700,7 @@ var g_rings = [
 		"sets":["Lv90Rings"]
 	},
 		{
-		"name":"Dawn Transcender",
+		"name":"Daybreak Trailblazer",
 		"stats":{
 			"balance": 2,
 			"str": 140,
@@ -712,7 +712,7 @@ var g_rings = [
 		"sets":["Lv100Rings"]
 	},
 	{
-		"name":"Dawn Pursuer",
+		"name":"Daybreak Pioneer",
 		"stats":{
 			"balance": 2,
 			"str": 140,
@@ -724,10 +724,10 @@ var g_rings = [
 		"sets":["Lv100Rings"]
 	},
 	{
-		"name":"Dawn Conqueror",
+		"name":"Daybreak Conquest",
 		"stats":{
 			"balance": 2,
-			"str": 140,
+			"int": 180,
 			"agi": 70,
 			"wil": 80,
 			"hp": 140,
@@ -736,7 +736,7 @@ var g_rings = [
 		"sets":["Lv100Rings"]
 	},
 	{
-		"name":"Dawn Bringer",
+		"name":"Daybreak Transcendence",
 		"stats":{
 			"balance": 2,
 			"int": 180,
