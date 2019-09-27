@@ -970,6 +970,17 @@ var g_brooches = [
 			"int":48,
 			"wil":48
 		}
+	},
+	{
+		"name":"Moonlight Sapphire Brooch",
+		"stats":{
+			"crit": -1,
+			"speed": -1,
+			"str": 41,
+			"int": 41,
+			"agi": 37,
+			"wil": 36,
+		}
 	}
 ]
 
