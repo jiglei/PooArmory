@@ -470,8 +470,8 @@ var g_scrolls = [
 	"name":"Starlight",
 	"locations":["brooch"],
 	"stats":{
-		"att": 200
-		"speed": 5
+		"att": 200,
+		"speed": 2
 	},
 	"prefix": true
 }
