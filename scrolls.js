@@ -459,7 +459,7 @@ var g_scrolls = [
 },
 {
 	"name":"Noble",
-	"locations":[Moonlight Sapphire Brooch],
+	"locations":["brooch"],
 	"stats":{
 		"att": -100,
 		"balance": 4
@@ -468,7 +468,7 @@ var g_scrolls = [
 },
 {
 	"name":"Starlight",
-	"locations":[Moonlight Sapphire Brooch],
+	"locations":["brooch"],
 	"stats":{
 		"att": 200
 		"speed": 5
