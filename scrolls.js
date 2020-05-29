@@ -293,7 +293,7 @@ var g_scrolls = [
 },
 {	"name":"Sealed",
 	"locations":["offhand"] ,
-	"types":["book","milletianshield","milletianfocus"],
+	"types":["book","smallshield","focus"],
 	"stats":{
 		"speed":1,
 		"def":500
@@ -302,7 +302,7 @@ var g_scrolls = [
 },
 {	"name":"Truth",
 	"locations":["offhand"] ,
-	"types":["book","milletianshield","milletianfocus"],
+	"types":["book","smallshield","focus"],
 	"stats":{
 		"att":230,
 		"matt":230,
@@ -505,6 +505,17 @@ var g_scrolls = [
 		"att":245,
 		"matt":245,
 		"critres":6
+	},
+	"prefix":true
+},
+{
+	"name":"Calm",
+	"locations":["weapon"],
+	"stats":{
+		"speed":4,
+		"balance":5,
+		"att":-280,
+		"matt":-280
 	},
 	"prefix":true
 }

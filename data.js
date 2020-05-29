@@ -35,7 +35,6 @@ var g_weaponTypes = {
 		"long_hammer":true,
 		"smallshield":true,
 		"largeshield":true,
-		"milletianshield":true
 	},
 	"Evie":{
 		"staff" :true,
@@ -76,7 +75,6 @@ var g_weaponTypes = {
 		"spellsword":true,
 		"focus":true,
 		"whip":true,
-		"milletianfocus":true
 	},
 	"Miri":{
 		"dragonspine":true,
@@ -935,7 +933,7 @@ var g_offhands = [
 	},
 	{
 		"name":"Milletian Focus",
-		"type":"milletianfocus",
+		"type":"focus",
 		"stats":{
 			"def": 1890,
 			"crit": 3,
@@ -951,7 +949,7 @@ var g_offhands = [
 	},
 	{
 		"name":"Milletian Shield",
-		"type":"milletianshield",
+		"type":"smallshield",
 		"stats":{
 			"def": 1890,
 			"crit": 3,
